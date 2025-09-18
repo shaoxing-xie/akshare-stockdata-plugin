@@ -574,4 +574,5 @@ print(stock_zh_a_hist_df)
 
 **Tool 8: Shanghai-Shenzhen-Hong Kong Stock Connect Holdings** - 7 interfaces, including East Money Hong Kong Stock Connect components, HSGT minute data, sector rankings, stock rankings, Hong Kong Stock Connect real-time quotes, HSGT historical data, specific stock holdings, etc.
 
-For detailed parameter descriptions, function explanations and interface examples, please refer to each tool's configuration files or interface prompts when using the plugin.
+For detailed parameter descriptions, function explanations and interface examples, please refer to each tool's configuration files or interface prompts when using the plugin.#   d i f y - p l u g i n - A K S h a r e - S t o c k d a t a  
+ 
