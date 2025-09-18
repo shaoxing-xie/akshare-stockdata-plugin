@@ -1,0 +1,33 @@
+version: 0.05
+type: plugin
+author: shaoxing_xie
+name: akshare_stockdata
+label:
+  en_US: AKShare Stock Data
+  zh_Hans: AKShare 股票数据
+  pt_BR: AKShare Dados de Ações
+  zh_Hant: AKShare 股票數據
+description:
+  en_US: Get comprehensive stock market data via AKShare library wrapper on Dify. Built on AKShare for academic research. No token required. Text output as Markdown tables with JSON alongside.
+  zh_Hans: 在 Dify 上通过 AKShare 库封装获取全面的股票市场数据；基于 AKShare 构建，用于学术研究；无需令牌；文本输出为 Markdown 表格，同时返回 JSON。
+  pt_BR: Obtenha dados abrangentes do mercado de ações via wrapper da biblioteca AKShare no Dify. Construído no AKShare para pesquisa acadêmica. Sem token. Saída de texto em tabelas Markdown com JSON.
+  zh_Hant: 在 Dify 上通過 AKShare 庫封裝獲取全面的股票市場數據；基於 AKShare 構建，用於學術研究；無需令牌；文本輸出為 Markdown 表格，同時返回 JSON。
+icon: icon.png
+resource:
+  memory: 268435456
+  permission: {}
+plugins:
+  tools:
+    - provider/akshare_stockdata.yaml
+meta:
+  version: 0.05
+  arch:
+    - amd64
+    - arm64
+  runner:
+    language: python
+    version: "3.12"
+    entrypoint: main
+created_at: 2025-04-21T22:09:22.160377917+08:00
+privacy: PRIVACY.md
+verified: false
