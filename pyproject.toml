@@ -32,10 +32,10 @@ dependencies = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/shaoxing-xie/dify-plugin-akshare-stockdata"
-Repository = "https://github.com/shaoxing-xie/dify-plugin-akshare-stockdata"
-Issues = "https://github.com/shaoxing-xie/dify-plugin-akshare-stockdata/issues"
-Documentation = "https://github.com/shaoxing-xie/dify-plugin-akshare-stockdata#readme"
+Homepage = "https://github.com/shaoxing-xie/akshare-stockdata-plugin"
+Repository = "https://github.com/shaoxing-xie/akshare-stockdata-plugin"
+Issues = "https://github.com/shaoxing-xie/akshare-stockdata-plugin/issues"
+Documentation = "https://github.com/shaoxing-xie/akshare-stockdata-plugin#readme"
 
 [project.optional-dependencies]
 dev = [

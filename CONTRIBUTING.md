@@ -59,8 +59,8 @@ We welcome suggestions for new features or improvements. Please:
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/shaoxing-xie/dify-plugin-akshare-stockdata.git
-   cd dify-plugin-akshare-stockdata
+   git clone https://github.com/shaoxing-xie/akshare-stockdata-plugin.git
+   cd akshare-stockdata-plugin
    ```
 
 2. Install dependencies:
@@ -106,7 +106,7 @@ When adding new features:
 ## Plugin Structure
 
 ```
-dify-plugin-akshare-stockdata/
+akshare-stockdata-plugin/
 ├── manifest.yaml              # Plugin manifest
 ├── main.py                    # Plugin entry point
 ├── provider/                  # Provider configuration

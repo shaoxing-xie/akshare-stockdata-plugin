@@ -213,7 +213,7 @@ We welcome community contributions! Please follow these steps to participate:
 ## 📞 Technical Support
 
 If you encounter problems or have suggestions:
-1. Check the [Issues](https://github.com/shaoxing-xie/dify-plugin-akshare-stockdata/issues) page
+1. Check the [Issues](https://github.com/shaoxing-xie/akshare-stockdata-plugin/issues) page
 2. Create a new issue with detailed information
 3. Refer to AKShare official documentation
 
