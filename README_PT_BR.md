@@ -106,10 +106,38 @@
 - Conexão com internet
 
 ### Instalação
-1. Baixe o plugin do marketplace da Dify
-2. Instale através da interface de gerenciamento de plugins
-3. Configure as permissões necessárias
-4. O plugin estará disponível imediatamente
+
+#### Método 1: Marketplace da Dify (Recomendado)
+1. Abra seu workspace da Dify
+2. Navegue para **Ferramentas** → **Navegar Marketplace**
+3. Procure por **"AKShare Stock Data"** ou **"AKShare 股票数据"**
+4. Clique no botão **Instalar**
+5. Aguarde a instalação ser concluída e comece a usar
+
+#### Método 2: Instalação via GitHub
+1. Visite o repositório do plugin: [https://github.com/shaoxing-xie/akshare-stockdata-plugin](https://github.com/shaoxing-xie/akshare-stockdata-plugin)
+2. Baixe o pacote do plugin da versão mais recente (arquivo .difypkg)
+3. Em seu workspace da Dify:
+   - Navegue para **Ferramentas** → **Plugins Locais**
+   - Clique em **Carregar Plugin**
+   - Selecione o arquivo .difypkg baixado
+   - Confirme a instalação
+
+#### Método 3: Instalação Manual
+1. Clone este repositório localmente
+   ```bash
+   git clone https://github.com/shaoxing-xie/akshare-stockdata-plugin.git
+   ```
+2. Instale as dependências Python
+   ```bash
+   cd akshare-stockdata-plugin
+   pip install -r requirements.txt
+   ```
+3. Empacote o plugin usando Dify CLI
+   ```bash
+   dify plugin package
+   ```
+4. Carregue o arquivo .difypkg gerado na Dify
 
 ### Uso Básico
 ```python

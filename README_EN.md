@@ -60,18 +60,30 @@
 4. Click the **Install** button
 5. Wait for installation to complete and start using
 
-### Method 2: Manual Installation
+### Method 2: Install via GitHub
+1. Visit the plugin repository: [https://github.com/shaoxing-xie/akshare-stockdata-plugin](https://github.com/shaoxing-xie/akshare-stockdata-plugin)
+2. Download the latest version plugin package (.difypkg file)
+3. In your Dify workspace:
+   - Navigate to **Tools** → **Local Plugins**
+   - Click **Upload Plugin**
+   - Select the downloaded .difypkg file
+   - Confirm installation
+
+### Method 3: Manual Installation
 1. Clone this repository locally
    ```bash
-   git clone https://github.com/shaoxing-xie/dify-plugin-akshare-stockdata.git
+   git clone https://github.com/shaoxing-xie/akshare-stockdata-plugin.git
    ```
 2. Install Python dependencies
    ```bash
-   cd dify-plugin-akshare-stockdata
+   cd akshare-stockdata-plugin
    pip install -r requirements.txt
    ```
-3. Copy the plugin directory to your Dify plugins directory
-4. Restart Dify service
+3. Package the plugin using Dify CLI
+   ```bash
+   dify plugin package
+   ```
+4. Upload the generated .difypkg file in Dify
 
 ## 🎯 How to Use
 

@@ -106,10 +106,38 @@
 - 網絡連接
 
 ### 安裝步驟
-1. 從Dify市場下載插件
-2. 通過插件管理界面安裝
-3. 配置必要權限
-4. 插件立即可用
+
+#### 方式一：Dify插件市場安裝（推薦）
+1. 打開您的 Dify 工作空間
+2. 導航至 **工具** → **瀏覽插件市場**
+3. 搜索 **"AKShare 股票數據"** 或 **"AKShare Stock Data"**
+4. 點擊 **安裝** 按鈕
+5. 等待安裝完成，即可開始使用
+
+#### 方式二：通過GitHub安裝
+1. 訪問插件倉庫：[https://github.com/shaoxing-xie/akshare-stockdata-plugin](https://github.com/shaoxing-xie/akshare-stockdata-plugin)
+2. 下載最新版本的插件包（.difypkg 文件）
+3. 在 Dify 工作空間中：
+   - 導航至 **工具** → **本地插件**
+   - 點擊 **上傳插件**
+   - 選擇下載的 .difypkg 文件
+   - 確認安裝
+
+#### 方式三：手動安裝
+1. 克隆本倉庫到本地
+   ```bash
+   git clone https://github.com/shaoxing-xie/akshare-stockdata-plugin.git
+   ```
+2. 安裝Python依賴
+   ```bash
+   cd akshare-stockdata-plugin
+   pip install -r requirements.txt
+   ```
+3. 使用 Dify CLI 打包插件
+   ```bash
+   dify plugin package
+   ```
+4. 在 Dify 中上傳生成的 .difypkg 文件
 
 ### 基本使用
 ```python
