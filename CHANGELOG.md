@@ -5,7 +5,7 @@ All notable changes to the AKShare Stock Data Plugin will be documented in this 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [0.05] - 2025-09-18
+## [0.5.0] - 2025-09-18
 
 ### Added
 - **113个数据接口**: 从103个接口扩展到113个接口，新增10个数据接口
@@ -97,5 +97,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - **0.0.1**: Initial release with basic functionality
 - **0.0.2**: Enhanced with comprehensive interfaces and multi-language support
-- **0.05**: Major update with 113 interfaces, improved encoding, and parameter refactoring
+- **0.5.0**: Major update with 113 interfaces, improved encoding, and parameter refactoring
 - **Unreleased**: Improved documentation and GitHub repository structure

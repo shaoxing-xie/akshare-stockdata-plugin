@@ -1,60 +1,64 @@
-# Privacy Policy for AKShare Stock Data Plugin
+# AKShare 股票数据插件隐私政策
 
-**Last Updated:** 2025-09-17
+**最后更新:** 2025-09-17
 
-## 1. Introduction
-This Privacy Policy explains how the AKShare Stock Data Plugin ("Plugin", "we", "us", or "our") handles information when you use our plugin to access financial data via the Dify platform. This policy applies only to the Plugin, not to the Dify platform itself or any third-party data sources.
+## 1. 介绍
+本隐私政策说明了 AKShare 股票数据插件（"插件"、"我们"、"我们的"）在您通过 Dify 平台使用我们的插件访问金融数据时如何处理信息。本政策仅适用于插件，不适用于 Dify 平台本身或任何第三方数据源。
 
-**Important Note**: This plugin is a wrapper around the [AKShare](https://github.com/akfamily/akshare) Python library. Data access and processing are handled through AKShare, which connects to various financial data sources.
+**重要提示**: 本插件是 [AKShare](https://github.com/akfamily/akshare) Python 库的封装。数据访问和处理通过 AKShare 进行，AKShare 连接到各种金融数据源。
 
-## 2. Data We Process
-The Plugin acts as an intermediary to help you retrieve financial data using the AKShare Python library. When you use the Plugin, the following types of data may be processed in memory:
+## 2. 我们处理的数据
+插件作为中介帮助您使用 AKShare Python 库检索金融数据。当您使用插件时，以下类型的数据可能在内存中处理：
 
-- **User Input Parameters**: Such as stock codes, date ranges, technical indicator types, or other query parameters you provide.
-- **API Responses**: The financial data returned by AKShare in response to your queries, including but not limited to:
-  - Real-time stock market data
-  - Historical price data
-  - Financial indicator data
-  - Fund flow data
-  - Technical analysis data
-  - Market overview data
-- **Temporary Logs**: Technical logs that may contain request parameters and response status (for debugging and error handling)
+- **用户输入参数**: 如您提供的股票代码、日期范围、技术指标类型或其他查询参数。
+- **API 响应**: AKShare 响应您的查询返回的金融数据，包括但不限于：
+  - 股票实时行情数据
+  - 历史价格数据
+  - 财务指标数据
+  - 资金流向数据
+  - 技术分析数据
+  - 市场概况数据
+- **临时日志**: 可能包含请求参数和响应状态的技术日志（用于调试和错误处理）
 
-The Plugin does **not** persistently store any of this information. All data is processed in memory only for the duration of your request and is immediately cleared after request completion.
+插件**不会**持久存储任何此类信息。所有数据仅在您的请求持续时间内进行内存处理，请求完成后立即清除。
 
-## 3. How We Use Data
-Your data is used solely to:
-- Pass your query parameters to the AKShare library to obtain financial data.
-- Retrieve and return the requested financial data to you via the Dify platform.
+## 3. 我们如何使用数据
+您的数据仅用于：
+- 将您的查询参数传递给 AKShare 库以获取金融数据。
+- 通过 Dify 平台检索并返回您请求的金融数据。
 
-We do not use your data for analytics, profiling, or advertising.
+我们不会将您的数据用于分析、分析或广告。
 
-## 4. Data Sharing and Third Parties
-The Plugin does not share your data with any third parties, except:
+## 4. 数据共享和第三方
+插件不会与任何第三方共享您的数据，除了：
 
-- **Dify Platform**: The Plugin operates within Dify. How Dify handles your data is governed by Dify's privacy policy.
-- **AKShare Library**: The Plugin uses AKShare to access financial data. AKShare may connect to various financial data sources as part of its normal operation, including:
+- **Dify 平台**: 插件在 Dify 内运行。Dify 如何处理您的数据受 Dify 隐私政策约束。
+- **AKShare 库**: 插件使用 AKShare 访问金融数据。AKShare 可能在其正常操作过程中连接到各种金融数据源，包括：
   - 东方财富网 (East Money)
   - 新浪财经 (Sina Finance)
   - 同花顺 (TongHuaShun)
   - 腾讯财经 (Tencent Finance)
   - 网易财经 (NetEase Finance)
-  - Other financial data providers
-- **Financial Data Sources**: Through AKShare, the Plugin may access data from financial websites and APIs, but this is handled entirely by AKShare, and we have no control over how these third parties handle data.
+  - 其他金融数据提供商
+- **金融数据源**: 通过 AKShare，插件可能访问金融网站和 API 的数据，但这完全由 AKShare 处理，我们无法控制这些第三方如何处理数据。
 
-## 5. Data Retention
-The Plugin is stateless and does **not** retain any user data after a request is completed. Any logging or data retention is subject to the policies of:
-- The Dify platform.
-- The data sources accessed via the Plugin (e.g., exchanges, public data interfaces exposed by AKShare).
+## 5. 数据保留
+插件是无状态的，在请求完成后**不会**保留任何用户数据。任何日志记录或数据保留都受以下政策约束：
+- Dify 平台。
+- 通过插件访问的数据源（例如，通过 AKShare 公开的交易所、公共数据接口）。
 
-## 6. User Rights
-As the Plugin does not store your personal data, requests regarding access, correction, deletion, or portability of data should be directed to:
-- The administrators of the Dify platform you are using.
+## 6. 用户权利
+由于插件不存储您的个人数据，有关数据访问、更正、删除或可移植性的请求应直接向以下对象提出：
+- 您正在使用的 Dify 平台的管理员。
 
-You may stop using the Plugin at any time.
+您可以随时停止使用插件。
 
-## 7. Security
-We rely on the security measures of the Dify platform to protect data while it is being processed by the Plugin. If you provide sensitive information, ensure you trust the security of Dify.
+## 7. 安全
+我们依赖 Dify 平台的安全措施来保护插件处理数据时的数据。如果您提供敏感信息，请确保您信任 Dify 的安全性。
 
-## 8. Changes to This Privacy Policy
-We may update this Privacy Policy from time to time. Changes will be posted within the Plugin's information page or documentation. Please review this policy periodically for updates.
+## 8. 隐私政策变更
+我们可能会不时更新本隐私政策。变更将在插件的信息页面或文档中发布。请定期查看本政策以获取更新。
+
+---
+
+**注意**: 本隐私政策仅适用于 AKShare 股票数据插件。对于 Dify 平台或通过 AKShare 访问的第三方数据源的数据处理，请参考其各自的隐私政策。

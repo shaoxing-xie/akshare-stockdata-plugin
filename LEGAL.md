@@ -1,105 +1,105 @@
-# Legal Notice and Open Source Compliance
+# 法律声明和开源合规
 
-## Overview
+## 概述
 
-This plugin (AKShare Stock Data Plugin for Dify) is a Dify platform integration tool developed based on the [AKShare](https://github.com/akfamily/akshare) Python library. AKShare is an open-source financial data interface library that provides access to various financial data including stocks, futures, funds, foreign exchange, and more. This document outlines the legal considerations and open source compliance aspects of this project.
+本插件（AKShare 股票数据插件 for Dify）是基于 [AKShare](https://github.com/akfamily/akshare) Python 库开发的 Dify 平台集成工具。AKShare 是一个开源的金融数据接口库，提供股票、期货、基金、外汇等多种金融数据的获取功能。本文档概述了本项目的法律考虑和开源合规方面。
 
-## Dependencies and Acknowledgments
+## 依赖和致谢
 
-### AKShare Library
-- **Source**: [https://github.com/akfamily/akshare](https://github.com/akfamily/akshare)
-- **License**: MIT License (see AKShare official repository)
-- **Version**: Supports latest stable version of AKShare
-- **Purpose**: This plugin uses AKShare to access financial data from various authoritative sources
-- **Usage**: Academic research, educational purposes, and compliant commercial applications
-- **Data Sources**: AKShare obtains data by calling public APIs and using web scraping techniques to collect data from major financial websites
+### AKShare 库
+- **来源**: [https://github.com/akfamily/akshare](https://github.com/akfamily/akshare)
+- **许可证**: MIT License (详见 AKShare 官方仓库)
+- **版本**: 支持 AKShare 最新稳定版本
+- **目的**: 本插件使用 AKShare 从各种权威数据源访问金融数据
+- **用途**: 学术研究、教育目的和合规的商业应用
+- **数据源**: AKShare 通过调用公开 API 和使用网页爬虫技术从各大财经网站采集数据
 
-### Special Acknowledgments
-We acknowledge and thank the following projects for their contributions to the financial data ecosystem:
-- **AKShare Project Team**: Provided a powerful financial data acquisition library
-- **FuShare Project**: Provided valuable reference and learning opportunities in code and project development
-- **TuShare Project**: Provided valuable reference and learning opportunities in code and project development
-- **Open Source Community**: Contributions to the financial data open source ecosystem
+### 特别致谢
+我们感谢以下项目对金融数据生态系统的贡献：
+- **AKShare 项目团队**: 提供了强大的金融数据获取库
+- **FuShare 项目**: 在代码和项目开发方面提供了宝贵的参考和学习机会
+- **TuShare 项目**: 在代码和项目开发方面提供了宝贵的参考和学习机会
+- **开源社区**: 为金融数据开源生态做出的贡献
 
-## Data Sources and Usage
+## 数据源和使用
 
-### Data Sources
-This plugin accesses financial data through AKShare from:
-- **东方财富网 (East Money)**: Provides stocks, funds, futures and other financial data
-- **新浪财经 (Sina Finance)**: Provides stock quotes, news and other data
-- **同花顺 (TongHuaShun)**: Provides technical analysis, financial data, etc.
-- **腾讯财经 (Tencent Finance)**: Provides market data and news
-- **网易财经 (NetEase Finance)**: Provides financial data and news
-- **Public APIs**: Open data interfaces from exchanges and financial institutions
-- **Other Authoritative Financial Data Sources**: Other data providers integrated through AKShare
+### 数据源
+本插件通过 AKShare 访问以下金融数据源：
+- **东方财富网 (East Money)**: 提供股票、基金、期货等金融数据
+- **新浪财经**: 提供股票行情、新闻等数据
+- **同花顺**: 提供技术分析、财务数据等
+- **腾讯财经**: 提供市场数据和资讯
+- **网易财经**: 提供金融数据和新闻
+- **公开 API**: 各交易所和金融机构的公开数据接口
+- **其他权威金融数据源**: 通过 AKShare 集成的其他数据提供商
 
-### Data Usage
-- **Purpose**: Academic research, educational use, and compliant commercial applications
-- **Data Acquisition Method**: By calling public APIs and using web scraping techniques to collect data from major financial websites
-- **Data Accuracy**: Users should verify data accuracy independently, data comes from third parties
-- **No Warranty**: No guarantee of data accuracy, completeness, or real-time availability
-- **Compliant Use**: Users should comply with relevant data source terms of service and legal regulations
-- **Anti-Scraping Risks**: Using web scraping techniques may face anti-scraping measures from target websites and legal risks
+### 数据使用
+- **目的**: 学术研究、教育用途和合规的商业应用
+- **数据获取方式**: 通过调用公开 API 和使用网页爬虫技术从各大财经网站采集数据
+- **数据准确性**: 用户应独立验证数据准确性，数据来源于第三方
+- **无保证**: 不保证数据准确性、完整性或实时性
+- **合规使用**: 用户应遵守相关数据源的使用条款和法律法规
+- **反爬虫风险**: 使用网页爬虫技术可能面临目标网站的反爬措施和法律风险
 
-## Legal Disclaimers
+## 法律免责声明
 
-### Financial Data Disclaimer
-- **Not Financial Advice**: This plugin and the data it provides do not constitute financial advice
-- **No Investment Recommendations**: Users should not rely solely on this data for investment decisions
-- **Risk Warning**: All investments carry risk, and past performance does not guarantee future results
-- **Professional Advice**: Users should consult with qualified financial professionals before making investment decisions
+### 金融数据免责声明
+- **非投资建议**: 本插件及其提供的数据不构成投资建议
+- **无投资推荐**: 用户不应仅依赖此数据进行投资决策
+- **风险警告**: 所有投资都有风险，过往表现不代表未来结果
+- **专业建议**: 用户在进行投资决策前应咨询合格的金融专业人士
 
-### Data Accuracy and Availability
-- **No Warranty**: We make no warranties about the accuracy, completeness, or timeliness of the data
-- **Third-Party Data**: Data is sourced from third-party providers through AKShare
-- **Service Availability**: Data availability depends on third-party services and may be subject to interruptions
-- **Data Delays**: Some data may be delayed or not real-time
+### 数据准确性和可用性
+- **无保证**: 我们对数据的准确性、完整性或及时性不作任何保证
+- **第三方数据**: 数据通过 AKShare 从第三方提供商获取
+- **服务可用性**: 数据可用性取决于第三方服务，可能受到中断影响
+- **数据延迟**: 某些数据可能延迟或非实时
 
-### Liability Limitation
-- **No Liability**: The authors and contributors of this plugin are not liable for any losses or damages
-- **Use at Own Risk**: Users use this plugin and its data at their own risk
-- **No Support**: No guarantee of technical support or bug fixes
+### 责任限制
+- **无责任**: 本插件的作者和贡献者不对任何损失或损害承担责任
+- **自担风险**: 用户使用本插件及其数据需自担风险
+- **无支持**: 不保证技术支持或错误修复
 
-## Open Source Compliance
+## 开源合规
 
-### License
-This plugin is licensed under the MIT License. However, users must also comply with:
-- AKShare library's license terms
-- Third-party data providers' terms of service
-- Applicable laws and regulations in their jurisdiction
+### 许可证
+本插件采用 MIT 许可证。但是，用户还必须遵守：
+- AKShare 库的许可证条款
+- 第三方数据提供商的服务条款
+- 其管辖范围内的适用法律法规
 
-### Third-Party Licenses
-Users are responsible for understanding and complying with:
-- AKShare library license
-- Dify platform license
-- Python and other dependency licenses
-- Data provider terms of service
+### 第三方许可证
+用户有责任理解并遵守：
+- AKShare 库许可证
+- Dify 平台许可证
+- Python 和其他依赖许可证
+- 数据提供商服务条款
 
-## Compliance Requirements
+## 合规要求
 
-### Academic Use
-- This plugin is designed for academic research purposes
-- Users should ensure their use complies with their institution's policies
-- Proper attribution should be given to data sources
+### 学术用途
+- 本插件专为学术研究目的而设计
+- 用户应确保其使用符合其机构的政策
+- 应适当归因于数据源
 
-### Commercial Use
-- Commercial use requires compliance with AKShare's MIT License terms
-- Users should verify compliance with various data provider terms
-- Consider consulting legal counsel for commercial applications
-- Be aware of data source usage frequency limits and anti-scraping policies
-- Ensure compliance with relevant financial regulatory requirements
+### 商业用途
+- 商业用途需要遵守 AKShare 的 MIT 许可证条款
+- 用户应验证与各数据提供商条款的合规性
+- 建议为商业应用咨询法律顾问
+- 注意数据源的使用频率限制和反爬虫政策
+- 确保符合相关金融监管要求
 
-### Data Privacy
-- This plugin does not store user data
-- Users should review our [Privacy Policy](PRIVACY.md)
-- Data processing is subject to applicable privacy laws
+### 数据隐私
+- 本插件不存储用户数据
+- 用户应查看我们的[隐私政策](PRIVACY_CN.md)
+- 数据处理受适用隐私法约束
 
-## Updates and Changes
+## 更新和变更
 
-This legal notice may be updated periodically. Users should review this document regularly for changes.
+本法律声明可能会定期更新。用户应定期查看本文档以获取变更。
 
 ---
 
-**Last Updated**: 2025-09-17
+**最后更新**: 2025-09-17
 
-**Note**: This document is provided for informational purposes only and does not constitute legal advice. Users should consult with qualified legal counsel for specific legal questions.
+**注意**: 本文档仅供参考，不构成法律建议。如有具体法律问题，用户应咨询合格的法律顾问。
