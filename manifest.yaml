@@ -1,6 +1,7 @@
 version: 0.5.0
 type: plugin
 author: shaoxing-xie
+contact: sxxiefg@163.com
 name: akshare_stockdata
 label:
   en_US: AKShare Stock Data
