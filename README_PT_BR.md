@@ -233,7 +233,7 @@ Este projeto está licenciado sob a Licença MIT - veja o arquivo [LICENSE](LICE
 Fornecemos dois arquivos de demonstração de workflow Dify completos que mostram como usar vários recursos do Plugin de Dados de Ações AKShare:
 
 #### 🔧 **Arquivo de Demonstração 1: Demonstração de Funcionalidade do Plugin**
-**Arquivo**: `AKShare 股票数据插件 CHATFLOW-DEMO.yml`
+**Arquivo**: `应用示例/AKShare 股票数据插件 CHATFLOW-DEMO.yml`
 
 **Descrição**: Demonstra o uso de todas as ferramentas do plugin e suas interfaces, mostrando a funcionalidade completa de 8 ferramentas profissionais
 
@@ -254,7 +254,7 @@ Fornecemos dois arquivos de demonstração de workflow Dify completos que mostra
 - **Workflow Completo** - Processo completo da aquisição de dados à exibição de resultados
 
 #### 🤖 **Arquivo de Demonstração 2: Aplicação de Análise Profunda de Ações Individuais**
-**Arquivo**: `个股行情分析-ChatFlow.yml`
+**Arquivo**: `应用示例/个股行情分析-ChatFlow.yml`
 
 **Descrição**: Aplicação ChatFlow de análise profunda de ações individuais baseada no Plugin de Dados de Ações AKShare, fornecendo análise multi-dimensional de ações
 

@@ -595,7 +595,7 @@ For detailed parameter descriptions, function explanations and interface example
 We provide two complete Dify workflow demo files that showcase how to use various features of the AKShare Stock Data Plugin:
 
 #### 🔧 **Demo File 1: Plugin Functionality Demo**
-**File**: `AKShare 股票数据插件 CHATFLOW-DEMO.yml`
+**File**: `应用示例/AKShare 股票数据插件 CHATFLOW-DEMO.yml`
 
 **Description**: Demonstrates the usage of all plugin tools and their interfaces, showcasing the complete functionality of 8 professional tools
 
@@ -616,7 +616,7 @@ We provide two complete Dify workflow demo files that showcase how to use variou
 - **Complete Workflow** - Complete process from data acquisition to result display
 
 #### 🤖 **Demo File 2: Individual Stock Deep Analysis Application**
-**File**: `个股行情分析-ChatFlow.yml`
+**File**: `应用示例/个股行情分析-ChatFlow.yml`
 
 **Description**: Individual stock deep analysis ChatFlow application based on AKShare Stock Data Plugin, providing multi-dimensional stock analysis
 
@@ -644,7 +644,7 @@ We provide two complete Dify workflow demo files that showcase how to use variou
 
 For detailed interface usage instructions, please refer to:
 - 📖 **[Detailed Function Documentation](AKShare%20股票数据插件详细功能文档.md)** - Complete technical documentation
-- 🎯 **[Workflow Demo](AKShare%20股票数据插件%20CHATFLOW-DEMO.yml)** - Complete demo example
+- 🎯 **[Workflow Demo](应用示例/AKShare%20股票数据插件%20CHATFLOW-DEMO.yml)** - Complete demo example
 - 🔧 **Plugin Configuration Files** - YAML configurations for each tool in the tools directory
 - 📚 **AKShare Official Documentation** - https://github.com/akfamily/akshare
 

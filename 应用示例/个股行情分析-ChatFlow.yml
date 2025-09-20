@@ -1651,7 +1651,7 @@ workflow:
         model:
           completion_params: {}
           mode: chat
-          name: deepseek-chat
+          name: deepseek-reasoner
           provider: langgenius/deepseek/deepseek
         prompt_template:
         - id: c90cb7a9-9986-4ea6-9fc8-ca926c64bacd
@@ -1680,7 +1680,7 @@ workflow:
       positionAbsolute:
         x: 827.8561379198269
         y: 242.58080464363826
-      selected: false
+      selected: true
       sourcePosition: right
       targetPosition: left
       type: custom
@@ -1821,12 +1821,12 @@ workflow:
       positionAbsolute:
         x: 182.24755086909096
         y: 204.46641343433438
-      selected: true
+      selected: false
       sourcePosition: right
       targetPosition: left
       type: custom
       width: 244
     viewport:
-      x: 98.56276870488637
-      y: 134.51629167796182
-      zoom: 0.3648700343936663
+      x: 72.39236977346957
+      y: 142.38123813220392
+      zoom: 0.30202237347597916
