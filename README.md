@@ -5,6 +5,13 @@
 [![Dify Plugin](https://img.shields.io/badge/Dify-Plugin-green.svg)](https://dify.ai/)
 [![AKShare](https://img.shields.io/badge/AKShare-Latest-blue.svg)](https://github.com/akfamily/akshare)
 
+## 📞 联系方式
+
+- **作者**: shaoxing-xie
+- **邮箱**: sxxiefg@163.com
+- **代码库**: [https://github.com/shaoxing-xie/akshare-stockdata-plugin](https://github.com/shaoxing-xie/akshare-stockdata-plugin)
+- **问题反馈**: [GitHub Issues](https://github.com/shaoxing-xie/akshare-stockdata-plugin/issues)
+
 ## 📋 概述
 
 **AKShare 股票数据插件** 是一个专为 Dify 平台开发的综合性股票数据工具，基于知名的 [AKShare](https://github.com/akfamily/akshare) Python 库构建。本插件为用户提供了一站式的股票市场数据访问解决方案，涵盖实时行情、历史数据、财务分析、资金流向、技术分析、沪深港通等多个维度的专业股票信息。
@@ -54,21 +61,27 @@
 
 ## 📦 如何安装
 
-### 方式一：Dify插件市场安装（推荐）
-1. 打开您的 Dify 工作空间
-2. 导航至 **工具** → **浏览插件市场**
-3. 搜索 **"AKShare 股票数据"** 或 **"AKShare Stock Data"**
-4. 点击 **安装** 按钮
-5. 等待安装完成，即可开始使用
+### 方式一：直接下载安装（推荐）
 
-### 方式二：通过GitHub安装
-1. 访问插件仓库：[https://github.com/shaoxing-xie/akshare-stockdata-plugin](https://github.com/shaoxing-xie/akshare-stockdata-plugin)
-2. 下载最新版本的插件包（.difypkg 文件）
-3. 在 Dify 工作空间中：
-   - 导航至 **工具** → **本地插件**
-   - 点击 **上传插件**
-   - 选择下载的 .difypkg 文件
-   - 确认安装
+[![Download Plugin](https://img.shields.io/badge/Download-Plugin%20Package-blue)](https://github.com/shaoxing-xie/akshare-stockdata-plugin/raw/main/releases/AKShare-Stockdata-plugin-v0.5.0.difypkg)
+
+1. **快速下载**：点击上方按钮直接下载最新版本插件包
+2. **在Dify中安装**：
+   - 打开您的 Dify 工作空间
+   - 导航至 **工具** → **插件** → **安装插件**
+   - 选择 **"从文件安装"**
+   - 上传下载的 `.difypkg` 文件
+   - 点击 **安装** 按钮
+
+### 方式二：从releases目录下载
+1. 访问 [releases目录](https://github.com/shaoxing-xie/akshare-stockdata-plugin/tree/main/releases)
+2. 下载 **"AKShare-Stockdata-plugin-v0.5.0.difypkg"** 文件
+3. 按照方式一的步骤在Dify中安装
+
+### 方式三：通过GitHub Releases
+1. 访问 [GitHub Releases](https://github.com/shaoxing-xie/akshare-stockdata-plugin/releases)
+2. 下载最新版本的插件包
+3. 按照方式一的步骤在Dify中安装
 
 ### 方式三：手动安装
 1. 克隆本仓库到本地
