@@ -592,11 +592,14 @@ For detailed parameter descriptions, function explanations and interface example
 
 ### 📋 **Dify Workflow Demo**
 
-We provide a complete Dify workflow demo file that showcases how to use various features of the AKShare Stock Data Plugin:
+We provide two complete Dify workflow demo files that showcase how to use various features of the AKShare Stock Data Plugin:
 
-**Demo File**: `AKShare 股票数据插件 CHATFLOW-DEMO.yml`
+#### 🔧 **Demo File 1: Plugin Functionality Demo**
+**File**: `AKShare 股票数据插件 CHATFLOW-DEMO.yml`
 
-#### 🚀 **Demo Content**
+**Description**: Demonstrates the usage of all plugin tools and their interfaces, showcasing the complete functionality of 8 professional tools
+
+**Demo Content**:
 - **Stock Market Summary** - Market overview data acquisition
 - **Individual Stock Information Summary** - Individual stock detailed information queries
 - **Real-time Stock Quotes** - Real-time price data acquisition
@@ -606,14 +609,33 @@ We provide a complete Dify workflow demo file that showcases how to use various 
 - **Stock Financial Data Analysis** - Financial statement data acquisition
 - **Stock Technical Analysis** - Technical indicator calculations
 
-#### 📊 **Demo Features**
+**Demo Features**:
 - **Smart Conditional Branching** - Automatically selects appropriate data interfaces based on user input
 - **Data Format Conversion** - Automatically converts Markdown tables to Excel files
 - **Multi-dimensional Display** - Covers usage scenarios for all 8 professional tools
 - **Complete Workflow** - Complete process from data acquisition to result display
 
+#### 🤖 **Demo File 2: Individual Stock Deep Analysis Application**
+**File**: `个股行情分析-ChatFlow.yml`
+
+**Description**: Individual stock deep analysis ChatFlow application based on AKShare Stock Data Plugin, providing multi-dimensional stock analysis
+
+**Core Features**:
+- **Intelligent Stock Recognition** - Automatically identifies stock codes and market types (Shanghai A-share, Shenzhen A-share, Beijing Stock Exchange)
+- **Historical Quote Analysis** - Technical analysis based on one-year historical data
+- **Financial Indicator Analysis** - Fundamental analysis based on financial data
+- **Fund Flow Analysis** - Fund flow analysis based on capital flow data
+- **Individual Stock Research Reports** - Access to latest individual stock research reports
+- **Comprehensive Investment Recommendations** - Investment recommendations based on multi-dimensional data
+
+**Technical Features**:
+- **Dynamic Date Calculation** - Automatically calculates the latest historical data time range
+- **A-share Market Validation** - Intelligently identifies and validates A-share stock codes
+- **Multi-data Source Integration** - Integrates historical quotes, financial data, fund flow, research reports and other multi-dimensional data
+- **Professional Analysis Reports** - Generates comprehensive analysis reports including technical, fundamental, and fund flow aspects
+
 #### 🔧 **How to Use the Demo**
-1. Import the `AKShare 股票数据插件 CHATFLOW-DEMO.yml` file in the Dify platform
+1. Import the corresponding demo file in the Dify platform
 2. Ensure the AKShare Stock Data Plugin is installed
 3. Run the workflow to experience various stock data features
 4. Modify and customize the workflow as needed

@@ -230,11 +230,14 @@ Este projeto está licenciado sob a Licença MIT - veja o arquivo [LICENSE](LICE
 
 ### 📋 **Demonstração de Workflow Dify**
 
-Fornecemos um arquivo de demonstração de workflow Dify completo que mostra como usar vários recursos do Plugin de Dados de Ações AKShare:
+Fornecemos dois arquivos de demonstração de workflow Dify completos que mostram como usar vários recursos do Plugin de Dados de Ações AKShare:
 
-**Arquivo de Demonstração**: `AKShare 股票数据插件 CHATFLOW-DEMO.yml`
+#### 🔧 **Arquivo de Demonstração 1: Demonstração de Funcionalidade do Plugin**
+**Arquivo**: `AKShare 股票数据插件 CHATFLOW-DEMO.yml`
 
-#### 🚀 **Conteúdo da Demonstração**
+**Descrição**: Demonstra o uso de todas as ferramentas do plugin e suas interfaces, mostrando a funcionalidade completa de 8 ferramentas profissionais
+
+**Conteúdo da Demonstração**:
 - **Resumo do Mercado de Ações** - Aquisição de dados de visão geral do mercado
 - **Resumo de Informações de Ações Individuais** - Consultas de informações detalhadas de ações individuais
 - **Cotações de Ações em Tempo Real** - Aquisição de dados de preços em tempo real
@@ -244,14 +247,33 @@ Fornecemos um arquivo de demonstração de workflow Dify completo que mostra com
 - **Análise de Dados Financeiros de Ações** - Aquisição de dados de demonstrações financeiras
 - **Análise Técnica de Ações** - Cálculos de indicadores técnicos
 
-#### 📊 **Recursos da Demonstração**
+**Recursos da Demonstração**:
 - **Ramificação Condicional Inteligente** - Seleciona automaticamente interfaces de dados apropriadas com base na entrada do usuário
 - **Conversão de Formato de Dados** - Converte automaticamente tabelas Markdown para arquivos Excel
 - **Exibição Multi-dimensional** - Cobre cenários de uso para todas as 8 ferramentas profissionais
 - **Workflow Completo** - Processo completo da aquisição de dados à exibição de resultados
 
+#### 🤖 **Arquivo de Demonstração 2: Aplicação de Análise Profunda de Ações Individuais**
+**Arquivo**: `个股行情分析-ChatFlow.yml`
+
+**Descrição**: Aplicação ChatFlow de análise profunda de ações individuais baseada no Plugin de Dados de Ações AKShare, fornecendo análise multi-dimensional de ações
+
+**Recursos Principais**:
+- **Reconhecimento Inteligente de Ações** - Identifica automaticamente códigos de ações e tipos de mercado (A-shares de Xangai, A-shares de Shenzhen, Bolsa de Valores de Pequim)
+- **Análise de Cotações Históricas** - Análise técnica baseada em dados históricos de um ano
+- **Análise de Indicadores Financeiros** - Análise fundamental baseada em dados financeiros
+- **Análise de Fluxo de Fundos** - Análise de fluxo de fundos baseada em dados de fluxo de capital
+- **Relatórios de Pesquisa de Ações Individuais** - Acesso aos relatórios de pesquisa mais recentes de ações individuais
+- **Recomendações de Investimento Abrangentes** - Recomendações de investimento baseadas em dados multi-dimensionais
+
+**Recursos Técnicos**:
+- **Cálculo Dinâmico de Datas** - Calcula automaticamente o intervalo de tempo mais recente dos dados históricos
+- **Validação do Mercado A-shares** - Identifica e valida inteligentemente códigos de ações A-shares
+- **Integração de Múltiplas Fontes de Dados** - Integra cotações históricas, dados financeiros, fluxo de fundos, relatórios de pesquisa e outros dados multi-dimensionais
+- **Relatórios de Análise Profissional** - Gera relatórios de análise abrangentes incluindo aspectos técnicos, fundamentais e de fluxo de fundos
+
 #### 🔧 **Como Usar a Demonstração**
-1. Importe o arquivo `AKShare 股票数据插件 CHATFLOW-DEMO.yml` na plataforma Dify
+1. Importe o arquivo de demonstração correspondente na plataforma Dify
 2. Certifique-se de que o Plugin de Dados de Ações AKShare está instalado
 3. Execute o workflow para experimentar vários recursos de dados de ações
 4. Modifique e personalize o workflow conforme necessário
