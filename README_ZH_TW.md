@@ -5,6 +5,13 @@
 [![Dify Plugin](https://img.shields.io/badge/Dify-Plugin-green.svg)](https://dify.ai/)
 [![AKShare](https://img.shields.io/badge/AKShare-Latest-blue.svg)](https://github.com/akfamily/akshare)
 
+## 📞 聯繫方式
+
+- **作者**: shaoxing-xie
+- **郵箱**: sxxiefg@163.com
+- **代碼庫**: [https://github.com/shaoxing-xie/akshare-stockdata-plugin](https://github.com/shaoxing-xie/akshare-stockdata-plugin)
+- **問題反饋**: [GitHub Issues](https://github.com/shaoxing-xie/akshare-stockdata-plugin/issues)
+
 ## 📋 概述
 
 **AKShare 股票數據插件** 是一個專為 Dify 平台開發的綜合性股票數據工具，基於知名的 [AKShare](https://github.com/akfamily/akshare) Python 庫構建。本插件為用戶提供了一站式的股票市場數據訪問解決方案，涵蓋實時行情、歷史數據、財務分析、資金流向、技術分析、滬深港通等多個維度的專業股票信息。

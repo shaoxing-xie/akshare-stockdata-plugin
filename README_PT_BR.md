@@ -5,6 +5,13 @@
 [![Dify Plugin](https://img.shields.io/badge/Dify-Plugin-green.svg)](https://dify.ai/)
 [![AKShare](https://img.shields.io/badge/AKShare-Latest-blue.svg)](https://github.com/akfamily/akshare)
 
+## 📞 Informações de Contato
+
+- **Autor**: shaoxing-xie
+- **Email**: sxxiefg@163.com
+- **Repositório**: [https://github.com/shaoxing-xie/akshare-stockdata-plugin](https://github.com/shaoxing-xie/akshare-stockdata-plugin)
+- **Relatórios de Problemas**: [GitHub Issues](https://github.com/shaoxing-xie/akshare-stockdata-plugin/issues)
+
 ## 📋 Visão Geral
 
 **Plugin de Dados de Ações AKShare** é uma ferramenta abrangente de dados de ações desenvolvida especificamente para a plataforma Dify, construída na renomada biblioteca Python [AKShare](https://github.com/akfamily/akshare). Este plugin oferece aos usuários uma solução de acesso a dados do mercado de ações em um só lugar, cobrindo múltiplas dimensões de informações profissionais sobre ações, incluindo cotações em tempo real, dados históricos, análise financeira, fluxo de capital, análise técnica e Shanghai-Shenzhen-Hong Kong Stock Connect.
