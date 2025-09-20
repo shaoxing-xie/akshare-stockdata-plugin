@@ -11,9 +11,12 @@ dependencies:
   value:
     marketplace_plugin_unique_identifier: bowenliang123/md_exporter:2.0.0@13e1aca1995328e41c080ff9f7f6d898df60ff74a3f4d98d6de4b18ab5b92c2e
 - current_identifier: null
-  type: package
+  type: github
   value:
-    plugin_unique_identifier: shaoxing_xie/akshare_stockdata:0.5.0@ef66ac6f80abfbfe4e346478c1750a765b67dc0d70df49db0e4b30eef9e176df
+    github_plugin_unique_identifier: shaoxing-xie/akshare_stockdata:0.5.0@18aa8d5222895dae9b49f1438ed1adbcb9373a692424aaed549ec624d7ebb81e
+    package: AKShare-Stockdata-plugin.difypkg
+    repo: shaoxing-xie/akshare-stockdata-plugin
+    version: v0.5.0
 kind: app
 version: 0.3.1
 workflow:
@@ -66,35 +69,12 @@ workflow:
     edges:
     - data:
         isInLoop: false
-        sourceType: if-else
-        targetType: tool
-      id: 1758242004514-true-1758241995099-target
-      source: '1758242004514'
-      sourceHandle: 'true'
-      target: '1758241995099'
-      targetHandle: target
-      type: custom
-      zIndex: 0
-    - data:
-        isInLoop: false
         sourceType: start
         targetType: if-else
       id: 1758241781128-source-1758242004514-target
       source: '1758241781128'
       sourceHandle: source
       target: '1758242004514'
-      targetHandle: target
-      type: custom
-      zIndex: 0
-    - data:
-        isInIteration: false
-        isInLoop: false
-        sourceType: tool
-        targetType: tool
-      id: 1758241995099-source-1758246447863-target
-      source: '1758241995099'
-      sourceHandle: source
-      target: '1758246447863'
       targetHandle: target
       type: custom
       zIndex: 0
@@ -112,108 +92,12 @@ workflow:
     - data:
         isInIteration: false
         isInLoop: false
-        sourceType: if-else
-        targetType: tool
-      id: 1758242004514-7d604527-ce06-4f1b-99ea-8696b89fb398-1758247313940-target
-      source: '1758242004514'
-      sourceHandle: 7d604527-ce06-4f1b-99ea-8696b89fb398
-      target: '1758247313940'
-      targetHandle: target
-      type: custom
-      zIndex: 0
-    - data:
-        isInIteration: false
-        isInLoop: false
-        sourceType: if-else
-        targetType: tool
-      id: 1758242004514-68e8e76d-9f1b-4850-a011-206b065211b8-1758247325281-target
-      source: '1758242004514'
-      sourceHandle: 68e8e76d-9f1b-4850-a011-206b065211b8
-      target: '1758247325281'
-      targetHandle: target
-      type: custom
-      zIndex: 0
-    - data:
-        isInIteration: false
-        isInLoop: false
-        sourceType: if-else
-        targetType: tool
-      id: 1758242004514-49269ec2-04be-484f-ad51-7234c403289c-1758247344635-target
-      source: '1758242004514'
-      sourceHandle: 49269ec2-04be-484f-ad51-7234c403289c
-      target: '1758247344635'
-      targetHandle: target
-      type: custom
-      zIndex: 0
-    - data:
-        isInIteration: false
-        isInLoop: false
-        sourceType: if-else
-        targetType: tool
-      id: 1758242004514-9f6b3282-ef35-4236-9396-7dc3d1bd5bd4-1758247358654-target
-      source: '1758242004514'
-      sourceHandle: 9f6b3282-ef35-4236-9396-7dc3d1bd5bd4
-      target: '1758247358654'
-      targetHandle: target
-      type: custom
-      zIndex: 0
-    - data:
-        isInIteration: false
-        isInLoop: false
-        sourceType: if-else
-        targetType: tool
-      id: 1758242004514-7acbacfc-fde4-434e-a3ae-272dd2cda1ef-1758247371560-target
-      source: '1758242004514'
-      sourceHandle: 7acbacfc-fde4-434e-a3ae-272dd2cda1ef
-      target: '1758247371560'
-      targetHandle: target
-      type: custom
-      zIndex: 0
-    - data:
-        isInIteration: false
-        isInLoop: false
-        sourceType: if-else
-        targetType: tool
-      id: 1758242004514-3c54b101-ceff-4bbd-8d83-9f9329f6f0d6-1758247378033-target
-      source: '1758242004514'
-      sourceHandle: 3c54b101-ceff-4bbd-8d83-9f9329f6f0d6
-      target: '1758247378033'
-      targetHandle: target
-      type: custom
-      zIndex: 0
-    - data:
-        isInIteration: false
-        isInLoop: false
-        sourceType: tool
-        targetType: tool
-      id: 1758247313940-source-1758247409728-target
-      source: '1758247313940'
-      sourceHandle: source
-      target: '1758247409728'
-      targetHandle: target
-      type: custom
-      zIndex: 0
-    - data:
-        isInIteration: false
-        isInLoop: false
         sourceType: tool
         targetType: answer
       id: 1758247409728-source-1758247435333-target
       source: '1758247409728'
       sourceHandle: source
       target: '1758247435333'
-      targetHandle: target
-      type: custom
-      zIndex: 0
-    - data:
-        isInIteration: false
-        isInLoop: false
-        sourceType: tool
-        targetType: tool
-      id: 1758247325281-source-1758247451984-target
-      source: '1758247325281'
-      sourceHandle: source
-      target: '1758247451984'
       targetHandle: target
       type: custom
       zIndex: 0
@@ -245,35 +129,11 @@ workflow:
         isInIteration: false
         isInLoop: false
         sourceType: tool
-        targetType: tool
-      id: 1758247344635-source-1758247510287-target
-      source: '1758247344635'
-      sourceHandle: source
-      target: '1758247510287'
-      targetHandle: target
-      type: custom
-      zIndex: 0
-    - data:
-        isInIteration: false
-        isInLoop: false
-        sourceType: tool
         targetType: answer
       id: 1758247510287-source-1758247524802-target
       source: '1758247510287'
       sourceHandle: source
       target: '1758247524802'
-      targetHandle: target
-      type: custom
-      zIndex: 0
-    - data:
-        isInIteration: false
-        isInLoop: false
-        sourceType: tool
-        targetType: tool
-      id: 1758247358654-source-1758247540174-target
-      source: '1758247358654'
-      sourceHandle: source
-      target: '1758247540174'
       targetHandle: target
       type: custom
       zIndex: 0
@@ -293,35 +153,11 @@ workflow:
         isInIteration: false
         isInLoop: false
         sourceType: tool
-        targetType: tool
-      id: 1758247371560-source-1758247596886-target
-      source: '1758247371560'
-      sourceHandle: source
-      target: '1758247596886'
-      targetHandle: target
-      type: custom
-      zIndex: 0
-    - data:
-        isInIteration: false
-        isInLoop: false
-        sourceType: tool
         targetType: answer
       id: 1758247596886-source-1758247607977-target
       source: '1758247596886'
       sourceHandle: source
       target: '1758247607977'
-      targetHandle: target
-      type: custom
-      zIndex: 0
-    - data:
-        isInIteration: false
-        isInLoop: false
-        sourceType: tool
-        targetType: tool
-      id: 1758247378033-source-1758247621302-target
-      source: '1758247378033'
-      sourceHandle: source
-      target: '1758247621302'
       targetHandle: target
       type: custom
       zIndex: 0
@@ -342,10 +178,10 @@ workflow:
         isInLoop: false
         sourceType: if-else
         targetType: tool
-      id: 1758242004514-80808b6e-c373-4c33-8676-76bbfa553b70-1758253480073-target
+      id: 1758242004514-true-1758360884341-target
       source: '1758242004514'
-      sourceHandle: 80808b6e-c373-4c33-8676-76bbfa553b70
-      target: '1758253480073'
+      sourceHandle: 'true'
+      target: '1758360884341'
       targetHandle: target
       type: custom
       zIndex: 0
@@ -353,10 +189,171 @@ workflow:
         isInLoop: false
         sourceType: tool
         targetType: tool
-      id: 1758253480073-source-1758247483168-target
-      source: '1758253480073'
+      id: 1758360884341-source-1758246447863-target
+      source: '1758360884341'
+      sourceHandle: source
+      target: '1758246447863'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: if-else
+        targetType: tool
+      id: 1758242004514-7d604527-ce06-4f1b-99ea-8696b89fb398-1758360967464-target
+      source: '1758242004514'
+      sourceHandle: 7d604527-ce06-4f1b-99ea-8696b89fb398
+      target: '1758360967464'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: tool
+        targetType: tool
+      id: 1758360967464-source-1758247409728-target
+      source: '1758360967464'
+      sourceHandle: source
+      target: '1758247409728'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: if-else
+        targetType: tool
+      id: 1758242004514-68e8e76d-9f1b-4850-a011-206b065211b8-1758361067026-target
+      source: '1758242004514'
+      sourceHandle: 68e8e76d-9f1b-4850-a011-206b065211b8
+      target: '1758361067026'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: tool
+        targetType: tool
+      id: 1758361067026-source-1758247451984-target
+      source: '1758361067026'
+      sourceHandle: source
+      target: '1758247451984'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: if-else
+        targetType: tool
+      id: 1758242004514-80808b6e-c373-4c33-8676-76bbfa553b70-1758361122523-target
+      source: '1758242004514'
+      sourceHandle: 80808b6e-c373-4c33-8676-76bbfa553b70
+      target: '1758361122523'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: tool
+        targetType: tool
+      id: 1758361122523-source-1758247483168-target
+      source: '1758361122523'
       sourceHandle: source
       target: '1758247483168'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: if-else
+        targetType: tool
+      id: 1758242004514-49269ec2-04be-484f-ad51-7234c403289c-1758361359357-target
+      source: '1758242004514'
+      sourceHandle: 49269ec2-04be-484f-ad51-7234c403289c
+      target: '1758361359357'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: tool
+        targetType: tool
+      id: 1758361359357-source-1758247510287-target
+      source: '1758361359357'
+      sourceHandle: source
+      target: '1758247510287'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: if-else
+        targetType: tool
+      id: 1758242004514-9f6b3282-ef35-4236-9396-7dc3d1bd5bd4-1758361412086-target
+      source: '1758242004514'
+      sourceHandle: 9f6b3282-ef35-4236-9396-7dc3d1bd5bd4
+      target: '1758361412086'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: tool
+        targetType: tool
+      id: 1758361412086-source-1758247540174-target
+      source: '1758361412086'
+      sourceHandle: source
+      target: '1758247540174'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: if-else
+        targetType: tool
+      id: 1758242004514-7acbacfc-fde4-434e-a3ae-272dd2cda1ef-1758361447723-target
+      source: '1758242004514'
+      sourceHandle: 7acbacfc-fde4-434e-a3ae-272dd2cda1ef
+      target: '1758361447723'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: tool
+        targetType: tool
+      id: 1758361447723-source-1758247596886-target
+      source: '1758361447723'
+      sourceHandle: source
+      target: '1758247596886'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: if-else
+        targetType: tool
+      id: 1758242004514-3c54b101-ceff-4bbd-8d83-9f9329f6f0d6-1758361503086-target
+      source: '1758242004514'
+      sourceHandle: 3c54b101-ceff-4bbd-8d83-9f9329f6f0d6
+      target: '1758361503086'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: tool
+        targetType: tool
+      id: 1758361503086-source-1758247621302-target
+      source: '1758361503086'
+      sourceHandle: source
+      target: '1758247621302'
       targetHandle: target
       type: custom
       zIndex: 0
@@ -445,6 +442,1383 @@ workflow:
       positionAbsolute:
         x: 1095.2708092697926
         y: 35.17734134497552
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        cases:
+        - case_id: 'true'
+          conditions:
+          - comparison_operator: contains
+            id: f3926dc8-2e91-449a-a040-6cfb58d61a72
+            value: 股票市场总貌
+            varType: string
+            variable_selector:
+            - '1758241781128'
+            - tool_name
+          id: 'true'
+          logical_operator: and
+        - case_id: 7d604527-ce06-4f1b-99ea-8696b89fb398
+          conditions:
+          - comparison_operator: contains
+            id: b379911c-b7f1-455c-9819-a6982b390d1c
+            value: 个股信息总貌
+            varType: string
+            variable_selector:
+            - '1758241781128'
+            - tool_name
+          id: 7d604527-ce06-4f1b-99ea-8696b89fb398
+          logical_operator: and
+        - case_id: 68e8e76d-9f1b-4850-a011-206b065211b8
+          conditions:
+          - comparison_operator: contains
+            id: 55fa827e-032d-4e82-aa39-957295dc912f
+            value: 股票实时行情
+            varType: string
+            variable_selector:
+            - '1758241781128'
+            - tool_name
+          id: 68e8e76d-9f1b-4850-a011-206b065211b8
+          logical_operator: and
+        - case_id: 80808b6e-c373-4c33-8676-76bbfa553b70
+          conditions:
+          - comparison_operator: contains
+            id: d971b841-2c19-4eef-a3ed-c21d8d1a4e7f
+            value: 股票历史行情
+            varType: string
+            variable_selector:
+            - '1758241781128'
+            - tool_name
+          id: 80808b6e-c373-4c33-8676-76bbfa553b70
+          logical_operator: and
+        - case_id: 49269ec2-04be-484f-ad51-7234c403289c
+          conditions:
+          - comparison_operator: contains
+            id: 28d9a851-f334-4b56-b08d-5d2ae58686e5
+            value: 沪深港通持股
+            varType: string
+            variable_selector:
+            - '1758241781128'
+            - tool_name
+          id: 49269ec2-04be-484f-ad51-7234c403289c
+          logical_operator: and
+        - case_id: 9f6b3282-ef35-4236-9396-7dc3d1bd5bd4
+          conditions:
+          - comparison_operator: contains
+            id: d0cd02e5-307e-40b5-a85d-a95361ed377d
+            value: 资金流向分析
+            varType: string
+            variable_selector:
+            - '1758241781128'
+            - tool_name
+          id: 9f6b3282-ef35-4236-9396-7dc3d1bd5bd4
+          logical_operator: and
+        - case_id: 7acbacfc-fde4-434e-a3ae-272dd2cda1ef
+          conditions:
+          - comparison_operator: contains
+            id: ab396be5-0ffe-459b-a284-8bfc754ab16d
+            value: 股票财务数据分析
+            varType: string
+            variable_selector:
+            - '1758241781128'
+            - tool_name
+          id: 7acbacfc-fde4-434e-a3ae-272dd2cda1ef
+          logical_operator: and
+        - case_id: 3c54b101-ceff-4bbd-8d83-9f9329f6f0d6
+          conditions:
+          - comparison_operator: contains
+            id: ae164c32-5955-4f0a-bd4d-892d0fbd00e9
+            value: 股票技术分析
+            varType: string
+            variable_selector:
+            - '1758241781128'
+            - tool_name
+          id: 3c54b101-ceff-4bbd-8d83-9f9329f6f0d6
+          logical_operator: and
+        desc: ''
+        selected: false
+        title: 条件分支
+        type: if-else
+      height: 461
+      id: '1758242004514'
+      position:
+        x: 99.53460891417035
+        y: 223.33731668152092
+      positionAbsolute:
+        x: 99.53460891417035
+        y: 223.33731668152092
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        is_team_authorization: true
+        output_schema: null
+        paramSchemas:
+        - auto_generate: null
+          default: null
+          form: llm
+          human_description:
+            en_US: 'Input text of single or multiple Markdown tables, with worksheets
+              supported. All the heading texts (eg. #, ##) will be used as worksheet
+              names in order.'
+            ja_JP: 'Input text of single or multiple Markdown tables, with worksheets
+              supported. All the heading texts (eg. #, ##) will be used as worksheet
+              names in order.'
+            pt_BR: 'Input text of single or multiple Markdown tables, with worksheets
+              supported. All the heading texts (eg. #, ##) will be used as worksheet
+              names in order.'
+            zh_Hans: '单个或多个 Markdown 表格的文本输入，支持工作表。所有标题文本（例如 #, ##）将依次用作工作表名称。'
+          label:
+            en_US: Markdown table text
+            ja_JP: Markdown table text
+            pt_BR: Markdown table text
+            zh_Hans: Markdown 表格文本
+          llm_description: ''
+          max: null
+          min: null
+          name: md_text
+          options: []
+          placeholder: null
+          precision: null
+          required: true
+          scope: null
+          template: null
+          type: string
+        - auto_generate: null
+          default: 'true'
+          form: form
+          human_description:
+            en_US: Convert cell values into text type to void decimal precision loss
+              in display
+            ja_JP: Convert cell values into text type to void decimal precision loss
+              in display
+            pt_BR: Convert cell values into text type to void decimal precision loss
+              in display
+            zh_Hans: 转换单元格值为文本类型，避免显示时的小数精度丢失
+          label:
+            en_US: Enforce text type
+            ja_JP: Enforce text type
+            pt_BR: Enforce text type
+            zh_Hans: 强制单元格值为文本类型
+          llm_description: Whether to convert cell values into string type, default
+            to "true"
+          max: null
+          min: null
+          name: force_text_value
+          options:
+          - icon: ''
+            label:
+              en_US: 'Yes'
+              ja_JP: 'Yes'
+              pt_BR: 'Yes'
+              zh_Hans: 是
+            value: 'true'
+          - icon: ''
+            label:
+              en_US: 'No'
+              ja_JP: 'No'
+              pt_BR: 'No'
+              zh_Hans: 否
+            value: 'false'
+          placeholder: null
+          precision: null
+          required: true
+          scope: null
+          template: null
+          type: select
+        - auto_generate: null
+          default: null
+          form: llm
+          human_description:
+            en_US: Optional custom output file name, and the filename suffix is not
+              required.
+            ja_JP: Optional custom output file name, and the filename suffix is not
+              required.
+            pt_BR: Optional custom output file name, and the filename suffix is not
+              required.
+            zh_Hans: 可选的自定义输出文件名，后缀名无需指定
+          label:
+            en_US: Output Filename
+            ja_JP: Output Filename
+            pt_BR: Output Filename
+            zh_Hans: 输出文件名
+          llm_description: ''
+          max: null
+          min: null
+          name: output_filename
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: string
+        params:
+          force_text_value: ''
+          md_text: ''
+          output_filename: ''
+        provider_id: bowenliang123/md_exporter/md_exporter
+        provider_name: bowenliang123/md_exporter/md_exporter
+        provider_type: builtin
+        selected: false
+        title: Markdown 转 XLSX 文件
+        tool_configurations:
+          force_text_value:
+            type: constant
+            value: 'true'
+        tool_description: 将 Markdown 表格转换为 XLSX 文件的工具
+        tool_label: Markdown 转 XLSX 文件
+        tool_name: md_to_xlsx
+        tool_node_version: '2'
+        tool_parameters:
+          md_text:
+            type: mixed
+            value: '{{#1758360884341.text#}}'
+          output_filename:
+            type: mixed
+            value: '{{#1758241781128.tool_name#}}'
+        type: tool
+      height: 89
+      id: '1758246447863'
+      position:
+        x: 801.2708089693214
+        y: 30.210822018391198
+      positionAbsolute:
+        x: 801.2708089693214
+        y: 30.210822018391198
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        is_team_authorization: true
+        output_schema: null
+        paramSchemas:
+        - auto_generate: null
+          default: null
+          form: llm
+          human_description:
+            en_US: 'Input text of single or multiple Markdown tables, with worksheets
+              supported. All the heading texts (eg. #, ##) will be used as worksheet
+              names in order.'
+            ja_JP: 'Input text of single or multiple Markdown tables, with worksheets
+              supported. All the heading texts (eg. #, ##) will be used as worksheet
+              names in order.'
+            pt_BR: 'Input text of single or multiple Markdown tables, with worksheets
+              supported. All the heading texts (eg. #, ##) will be used as worksheet
+              names in order.'
+            zh_Hans: '单个或多个 Markdown 表格的文本输入，支持工作表。所有标题文本（例如 #, ##）将依次用作工作表名称。'
+          label:
+            en_US: Markdown table text
+            ja_JP: Markdown table text
+            pt_BR: Markdown table text
+            zh_Hans: Markdown 表格文本
+          llm_description: ''
+          max: null
+          min: null
+          name: md_text
+          options: []
+          placeholder: null
+          precision: null
+          required: true
+          scope: null
+          template: null
+          type: string
+        - auto_generate: null
+          default: 'true'
+          form: form
+          human_description:
+            en_US: Convert cell values into text type to void decimal precision loss
+              in display
+            ja_JP: Convert cell values into text type to void decimal precision loss
+              in display
+            pt_BR: Convert cell values into text type to void decimal precision loss
+              in display
+            zh_Hans: 转换单元格值为文本类型，避免显示时的小数精度丢失
+          label:
+            en_US: Enforce text type
+            ja_JP: Enforce text type
+            pt_BR: Enforce text type
+            zh_Hans: 强制单元格值为文本类型
+          llm_description: Whether to convert cell values into string type, default
+            to "true"
+          max: null
+          min: null
+          name: force_text_value
+          options:
+          - icon: ''
+            label:
+              en_US: 'Yes'
+              ja_JP: 'Yes'
+              pt_BR: 'Yes'
+              zh_Hans: 是
+            value: 'true'
+          - icon: ''
+            label:
+              en_US: 'No'
+              ja_JP: 'No'
+              pt_BR: 'No'
+              zh_Hans: 否
+            value: 'false'
+          placeholder: null
+          precision: null
+          required: true
+          scope: null
+          template: null
+          type: select
+        - auto_generate: null
+          default: null
+          form: llm
+          human_description:
+            en_US: Optional custom output file name, and the filename suffix is not
+              required.
+            ja_JP: Optional custom output file name, and the filename suffix is not
+              required.
+            pt_BR: Optional custom output file name, and the filename suffix is not
+              required.
+            zh_Hans: 可选的自定义输出文件名，后缀名无需指定
+          label:
+            en_US: Output Filename
+            ja_JP: Output Filename
+            pt_BR: Output Filename
+            zh_Hans: 输出文件名
+          llm_description: ''
+          max: null
+          min: null
+          name: output_filename
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: string
+        params:
+          force_text_value: ''
+          md_text: ''
+          output_filename: ''
+        provider_id: bowenliang123/md_exporter/md_exporter
+        provider_name: bowenliang123/md_exporter/md_exporter
+        provider_type: builtin
+        selected: false
+        title: Markdown 转 XLSX 文件
+        tool_configurations:
+          force_text_value:
+            type: constant
+            value: 'true'
+        tool_description: 将 Markdown 表格转换为 XLSX 文件的工具
+        tool_label: Markdown 转 XLSX 文件
+        tool_name: md_to_xlsx
+        tool_node_version: '2'
+        tool_parameters:
+          md_text:
+            type: mixed
+            value: '{{#1758360967464.text#}}'
+          output_filename:
+            type: mixed
+            value: '{{#1758241781128.tool_name#}}'
+        type: tool
+      height: 89
+      id: '1758247409728'
+      position:
+        x: 791.2708092697926
+        y: 146.2108212972603
+      positionAbsolute:
+        x: 791.2708092697926
+        y: 146.2108212972603
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        answer: '{{#1758247409728.files#}}'
+        desc: ''
+        selected: false
+        title: 直接回复 2
+        type: answer
+        variables: []
+      height: 104
+      id: '1758247435333'
+      position:
+        x: 1095.2708092697926
+        y: 146.2108212972603
+      positionAbsolute:
+        x: 1095.2708092697926
+        y: 146.2108212972603
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        is_team_authorization: true
+        output_schema: null
+        paramSchemas:
+        - auto_generate: null
+          default: null
+          form: llm
+          human_description:
+            en_US: 'Input text of single or multiple Markdown tables, with worksheets
+              supported. All the heading texts (eg. #, ##) will be used as worksheet
+              names in order.'
+            ja_JP: 'Input text of single or multiple Markdown tables, with worksheets
+              supported. All the heading texts (eg. #, ##) will be used as worksheet
+              names in order.'
+            pt_BR: 'Input text of single or multiple Markdown tables, with worksheets
+              supported. All the heading texts (eg. #, ##) will be used as worksheet
+              names in order.'
+            zh_Hans: '单个或多个 Markdown 表格的文本输入，支持工作表。所有标题文本（例如 #, ##）将依次用作工作表名称。'
+          label:
+            en_US: Markdown table text
+            ja_JP: Markdown table text
+            pt_BR: Markdown table text
+            zh_Hans: Markdown 表格文本
+          llm_description: ''
+          max: null
+          min: null
+          name: md_text
+          options: []
+          placeholder: null
+          precision: null
+          required: true
+          scope: null
+          template: null
+          type: string
+        - auto_generate: null
+          default: 'true'
+          form: form
+          human_description:
+            en_US: Convert cell values into text type to void decimal precision loss
+              in display
+            ja_JP: Convert cell values into text type to void decimal precision loss
+              in display
+            pt_BR: Convert cell values into text type to void decimal precision loss
+              in display
+            zh_Hans: 转换单元格值为文本类型，避免显示时的小数精度丢失
+          label:
+            en_US: Enforce text type
+            ja_JP: Enforce text type
+            pt_BR: Enforce text type
+            zh_Hans: 强制单元格值为文本类型
+          llm_description: Whether to convert cell values into string type, default
+            to "true"
+          max: null
+          min: null
+          name: force_text_value
+          options:
+          - icon: ''
+            label:
+              en_US: 'Yes'
+              ja_JP: 'Yes'
+              pt_BR: 'Yes'
+              zh_Hans: 是
+            value: 'true'
+          - icon: ''
+            label:
+              en_US: 'No'
+              ja_JP: 'No'
+              pt_BR: 'No'
+              zh_Hans: 否
+            value: 'false'
+          placeholder: null
+          precision: null
+          required: true
+          scope: null
+          template: null
+          type: select
+        - auto_generate: null
+          default: null
+          form: llm
+          human_description:
+            en_US: Optional custom output file name, and the filename suffix is not
+              required.
+            ja_JP: Optional custom output file name, and the filename suffix is not
+              required.
+            pt_BR: Optional custom output file name, and the filename suffix is not
+              required.
+            zh_Hans: 可选的自定义输出文件名，后缀名无需指定
+          label:
+            en_US: Output Filename
+            ja_JP: Output Filename
+            pt_BR: Output Filename
+            zh_Hans: 输出文件名
+          llm_description: ''
+          max: null
+          min: null
+          name: output_filename
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: string
+        params:
+          force_text_value: ''
+          md_text: ''
+          output_filename: ''
+        provider_id: bowenliang123/md_exporter/md_exporter
+        provider_name: bowenliang123/md_exporter/md_exporter
+        provider_type: builtin
+        selected: false
+        title: Markdown 转 XLSX 文件
+        tool_configurations:
+          force_text_value:
+            type: constant
+            value: 'true'
+        tool_description: 将 Markdown 表格转换为 XLSX 文件的工具
+        tool_label: Markdown 转 XLSX 文件
+        tool_name: md_to_xlsx
+        tool_node_version: '2'
+        tool_parameters:
+          md_text:
+            type: mixed
+            value: '{{#1758361067026.text#}}'
+          output_filename:
+            type: mixed
+            value: '{{#1758241781128.tool_name#}}'
+        type: tool
+      height: 89
+      id: '1758247451984'
+      position:
+        x: 791.2708092697926
+        y: 238.2108212972603
+      positionAbsolute:
+        x: 791.2708092697926
+        y: 238.2108212972603
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        answer: '{{#1758247451984.files#}}'
+        desc: ''
+        selected: false
+        title: 直接回复 3
+        type: answer
+        variables: []
+      height: 104
+      id: '1758247468875'
+      position:
+        x: 1095.2708092697926
+        y: 238.2108212972603
+      positionAbsolute:
+        x: 1095.2708092697926
+        y: 238.2108212972603
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        is_team_authorization: true
+        output_schema: null
+        paramSchemas:
+        - auto_generate: null
+          default: null
+          form: llm
+          human_description:
+            en_US: 'Input text of single or multiple Markdown tables, with worksheets
+              supported. All the heading texts (eg. #, ##) will be used as worksheet
+              names in order.'
+            ja_JP: 'Input text of single or multiple Markdown tables, with worksheets
+              supported. All the heading texts (eg. #, ##) will be used as worksheet
+              names in order.'
+            pt_BR: 'Input text of single or multiple Markdown tables, with worksheets
+              supported. All the heading texts (eg. #, ##) will be used as worksheet
+              names in order.'
+            zh_Hans: '单个或多个 Markdown 表格的文本输入，支持工作表。所有标题文本（例如 #, ##）将依次用作工作表名称。'
+          label:
+            en_US: Markdown table text
+            ja_JP: Markdown table text
+            pt_BR: Markdown table text
+            zh_Hans: Markdown 表格文本
+          llm_description: ''
+          max: null
+          min: null
+          name: md_text
+          options: []
+          placeholder: null
+          precision: null
+          required: true
+          scope: null
+          template: null
+          type: string
+        - auto_generate: null
+          default: 'true'
+          form: form
+          human_description:
+            en_US: Convert cell values into text type to void decimal precision loss
+              in display
+            ja_JP: Convert cell values into text type to void decimal precision loss
+              in display
+            pt_BR: Convert cell values into text type to void decimal precision loss
+              in display
+            zh_Hans: 转换单元格值为文本类型，避免显示时的小数精度丢失
+          label:
+            en_US: Enforce text type
+            ja_JP: Enforce text type
+            pt_BR: Enforce text type
+            zh_Hans: 强制单元格值为文本类型
+          llm_description: Whether to convert cell values into string type, default
+            to "true"
+          max: null
+          min: null
+          name: force_text_value
+          options:
+          - icon: ''
+            label:
+              en_US: 'Yes'
+              ja_JP: 'Yes'
+              pt_BR: 'Yes'
+              zh_Hans: 是
+            value: 'true'
+          - icon: ''
+            label:
+              en_US: 'No'
+              ja_JP: 'No'
+              pt_BR: 'No'
+              zh_Hans: 否
+            value: 'false'
+          placeholder: null
+          precision: null
+          required: true
+          scope: null
+          template: null
+          type: select
+        - auto_generate: null
+          default: null
+          form: llm
+          human_description:
+            en_US: Optional custom output file name, and the filename suffix is not
+              required.
+            ja_JP: Optional custom output file name, and the filename suffix is not
+              required.
+            pt_BR: Optional custom output file name, and the filename suffix is not
+              required.
+            zh_Hans: 可选的自定义输出文件名，后缀名无需指定
+          label:
+            en_US: Output Filename
+            ja_JP: Output Filename
+            pt_BR: Output Filename
+            zh_Hans: 输出文件名
+          llm_description: ''
+          max: null
+          min: null
+          name: output_filename
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: string
+        params:
+          force_text_value: ''
+          md_text: ''
+          output_filename: ''
+        provider_id: bowenliang123/md_exporter/md_exporter
+        provider_name: bowenliang123/md_exporter/md_exporter
+        provider_type: builtin
+        selected: false
+        title: Markdown 转 XLSX 文件
+        tool_configurations:
+          force_text_value:
+            type: constant
+            value: 'true'
+        tool_description: 将 Markdown 表格转换为 XLSX 文件的工具
+        tool_label: Markdown 转 XLSX 文件
+        tool_name: md_to_xlsx
+        tool_node_version: '2'
+        tool_parameters:
+          md_text:
+            type: mixed
+            value: '{{#1758361122523.text#}}'
+          output_filename:
+            type: mixed
+            value: '{{#1758241781128.tool_name#}}'
+        type: tool
+      height: 89
+      id: '1758247483168'
+      position:
+        x: 791.2708092697926
+        y: 330.2108212972603
+      positionAbsolute:
+        x: 791.2708092697926
+        y: 330.2108212972603
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        answer: '{{#1758247483168.files#}}'
+        desc: ''
+        selected: false
+        title: 直接回复 4
+        type: answer
+        variables: []
+      height: 104
+      id: '1758247496602'
+      position:
+        x: 1095.2708092697926
+        y: 330.2108212972603
+      positionAbsolute:
+        x: 1095.2708092697926
+        y: 330.2108212972603
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        is_team_authorization: true
+        output_schema: null
+        paramSchemas:
+        - auto_generate: null
+          default: null
+          form: llm
+          human_description:
+            en_US: 'Input text of single or multiple Markdown tables, with worksheets
+              supported. All the heading texts (eg. #, ##) will be used as worksheet
+              names in order.'
+            ja_JP: 'Input text of single or multiple Markdown tables, with worksheets
+              supported. All the heading texts (eg. #, ##) will be used as worksheet
+              names in order.'
+            pt_BR: 'Input text of single or multiple Markdown tables, with worksheets
+              supported. All the heading texts (eg. #, ##) will be used as worksheet
+              names in order.'
+            zh_Hans: '单个或多个 Markdown 表格的文本输入，支持工作表。所有标题文本（例如 #, ##）将依次用作工作表名称。'
+          label:
+            en_US: Markdown table text
+            ja_JP: Markdown table text
+            pt_BR: Markdown table text
+            zh_Hans: Markdown 表格文本
+          llm_description: ''
+          max: null
+          min: null
+          name: md_text
+          options: []
+          placeholder: null
+          precision: null
+          required: true
+          scope: null
+          template: null
+          type: string
+        - auto_generate: null
+          default: 'true'
+          form: form
+          human_description:
+            en_US: Convert cell values into text type to void decimal precision loss
+              in display
+            ja_JP: Convert cell values into text type to void decimal precision loss
+              in display
+            pt_BR: Convert cell values into text type to void decimal precision loss
+              in display
+            zh_Hans: 转换单元格值为文本类型，避免显示时的小数精度丢失
+          label:
+            en_US: Enforce text type
+            ja_JP: Enforce text type
+            pt_BR: Enforce text type
+            zh_Hans: 强制单元格值为文本类型
+          llm_description: Whether to convert cell values into string type, default
+            to "true"
+          max: null
+          min: null
+          name: force_text_value
+          options:
+          - icon: ''
+            label:
+              en_US: 'Yes'
+              ja_JP: 'Yes'
+              pt_BR: 'Yes'
+              zh_Hans: 是
+            value: 'true'
+          - icon: ''
+            label:
+              en_US: 'No'
+              ja_JP: 'No'
+              pt_BR: 'No'
+              zh_Hans: 否
+            value: 'false'
+          placeholder: null
+          precision: null
+          required: true
+          scope: null
+          template: null
+          type: select
+        - auto_generate: null
+          default: null
+          form: llm
+          human_description:
+            en_US: Optional custom output file name, and the filename suffix is not
+              required.
+            ja_JP: Optional custom output file name, and the filename suffix is not
+              required.
+            pt_BR: Optional custom output file name, and the filename suffix is not
+              required.
+            zh_Hans: 可选的自定义输出文件名，后缀名无需指定
+          label:
+            en_US: Output Filename
+            ja_JP: Output Filename
+            pt_BR: Output Filename
+            zh_Hans: 输出文件名
+          llm_description: ''
+          max: null
+          min: null
+          name: output_filename
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: string
+        params:
+          force_text_value: ''
+          md_text: ''
+          output_filename: ''
+        provider_id: bowenliang123/md_exporter/md_exporter
+        provider_name: bowenliang123/md_exporter/md_exporter
+        provider_type: builtin
+        selected: false
+        title: Markdown 转 XLSX 文件
+        tool_configurations:
+          force_text_value:
+            type: constant
+            value: 'true'
+        tool_description: 将 Markdown 表格转换为 XLSX 文件的工具
+        tool_label: Markdown 转 XLSX 文件
+        tool_name: md_to_xlsx
+        tool_node_version: '2'
+        tool_parameters:
+          md_text:
+            type: mixed
+            value: '{{#1758361359357.text#}}'
+          output_filename:
+            type: mixed
+            value: '{{#1758241781128.tool_name#}}'
+        type: tool
+      height: 89
+      id: '1758247510287'
+      position:
+        x: 791.2708092697926
+        y: 422.2108212972603
+      positionAbsolute:
+        x: 791.2708092697926
+        y: 422.2108212972603
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        answer: '{{#1758247510287.files#}}'
+        desc: ''
+        selected: false
+        title: 直接回复 5
+        type: answer
+        variables: []
+      height: 104
+      id: '1758247524802'
+      position:
+        x: 1095.2708092697926
+        y: 422.2108212972603
+      positionAbsolute:
+        x: 1095.2708092697926
+        y: 422.2108212972603
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        is_team_authorization: true
+        output_schema: null
+        paramSchemas:
+        - auto_generate: null
+          default: null
+          form: llm
+          human_description:
+            en_US: 'Input text of single or multiple Markdown tables, with worksheets
+              supported. All the heading texts (eg. #, ##) will be used as worksheet
+              names in order.'
+            ja_JP: 'Input text of single or multiple Markdown tables, with worksheets
+              supported. All the heading texts (eg. #, ##) will be used as worksheet
+              names in order.'
+            pt_BR: 'Input text of single or multiple Markdown tables, with worksheets
+              supported. All the heading texts (eg. #, ##) will be used as worksheet
+              names in order.'
+            zh_Hans: '单个或多个 Markdown 表格的文本输入，支持工作表。所有标题文本（例如 #, ##）将依次用作工作表名称。'
+          label:
+            en_US: Markdown table text
+            ja_JP: Markdown table text
+            pt_BR: Markdown table text
+            zh_Hans: Markdown 表格文本
+          llm_description: ''
+          max: null
+          min: null
+          name: md_text
+          options: []
+          placeholder: null
+          precision: null
+          required: true
+          scope: null
+          template: null
+          type: string
+        - auto_generate: null
+          default: 'true'
+          form: form
+          human_description:
+            en_US: Convert cell values into text type to void decimal precision loss
+              in display
+            ja_JP: Convert cell values into text type to void decimal precision loss
+              in display
+            pt_BR: Convert cell values into text type to void decimal precision loss
+              in display
+            zh_Hans: 转换单元格值为文本类型，避免显示时的小数精度丢失
+          label:
+            en_US: Enforce text type
+            ja_JP: Enforce text type
+            pt_BR: Enforce text type
+            zh_Hans: 强制单元格值为文本类型
+          llm_description: Whether to convert cell values into string type, default
+            to "true"
+          max: null
+          min: null
+          name: force_text_value
+          options:
+          - icon: ''
+            label:
+              en_US: 'Yes'
+              ja_JP: 'Yes'
+              pt_BR: 'Yes'
+              zh_Hans: 是
+            value: 'true'
+          - icon: ''
+            label:
+              en_US: 'No'
+              ja_JP: 'No'
+              pt_BR: 'No'
+              zh_Hans: 否
+            value: 'false'
+          placeholder: null
+          precision: null
+          required: true
+          scope: null
+          template: null
+          type: select
+        - auto_generate: null
+          default: null
+          form: llm
+          human_description:
+            en_US: Optional custom output file name, and the filename suffix is not
+              required.
+            ja_JP: Optional custom output file name, and the filename suffix is not
+              required.
+            pt_BR: Optional custom output file name, and the filename suffix is not
+              required.
+            zh_Hans: 可选的自定义输出文件名，后缀名无需指定
+          label:
+            en_US: Output Filename
+            ja_JP: Output Filename
+            pt_BR: Output Filename
+            zh_Hans: 输出文件名
+          llm_description: ''
+          max: null
+          min: null
+          name: output_filename
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: string
+        params:
+          force_text_value: ''
+          md_text: ''
+          output_filename: ''
+        provider_id: bowenliang123/md_exporter/md_exporter
+        provider_name: bowenliang123/md_exporter/md_exporter
+        provider_type: builtin
+        selected: false
+        title: Markdown 转 XLSX 文件
+        tool_configurations:
+          force_text_value:
+            type: constant
+            value: 'true'
+        tool_description: 将 Markdown 表格转换为 XLSX 文件的工具
+        tool_label: Markdown 转 XLSX 文件
+        tool_name: md_to_xlsx
+        tool_node_version: '2'
+        tool_parameters:
+          md_text:
+            type: mixed
+            value: '{{#1758361412086.text#}}'
+          output_filename:
+            type: mixed
+            value: '{{#1758241781128.tool_name#}}'
+        type: tool
+      height: 89
+      id: '1758247540174'
+      position:
+        x: 791.2708092697926
+        y: 514.2108212972603
+      positionAbsolute:
+        x: 791.2708092697926
+        y: 514.2108212972603
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        answer: '{{#1758247540174.files#}}'
+        desc: ''
+        selected: false
+        title: 直接回复 6
+        type: answer
+        variables: []
+      height: 104
+      id: '1758247555729'
+      position:
+        x: 1095.2708092697926
+        y: 514.2108212972603
+      positionAbsolute:
+        x: 1095.2708092697926
+        y: 514.2108212972603
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        is_team_authorization: true
+        output_schema: null
+        paramSchemas:
+        - auto_generate: null
+          default: null
+          form: llm
+          human_description:
+            en_US: 'Input text of single or multiple Markdown tables, with worksheets
+              supported. All the heading texts (eg. #, ##) will be used as worksheet
+              names in order.'
+            ja_JP: 'Input text of single or multiple Markdown tables, with worksheets
+              supported. All the heading texts (eg. #, ##) will be used as worksheet
+              names in order.'
+            pt_BR: 'Input text of single or multiple Markdown tables, with worksheets
+              supported. All the heading texts (eg. #, ##) will be used as worksheet
+              names in order.'
+            zh_Hans: '单个或多个 Markdown 表格的文本输入，支持工作表。所有标题文本（例如 #, ##）将依次用作工作表名称。'
+          label:
+            en_US: Markdown table text
+            ja_JP: Markdown table text
+            pt_BR: Markdown table text
+            zh_Hans: Markdown 表格文本
+          llm_description: ''
+          max: null
+          min: null
+          name: md_text
+          options: []
+          placeholder: null
+          precision: null
+          required: true
+          scope: null
+          template: null
+          type: string
+        - auto_generate: null
+          default: 'true'
+          form: form
+          human_description:
+            en_US: Convert cell values into text type to void decimal precision loss
+              in display
+            ja_JP: Convert cell values into text type to void decimal precision loss
+              in display
+            pt_BR: Convert cell values into text type to void decimal precision loss
+              in display
+            zh_Hans: 转换单元格值为文本类型，避免显示时的小数精度丢失
+          label:
+            en_US: Enforce text type
+            ja_JP: Enforce text type
+            pt_BR: Enforce text type
+            zh_Hans: 强制单元格值为文本类型
+          llm_description: Whether to convert cell values into string type, default
+            to "true"
+          max: null
+          min: null
+          name: force_text_value
+          options:
+          - icon: ''
+            label:
+              en_US: 'Yes'
+              ja_JP: 'Yes'
+              pt_BR: 'Yes'
+              zh_Hans: 是
+            value: 'true'
+          - icon: ''
+            label:
+              en_US: 'No'
+              ja_JP: 'No'
+              pt_BR: 'No'
+              zh_Hans: 否
+            value: 'false'
+          placeholder: null
+          precision: null
+          required: true
+          scope: null
+          template: null
+          type: select
+        - auto_generate: null
+          default: null
+          form: llm
+          human_description:
+            en_US: Optional custom output file name, and the filename suffix is not
+              required.
+            ja_JP: Optional custom output file name, and the filename suffix is not
+              required.
+            pt_BR: Optional custom output file name, and the filename suffix is not
+              required.
+            zh_Hans: 可选的自定义输出文件名，后缀名无需指定
+          label:
+            en_US: Output Filename
+            ja_JP: Output Filename
+            pt_BR: Output Filename
+            zh_Hans: 输出文件名
+          llm_description: ''
+          max: null
+          min: null
+          name: output_filename
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: string
+        params:
+          force_text_value: ''
+          md_text: ''
+          output_filename: ''
+        provider_id: bowenliang123/md_exporter/md_exporter
+        provider_name: bowenliang123/md_exporter/md_exporter
+        provider_type: builtin
+        selected: false
+        title: Markdown 转 XLSX 文件
+        tool_configurations:
+          force_text_value:
+            type: constant
+            value: 'true'
+        tool_description: 将 Markdown 表格转换为 XLSX 文件的工具
+        tool_label: Markdown 转 XLSX 文件
+        tool_name: md_to_xlsx
+        tool_node_version: '2'
+        tool_parameters:
+          md_text:
+            type: mixed
+            value: '{{#1758361447723.text#}}'
+          output_filename:
+            type: mixed
+            value: '{{#1758241781128.tool_name#}}'
+        type: tool
+      height: 89
+      id: '1758247596886'
+      position:
+        x: 791.2708092697926
+        y: 606.2108212972603
+      positionAbsolute:
+        x: 791.2708092697926
+        y: 606.2108212972603
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        answer: '{{#1758247596886.files#}}'
+        desc: ''
+        selected: false
+        title: 直接回复 7
+        type: answer
+        variables: []
+      height: 104
+      id: '1758247607977'
+      position:
+        x: 1095.2708092697926
+        y: 606.2108212972603
+      positionAbsolute:
+        x: 1095.2708092697926
+        y: 606.2108212972603
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        is_team_authorization: true
+        output_schema: null
+        paramSchemas:
+        - auto_generate: null
+          default: null
+          form: llm
+          human_description:
+            en_US: 'Input text of single or multiple Markdown tables, with worksheets
+              supported. All the heading texts (eg. #, ##) will be used as worksheet
+              names in order.'
+            ja_JP: 'Input text of single or multiple Markdown tables, with worksheets
+              supported. All the heading texts (eg. #, ##) will be used as worksheet
+              names in order.'
+            pt_BR: 'Input text of single or multiple Markdown tables, with worksheets
+              supported. All the heading texts (eg. #, ##) will be used as worksheet
+              names in order.'
+            zh_Hans: '单个或多个 Markdown 表格的文本输入，支持工作表。所有标题文本（例如 #, ##）将依次用作工作表名称。'
+          label:
+            en_US: Markdown table text
+            ja_JP: Markdown table text
+            pt_BR: Markdown table text
+            zh_Hans: Markdown 表格文本
+          llm_description: ''
+          max: null
+          min: null
+          name: md_text
+          options: []
+          placeholder: null
+          precision: null
+          required: true
+          scope: null
+          template: null
+          type: string
+        - auto_generate: null
+          default: 'true'
+          form: form
+          human_description:
+            en_US: Convert cell values into text type to void decimal precision loss
+              in display
+            ja_JP: Convert cell values into text type to void decimal precision loss
+              in display
+            pt_BR: Convert cell values into text type to void decimal precision loss
+              in display
+            zh_Hans: 转换单元格值为文本类型，避免显示时的小数精度丢失
+          label:
+            en_US: Enforce text type
+            ja_JP: Enforce text type
+            pt_BR: Enforce text type
+            zh_Hans: 强制单元格值为文本类型
+          llm_description: Whether to convert cell values into string type, default
+            to "true"
+          max: null
+          min: null
+          name: force_text_value
+          options:
+          - icon: ''
+            label:
+              en_US: 'Yes'
+              ja_JP: 'Yes'
+              pt_BR: 'Yes'
+              zh_Hans: 是
+            value: 'true'
+          - icon: ''
+            label:
+              en_US: 'No'
+              ja_JP: 'No'
+              pt_BR: 'No'
+              zh_Hans: 否
+            value: 'false'
+          placeholder: null
+          precision: null
+          required: true
+          scope: null
+          template: null
+          type: select
+        - auto_generate: null
+          default: null
+          form: llm
+          human_description:
+            en_US: Optional custom output file name, and the filename suffix is not
+              required.
+            ja_JP: Optional custom output file name, and the filename suffix is not
+              required.
+            pt_BR: Optional custom output file name, and the filename suffix is not
+              required.
+            zh_Hans: 可选的自定义输出文件名，后缀名无需指定
+          label:
+            en_US: Output Filename
+            ja_JP: Output Filename
+            pt_BR: Output Filename
+            zh_Hans: 输出文件名
+          llm_description: ''
+          max: null
+          min: null
+          name: output_filename
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: string
+        params:
+          force_text_value: ''
+          md_text: ''
+          output_filename: ''
+        provider_id: bowenliang123/md_exporter/md_exporter
+        provider_name: bowenliang123/md_exporter/md_exporter
+        provider_type: builtin
+        selected: false
+        title: Markdown 转 XLSX 文件
+        tool_configurations:
+          force_text_value:
+            type: constant
+            value: 'true'
+        tool_description: 将 Markdown 表格转换为 XLSX 文件的工具
+        tool_label: Markdown 转 XLSX 文件
+        tool_name: md_to_xlsx
+        tool_node_version: '2'
+        tool_parameters:
+          md_text:
+            type: mixed
+            value: '{{#1758361503086.text#}}'
+          output_filename:
+            type: mixed
+            value: '{{#1758241781128.tool_name#}}'
+        type: tool
+      height: 89
+      id: '1758247621302'
+      position:
+        x: 791.2708092697926
+        y: 698.2108212972603
+      positionAbsolute:
+        x: 791.2708092697926
+        y: 698.2108212972603
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        answer: '{{#1758247621302.files#}}'
+        desc: ''
+        selected: false
+        title: 直接回复 8
+        type: answer
+        variables: []
+      height: 104
+      id: '1758247631754'
+      position:
+        x: 1095.2708092697926
+        y: 698.2108212972603
+      positionAbsolute:
+        x: 1095.2708092697926
+        y: 698.2108212972603
       selected: false
       sourcePosition: right
       targetPosition: left
@@ -691,8 +2065,8 @@ workflow:
           interface: ''
           retries: ''
           timeout: ''
-        provider_id: shaoxing_xie/akshare_stockdata/akshare_stockdata
-        provider_name: shaoxing_xie/akshare_stockdata/akshare_stockdata
+        provider_id: shaoxing-xie/akshare_stockdata/akshare_stockdata
+        provider_name: shaoxing-xie/akshare_stockdata/akshare_stockdata
         provider_type: builtin
         selected: false
         title: 股票市场总貌
@@ -704,7 +2078,7 @@ workflow:
         tool_parameters:
           date:
             type: mixed
-            value: '20250808'
+            value: '{{#1758241781128.date#}}'
           interface:
             type: constant
             value: stock_sse_summary
@@ -716,255 +2090,13 @@ workflow:
             value: 450
         type: tool
       height: 53
-      id: '1758241995099'
+      id: '1758360884341'
       position:
         x: 487.27080926979255
-        y: 54.21082129726031
+        y: 44.69980041620164
       positionAbsolute:
         x: 487.27080926979255
-        y: 54.21082129726031
-      selected: true
-      sourcePosition: right
-      targetPosition: left
-      type: custom
-      width: 244
-    - data:
-        cases:
-        - case_id: 'true'
-          conditions:
-          - comparison_operator: contains
-            id: f3926dc8-2e91-449a-a040-6cfb58d61a72
-            value: 股票市场总貌
-            varType: string
-            variable_selector:
-            - '1758241781128'
-            - tool_name
-          id: 'true'
-          logical_operator: and
-        - case_id: 7d604527-ce06-4f1b-99ea-8696b89fb398
-          conditions:
-          - comparison_operator: contains
-            id: b379911c-b7f1-455c-9819-a6982b390d1c
-            value: 个股信息总貌
-            varType: string
-            variable_selector:
-            - '1758241781128'
-            - tool_name
-          logical_operator: and
-        - case_id: 68e8e76d-9f1b-4850-a011-206b065211b8
-          conditions:
-          - comparison_operator: contains
-            id: 55fa827e-032d-4e82-aa39-957295dc912f
-            value: 股票实时行情
-            varType: string
-            variable_selector:
-            - '1758241781128'
-            - tool_name
-          logical_operator: and
-        - case_id: 80808b6e-c373-4c33-8676-76bbfa553b70
-          conditions:
-          - comparison_operator: contains
-            id: d971b841-2c19-4eef-a3ed-c21d8d1a4e7f
-            value: 股票历史行情
-            varType: string
-            variable_selector:
-            - '1758241781128'
-            - tool_name
-          logical_operator: and
-        - case_id: 49269ec2-04be-484f-ad51-7234c403289c
-          conditions:
-          - comparison_operator: contains
-            id: 28d9a851-f334-4b56-b08d-5d2ae58686e5
-            value: 沪深港通持股
-            varType: string
-            variable_selector:
-            - '1758241781128'
-            - tool_name
-          logical_operator: and
-        - case_id: 9f6b3282-ef35-4236-9396-7dc3d1bd5bd4
-          conditions:
-          - comparison_operator: contains
-            id: d0cd02e5-307e-40b5-a85d-a95361ed377d
-            value: 资金流向分析
-            varType: string
-            variable_selector:
-            - '1758241781128'
-            - tool_name
-          logical_operator: and
-        - case_id: 7acbacfc-fde4-434e-a3ae-272dd2cda1ef
-          conditions:
-          - comparison_operator: contains
-            id: ab396be5-0ffe-459b-a284-8bfc754ab16d
-            value: 股票财务数据分析
-            varType: string
-            variable_selector:
-            - '1758241781128'
-            - tool_name
-          logical_operator: and
-        - case_id: 3c54b101-ceff-4bbd-8d83-9f9329f6f0d6
-          conditions:
-          - comparison_operator: contains
-            id: ae164c32-5955-4f0a-bd4d-892d0fbd00e9
-            value: 股票技术分析
-            varType: string
-            variable_selector:
-            - '1758241781128'
-            - tool_name
-          logical_operator: and
-        desc: ''
-        selected: false
-        title: 条件分支
-        type: if-else
-      height: 461
-      id: '1758242004514'
-      position:
-        x: 99.53460891417035
-        y: 223.33731668152092
-      positionAbsolute:
-        x: 99.53460891417035
-        y: 223.33731668152092
-      selected: false
-      sourcePosition: right
-      targetPosition: left
-      type: custom
-      width: 244
-    - data:
-        desc: ''
-        is_team_authorization: true
-        output_schema: null
-        paramSchemas:
-        - auto_generate: null
-          default: null
-          form: llm
-          human_description:
-            en_US: 'Input text of single or multiple Markdown tables, with worksheets
-              supported. All the heading texts (eg. #, ##) will be used as worksheet
-              names in order.'
-            ja_JP: 'Input text of single or multiple Markdown tables, with worksheets
-              supported. All the heading texts (eg. #, ##) will be used as worksheet
-              names in order.'
-            pt_BR: 'Input text of single or multiple Markdown tables, with worksheets
-              supported. All the heading texts (eg. #, ##) will be used as worksheet
-              names in order.'
-            zh_Hans: '单个或多个 Markdown 表格的文本输入，支持工作表。所有标题文本（例如 #, ##）将依次用作工作表名称。'
-          label:
-            en_US: Markdown table text
-            ja_JP: Markdown table text
-            pt_BR: Markdown table text
-            zh_Hans: Markdown 表格文本
-          llm_description: ''
-          max: null
-          min: null
-          name: md_text
-          options: []
-          placeholder: null
-          precision: null
-          required: true
-          scope: null
-          template: null
-          type: string
-        - auto_generate: null
-          default: 'true'
-          form: form
-          human_description:
-            en_US: Convert cell values into text type to void decimal precision loss
-              in display
-            ja_JP: Convert cell values into text type to void decimal precision loss
-              in display
-            pt_BR: Convert cell values into text type to void decimal precision loss
-              in display
-            zh_Hans: 转换单元格值为文本类型，避免显示时的小数精度丢失
-          label:
-            en_US: Enforce text type
-            ja_JP: Enforce text type
-            pt_BR: Enforce text type
-            zh_Hans: 强制单元格值为文本类型
-          llm_description: Whether to convert cell values into string type, default
-            to "true"
-          max: null
-          min: null
-          name: force_text_value
-          options:
-          - icon: ''
-            label:
-              en_US: 'Yes'
-              ja_JP: 'Yes'
-              pt_BR: 'Yes'
-              zh_Hans: 是
-            value: 'true'
-          - icon: ''
-            label:
-              en_US: 'No'
-              ja_JP: 'No'
-              pt_BR: 'No'
-              zh_Hans: 否
-            value: 'false'
-          placeholder: null
-          precision: null
-          required: true
-          scope: null
-          template: null
-          type: select
-        - auto_generate: null
-          default: null
-          form: llm
-          human_description:
-            en_US: Optional custom output file name, and the filename suffix is not
-              required.
-            ja_JP: Optional custom output file name, and the filename suffix is not
-              required.
-            pt_BR: Optional custom output file name, and the filename suffix is not
-              required.
-            zh_Hans: 可选的自定义输出文件名，后缀名无需指定
-          label:
-            en_US: Output Filename
-            ja_JP: Output Filename
-            pt_BR: Output Filename
-            zh_Hans: 输出文件名
-          llm_description: ''
-          max: null
-          min: null
-          name: output_filename
-          options: []
-          placeholder: null
-          precision: null
-          required: false
-          scope: null
-          template: null
-          type: string
-        params:
-          force_text_value: ''
-          md_text: ''
-          output_filename: ''
-        provider_id: bowenliang123/md_exporter/md_exporter
-        provider_name: bowenliang123/md_exporter/md_exporter
-        provider_type: builtin
-        selected: false
-        title: Markdown 转 XLSX 文件
-        tool_configurations:
-          force_text_value:
-            type: constant
-            value: 'true'
-        tool_description: 将 Markdown 表格转换为 XLSX 文件的工具
-        tool_label: Markdown 转 XLSX 文件
-        tool_name: md_to_xlsx
-        tool_node_version: '2'
-        tool_parameters:
-          md_text:
-            type: mixed
-            value: '{{#1758241995099.text#}}'
-          output_filename:
-            type: mixed
-            value: '{{#1758241781128.tool_name#}}'
-        type: tool
-      height: 89
-      id: '1758246447863'
-      position:
-        x: 801.2708089693214
-        y: 30.210822018391198
-      positionAbsolute:
-        x: 801.2708089693214
-        y: 30.210822018391198
+        y: 44.69980041620164
       selected: false
       sourcePosition: right
       targetPosition: left
@@ -1252,8 +2384,8 @@ workflow:
           retries: ''
           symbol: ''
           timeout: ''
-        provider_id: shaoxing_xie/akshare_stockdata/akshare_stockdata
-        provider_name: shaoxing_xie/akshare_stockdata/akshare_stockdata
+        provider_id: shaoxing-xie/akshare_stockdata/akshare_stockdata
+        provider_name: shaoxing-xie/akshare_stockdata/akshare_stockdata
         provider_type: builtin
         selected: false
         title: 个股信息总貌
@@ -1277,13 +2409,13 @@ workflow:
             value: 600
         type: tool
       height: 53
-      id: '1758247313940'
+      id: '1758360967464'
       position:
         x: 487.27080926979255
-        y: 155.21081994513997
+        y: 146.2108212972603
       positionAbsolute:
         x: 487.27080926979255
-        y: 155.21081994513997
+        y: 146.2108212972603
       selected: false
       sourcePosition: right
       targetPosition: left
@@ -1616,8 +2748,8 @@ workflow:
           retries: ''
           symbol: ''
           timeout: ''
-        provider_id: shaoxing_xie/akshare_stockdata/akshare_stockdata
-        provider_name: shaoxing_xie/akshare_stockdata/akshare_stockdata
+        provider_id: shaoxing-xie/akshare_stockdata/akshare_stockdata
+        provider_name: shaoxing-xie/akshare_stockdata/akshare_stockdata
         provider_type: builtin
         selected: false
         title: 股票实时行情
@@ -1641,13 +2773,595 @@ workflow:
             value: 900
         type: tool
       height: 53
-      id: '1758247325281'
+      id: '1758361067026'
       position:
-        x: 487.27080926979255
-        y: 238.2108212972603
+        x: 480.8805637979272
+        y: 223.33731668152092
       positionAbsolute:
-        x: 487.27080926979255
-        y: 238.2108212972603
+        x: 480.8805637979272
+        y: 223.33731668152092
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        is_team_authorization: true
+        output_schema: null
+        paramSchemas:
+        - auto_generate: null
+          default: stock_zh_a_hist
+          form: llm
+          human_description:
+            en_US: 'Interface parameter description: 1.A-share Daily Data: requires
+              symbol, Period 1 (Historical Data), start_date, end_date, adjust; 2.A-share
+              Daily Minute Data: requires symbol, Period 2 (Minute Data), start_date,
+              end_date, adjust; 3.Recent Trading Day Intraday Data: requires symbol
+              only; 4.Recent Trading Day Pre-market Data: requires symbol, start_time,
+              end_time; 5.STAR Market Historical Data: requires symbol, adjust; 6.HK
+              Stock Historical Data: requires symbol, Period 1 (Historical Data),
+              start_date, end_date, adjust; 7.HK Stock Daily Minute Data: requires
+              symbol, Period 2 (Minute Data), start_date, end_date, adjust; 8.US Stock
+              Daily Data: requires symbol, Period 1 (Historical Data), start_date,
+              end_date, adjust; 9.US Stock Daily Minute Data: requires symbol, start_date,
+              end_date.'
+            ja_JP: 'Interface parameter description: 1.A-share Daily Data: requires
+              symbol, Period 1 (Historical Data), start_date, end_date, adjust; 2.A-share
+              Daily Minute Data: requires symbol, Period 2 (Minute Data), start_date,
+              end_date, adjust; 3.Recent Trading Day Intraday Data: requires symbol
+              only; 4.Recent Trading Day Pre-market Data: requires symbol, start_time,
+              end_time; 5.STAR Market Historical Data: requires symbol, adjust; 6.HK
+              Stock Historical Data: requires symbol, Period 1 (Historical Data),
+              start_date, end_date, adjust; 7.HK Stock Daily Minute Data: requires
+              symbol, Period 2 (Minute Data), start_date, end_date, adjust; 8.US Stock
+              Daily Data: requires symbol, Period 1 (Historical Data), start_date,
+              end_date, adjust; 9.US Stock Daily Minute Data: requires symbol, start_date,
+              end_date.'
+            pt_BR: 'Interface parameter description: 1.A-share Daily Data: requires
+              symbol, Period 1 (Historical Data), start_date, end_date, adjust; 2.A-share
+              Daily Minute Data: requires symbol, Period 2 (Minute Data), start_date,
+              end_date, adjust; 3.Recent Trading Day Intraday Data: requires symbol
+              only; 4.Recent Trading Day Pre-market Data: requires symbol, start_time,
+              end_time; 5.STAR Market Historical Data: requires symbol, adjust; 6.HK
+              Stock Historical Data: requires symbol, Period 1 (Historical Data),
+              start_date, end_date, adjust; 7.HK Stock Daily Minute Data: requires
+              symbol, Period 2 (Minute Data), start_date, end_date, adjust; 8.US Stock
+              Daily Data: requires symbol, Period 1 (Historical Data), start_date,
+              end_date, adjust; 9.US Stock Daily Minute Data: requires symbol, start_date,
+              end_date.'
+            zh_Hans: 接口参数说明：1.沪深京A股-日频率数据:需要股票代码、周期一（历史行情类）、开始日期、结束日期、调整方式; 2.沪深京
+              A 股-每日分时行情:需要股票代码、周期二（分时行情类）、开始日期、结束日期、调整方式; 3.最近一个交易日-分时数据:只需要股票代码;
+              4.最近一个交易日-盘前数据:需要股票代码、开始时间、结束时间; 5.科创板股票历史行情数据:需要股票代码、调整方式; 6.港股-历史行情数据:需要股票代码、周期一（历史行情类）、开始日期、结束日期、调整方式;
+              7.港股-每日分时行情:需要股票代码、周期二（分时行情类）、开始日期、结束日期、调整方式; 8.美股-每日行情:需要股票代码、周期一（历史行情类）、开始日期、结束日期、调整方式;
+              9.美股-每日分时行情:需要股票代码、开始日期、结束日期。
+          label:
+            en_US: Interface
+            ja_JP: Interface
+            pt_BR: Interface
+            zh_Hans: 接口名称
+          llm_description: 选择要调用的历史行情数据接口，支持A股、港股、美股历史数据。历史行情接口使用周期一（历史行情类），分时行情接口使用周期二（分时行情类）
+          max: null
+          min: null
+          name: interface
+          options:
+          - icon: ''
+            label:
+              en_US: Eastmoney - A-share - Daily Data
+              ja_JP: Eastmoney - A-share - Daily Data
+              pt_BR: Eastmoney - A-share - Daily Data
+              zh_Hans: 东方财富-沪深京A股-日频率数据
+            value: stock_zh_a_hist
+          - icon: ''
+            label:
+              en_US: Eastmoney - A-share - Daily Minute Data
+              ja_JP: Eastmoney - A-share - Daily Minute Data
+              pt_BR: Eastmoney - A-share - Daily Minute Data
+              zh_Hans: 东方财富网-沪深京 A 股-每日分时行情
+            value: stock_zh_a_hist_min_em
+          - icon: ''
+            label:
+              en_US: Eastmoney - Recent Trading Day - Intraday Data
+              ja_JP: Eastmoney - Recent Trading Day - Intraday Data
+              pt_BR: Eastmoney - Recent Trading Day - Intraday Data
+              zh_Hans: 东方财富-最近一个交易日-分时数据
+            value: stock_intraday_em
+          - icon: ''
+            label:
+              en_US: Eastmoney - Recent Trading Day - Pre-market Data
+              ja_JP: Eastmoney - Recent Trading Day - Pre-market Data
+              pt_BR: Eastmoney - Recent Trading Day - Pre-market Data
+              zh_Hans: 东方财富-最近一个交易日-盘前数据
+            value: stock_zh_a_hist_pre_min_em
+          - icon: ''
+            label:
+              en_US: Sina Finance - STAR Market - Historical Data
+              ja_JP: Sina Finance - STAR Market - Historical Data
+              pt_BR: Sina Finance - STAR Market - Historical Data
+              zh_Hans: 新浪财经-科创板股票历史行情数据
+            value: stock_zh_kcb_daily
+          - icon: ''
+            label:
+              en_US: Eastmoney - HK Stock - Historical Data
+              ja_JP: Eastmoney - HK Stock - Historical Data
+              pt_BR: Eastmoney - HK Stock - Historical Data
+              zh_Hans: 东方财富-港股-历史行情数据
+            value: stock_hk_hist
+          - icon: ''
+            label:
+              en_US: Eastmoney - HK Stock - Daily Minute Data
+              ja_JP: Eastmoney - HK Stock - Daily Minute Data
+              pt_BR: Eastmoney - HK Stock - Daily Minute Data
+              zh_Hans: 东方财富网-港股-每日分时行情
+            value: stock_hk_hist_min_em
+          - icon: ''
+            label:
+              en_US: Eastmoney - US Stock - Daily Data
+              ja_JP: Eastmoney - US Stock - Daily Data
+              pt_BR: Eastmoney - US Stock - Daily Data
+              zh_Hans: 东方财富网-美股-每日行情
+            value: stock_us_hist
+          - icon: ''
+            label:
+              en_US: Eastmoney - US Stock - Daily Minute Data
+              ja_JP: Eastmoney - US Stock - Daily Minute Data
+              pt_BR: Eastmoney - US Stock - Daily Minute Data
+              zh_Hans: 东方财富网-美股-每日分时行情
+            value: stock_us_hist_min_em
+          placeholder: null
+          precision: null
+          required: true
+          scope: null
+          template: null
+          type: select
+        - auto_generate: null
+          default: '000001'
+          form: llm
+          human_description:
+            en_US: 'Stock symbol. Required for: East Money - A-share - Daily Data,
+              East Money - A-share - Daily Minute Data, East Money - Recent Trading
+              Day - Intraday Data, East Money - Recent Trading Day - Pre-market Data,
+              Sina Finance - STAR Market - Historical Data, East Money - HK Stock
+              - Historical Data, East Money - HK Stock - Daily Minute Data, East Money
+              - US Stock - Daily Data, East Money - US Stock - Daily Minute Data.
+              Format: A-shares: 600519, 000001, SH600519, SZ000001; HK stocks: 00700,
+              03900, HK00700; US stocks: AAPL, MSFT.'
+            ja_JP: 'Stock symbol. Required for: East Money - A-share - Daily Data,
+              East Money - A-share - Daily Minute Data, East Money - Recent Trading
+              Day - Intraday Data, East Money - Recent Trading Day - Pre-market Data,
+              Sina Finance - STAR Market - Historical Data, East Money - HK Stock
+              - Historical Data, East Money - HK Stock - Daily Minute Data, East Money
+              - US Stock - Daily Data, East Money - US Stock - Daily Minute Data.
+              Format: A-shares: 600519, 000001, SH600519, SZ000001; HK stocks: 00700,
+              03900, HK00700; US stocks: AAPL, MSFT.'
+            pt_BR: 'Stock symbol. Required for: East Money - A-share - Daily Data,
+              East Money - A-share - Daily Minute Data, East Money - Recent Trading
+              Day - Intraday Data, East Money - Recent Trading Day - Pre-market Data,
+              Sina Finance - STAR Market - Historical Data, East Money - HK Stock
+              - Historical Data, East Money - HK Stock - Daily Minute Data, East Money
+              - US Stock - Daily Data, East Money - US Stock - Daily Minute Data.
+              Format: A-shares: 600519, 000001, SH600519, SZ000001; HK stocks: 00700,
+              03900, HK00700; US stocks: AAPL, MSFT.'
+            zh_Hans: 股票代码。需要此参数的接口：东方财富-沪深京A股-日频率数据、东方财富网-沪深京 A 股-每日分时行情、东方财富-最近一个交易日-分时数据、东方财富-最近一个交易日-盘前数据、新浪财经-科创板股票历史行情数据、东方财富-港股-历史行情数据、东方财富网-港股-每日分时行情、东方财富网-美股-每日行情、东方财富网-美股-每日分时行情。格式：A股：600519、000001、SH600519、SZ000001；港股：00700、03900、HK00700；美股：AAPL、MSFT。
+          label:
+            en_US: Stock Symbol
+            ja_JP: Stock Symbol
+            pt_BR: Stock Symbol
+            zh_Hans: 股票代码
+          llm_description: 股票代码，支持A股、港股、美股格式
+          max: null
+          min: null
+          name: symbol
+          options: []
+          placeholder: null
+          precision: null
+          required: true
+          scope: null
+          template: null
+          type: string
+        - auto_generate: null
+          default: daily
+          form: llm
+          human_description:
+            en_US: 'Period. Required for: East Money - A-share - Daily Data, East
+              Money - HK Stock - Historical Data, East Money - US Stock - Daily Data.
+              Options: daily (日线), weekly (周线), monthly (月线).'
+            ja_JP: 'Period. Required for: East Money - A-share - Daily Data, East
+              Money - HK Stock - Historical Data, East Money - US Stock - Daily Data.
+              Options: daily (日线), weekly (周线), monthly (月线).'
+            pt_BR: 'Period. Required for: East Money - A-share - Daily Data, East
+              Money - HK Stock - Historical Data, East Money - US Stock - Daily Data.
+              Options: daily (日线), weekly (周线), monthly (月线).'
+            zh_Hans: 周期一（历史行情类）。需要此参数的接口：东方财富-沪深京A股-日频率数据、东方财富-港股-历史行情数据、东方财富网-美股-每日行情。选项：daily(日线)、weekly(周线)、monthly(月线)。
+          label:
+            en_US: Period 1 (Historical Data)
+            ja_JP: Period 1 (Historical Data)
+            pt_BR: Period 1 (Historical Data)
+            zh_Hans: 周期一（历史行情类）
+          llm_description: 历史行情接口的周期参数，用于A股、港股、美股历史数据接口
+          max: null
+          min: null
+          name: period
+          options:
+          - icon: ''
+            label:
+              en_US: Daily
+              ja_JP: Daily
+              pt_BR: Daily
+              zh_Hans: 日线
+            value: daily
+          - icon: ''
+            label:
+              en_US: Weekly
+              ja_JP: Weekly
+              pt_BR: Weekly
+              zh_Hans: 周线
+            value: weekly
+          - icon: ''
+            label:
+              en_US: Monthly
+              ja_JP: Monthly
+              pt_BR: Monthly
+              zh_Hans: 月线
+            value: monthly
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: select
+        - auto_generate: null
+          default: '1'
+          form: llm
+          human_description:
+            en_US: 'Period. Required for: East Money - A-share - Daily Minute Data,
+              East Money - HK Stock - Daily Minute Data, East Money - US Stock - Daily
+              Minute Data. Options: 1 (1分钟), 5 (5分钟), 15 (15分钟), 30 (30分钟), 60 (60分钟).'
+            ja_JP: 'Period. Required for: East Money - A-share - Daily Minute Data,
+              East Money - HK Stock - Daily Minute Data, East Money - US Stock - Daily
+              Minute Data. Options: 1 (1分钟), 5 (5分钟), 15 (15分钟), 30 (30分钟), 60 (60分钟).'
+            pt_BR: 'Period. Required for: East Money - A-share - Daily Minute Data,
+              East Money - HK Stock - Daily Minute Data, East Money - US Stock - Daily
+              Minute Data. Options: 1 (1分钟), 5 (5分钟), 15 (15分钟), 30 (30分钟), 60 (60分钟).'
+            zh_Hans: 周期二（分时行情类）。需要此参数的接口：东方财富网-沪深京 A 股-每日分时行情、东方财富网-港股-每日分时行情、东方财富网-美股-每日分时行情。选项：1(1分钟)、5(5分钟)、15(15分钟)、30(30分钟)、60(60分钟)。
+          label:
+            en_US: Period 2 (Minute Data)
+            ja_JP: Period 2 (Minute Data)
+            pt_BR: Period 2 (Minute Data)
+            zh_Hans: 周期二（分时行情类）
+          llm_description: 分时行情接口的周期参数，用于A股、港股、美股分时数据接口
+          max: null
+          min: null
+          name: period2
+          options:
+          - icon: ''
+            label:
+              en_US: 1 Minute
+              ja_JP: 1 Minute
+              pt_BR: 1 Minute
+              zh_Hans: 1分钟
+            value: '1'
+          - icon: ''
+            label:
+              en_US: 5 Minutes
+              ja_JP: 5 Minutes
+              pt_BR: 5 Minutes
+              zh_Hans: 5分钟
+            value: '5'
+          - icon: ''
+            label:
+              en_US: 15 Minutes
+              ja_JP: 15 Minutes
+              pt_BR: 15 Minutes
+              zh_Hans: 15分钟
+            value: '15'
+          - icon: ''
+            label:
+              en_US: 30 Minutes
+              ja_JP: 30 Minutes
+              pt_BR: 30 Minutes
+              zh_Hans: 30分钟
+            value: '30'
+          - icon: ''
+            label:
+              en_US: 60 Minutes
+              ja_JP: 60 Minutes
+              pt_BR: 60 Minutes
+              zh_Hans: 60分钟
+            value: '60'
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: select
+        - auto_generate: null
+          default: '20250801'
+          form: llm
+          human_description:
+            en_US: 'Start date. Required for: East Money - A-share - Daily Data, East
+              Money - HK Stock - Historical Data, East Money - US Stock - Daily Data.
+              Format: YYYYMMDD (20240101).'
+            ja_JP: 'Start date. Required for: East Money - A-share - Daily Data, East
+              Money - HK Stock - Historical Data, East Money - US Stock - Daily Data.
+              Format: YYYYMMDD (20240101).'
+            pt_BR: 'Start date. Required for: East Money - A-share - Daily Data, East
+              Money - HK Stock - Historical Data, East Money - US Stock - Daily Data.
+              Format: YYYYMMDD (20240101).'
+            zh_Hans: 开始日期。需要此参数的接口：东方财富-沪深京A股-日频率数据、东方财富-港股-历史行情数据、东方财富网-美股-每日行情。格式：YYYYMMDD(20240101)。
+          label:
+            en_US: Start Date
+            ja_JP: Start Date
+            pt_BR: Start Date
+            zh_Hans: 开始日期
+          llm_description: 历史数据的开始日期，格式为YYYYMMDD
+          max: null
+          min: null
+          name: start_date
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: string
+        - auto_generate: null
+          default: '20250915'
+          form: llm
+          human_description:
+            en_US: 'End date. Required for: East Money - A-share - Daily Data, East
+              Money - HK Stock - Historical Data, East Money - US Stock - Daily Data.
+              Format: YYYYMMDD (20241231).'
+            ja_JP: 'End date. Required for: East Money - A-share - Daily Data, East
+              Money - HK Stock - Historical Data, East Money - US Stock - Daily Data.
+              Format: YYYYMMDD (20241231).'
+            pt_BR: 'End date. Required for: East Money - A-share - Daily Data, East
+              Money - HK Stock - Historical Data, East Money - US Stock - Daily Data.
+              Format: YYYYMMDD (20241231).'
+            zh_Hans: 结束日期。需要此参数的接口：东方财富-沪深京A股-日频率数据、东方财富-港股-历史行情数据、东方财富网-美股-每日行情。格式：YYYYMMDD(20241231)。
+          label:
+            en_US: End Date
+            ja_JP: End Date
+            pt_BR: End Date
+            zh_Hans: 结束日期
+          llm_description: 历史数据的结束日期，格式为YYYYMMDD。注意：某些接口不需要此参数
+          max: null
+          min: null
+          name: end_date
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: string
+        - auto_generate: null
+          default: 09:00:00
+          form: llm
+          human_description:
+            en_US: 'Start time. Required for: East Money - Recent Trading Day - Pre-market
+              Data. Format: HH:MM:SS (09:00:00).'
+            ja_JP: 'Start time. Required for: East Money - Recent Trading Day - Pre-market
+              Data. Format: HH:MM:SS (09:00:00).'
+            pt_BR: 'Start time. Required for: East Money - Recent Trading Day - Pre-market
+              Data. Format: HH:MM:SS (09:00:00).'
+            zh_Hans: 开始时间。需要此参数的接口：东方财富-最近一个交易日-盘前数据。格式：HH:MM:SS(09:00:00)。
+          label:
+            en_US: Start Time
+            ja_JP: Start Time
+            pt_BR: Start Time
+            zh_Hans: 开始时间
+          llm_description: 盘前数据的开始时间，格式为HH:MM:SS
+          max: null
+          min: null
+          name: start_time
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: string
+        - auto_generate: null
+          default: '15:00:00'
+          form: llm
+          human_description:
+            en_US: 'End time. Required for: East Money - Recent Trading Day - Pre-market
+              Data. Format: HH:MM:SS (15:40:00).'
+            ja_JP: 'End time. Required for: East Money - Recent Trading Day - Pre-market
+              Data. Format: HH:MM:SS (15:40:00).'
+            pt_BR: 'End time. Required for: East Money - Recent Trading Day - Pre-market
+              Data. Format: HH:MM:SS (15:40:00).'
+            zh_Hans: 结束时间。需要此参数的接口：东方财富-最近一个交易日-盘前数据。格式：HH:MM:SS(15:40:00)。
+          label:
+            en_US: End Time
+            ja_JP: End Time
+            pt_BR: End Time
+            zh_Hans: 结束时间
+          llm_description: 盘前数据的结束时间，格式为HH:MM:SS
+          max: null
+          min: null
+          name: end_time
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: string
+        - auto_generate: null
+          default: none
+          form: llm
+          human_description:
+            en_US: 'Adjustment method. Required for: East Money - A-share - Daily
+              Data, East Money - HK Stock - Historical Data, East Money - US Stock
+              - Daily Data. Options: qfq (前复权), hfq (后复权), none (不复权).'
+            ja_JP: 'Adjustment method. Required for: East Money - A-share - Daily
+              Data, East Money - HK Stock - Historical Data, East Money - US Stock
+              - Daily Data. Options: qfq (前复权), hfq (后复权), none (不复权).'
+            pt_BR: 'Adjustment method. Required for: East Money - A-share - Daily
+              Data, East Money - HK Stock - Historical Data, East Money - US Stock
+              - Daily Data. Options: qfq (前复权), hfq (后复权), none (不复权).'
+            zh_Hans: 调整方式。需要此参数的接口：东方财富-沪深京A股-日频率数据、东方财富-港股-历史行情数据、东方财富网-美股-每日行情。选项：qfq(前复权)、hfq(后复权)、none(不复权)。
+          label:
+            en_US: Adjustment
+            ja_JP: Adjustment
+            pt_BR: Adjustment
+            zh_Hans: 调整方式
+          llm_description: 价格调整方式，支持前复权、后复权、不复权
+          max: null
+          min: null
+          name: adjust
+          options:
+          - icon: ''
+            label:
+              en_US: No Adjustment
+              ja_JP: No Adjustment
+              pt_BR: No Adjustment
+              zh_Hans: 不复权
+            value: none
+          - icon: ''
+            label:
+              en_US: Forward Adjustment
+              ja_JP: Forward Adjustment
+              pt_BR: Forward Adjustment
+              zh_Hans: 前复权
+            value: qfq
+          - icon: ''
+            label:
+              en_US: Backward Adjustment
+              ja_JP: Backward Adjustment
+              pt_BR: Backward Adjustment
+              zh_Hans: 后复权
+            value: hfq
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: select
+        - auto_generate: null
+          default: 5
+          form: llm
+          human_description:
+            en_US: 'Number of retries for network requests. Range: 1-10. Default:
+              5. Higher values for unstable networks.'
+            ja_JP: 'Number of retries for network requests. Range: 1-10. Default:
+              5. Higher values for unstable networks.'
+            pt_BR: 'Number of retries for network requests. Range: 1-10. Default:
+              5. Higher values for unstable networks.'
+            zh_Hans: 网络请求重试次数。范围：1-10。默认：5。网络不稳定时可设置更高值。
+          label:
+            en_US: Retries
+            ja_JP: Retries
+            pt_BR: Retries
+            zh_Hans: 重试次数
+          llm_description: 网络请求重试次数，默认5次
+          max: 10
+          min: 1
+          name: retries
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: number
+        - auto_generate: null
+          default: 900
+          form: llm
+          human_description:
+            en_US: 'Subprocess execution timeout in seconds. Range: 60-1800. Default:
+              300. Note: Historical data interfaces may have large data volumes, suggest
+              longer timeout.'
+            ja_JP: 'Subprocess execution timeout in seconds. Range: 60-1800. Default:
+              300. Note: Historical data interfaces may have large data volumes, suggest
+              longer timeout.'
+            pt_BR: 'Subprocess execution timeout in seconds. Range: 60-1800. Default:
+              300. Note: Historical data interfaces may have large data volumes, suggest
+              longer timeout.'
+            zh_Hans: 子进程执行超时时间（秒）。范围：60-1800。默认：300。注意：历史数据接口数据量可能很大，建议设置较长的超时时间。
+          label:
+            en_US: Subprocess Timeout
+            ja_JP: Subprocess Timeout
+            pt_BR: Subprocess Timeout
+            zh_Hans: 子进程超时时间
+          llm_description: 子进程执行超时时间（秒），默认300秒。注意：历史数据接口数据量可能很大，建议设置较长的超时时间。
+          max: 3600
+          min: 5
+          name: timeout
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: number
+        params:
+          adjust: ''
+          end_date: ''
+          end_time: ''
+          interface: ''
+          period: ''
+          period2: ''
+          retries: ''
+          start_date: ''
+          start_time: ''
+          symbol: ''
+          timeout: ''
+        provider_id: shaoxing-xie/akshare_stockdata/akshare_stockdata
+        provider_name: shaoxing-xie/akshare_stockdata/akshare_stockdata
+        provider_type: builtin
+        selected: false
+        title: 股票历史行情
+        tool_configurations: {}
+        tool_description: 通过AKShare数据接口获取指定股票的历史行情数据，包括A股、港股、美股等各市场的历史价格、成交量、成交额等信息。支持日线、周线、月线等不同周期的数据，并可选择前复权、后复权等调整方式。
+        tool_label: 股票历史行情
+        tool_name: stock_hist_quotations
+        tool_node_version: '2'
+        tool_parameters:
+          adjust:
+            type: constant
+            value: none
+          end_date:
+            type: mixed
+            value: '20250915'
+          end_time:
+            type: mixed
+            value: '15:00:00'
+          interface:
+            type: constant
+            value: stock_zh_a_hist
+          period:
+            type: constant
+            value: daily
+          period2:
+            type: constant
+            value: '1'
+          retries:
+            type: constant
+            value: 5
+          start_date:
+            type: mixed
+            value: '20250801'
+          start_time:
+            type: mixed
+            value: 09:00:00
+          symbol:
+            type: mixed
+            value: '000001'
+          timeout:
+            type: constant
+            value: 900
+        type: tool
+      height: 53
+      id: '1758361122523'
+      position:
+        x: 480.8805637979272
+        y: 330.2108212972603
+      positionAbsolute:
+        x: 480.8805637979272
+        y: 330.2108212972603
       selected: false
       sourcePosition: right
       targetPosition: left
@@ -2215,8 +3929,8 @@ workflow:
           symbol2: ''
           symbol4: ''
           timeout: ''
-        provider_id: shaoxing_xie/akshare_stockdata/akshare_stockdata
-        provider_name: shaoxing_xie/akshare_stockdata/akshare_stockdata
+        provider_id: shaoxing-xie/akshare_stockdata/akshare_stockdata
+        provider_name: shaoxing-xie/akshare_stockdata/akshare_stockdata
         provider_type: builtin
         selected: false
         title: 沪深港通持股
@@ -2261,13 +3975,13 @@ workflow:
             value: 900
         type: tool
       height: 53
-      id: '1758247344635'
+      id: '1758361359357'
       position:
-        x: 487.27080926979255
-        y: 417.5161673723137
+        x: 480.8805637979272
+        y: 422.2108212972603
       positionAbsolute:
-        x: 487.27080926979255
-        y: 417.5161673723137
+        x: 480.8805637979272
+        y: 422.2108212972603
       selected: false
       sourcePosition: right
       targetPosition: left
@@ -2868,8 +4582,8 @@ workflow:
           sector_type: ''
           stock_code: ''
           timeout: ''
-        provider_id: shaoxing_xie/akshare_stockdata/akshare_stockdata
-        provider_name: shaoxing_xie/akshare_stockdata/akshare_stockdata
+        provider_id: shaoxing-xie/akshare_stockdata/akshare_stockdata
+        provider_name: shaoxing-xie/akshare_stockdata/akshare_stockdata
         provider_type: builtin
         selected: false
         title: 资金流向分析
@@ -2905,7 +4619,7 @@ workflow:
             value: 5
           sector_type:
             type: constant
-            value: 概念资金流
+            value: 行业资金流
           stock_code:
             type: mixed
             value: '600519'
@@ -2914,13 +4628,13 @@ workflow:
             value: 300
         type: tool
       height: 53
-      id: '1758247358654'
+      id: '1758361412086'
       position:
-        x: 487.27080926979255
-        y: 514.2108212972603
+        x: 480.8805637979272
+        y: 507.51793918250075
       positionAbsolute:
-        x: 487.27080926979255
-        y: 514.2108212972603
+        x: 480.8805637979272
+        y: 507.51793918250075
       selected: false
       sourcePosition: right
       targetPosition: left
@@ -3466,8 +5180,8 @@ workflow:
           start_year: ''
           symbol: ''
           timeout: ''
-        provider_id: shaoxing_xie/akshare_stockdata/akshare_stockdata
-        provider_name: shaoxing_xie/akshare_stockdata/akshare_stockdata
+        provider_id: shaoxing-xie/akshare_stockdata/akshare_stockdata
+        provider_name: shaoxing-xie/akshare_stockdata/akshare_stockdata
         provider_type: builtin
         selected: false
         title: 股票财务数据分析
@@ -3479,7 +5193,7 @@ workflow:
         tool_parameters:
           date:
             type: mixed
-            value: '20240331'
+            value: '20250331'
           indicator_hk:
             type: constant
             value: 年度
@@ -3509,13 +5223,13 @@ workflow:
             value: 900
         type: tool
       height: 53
-      id: '1758247371560'
+      id: '1758361447723'
       position:
-        x: 487.27080926979255
-        y: 606.2108212972603
+        x: 475.18991687172587
+        y: 594.5003644485805
       positionAbsolute:
-        x: 487.27080926979255
-        y: 606.2108212972603
+        x: 475.18991687172587
+        y: 594.5003644485805
       selected: false
       sourcePosition: right
       targetPosition: left
@@ -4009,8 +5723,8 @@ workflow:
           technical_indicator1: ''
           technical_indicator2: ''
           timeout: ''
-        provider_id: shaoxing_xie/akshare_stockdata/akshare_stockdata
-        provider_name: shaoxing_xie/akshare_stockdata/akshare_stockdata
+        provider_id: shaoxing-xie/akshare_stockdata/akshare_stockdata
+        provider_name: shaoxing-xie/akshare_stockdata/akshare_stockdata
         provider_type: builtin
         selected: false
         title: 股票技术分析
@@ -4046,1724 +5760,18 @@ workflow:
             value: 600
         type: tool
       height: 53
-      id: '1758247378033'
+      id: '1758361503086'
       position:
-        x: 487.27080926979255
-        y: 698.2108212972603
+        x: 475.18991687172587
+        y: 686.5003644485805
       positionAbsolute:
-        x: 487.27080926979255
-        y: 698.2108212972603
-      selected: false
-      sourcePosition: right
-      targetPosition: left
-      type: custom
-      width: 244
-    - data:
-        desc: ''
-        is_team_authorization: true
-        output_schema: null
-        paramSchemas:
-        - auto_generate: null
-          default: null
-          form: llm
-          human_description:
-            en_US: 'Input text of single or multiple Markdown tables, with worksheets
-              supported. All the heading texts (eg. #, ##) will be used as worksheet
-              names in order.'
-            ja_JP: 'Input text of single or multiple Markdown tables, with worksheets
-              supported. All the heading texts (eg. #, ##) will be used as worksheet
-              names in order.'
-            pt_BR: 'Input text of single or multiple Markdown tables, with worksheets
-              supported. All the heading texts (eg. #, ##) will be used as worksheet
-              names in order.'
-            zh_Hans: '单个或多个 Markdown 表格的文本输入，支持工作表。所有标题文本（例如 #, ##）将依次用作工作表名称。'
-          label:
-            en_US: Markdown table text
-            ja_JP: Markdown table text
-            pt_BR: Markdown table text
-            zh_Hans: Markdown 表格文本
-          llm_description: ''
-          max: null
-          min: null
-          name: md_text
-          options: []
-          placeholder: null
-          precision: null
-          required: true
-          scope: null
-          template: null
-          type: string
-        - auto_generate: null
-          default: 'true'
-          form: form
-          human_description:
-            en_US: Convert cell values into text type to void decimal precision loss
-              in display
-            ja_JP: Convert cell values into text type to void decimal precision loss
-              in display
-            pt_BR: Convert cell values into text type to void decimal precision loss
-              in display
-            zh_Hans: 转换单元格值为文本类型，避免显示时的小数精度丢失
-          label:
-            en_US: Enforce text type
-            ja_JP: Enforce text type
-            pt_BR: Enforce text type
-            zh_Hans: 强制单元格值为文本类型
-          llm_description: Whether to convert cell values into string type, default
-            to "true"
-          max: null
-          min: null
-          name: force_text_value
-          options:
-          - icon: ''
-            label:
-              en_US: 'Yes'
-              ja_JP: 'Yes'
-              pt_BR: 'Yes'
-              zh_Hans: 是
-            value: 'true'
-          - icon: ''
-            label:
-              en_US: 'No'
-              ja_JP: 'No'
-              pt_BR: 'No'
-              zh_Hans: 否
-            value: 'false'
-          placeholder: null
-          precision: null
-          required: true
-          scope: null
-          template: null
-          type: select
-        - auto_generate: null
-          default: null
-          form: llm
-          human_description:
-            en_US: Optional custom output file name, and the filename suffix is not
-              required.
-            ja_JP: Optional custom output file name, and the filename suffix is not
-              required.
-            pt_BR: Optional custom output file name, and the filename suffix is not
-              required.
-            zh_Hans: 可选的自定义输出文件名，后缀名无需指定
-          label:
-            en_US: Output Filename
-            ja_JP: Output Filename
-            pt_BR: Output Filename
-            zh_Hans: 输出文件名
-          llm_description: ''
-          max: null
-          min: null
-          name: output_filename
-          options: []
-          placeholder: null
-          precision: null
-          required: false
-          scope: null
-          template: null
-          type: string
-        params:
-          force_text_value: ''
-          md_text: ''
-          output_filename: ''
-        provider_id: bowenliang123/md_exporter/md_exporter
-        provider_name: bowenliang123/md_exporter/md_exporter
-        provider_type: builtin
-        selected: false
-        title: Markdown 转 XLSX 文件
-        tool_configurations:
-          force_text_value:
-            type: constant
-            value: 'true'
-        tool_description: 将 Markdown 表格转换为 XLSX 文件的工具
-        tool_label: Markdown 转 XLSX 文件
-        tool_name: md_to_xlsx
-        tool_node_version: '2'
-        tool_parameters:
-          md_text:
-            type: mixed
-            value: '{{#1758247313940.text#}}'
-          output_filename:
-            type: mixed
-            value: '{{#1758241781128.tool_name#}}'
-        type: tool
-      height: 89
-      id: '1758247409728'
-      position:
-        x: 791.2708092697926
-        y: 146.2108212972603
-      positionAbsolute:
-        x: 791.2708092697926
-        y: 146.2108212972603
-      sourcePosition: right
-      targetPosition: left
-      type: custom
-      width: 244
-    - data:
-        answer: '{{#1758247409728.files#}}'
-        desc: ''
-        selected: false
-        title: 直接回复 2
-        type: answer
-        variables: []
-      height: 104
-      id: '1758247435333'
-      position:
-        x: 1095.2708092697926
-        y: 146.2108212972603
-      positionAbsolute:
-        x: 1095.2708092697926
-        y: 146.2108212972603
-      sourcePosition: right
-      targetPosition: left
-      type: custom
-      width: 244
-    - data:
-        desc: ''
-        is_team_authorization: true
-        output_schema: null
-        paramSchemas:
-        - auto_generate: null
-          default: null
-          form: llm
-          human_description:
-            en_US: 'Input text of single or multiple Markdown tables, with worksheets
-              supported. All the heading texts (eg. #, ##) will be used as worksheet
-              names in order.'
-            ja_JP: 'Input text of single or multiple Markdown tables, with worksheets
-              supported. All the heading texts (eg. #, ##) will be used as worksheet
-              names in order.'
-            pt_BR: 'Input text of single or multiple Markdown tables, with worksheets
-              supported. All the heading texts (eg. #, ##) will be used as worksheet
-              names in order.'
-            zh_Hans: '单个或多个 Markdown 表格的文本输入，支持工作表。所有标题文本（例如 #, ##）将依次用作工作表名称。'
-          label:
-            en_US: Markdown table text
-            ja_JP: Markdown table text
-            pt_BR: Markdown table text
-            zh_Hans: Markdown 表格文本
-          llm_description: ''
-          max: null
-          min: null
-          name: md_text
-          options: []
-          placeholder: null
-          precision: null
-          required: true
-          scope: null
-          template: null
-          type: string
-        - auto_generate: null
-          default: 'true'
-          form: form
-          human_description:
-            en_US: Convert cell values into text type to void decimal precision loss
-              in display
-            ja_JP: Convert cell values into text type to void decimal precision loss
-              in display
-            pt_BR: Convert cell values into text type to void decimal precision loss
-              in display
-            zh_Hans: 转换单元格值为文本类型，避免显示时的小数精度丢失
-          label:
-            en_US: Enforce text type
-            ja_JP: Enforce text type
-            pt_BR: Enforce text type
-            zh_Hans: 强制单元格值为文本类型
-          llm_description: Whether to convert cell values into string type, default
-            to "true"
-          max: null
-          min: null
-          name: force_text_value
-          options:
-          - icon: ''
-            label:
-              en_US: 'Yes'
-              ja_JP: 'Yes'
-              pt_BR: 'Yes'
-              zh_Hans: 是
-            value: 'true'
-          - icon: ''
-            label:
-              en_US: 'No'
-              ja_JP: 'No'
-              pt_BR: 'No'
-              zh_Hans: 否
-            value: 'false'
-          placeholder: null
-          precision: null
-          required: true
-          scope: null
-          template: null
-          type: select
-        - auto_generate: null
-          default: null
-          form: llm
-          human_description:
-            en_US: Optional custom output file name, and the filename suffix is not
-              required.
-            ja_JP: Optional custom output file name, and the filename suffix is not
-              required.
-            pt_BR: Optional custom output file name, and the filename suffix is not
-              required.
-            zh_Hans: 可选的自定义输出文件名，后缀名无需指定
-          label:
-            en_US: Output Filename
-            ja_JP: Output Filename
-            pt_BR: Output Filename
-            zh_Hans: 输出文件名
-          llm_description: ''
-          max: null
-          min: null
-          name: output_filename
-          options: []
-          placeholder: null
-          precision: null
-          required: false
-          scope: null
-          template: null
-          type: string
-        params:
-          force_text_value: ''
-          md_text: ''
-          output_filename: ''
-        provider_id: bowenliang123/md_exporter/md_exporter
-        provider_name: bowenliang123/md_exporter/md_exporter
-        provider_type: builtin
-        selected: false
-        title: Markdown 转 XLSX 文件
-        tool_configurations:
-          force_text_value:
-            type: constant
-            value: 'true'
-        tool_description: 将 Markdown 表格转换为 XLSX 文件的工具
-        tool_label: Markdown 转 XLSX 文件
-        tool_name: md_to_xlsx
-        tool_node_version: '2'
-        tool_parameters:
-          md_text:
-            type: mixed
-            value: '{{#1758247325281.text#}}'
-          output_filename:
-            type: mixed
-            value: '{{#1758241781128.tool_name#}}'
-        type: tool
-      height: 89
-      id: '1758247451984'
-      position:
-        x: 791.2708092697926
-        y: 238.2108212972603
-      positionAbsolute:
-        x: 791.2708092697926
-        y: 238.2108212972603
-      sourcePosition: right
-      targetPosition: left
-      type: custom
-      width: 244
-    - data:
-        answer: '{{#1758247451984.files#}}'
-        desc: ''
-        selected: false
-        title: 直接回复 3
-        type: answer
-        variables: []
-      height: 104
-      id: '1758247468875'
-      position:
-        x: 1095.2708092697926
-        y: 238.2108212972603
-      positionAbsolute:
-        x: 1095.2708092697926
-        y: 238.2108212972603
-      sourcePosition: right
-      targetPosition: left
-      type: custom
-      width: 244
-    - data:
-        desc: ''
-        is_team_authorization: true
-        output_schema: null
-        paramSchemas:
-        - auto_generate: null
-          default: null
-          form: llm
-          human_description:
-            en_US: 'Input text of single or multiple Markdown tables, with worksheets
-              supported. All the heading texts (eg. #, ##) will be used as worksheet
-              names in order.'
-            ja_JP: 'Input text of single or multiple Markdown tables, with worksheets
-              supported. All the heading texts (eg. #, ##) will be used as worksheet
-              names in order.'
-            pt_BR: 'Input text of single or multiple Markdown tables, with worksheets
-              supported. All the heading texts (eg. #, ##) will be used as worksheet
-              names in order.'
-            zh_Hans: '单个或多个 Markdown 表格的文本输入，支持工作表。所有标题文本（例如 #, ##）将依次用作工作表名称。'
-          label:
-            en_US: Markdown table text
-            ja_JP: Markdown table text
-            pt_BR: Markdown table text
-            zh_Hans: Markdown 表格文本
-          llm_description: ''
-          max: null
-          min: null
-          name: md_text
-          options: []
-          placeholder: null
-          precision: null
-          required: true
-          scope: null
-          template: null
-          type: string
-        - auto_generate: null
-          default: 'true'
-          form: form
-          human_description:
-            en_US: Convert cell values into text type to void decimal precision loss
-              in display
-            ja_JP: Convert cell values into text type to void decimal precision loss
-              in display
-            pt_BR: Convert cell values into text type to void decimal precision loss
-              in display
-            zh_Hans: 转换单元格值为文本类型，避免显示时的小数精度丢失
-          label:
-            en_US: Enforce text type
-            ja_JP: Enforce text type
-            pt_BR: Enforce text type
-            zh_Hans: 强制单元格值为文本类型
-          llm_description: Whether to convert cell values into string type, default
-            to "true"
-          max: null
-          min: null
-          name: force_text_value
-          options:
-          - icon: ''
-            label:
-              en_US: 'Yes'
-              ja_JP: 'Yes'
-              pt_BR: 'Yes'
-              zh_Hans: 是
-            value: 'true'
-          - icon: ''
-            label:
-              en_US: 'No'
-              ja_JP: 'No'
-              pt_BR: 'No'
-              zh_Hans: 否
-            value: 'false'
-          placeholder: null
-          precision: null
-          required: true
-          scope: null
-          template: null
-          type: select
-        - auto_generate: null
-          default: null
-          form: llm
-          human_description:
-            en_US: Optional custom output file name, and the filename suffix is not
-              required.
-            ja_JP: Optional custom output file name, and the filename suffix is not
-              required.
-            pt_BR: Optional custom output file name, and the filename suffix is not
-              required.
-            zh_Hans: 可选的自定义输出文件名，后缀名无需指定
-          label:
-            en_US: Output Filename
-            ja_JP: Output Filename
-            pt_BR: Output Filename
-            zh_Hans: 输出文件名
-          llm_description: ''
-          max: null
-          min: null
-          name: output_filename
-          options: []
-          placeholder: null
-          precision: null
-          required: false
-          scope: null
-          template: null
-          type: string
-        params:
-          force_text_value: ''
-          md_text: ''
-          output_filename: ''
-        provider_id: bowenliang123/md_exporter/md_exporter
-        provider_name: bowenliang123/md_exporter/md_exporter
-        provider_type: builtin
-        selected: false
-        title: Markdown 转 XLSX 文件
-        tool_configurations:
-          force_text_value:
-            type: constant
-            value: 'true'
-        tool_description: 将 Markdown 表格转换为 XLSX 文件的工具
-        tool_label: Markdown 转 XLSX 文件
-        tool_name: md_to_xlsx
-        tool_node_version: '2'
-        tool_parameters:
-          md_text:
-            type: mixed
-            value: '{{#1758253480073.text#}}'
-          output_filename:
-            type: mixed
-            value: '{{#1758241781128.tool_name#}}'
-        type: tool
-      height: 89
-      id: '1758247483168'
-      position:
-        x: 791.2708092697926
-        y: 330.2108212972603
-      positionAbsolute:
-        x: 791.2708092697926
-        y: 330.2108212972603
-      selected: false
-      sourcePosition: right
-      targetPosition: left
-      type: custom
-      width: 244
-    - data:
-        answer: '{{#1758247483168.files#}}'
-        desc: ''
-        selected: false
-        title: 直接回复 4
-        type: answer
-        variables: []
-      height: 104
-      id: '1758247496602'
-      position:
-        x: 1095.2708092697926
-        y: 330.2108212972603
-      positionAbsolute:
-        x: 1095.2708092697926
-        y: 330.2108212972603
-      sourcePosition: right
-      targetPosition: left
-      type: custom
-      width: 244
-    - data:
-        desc: ''
-        is_team_authorization: true
-        output_schema: null
-        paramSchemas:
-        - auto_generate: null
-          default: null
-          form: llm
-          human_description:
-            en_US: 'Input text of single or multiple Markdown tables, with worksheets
-              supported. All the heading texts (eg. #, ##) will be used as worksheet
-              names in order.'
-            ja_JP: 'Input text of single or multiple Markdown tables, with worksheets
-              supported. All the heading texts (eg. #, ##) will be used as worksheet
-              names in order.'
-            pt_BR: 'Input text of single or multiple Markdown tables, with worksheets
-              supported. All the heading texts (eg. #, ##) will be used as worksheet
-              names in order.'
-            zh_Hans: '单个或多个 Markdown 表格的文本输入，支持工作表。所有标题文本（例如 #, ##）将依次用作工作表名称。'
-          label:
-            en_US: Markdown table text
-            ja_JP: Markdown table text
-            pt_BR: Markdown table text
-            zh_Hans: Markdown 表格文本
-          llm_description: ''
-          max: null
-          min: null
-          name: md_text
-          options: []
-          placeholder: null
-          precision: null
-          required: true
-          scope: null
-          template: null
-          type: string
-        - auto_generate: null
-          default: 'true'
-          form: form
-          human_description:
-            en_US: Convert cell values into text type to void decimal precision loss
-              in display
-            ja_JP: Convert cell values into text type to void decimal precision loss
-              in display
-            pt_BR: Convert cell values into text type to void decimal precision loss
-              in display
-            zh_Hans: 转换单元格值为文本类型，避免显示时的小数精度丢失
-          label:
-            en_US: Enforce text type
-            ja_JP: Enforce text type
-            pt_BR: Enforce text type
-            zh_Hans: 强制单元格值为文本类型
-          llm_description: Whether to convert cell values into string type, default
-            to "true"
-          max: null
-          min: null
-          name: force_text_value
-          options:
-          - icon: ''
-            label:
-              en_US: 'Yes'
-              ja_JP: 'Yes'
-              pt_BR: 'Yes'
-              zh_Hans: 是
-            value: 'true'
-          - icon: ''
-            label:
-              en_US: 'No'
-              ja_JP: 'No'
-              pt_BR: 'No'
-              zh_Hans: 否
-            value: 'false'
-          placeholder: null
-          precision: null
-          required: true
-          scope: null
-          template: null
-          type: select
-        - auto_generate: null
-          default: null
-          form: llm
-          human_description:
-            en_US: Optional custom output file name, and the filename suffix is not
-              required.
-            ja_JP: Optional custom output file name, and the filename suffix is not
-              required.
-            pt_BR: Optional custom output file name, and the filename suffix is not
-              required.
-            zh_Hans: 可选的自定义输出文件名，后缀名无需指定
-          label:
-            en_US: Output Filename
-            ja_JP: Output Filename
-            pt_BR: Output Filename
-            zh_Hans: 输出文件名
-          llm_description: ''
-          max: null
-          min: null
-          name: output_filename
-          options: []
-          placeholder: null
-          precision: null
-          required: false
-          scope: null
-          template: null
-          type: string
-        params:
-          force_text_value: ''
-          md_text: ''
-          output_filename: ''
-        provider_id: bowenliang123/md_exporter/md_exporter
-        provider_name: bowenliang123/md_exporter/md_exporter
-        provider_type: builtin
-        selected: false
-        title: Markdown 转 XLSX 文件
-        tool_configurations:
-          force_text_value:
-            type: constant
-            value: 'true'
-        tool_description: 将 Markdown 表格转换为 XLSX 文件的工具
-        tool_label: Markdown 转 XLSX 文件
-        tool_name: md_to_xlsx
-        tool_node_version: '2'
-        tool_parameters:
-          md_text:
-            type: mixed
-            value: '{{#1758247344635.text#}}'
-          output_filename:
-            type: mixed
-            value: '{{#1758241781128.tool_name#}}'
-        type: tool
-      height: 89
-      id: '1758247510287'
-      position:
-        x: 791.2708092697926
-        y: 422.2108212972603
-      positionAbsolute:
-        x: 791.2708092697926
-        y: 422.2108212972603
-      sourcePosition: right
-      targetPosition: left
-      type: custom
-      width: 244
-    - data:
-        answer: '{{#1758247510287.files#}}'
-        desc: ''
-        selected: false
-        title: 直接回复 5
-        type: answer
-        variables: []
-      height: 104
-      id: '1758247524802'
-      position:
-        x: 1095.2708092697926
-        y: 422.2108212972603
-      positionAbsolute:
-        x: 1095.2708092697926
-        y: 422.2108212972603
-      sourcePosition: right
-      targetPosition: left
-      type: custom
-      width: 244
-    - data:
-        desc: ''
-        is_team_authorization: true
-        output_schema: null
-        paramSchemas:
-        - auto_generate: null
-          default: null
-          form: llm
-          human_description:
-            en_US: 'Input text of single or multiple Markdown tables, with worksheets
-              supported. All the heading texts (eg. #, ##) will be used as worksheet
-              names in order.'
-            ja_JP: 'Input text of single or multiple Markdown tables, with worksheets
-              supported. All the heading texts (eg. #, ##) will be used as worksheet
-              names in order.'
-            pt_BR: 'Input text of single or multiple Markdown tables, with worksheets
-              supported. All the heading texts (eg. #, ##) will be used as worksheet
-              names in order.'
-            zh_Hans: '单个或多个 Markdown 表格的文本输入，支持工作表。所有标题文本（例如 #, ##）将依次用作工作表名称。'
-          label:
-            en_US: Markdown table text
-            ja_JP: Markdown table text
-            pt_BR: Markdown table text
-            zh_Hans: Markdown 表格文本
-          llm_description: ''
-          max: null
-          min: null
-          name: md_text
-          options: []
-          placeholder: null
-          precision: null
-          required: true
-          scope: null
-          template: null
-          type: string
-        - auto_generate: null
-          default: 'true'
-          form: form
-          human_description:
-            en_US: Convert cell values into text type to void decimal precision loss
-              in display
-            ja_JP: Convert cell values into text type to void decimal precision loss
-              in display
-            pt_BR: Convert cell values into text type to void decimal precision loss
-              in display
-            zh_Hans: 转换单元格值为文本类型，避免显示时的小数精度丢失
-          label:
-            en_US: Enforce text type
-            ja_JP: Enforce text type
-            pt_BR: Enforce text type
-            zh_Hans: 强制单元格值为文本类型
-          llm_description: Whether to convert cell values into string type, default
-            to "true"
-          max: null
-          min: null
-          name: force_text_value
-          options:
-          - icon: ''
-            label:
-              en_US: 'Yes'
-              ja_JP: 'Yes'
-              pt_BR: 'Yes'
-              zh_Hans: 是
-            value: 'true'
-          - icon: ''
-            label:
-              en_US: 'No'
-              ja_JP: 'No'
-              pt_BR: 'No'
-              zh_Hans: 否
-            value: 'false'
-          placeholder: null
-          precision: null
-          required: true
-          scope: null
-          template: null
-          type: select
-        - auto_generate: null
-          default: null
-          form: llm
-          human_description:
-            en_US: Optional custom output file name, and the filename suffix is not
-              required.
-            ja_JP: Optional custom output file name, and the filename suffix is not
-              required.
-            pt_BR: Optional custom output file name, and the filename suffix is not
-              required.
-            zh_Hans: 可选的自定义输出文件名，后缀名无需指定
-          label:
-            en_US: Output Filename
-            ja_JP: Output Filename
-            pt_BR: Output Filename
-            zh_Hans: 输出文件名
-          llm_description: ''
-          max: null
-          min: null
-          name: output_filename
-          options: []
-          placeholder: null
-          precision: null
-          required: false
-          scope: null
-          template: null
-          type: string
-        params:
-          force_text_value: ''
-          md_text: ''
-          output_filename: ''
-        provider_id: bowenliang123/md_exporter/md_exporter
-        provider_name: bowenliang123/md_exporter/md_exporter
-        provider_type: builtin
-        selected: false
-        title: Markdown 转 XLSX 文件
-        tool_configurations:
-          force_text_value:
-            type: constant
-            value: 'true'
-        tool_description: 将 Markdown 表格转换为 XLSX 文件的工具
-        tool_label: Markdown 转 XLSX 文件
-        tool_name: md_to_xlsx
-        tool_node_version: '2'
-        tool_parameters:
-          md_text:
-            type: mixed
-            value: '{{#1758247358654.text#}}'
-          output_filename:
-            type: mixed
-            value: '{{#1758241781128.tool_name#}}'
-        type: tool
-      height: 89
-      id: '1758247540174'
-      position:
-        x: 791.2708092697926
-        y: 514.2108212972603
-      positionAbsolute:
-        x: 791.2708092697926
-        y: 514.2108212972603
-      sourcePosition: right
-      targetPosition: left
-      type: custom
-      width: 244
-    - data:
-        answer: '{{#1758247540174.files#}}'
-        desc: ''
-        selected: false
-        title: 直接回复 6
-        type: answer
-        variables: []
-      height: 104
-      id: '1758247555729'
-      position:
-        x: 1095.2708092697926
-        y: 514.2108212972603
-      positionAbsolute:
-        x: 1095.2708092697926
-        y: 514.2108212972603
-      sourcePosition: right
-      targetPosition: left
-      type: custom
-      width: 244
-    - data:
-        desc: ''
-        is_team_authorization: true
-        output_schema: null
-        paramSchemas:
-        - auto_generate: null
-          default: null
-          form: llm
-          human_description:
-            en_US: 'Input text of single or multiple Markdown tables, with worksheets
-              supported. All the heading texts (eg. #, ##) will be used as worksheet
-              names in order.'
-            ja_JP: 'Input text of single or multiple Markdown tables, with worksheets
-              supported. All the heading texts (eg. #, ##) will be used as worksheet
-              names in order.'
-            pt_BR: 'Input text of single or multiple Markdown tables, with worksheets
-              supported. All the heading texts (eg. #, ##) will be used as worksheet
-              names in order.'
-            zh_Hans: '单个或多个 Markdown 表格的文本输入，支持工作表。所有标题文本（例如 #, ##）将依次用作工作表名称。'
-          label:
-            en_US: Markdown table text
-            ja_JP: Markdown table text
-            pt_BR: Markdown table text
-            zh_Hans: Markdown 表格文本
-          llm_description: ''
-          max: null
-          min: null
-          name: md_text
-          options: []
-          placeholder: null
-          precision: null
-          required: true
-          scope: null
-          template: null
-          type: string
-        - auto_generate: null
-          default: 'true'
-          form: form
-          human_description:
-            en_US: Convert cell values into text type to void decimal precision loss
-              in display
-            ja_JP: Convert cell values into text type to void decimal precision loss
-              in display
-            pt_BR: Convert cell values into text type to void decimal precision loss
-              in display
-            zh_Hans: 转换单元格值为文本类型，避免显示时的小数精度丢失
-          label:
-            en_US: Enforce text type
-            ja_JP: Enforce text type
-            pt_BR: Enforce text type
-            zh_Hans: 强制单元格值为文本类型
-          llm_description: Whether to convert cell values into string type, default
-            to "true"
-          max: null
-          min: null
-          name: force_text_value
-          options:
-          - icon: ''
-            label:
-              en_US: 'Yes'
-              ja_JP: 'Yes'
-              pt_BR: 'Yes'
-              zh_Hans: 是
-            value: 'true'
-          - icon: ''
-            label:
-              en_US: 'No'
-              ja_JP: 'No'
-              pt_BR: 'No'
-              zh_Hans: 否
-            value: 'false'
-          placeholder: null
-          precision: null
-          required: true
-          scope: null
-          template: null
-          type: select
-        - auto_generate: null
-          default: null
-          form: llm
-          human_description:
-            en_US: Optional custom output file name, and the filename suffix is not
-              required.
-            ja_JP: Optional custom output file name, and the filename suffix is not
-              required.
-            pt_BR: Optional custom output file name, and the filename suffix is not
-              required.
-            zh_Hans: 可选的自定义输出文件名，后缀名无需指定
-          label:
-            en_US: Output Filename
-            ja_JP: Output Filename
-            pt_BR: Output Filename
-            zh_Hans: 输出文件名
-          llm_description: ''
-          max: null
-          min: null
-          name: output_filename
-          options: []
-          placeholder: null
-          precision: null
-          required: false
-          scope: null
-          template: null
-          type: string
-        params:
-          force_text_value: ''
-          md_text: ''
-          output_filename: ''
-        provider_id: bowenliang123/md_exporter/md_exporter
-        provider_name: bowenliang123/md_exporter/md_exporter
-        provider_type: builtin
-        selected: false
-        title: Markdown 转 XLSX 文件
-        tool_configurations:
-          force_text_value:
-            type: constant
-            value: 'true'
-        tool_description: 将 Markdown 表格转换为 XLSX 文件的工具
-        tool_label: Markdown 转 XLSX 文件
-        tool_name: md_to_xlsx
-        tool_node_version: '2'
-        tool_parameters:
-          md_text:
-            type: mixed
-            value: '{{#1758247371560.text#}}'
-          output_filename:
-            type: mixed
-            value: '{{#1758241781128.tool_name#}}'
-        type: tool
-      height: 89
-      id: '1758247596886'
-      position:
-        x: 791.2708092697926
-        y: 606.2108212972603
-      positionAbsolute:
-        x: 791.2708092697926
-        y: 606.2108212972603
-      sourcePosition: right
-      targetPosition: left
-      type: custom
-      width: 244
-    - data:
-        answer: '{{#1758247596886.files#}}'
-        desc: ''
-        selected: false
-        title: 直接回复 7
-        type: answer
-        variables: []
-      height: 104
-      id: '1758247607977'
-      position:
-        x: 1095.2708092697926
-        y: 606.2108212972603
-      positionAbsolute:
-        x: 1095.2708092697926
-        y: 606.2108212972603
-      sourcePosition: right
-      targetPosition: left
-      type: custom
-      width: 244
-    - data:
-        desc: ''
-        is_team_authorization: true
-        output_schema: null
-        paramSchemas:
-        - auto_generate: null
-          default: null
-          form: llm
-          human_description:
-            en_US: 'Input text of single or multiple Markdown tables, with worksheets
-              supported. All the heading texts (eg. #, ##) will be used as worksheet
-              names in order.'
-            ja_JP: 'Input text of single or multiple Markdown tables, with worksheets
-              supported. All the heading texts (eg. #, ##) will be used as worksheet
-              names in order.'
-            pt_BR: 'Input text of single or multiple Markdown tables, with worksheets
-              supported. All the heading texts (eg. #, ##) will be used as worksheet
-              names in order.'
-            zh_Hans: '单个或多个 Markdown 表格的文本输入，支持工作表。所有标题文本（例如 #, ##）将依次用作工作表名称。'
-          label:
-            en_US: Markdown table text
-            ja_JP: Markdown table text
-            pt_BR: Markdown table text
-            zh_Hans: Markdown 表格文本
-          llm_description: ''
-          max: null
-          min: null
-          name: md_text
-          options: []
-          placeholder: null
-          precision: null
-          required: true
-          scope: null
-          template: null
-          type: string
-        - auto_generate: null
-          default: 'true'
-          form: form
-          human_description:
-            en_US: Convert cell values into text type to void decimal precision loss
-              in display
-            ja_JP: Convert cell values into text type to void decimal precision loss
-              in display
-            pt_BR: Convert cell values into text type to void decimal precision loss
-              in display
-            zh_Hans: 转换单元格值为文本类型，避免显示时的小数精度丢失
-          label:
-            en_US: Enforce text type
-            ja_JP: Enforce text type
-            pt_BR: Enforce text type
-            zh_Hans: 强制单元格值为文本类型
-          llm_description: Whether to convert cell values into string type, default
-            to "true"
-          max: null
-          min: null
-          name: force_text_value
-          options:
-          - icon: ''
-            label:
-              en_US: 'Yes'
-              ja_JP: 'Yes'
-              pt_BR: 'Yes'
-              zh_Hans: 是
-            value: 'true'
-          - icon: ''
-            label:
-              en_US: 'No'
-              ja_JP: 'No'
-              pt_BR: 'No'
-              zh_Hans: 否
-            value: 'false'
-          placeholder: null
-          precision: null
-          required: true
-          scope: null
-          template: null
-          type: select
-        - auto_generate: null
-          default: null
-          form: llm
-          human_description:
-            en_US: Optional custom output file name, and the filename suffix is not
-              required.
-            ja_JP: Optional custom output file name, and the filename suffix is not
-              required.
-            pt_BR: Optional custom output file name, and the filename suffix is not
-              required.
-            zh_Hans: 可选的自定义输出文件名，后缀名无需指定
-          label:
-            en_US: Output Filename
-            ja_JP: Output Filename
-            pt_BR: Output Filename
-            zh_Hans: 输出文件名
-          llm_description: ''
-          max: null
-          min: null
-          name: output_filename
-          options: []
-          placeholder: null
-          precision: null
-          required: false
-          scope: null
-          template: null
-          type: string
-        params:
-          force_text_value: ''
-          md_text: ''
-          output_filename: ''
-        provider_id: bowenliang123/md_exporter/md_exporter
-        provider_name: bowenliang123/md_exporter/md_exporter
-        provider_type: builtin
-        selected: false
-        title: Markdown 转 XLSX 文件
-        tool_configurations:
-          force_text_value:
-            type: constant
-            value: 'true'
-        tool_description: 将 Markdown 表格转换为 XLSX 文件的工具
-        tool_label: Markdown 转 XLSX 文件
-        tool_name: md_to_xlsx
-        tool_node_version: '2'
-        tool_parameters:
-          md_text:
-            type: mixed
-            value: '{{#1758247378033.text#}}'
-          output_filename:
-            type: mixed
-            value: '{{#1758241781128.tool_name#}}'
-        type: tool
-      height: 89
-      id: '1758247621302'
-      position:
-        x: 791.2708092697926
-        y: 698.2108212972603
-      positionAbsolute:
-        x: 791.2708092697926
-        y: 698.2108212972603
-      selected: false
-      sourcePosition: right
-      targetPosition: left
-      type: custom
-      width: 244
-    - data:
-        answer: '{{#1758247621302.files#}}'
-        desc: ''
-        selected: false
-        title: 直接回复 8
-        type: answer
-        variables: []
-      height: 104
-      id: '1758247631754'
-      position:
-        x: 1095.2708092697926
-        y: 698.2108212972603
-      positionAbsolute:
-        x: 1095.2708092697926
-        y: 698.2108212972603
-      selected: false
-      sourcePosition: right
-      targetPosition: left
-      type: custom
-      width: 244
-    - data:
-        desc: ''
-        is_team_authorization: true
-        output_schema: null
-        paramSchemas:
-        - auto_generate: null
-          default: stock_zh_a_hist
-          form: llm
-          human_description:
-            en_US: 'Interface parameter description: 1.A-share Daily Data: requires
-              symbol, Period 1 (Historical Data), start_date, end_date, adjust; 2.A-share
-              Daily Minute Data: requires symbol, Period 2 (Minute Data), start_date,
-              end_date, adjust; 3.Recent Trading Day Intraday Data: requires symbol
-              only; 4.Recent Trading Day Pre-market Data: requires symbol, start_time,
-              end_time; 5.STAR Market Historical Data: requires symbol, adjust; 6.HK
-              Stock Historical Data: requires symbol, Period 1 (Historical Data),
-              start_date, end_date, adjust; 7.HK Stock Daily Minute Data: requires
-              symbol, Period 2 (Minute Data), start_date, end_date, adjust; 8.US Stock
-              Daily Data: requires symbol, Period 1 (Historical Data), start_date,
-              end_date, adjust; 9.US Stock Daily Minute Data: requires symbol, start_date,
-              end_date.'
-            ja_JP: 'Interface parameter description: 1.A-share Daily Data: requires
-              symbol, Period 1 (Historical Data), start_date, end_date, adjust; 2.A-share
-              Daily Minute Data: requires symbol, Period 2 (Minute Data), start_date,
-              end_date, adjust; 3.Recent Trading Day Intraday Data: requires symbol
-              only; 4.Recent Trading Day Pre-market Data: requires symbol, start_time,
-              end_time; 5.STAR Market Historical Data: requires symbol, adjust; 6.HK
-              Stock Historical Data: requires symbol, Period 1 (Historical Data),
-              start_date, end_date, adjust; 7.HK Stock Daily Minute Data: requires
-              symbol, Period 2 (Minute Data), start_date, end_date, adjust; 8.US Stock
-              Daily Data: requires symbol, Period 1 (Historical Data), start_date,
-              end_date, adjust; 9.US Stock Daily Minute Data: requires symbol, start_date,
-              end_date.'
-            pt_BR: 'Interface parameter description: 1.A-share Daily Data: requires
-              symbol, Period 1 (Historical Data), start_date, end_date, adjust; 2.A-share
-              Daily Minute Data: requires symbol, Period 2 (Minute Data), start_date,
-              end_date, adjust; 3.Recent Trading Day Intraday Data: requires symbol
-              only; 4.Recent Trading Day Pre-market Data: requires symbol, start_time,
-              end_time; 5.STAR Market Historical Data: requires symbol, adjust; 6.HK
-              Stock Historical Data: requires symbol, Period 1 (Historical Data),
-              start_date, end_date, adjust; 7.HK Stock Daily Minute Data: requires
-              symbol, Period 2 (Minute Data), start_date, end_date, adjust; 8.US Stock
-              Daily Data: requires symbol, Period 1 (Historical Data), start_date,
-              end_date, adjust; 9.US Stock Daily Minute Data: requires symbol, start_date,
-              end_date.'
-            zh_Hans: 接口参数说明：1.沪深京A股-日频率数据:需要股票代码、周期一（历史行情类）、开始日期、结束日期、调整方式; 2.沪深京
-              A 股-每日分时行情:需要股票代码、周期二（分时行情类）、开始日期、结束日期、调整方式; 3.最近一个交易日-分时数据:只需要股票代码;
-              4.最近一个交易日-盘前数据:需要股票代码、开始时间、结束时间; 5.科创板股票历史行情数据:需要股票代码、调整方式; 6.港股-历史行情数据:需要股票代码、周期一（历史行情类）、开始日期、结束日期、调整方式;
-              7.港股-每日分时行情:需要股票代码、周期二（分时行情类）、开始日期、结束日期、调整方式; 8.美股-每日行情:需要股票代码、周期一（历史行情类）、开始日期、结束日期、调整方式;
-              9.美股-每日分时行情:需要股票代码、开始日期、结束日期。
-          label:
-            en_US: Interface
-            ja_JP: Interface
-            pt_BR: Interface
-            zh_Hans: 接口名称
-          llm_description: 选择要调用的历史行情数据接口，支持A股、港股、美股历史数据。历史行情接口使用周期一（历史行情类），分时行情接口使用周期二（分时行情类）
-          max: null
-          min: null
-          name: interface
-          options:
-          - icon: ''
-            label:
-              en_US: Eastmoney - A-share - Daily Data
-              ja_JP: Eastmoney - A-share - Daily Data
-              pt_BR: Eastmoney - A-share - Daily Data
-              zh_Hans: 东方财富-沪深京A股-日频率数据
-            value: stock_zh_a_hist
-          - icon: ''
-            label:
-              en_US: Eastmoney - A-share - Daily Minute Data
-              ja_JP: Eastmoney - A-share - Daily Minute Data
-              pt_BR: Eastmoney - A-share - Daily Minute Data
-              zh_Hans: 东方财富网-沪深京 A 股-每日分时行情
-            value: stock_zh_a_hist_min_em
-          - icon: ''
-            label:
-              en_US: Eastmoney - Recent Trading Day - Intraday Data
-              ja_JP: Eastmoney - Recent Trading Day - Intraday Data
-              pt_BR: Eastmoney - Recent Trading Day - Intraday Data
-              zh_Hans: 东方财富-最近一个交易日-分时数据
-            value: stock_intraday_em
-          - icon: ''
-            label:
-              en_US: Eastmoney - Recent Trading Day - Pre-market Data
-              ja_JP: Eastmoney - Recent Trading Day - Pre-market Data
-              pt_BR: Eastmoney - Recent Trading Day - Pre-market Data
-              zh_Hans: 东方财富-最近一个交易日-盘前数据
-            value: stock_zh_a_hist_pre_min_em
-          - icon: ''
-            label:
-              en_US: Sina Finance - STAR Market - Historical Data
-              ja_JP: Sina Finance - STAR Market - Historical Data
-              pt_BR: Sina Finance - STAR Market - Historical Data
-              zh_Hans: 新浪财经-科创板股票历史行情数据
-            value: stock_zh_kcb_daily
-          - icon: ''
-            label:
-              en_US: Eastmoney - HK Stock - Historical Data
-              ja_JP: Eastmoney - HK Stock - Historical Data
-              pt_BR: Eastmoney - HK Stock - Historical Data
-              zh_Hans: 东方财富-港股-历史行情数据
-            value: stock_hk_hist
-          - icon: ''
-            label:
-              en_US: Eastmoney - HK Stock - Daily Minute Data
-              ja_JP: Eastmoney - HK Stock - Daily Minute Data
-              pt_BR: Eastmoney - HK Stock - Daily Minute Data
-              zh_Hans: 东方财富网-港股-每日分时行情
-            value: stock_hk_hist_min_em
-          - icon: ''
-            label:
-              en_US: Eastmoney - US Stock - Daily Data
-              ja_JP: Eastmoney - US Stock - Daily Data
-              pt_BR: Eastmoney - US Stock - Daily Data
-              zh_Hans: 东方财富网-美股-每日行情
-            value: stock_us_hist
-          - icon: ''
-            label:
-              en_US: Eastmoney - US Stock - Daily Minute Data
-              ja_JP: Eastmoney - US Stock - Daily Minute Data
-              pt_BR: Eastmoney - US Stock - Daily Minute Data
-              zh_Hans: 东方财富网-美股-每日分时行情
-            value: stock_us_hist_min_em
-          placeholder: null
-          precision: null
-          required: true
-          scope: null
-          template: null
-          type: select
-        - auto_generate: null
-          default: '000001'
-          form: llm
-          human_description:
-            en_US: 'Stock symbol. Required for: East Money - A-share - Daily Data,
-              East Money - A-share - Daily Minute Data, East Money - Recent Trading
-              Day - Intraday Data, East Money - Recent Trading Day - Pre-market Data,
-              Sina Finance - STAR Market - Historical Data, East Money - HK Stock
-              - Historical Data, East Money - HK Stock - Daily Minute Data, East Money
-              - US Stock - Daily Data, East Money - US Stock - Daily Minute Data.
-              Format: A-shares: 600519, 000001, SH600519, SZ000001; HK stocks: 00700,
-              03900, HK00700; US stocks: AAPL, MSFT.'
-            ja_JP: 'Stock symbol. Required for: East Money - A-share - Daily Data,
-              East Money - A-share - Daily Minute Data, East Money - Recent Trading
-              Day - Intraday Data, East Money - Recent Trading Day - Pre-market Data,
-              Sina Finance - STAR Market - Historical Data, East Money - HK Stock
-              - Historical Data, East Money - HK Stock - Daily Minute Data, East Money
-              - US Stock - Daily Data, East Money - US Stock - Daily Minute Data.
-              Format: A-shares: 600519, 000001, SH600519, SZ000001; HK stocks: 00700,
-              03900, HK00700; US stocks: AAPL, MSFT.'
-            pt_BR: 'Stock symbol. Required for: East Money - A-share - Daily Data,
-              East Money - A-share - Daily Minute Data, East Money - Recent Trading
-              Day - Intraday Data, East Money - Recent Trading Day - Pre-market Data,
-              Sina Finance - STAR Market - Historical Data, East Money - HK Stock
-              - Historical Data, East Money - HK Stock - Daily Minute Data, East Money
-              - US Stock - Daily Data, East Money - US Stock - Daily Minute Data.
-              Format: A-shares: 600519, 000001, SH600519, SZ000001; HK stocks: 00700,
-              03900, HK00700; US stocks: AAPL, MSFT.'
-            zh_Hans: 股票代码。需要此参数的接口：东方财富-沪深京A股-日频率数据、东方财富网-沪深京 A 股-每日分时行情、东方财富-最近一个交易日-分时数据、东方财富-最近一个交易日-盘前数据、新浪财经-科创板股票历史行情数据、东方财富-港股-历史行情数据、东方财富网-港股-每日分时行情、东方财富网-美股-每日行情、东方财富网-美股-每日分时行情。格式：A股：600519、000001、SH600519、SZ000001；港股：00700、03900、HK00700；美股：AAPL、MSFT。
-          label:
-            en_US: Stock Symbol
-            ja_JP: Stock Symbol
-            pt_BR: Stock Symbol
-            zh_Hans: 股票代码
-          llm_description: 股票代码，支持A股、港股、美股格式
-          max: null
-          min: null
-          name: symbol
-          options: []
-          placeholder: null
-          precision: null
-          required: true
-          scope: null
-          template: null
-          type: string
-        - auto_generate: null
-          default: daily
-          form: llm
-          human_description:
-            en_US: 'Period. Required for: East Money - A-share - Daily Data, East
-              Money - HK Stock - Historical Data, East Money - US Stock - Daily Data.
-              Options: daily (日线), weekly (周线), monthly (月线).'
-            ja_JP: 'Period. Required for: East Money - A-share - Daily Data, East
-              Money - HK Stock - Historical Data, East Money - US Stock - Daily Data.
-              Options: daily (日线), weekly (周线), monthly (月线).'
-            pt_BR: 'Period. Required for: East Money - A-share - Daily Data, East
-              Money - HK Stock - Historical Data, East Money - US Stock - Daily Data.
-              Options: daily (日线), weekly (周线), monthly (月线).'
-            zh_Hans: 周期一（历史行情类）。需要此参数的接口：东方财富-沪深京A股-日频率数据、东方财富-港股-历史行情数据、东方财富网-美股-每日行情。选项：daily(日线)、weekly(周线)、monthly(月线)。
-          label:
-            en_US: Period 1 (Historical Data)
-            ja_JP: Period 1 (Historical Data)
-            pt_BR: Period 1 (Historical Data)
-            zh_Hans: 周期一（历史行情类）
-          llm_description: 历史行情接口的周期参数，用于A股、港股、美股历史数据接口
-          max: null
-          min: null
-          name: period
-          options:
-          - icon: ''
-            label:
-              en_US: Daily
-              ja_JP: Daily
-              pt_BR: Daily
-              zh_Hans: 日线
-            value: daily
-          - icon: ''
-            label:
-              en_US: Weekly
-              ja_JP: Weekly
-              pt_BR: Weekly
-              zh_Hans: 周线
-            value: weekly
-          - icon: ''
-            label:
-              en_US: Monthly
-              ja_JP: Monthly
-              pt_BR: Monthly
-              zh_Hans: 月线
-            value: monthly
-          placeholder: null
-          precision: null
-          required: false
-          scope: null
-          template: null
-          type: select
-        - auto_generate: null
-          default: '1'
-          form: llm
-          human_description:
-            en_US: 'Period. Required for: East Money - A-share - Daily Minute Data,
-              East Money - HK Stock - Daily Minute Data, East Money - US Stock - Daily
-              Minute Data. Options: 1 (1分钟), 5 (5分钟), 15 (15分钟), 30 (30分钟), 60 (60分钟).'
-            ja_JP: 'Period. Required for: East Money - A-share - Daily Minute Data,
-              East Money - HK Stock - Daily Minute Data, East Money - US Stock - Daily
-              Minute Data. Options: 1 (1分钟), 5 (5分钟), 15 (15分钟), 30 (30分钟), 60 (60分钟).'
-            pt_BR: 'Period. Required for: East Money - A-share - Daily Minute Data,
-              East Money - HK Stock - Daily Minute Data, East Money - US Stock - Daily
-              Minute Data. Options: 1 (1分钟), 5 (5分钟), 15 (15分钟), 30 (30分钟), 60 (60分钟).'
-            zh_Hans: 周期二（分时行情类）。需要此参数的接口：东方财富网-沪深京 A 股-每日分时行情、东方财富网-港股-每日分时行情、东方财富网-美股-每日分时行情。选项：1(1分钟)、5(5分钟)、15(15分钟)、30(30分钟)、60(60分钟)。
-          label:
-            en_US: Period 2 (Minute Data)
-            ja_JP: Period 2 (Minute Data)
-            pt_BR: Period 2 (Minute Data)
-            zh_Hans: 周期二（分时行情类）
-          llm_description: 分时行情接口的周期参数，用于A股、港股、美股分时数据接口
-          max: null
-          min: null
-          name: period2
-          options:
-          - icon: ''
-            label:
-              en_US: 1 Minute
-              ja_JP: 1 Minute
-              pt_BR: 1 Minute
-              zh_Hans: 1分钟
-            value: '1'
-          - icon: ''
-            label:
-              en_US: 5 Minutes
-              ja_JP: 5 Minutes
-              pt_BR: 5 Minutes
-              zh_Hans: 5分钟
-            value: '5'
-          - icon: ''
-            label:
-              en_US: 15 Minutes
-              ja_JP: 15 Minutes
-              pt_BR: 15 Minutes
-              zh_Hans: 15分钟
-            value: '15'
-          - icon: ''
-            label:
-              en_US: 30 Minutes
-              ja_JP: 30 Minutes
-              pt_BR: 30 Minutes
-              zh_Hans: 30分钟
-            value: '30'
-          - icon: ''
-            label:
-              en_US: 60 Minutes
-              ja_JP: 60 Minutes
-              pt_BR: 60 Minutes
-              zh_Hans: 60分钟
-            value: '60'
-          placeholder: null
-          precision: null
-          required: false
-          scope: null
-          template: null
-          type: select
-        - auto_generate: null
-          default: '20250801'
-          form: llm
-          human_description:
-            en_US: 'Start date. Required for: East Money - A-share - Daily Data, East
-              Money - HK Stock - Historical Data, East Money - US Stock - Daily Data.
-              Format: YYYYMMDD (20240101).'
-            ja_JP: 'Start date. Required for: East Money - A-share - Daily Data, East
-              Money - HK Stock - Historical Data, East Money - US Stock - Daily Data.
-              Format: YYYYMMDD (20240101).'
-            pt_BR: 'Start date. Required for: East Money - A-share - Daily Data, East
-              Money - HK Stock - Historical Data, East Money - US Stock - Daily Data.
-              Format: YYYYMMDD (20240101).'
-            zh_Hans: 开始日期。需要此参数的接口：东方财富-沪深京A股-日频率数据、东方财富-港股-历史行情数据、东方财富网-美股-每日行情。格式：YYYYMMDD(20240101)。
-          label:
-            en_US: Start Date
-            ja_JP: Start Date
-            pt_BR: Start Date
-            zh_Hans: 开始日期
-          llm_description: 历史数据的开始日期，格式为YYYYMMDD
-          max: null
-          min: null
-          name: start_date
-          options: []
-          placeholder: null
-          precision: null
-          required: false
-          scope: null
-          template: null
-          type: string
-        - auto_generate: null
-          default: '20250915'
-          form: llm
-          human_description:
-            en_US: 'End date. Required for: East Money - A-share - Daily Data, East
-              Money - HK Stock - Historical Data, East Money - US Stock - Daily Data.
-              Format: YYYYMMDD (20241231).'
-            ja_JP: 'End date. Required for: East Money - A-share - Daily Data, East
-              Money - HK Stock - Historical Data, East Money - US Stock - Daily Data.
-              Format: YYYYMMDD (20241231).'
-            pt_BR: 'End date. Required for: East Money - A-share - Daily Data, East
-              Money - HK Stock - Historical Data, East Money - US Stock - Daily Data.
-              Format: YYYYMMDD (20241231).'
-            zh_Hans: 结束日期。需要此参数的接口：东方财富-沪深京A股-日频率数据、东方财富-港股-历史行情数据、东方财富网-美股-每日行情。格式：YYYYMMDD(20241231)。
-          label:
-            en_US: End Date
-            ja_JP: End Date
-            pt_BR: End Date
-            zh_Hans: 结束日期
-          llm_description: 历史数据的结束日期，格式为YYYYMMDD。注意：某些接口不需要此参数
-          max: null
-          min: null
-          name: end_date
-          options: []
-          placeholder: null
-          precision: null
-          required: false
-          scope: null
-          template: null
-          type: string
-        - auto_generate: null
-          default: 09:00:00
-          form: llm
-          human_description:
-            en_US: 'Start time. Required for: East Money - Recent Trading Day - Pre-market
-              Data. Format: HH:MM:SS (09:00:00).'
-            ja_JP: 'Start time. Required for: East Money - Recent Trading Day - Pre-market
-              Data. Format: HH:MM:SS (09:00:00).'
-            pt_BR: 'Start time. Required for: East Money - Recent Trading Day - Pre-market
-              Data. Format: HH:MM:SS (09:00:00).'
-            zh_Hans: 开始时间。需要此参数的接口：东方财富-最近一个交易日-盘前数据。格式：HH:MM:SS(09:00:00)。
-          label:
-            en_US: Start Time
-            ja_JP: Start Time
-            pt_BR: Start Time
-            zh_Hans: 开始时间
-          llm_description: 盘前数据的开始时间，格式为HH:MM:SS
-          max: null
-          min: null
-          name: start_time
-          options: []
-          placeholder: null
-          precision: null
-          required: false
-          scope: null
-          template: null
-          type: string
-        - auto_generate: null
-          default: '15:00:00'
-          form: llm
-          human_description:
-            en_US: 'End time. Required for: East Money - Recent Trading Day - Pre-market
-              Data. Format: HH:MM:SS (15:40:00).'
-            ja_JP: 'End time. Required for: East Money - Recent Trading Day - Pre-market
-              Data. Format: HH:MM:SS (15:40:00).'
-            pt_BR: 'End time. Required for: East Money - Recent Trading Day - Pre-market
-              Data. Format: HH:MM:SS (15:40:00).'
-            zh_Hans: 结束时间。需要此参数的接口：东方财富-最近一个交易日-盘前数据。格式：HH:MM:SS(15:40:00)。
-          label:
-            en_US: End Time
-            ja_JP: End Time
-            pt_BR: End Time
-            zh_Hans: 结束时间
-          llm_description: 盘前数据的结束时间，格式为HH:MM:SS
-          max: null
-          min: null
-          name: end_time
-          options: []
-          placeholder: null
-          precision: null
-          required: false
-          scope: null
-          template: null
-          type: string
-        - auto_generate: null
-          default: none
-          form: llm
-          human_description:
-            en_US: 'Adjustment method. Required for: East Money - A-share - Daily
-              Data, East Money - HK Stock - Historical Data, East Money - US Stock
-              - Daily Data. Options: qfq (前复权), hfq (后复权), none (不复权).'
-            ja_JP: 'Adjustment method. Required for: East Money - A-share - Daily
-              Data, East Money - HK Stock - Historical Data, East Money - US Stock
-              - Daily Data. Options: qfq (前复权), hfq (后复权), none (不复权).'
-            pt_BR: 'Adjustment method. Required for: East Money - A-share - Daily
-              Data, East Money - HK Stock - Historical Data, East Money - US Stock
-              - Daily Data. Options: qfq (前复权), hfq (后复权), none (不复权).'
-            zh_Hans: 调整方式。需要此参数的接口：东方财富-沪深京A股-日频率数据、东方财富-港股-历史行情数据、东方财富网-美股-每日行情。选项：qfq(前复权)、hfq(后复权)、none(不复权)。
-          label:
-            en_US: Adjustment
-            ja_JP: Adjustment
-            pt_BR: Adjustment
-            zh_Hans: 调整方式
-          llm_description: 价格调整方式，支持前复权、后复权、不复权
-          max: null
-          min: null
-          name: adjust
-          options:
-          - icon: ''
-            label:
-              en_US: No Adjustment
-              ja_JP: No Adjustment
-              pt_BR: No Adjustment
-              zh_Hans: 不复权
-            value: none
-          - icon: ''
-            label:
-              en_US: Forward Adjustment
-              ja_JP: Forward Adjustment
-              pt_BR: Forward Adjustment
-              zh_Hans: 前复权
-            value: qfq
-          - icon: ''
-            label:
-              en_US: Backward Adjustment
-              ja_JP: Backward Adjustment
-              pt_BR: Backward Adjustment
-              zh_Hans: 后复权
-            value: hfq
-          placeholder: null
-          precision: null
-          required: false
-          scope: null
-          template: null
-          type: select
-        - auto_generate: null
-          default: 5
-          form: llm
-          human_description:
-            en_US: 'Number of retries for network requests. Range: 1-10. Default:
-              5. Higher values for unstable networks.'
-            ja_JP: 'Number of retries for network requests. Range: 1-10. Default:
-              5. Higher values for unstable networks.'
-            pt_BR: 'Number of retries for network requests. Range: 1-10. Default:
-              5. Higher values for unstable networks.'
-            zh_Hans: 网络请求重试次数。范围：1-10。默认：5。网络不稳定时可设置更高值。
-          label:
-            en_US: Retries
-            ja_JP: Retries
-            pt_BR: Retries
-            zh_Hans: 重试次数
-          llm_description: 网络请求重试次数，默认5次
-          max: 10
-          min: 1
-          name: retries
-          options: []
-          placeholder: null
-          precision: null
-          required: false
-          scope: null
-          template: null
-          type: number
-        - auto_generate: null
-          default: 900
-          form: llm
-          human_description:
-            en_US: 'Subprocess execution timeout in seconds. Range: 60-1800. Default:
-              300. Note: Historical data interfaces may have large data volumes, suggest
-              longer timeout.'
-            ja_JP: 'Subprocess execution timeout in seconds. Range: 60-1800. Default:
-              300. Note: Historical data interfaces may have large data volumes, suggest
-              longer timeout.'
-            pt_BR: 'Subprocess execution timeout in seconds. Range: 60-1800. Default:
-              300. Note: Historical data interfaces may have large data volumes, suggest
-              longer timeout.'
-            zh_Hans: 子进程执行超时时间（秒）。范围：60-1800。默认：300。注意：历史数据接口数据量可能很大，建议设置较长的超时时间。
-          label:
-            en_US: Subprocess Timeout
-            ja_JP: Subprocess Timeout
-            pt_BR: Subprocess Timeout
-            zh_Hans: 子进程超时时间
-          llm_description: 子进程执行超时时间（秒），默认300秒。注意：历史数据接口数据量可能很大，建议设置较长的超时时间。
-          max: 3600
-          min: 5
-          name: timeout
-          options: []
-          placeholder: null
-          precision: null
-          required: false
-          scope: null
-          template: null
-          type: number
-        params:
-          adjust: ''
-          end_date: ''
-          end_time: ''
-          interface: ''
-          period: ''
-          period2: ''
-          retries: ''
-          start_date: ''
-          start_time: ''
-          symbol: ''
-          timeout: ''
-        provider_id: shaoxing_xie/akshare_stockdata/akshare_stockdata
-        provider_name: shaoxing_xie/akshare_stockdata/akshare_stockdata
-        provider_type: builtin
-        selected: false
-        title: 股票历史行情
-        tool_configurations: {}
-        tool_description: 通过AKShare数据接口获取指定股票的历史行情数据，包括A股、港股、美股等各市场的历史价格、成交量、成交额等信息。支持日线、周线、月线等不同周期的数据，并可选择前复权、后复权等调整方式。
-        tool_label: 股票历史行情
-        tool_name: stock_hist_quotations
-        tool_node_version: '2'
-        tool_parameters:
-          adjust:
-            type: constant
-            value: none
-          end_date:
-            type: mixed
-            value: '20250915'
-          end_time:
-            type: mixed
-            value: '15:00:00'
-          interface:
-            type: constant
-            value: stock_zh_a_hist
-          period:
-            type: constant
-            value: daily
-          period2:
-            type: constant
-            value: '1'
-          retries:
-            type: constant
-            value: 5
-          start_date:
-            type: mixed
-            value: '20250801'
-          start_time:
-            type: mixed
-            value: 09:00:00
-          symbol:
-            type: mixed
-            value: '000001'
-          timeout:
-            type: constant
-            value: 900
-        type: tool
-      height: 53
-      id: '1758253480073'
-      position:
-        x: 487.27080926979255
-        y: 330.2108212972603
-      positionAbsolute:
-        x: 487.27080926979255
-        y: 330.2108212972603
-      selected: false
+        x: 475.18991687172587
+        y: 686.5003644485805
       sourcePosition: right
       targetPosition: left
       type: custom
       width: 244
     viewport:
-      x: -118.75695896698244
-      y: 59.665883538398845
-      zoom: 0.5325206319965842
+      x: -153.8000377623581
+      y: -68.49478655124824
+      zoom: 0.4138767100351104
