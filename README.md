@@ -4,6 +4,13 @@
 [![Python 3.12+](https://img.shields.io/badge/python-3.12+-blue.svg)](https://www.python.org/downloads/)
 [![Dify Plugin](https://img.shields.io/badge/Dify-Plugin-green.svg)](https://dify.ai/)
 [![AKShare](https://img.shields.io/badge/AKShare-Latest-blue.svg)](https://github.com/akfamily/akshare)
+[![Download Plugin](https://img.shields.io/badge/Download-Plugin%20Package-blue)](https://github.com/shaoxing-xie/akshare-stockdata-plugin/blob/main/releases/AKShare-Stockdata-plugin-v0.5.0.difypkg)
+
+## 📥 快速下载
+
+[![Download Plugin](https://img.shields.io/badge/Download-Plugin%20Package-blue)](https://github.com/shaoxing-xie/akshare-stockdata-plugin/blob/main/releases/AKShare-Stockdata-plugin-v0.5.0.difypkg)
+
+**直接下载最新版本插件包** | [查看所有版本](https://github.com/shaoxing-xie/akshare-stockdata-plugin/releases)
 
 ## 📞 联系方式
 

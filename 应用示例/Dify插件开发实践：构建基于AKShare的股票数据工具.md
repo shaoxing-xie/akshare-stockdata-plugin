@@ -1,10 +1,12 @@
-# 基于AKShare的Dify股票数据插件功能介绍
+# Dify插件开发实践：构建基于AKShare的股票数据工具
 
-## 概述
+## 项目背景
 
-本文介绍一个基于开源项目[AKShare](https://github.com/akfamily/akshare)开发的Dify平台插件。在Dify应用开发过程中发现，Dify平台缺乏股票数据工具，而AKShare库虽然功能强大但使用门槛较高，需要Python编程知识。因此开发此插件，将AKShare的复杂接口封装为Dify工具节点，降低使用门槛，为Dify用户提供便捷的股票数据获取功能。
+在Dify应用开发过程中发现，Dify平台缺乏股票数据工具，而AKShare库虽然功能强大但使用门槛较高，需要Python编程知识。因此决定开发一个插件，将AKShare的复杂接口封装为Dify工具节点，降低使用门槛，为Dify用户提供便捷的股票数据获取功能。
 
-插件通过封装AKShare库的113个数据接口，支持多种股票数据的获取和分析，包括实时行情、历史数据、财务指标、资金流向等多个维度，为Dify用户构建基于股票数据的AI应用提供了便利。
+## 项目概述
+
+本项目基于开源项目[AKShare](https://github.com/akfamily/akshare)开发了一个Dify平台插件，通过封装AKShare库的113个数据接口，支持多种股票数据的获取和分析，包括实时行情、历史数据、财务指标、资金流向等多个维度，为Dify用户构建基于股票数据的AI应用提供了便利。
 
 ### 📋 **插件基本信息**
 
@@ -22,6 +24,20 @@
 - **多市场支持**：覆盖A股、港股、美股等主要市场
 - **接口封装**：将AKShare的复杂接口封装为Dify工具节点
 - **数据格式化**：自动将数据转换为Markdown表格和JSON格式
+
+## 开发过程
+
+### 技术选型
+- **基础库**：选择AKShare作为数据源，因其功能全面且开源免费
+- **开发平台**：基于Dify插件开发框架
+- **编程语言**：Python 3.12+
+- **数据格式**：支持Markdown表格和JSON两种输出格式
+
+### 开发挑战
+1. **接口适配**：需要将AKShare的113个接口适配为Dify工具节点
+2. **参数处理**：处理不同接口的参数格式和验证
+3. **错误处理**：实现完善的错误处理和重试机制
+4. **性能优化**：确保插件在Dify环境中的稳定运行
 
 ## 🏗️ 技术架构
 
@@ -114,7 +130,8 @@ graph TB
    - 访问项目GitHub页面：[https://github.com/shaoxing-xie/akshare-stockdata-plugin](https://github.com/shaoxing-xie/akshare-stockdata-plugin)
    - 进入 **releases** 目录
    - 下载 **"AKShare-Stockdata-plugin-v0.5.0.difypkg"** 文件
-   - 或者访问 [GitHub Releases](https://github.com/shaoxing-xie/akshare-stockdata-plugin/releases) 获取所有版本
+   - 或者直接点击：[下载插件包](https://github.com/shaoxing-xie/akshare-stockdata-plugin/blob/main/releases/AKShare-Stockdata-plugin-v0.5.0.difypkg)
+   - 查看所有版本：[GitHub Releases](https://github.com/shaoxing-xie/akshare-stockdata-plugin/releases)
 
 2. **在Dify中安装**
    - 在Dify工作空间中进入 **工具** → **插件**→  **安装插件**

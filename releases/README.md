@@ -3,30 +3,35 @@
 ## 最新版本
 
 - **v0.5.0**: [AKShare-Stockdata-plugin-v0.5.0.difypkg](./AKShare-Stockdata-plugin-v0.5.0.difypkg)
+  - 发布日期：2025-09-19
+  - 版本说明：综合性股票数据工具，提供113个数据接口
+  - 支持平台：Dify
+  - 系统要求：Python 3.12+
 
-## 下载说明
+## 安装说明
 
-### 方式一：直接下载（推荐）
-点击上方链接直接下载最新版本的插件包文件。
+1. **下载插件包**：点击上方链接下载 `.difypkg` 文件
+2. **在Dify中安装**：
+   - 在Dify工作空间中进入 **工具** → **插件**→  **安装插件**
+   -  **安装源**中选择 **"GitHub"**
+   - GitHub 仓库，输入：https://github.com/shaoxing-xie/akshare-stockdata-plugin
+   - 安装页面中，选择版本号和安装包
+   - 点击  **下一步** 、**安装** 按钮  
 
-### 方式二：从GitHub Releases下载
-访问 [GitHub Releases](https://github.com/shaoxing-xie/akshare-stockdata-plugin/releases) 获取所有历史版本。
+## 历史版本
 
-## 安装步骤
+查看 [GitHub Releases](https://github.com/shaoxing-xie/akshare-stockdata-plugin/releases) 获取所有历史版本和详细更新日志。
 
-1. 下载 `.difypkg` 文件到本地
-2. 在Dify工作空间中进入 **工具** → **插件** → **安装插件**
-3. 选择 **"从文件安装"**
-4. 上传下载的 `.difypkg` 文件
-5. 点击 **安装** 按钮
+## 技术支持
+
+- **项目地址**：[https://github.com/shaoxing-xie/akshare-stockdata-plugin](https://github.com/shaoxing-xie/akshare-stockdata-plugin)
+- **问题反馈**：[GitHub Issues](https://github.com/shaoxing-xie/akshare-stockdata-plugin/issues)
+- **使用文档**：[README.md](../README.md)
 
 ## 版本历史
 
-- **v0.5.0** (2025-09-18): 初始版本，包含113个数据接口
-  - 支持A股、港股、美股数据获取
-  - 提供8大类专业工具
-  - 支持Markdown和JSON格式输出
-
----
-
-**注意**: 本插件仅供学习和研究使用，不构成任何投资建议。
+### v0.5.0 (2025-09-19)
+- 初始发布版本
+- 提供113个股票数据接口
+- 支持8大类专业工具
+- 兼容Dify平台
