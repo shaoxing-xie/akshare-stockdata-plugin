@@ -1,9 +1,9 @@
 identity:
-  author: shaoxing_xie
+  author: shaoxing-xie
   name: stock_hsgt_holdings
   label:
-    zh_Hans: 沪深港通持股
-    en_US: HSGT Holdings
+    zh_Hans: 沪深港通持股(原始接口)
+    en_US: HSGT Holdings (Original Interface)
 description:
   human:
     zh_Hans: 通过AKShare数据接口获取沪深港通持股相关数据，包括港股通成份股、沪深港通分时数据、板块排行、个股排行、每日个股统计、机构排行、港股通实时行情、沪深港通历史数据、沪深港通持股个股等。
@@ -16,14 +16,34 @@ parameters:
     form: llm
     default: stock_hk_ggt_components_em
     description: 接口名称
-    llm_description: 通过AKShare数据接口获取沪深港通持股相关数据，包括港股通成份股、沪深港通分时数据、板块排行、个股排行、港股通实时行情、沪深港通历史数据、沪深港通持股个股等
+    llm_description: 选择沪深港通持股相关接口。分类包括：实时行情、市场概括、持股排行、资金流向分析、汇率数据、结算数据。大部分接口需要特定参数如资金类别、排行类别、统计周期或股票代码。
     human_description:
-      en_US: "Interface parameter description: 1.East Money - HK Connect Components Real-time Quotes: no parameters; 2.East Money - HSGT Market Overview Minute Data: requires Category 1 (Minute/Historical Data); 3.East Money - HSGT Holdings Board Rankings: requires Category 2 (Board Ranking) and Indicator 1 (Board Ranking); 4.East Money - HSGT Holdings Stock Rankings: requires Market 1 (Stock Ranking) and Indicator 2 (Stock Ranking); 5.East Money - HK Connect (Shanghai>HK) Real-time Quotes: no parameters; 6.East Money - HSGT Fund Flow Historical Data: requires Category 1 (Minute/Historical Data); 7.East Money - HSGT Holdings Specific Stock: requires Stock Code."
-      zh_Hans: "接口参数说明：1.东方财富网-港股通成份股实时行情:无参数; 2.东方财富-沪深港通-市场概括-分时数据:需要类别一（分时/历史数据类）; 3.东方财富网-沪深港通持股-板块排行:需要类别二（板块排行类）和指标一（板块排行类）; 4.东方财富网-沪深港通持股-个股排行:需要市场一（个股排行类）和指标二（个股排行类）; 5.东方财富网-港股通(沪>港)-股票实时行情:无参数; 6.东方财富网-沪深港通资金流向-历史数据:需要类别一（分时/历史数据类）; 7.东方财富网-沪深港通持股-具体股票:需要股票代码."
+      en_US: "Select the HSGT (Hong Kong-Shenzhen Stock Connect) holdings interface. Categories: Real-time Quotes, Market Overview, Holdings Rankings, Fund Flow Analysis, Exchange Rates, Settlement Data. Most interfaces require specific parameters like fund category, ranking category, statistical period, or stock code."
+      zh_Hans: "选择沪深港通持股相关接口。分类包括：实时行情、市场概括、持股排行、资金流向分析、汇率数据、结算数据。大部分接口需要特定参数如资金类别、排行类别、统计周期或股票代码。"
     label:
       en_US: Interface
       zh_Hans: 接口名称
     options:
+      # 结算汇率-深港通
+      - label:
+          en_US: SZSE - HK Connect Settlement Exchange Rate
+          zh_Hans: 深港通-港股通业务信息-结算汇率
+        value: stock_sgt_settlement_exchange_rate_szse
+      # 结算汇率-沪港通
+      - label:
+          en_US: SSE - HK Connect Settlement Exchange Rate
+          zh_Hans: 沪港通-港股通信息披露-结算汇兑
+        value: stock_sgt_settlement_exchange_rate_sse
+      # 参考汇率-深港通
+      - label:
+          en_US: SZSE - HK Connect Reference Exchange Rate
+          zh_Hans: 深港通-港股通业务信息-参考汇率
+        value: stock_sgt_reference_exchange_rate_szse
+      # 参考汇率-沪港通
+      - label:
+          en_US: SSE - HK Connect Reference Exchange Rate
+          zh_Hans: 沪港通-港股通信息披露-参考汇率
+        value: stock_sgt_reference_exchange_rate_sse
       # 港股通成份股
       - label:
           en_US: East Money - HK Connect Components Real-time Quotes
@@ -31,33 +51,38 @@ parameters:
         value: stock_hk_ggt_components_em
       # 沪深港通分时数据
       - label:
-          en_US: East Money - HSGT Market Overview Minute Data
-          zh_Hans: 东方财富-沪深港通-市场概括-分时数据
+          en_US: East Money - HSGT Market Overview Minute Data - Specify Fund Category
+          zh_Hans: 东方财富网-沪深港通-市场概括-分时数据-指定资金类别
         value: stock_hsgt_fund_min_em
       # 板块排行
       - label:
-          en_US: East Money - HSGT Holdings Board Rankings
-          zh_Hans: 东方财富网-沪深港通持股-板块排行
+          en_US: East Money - HSGT Holdings Board Rankings - Specify Ranking Category and Statistical Period
+          zh_Hans: 东方财富网-沪深港通持股-板块排行-指定排行类别和统计周期
         value: stock_hsgt_board_rank_em
       # 个股排行
       - label:
-          en_US: East Money - HSGT Holdings Stock Rankings
-          zh_Hans: 东方财富网-沪深港通持股-个股排行
+          en_US: East Money - HSGT Holdings Stock Rankings - Specify HSGT Category and Statistical Period
+          zh_Hans: 东方财富网-沪深港通持股-个股排行-指定沪深港通类别和统计周期
         value: stock_hsgt_hold_stock_em
       # 港股通实时行情
       - label:
           en_US: East Money - HK Connect (Shanghai>HK) Real-time Quotes
           zh_Hans: 东方财富网-港股通(沪>港)-股票实时行情
         value: stock_hsgt_sh_hk_spot_em
+      # 沪深港通资金流向
+      - label:
+          en_US: East Money - HSGT Fund Flow Summary
+          zh_Hans: 东方财富网-沪深港通资金流向
+        value: stock_hsgt_fund_flow_summary_em
       # 沪深港通历史数据
       - label:
-          en_US: East Money - HSGT Fund Flow Historical Data
-          zh_Hans: 东方财富网-沪深港通资金流向-历史数据
+          en_US: East Money - HSGT Fund Flow Historical Data - Specify Historical Data Category
+          zh_Hans: 东方财富网-沪深港通资金流向-历史数据-指定历史数据类别
         value: stock_hsgt_hist_em
       # 沪深港通持股-个股
       - label:
-          en_US: East Money - HSGT Holdings Specific Stock
-          zh_Hans: 东方财富网-沪深港通持股-具体股票
+          en_US: East Money - HSGT Holdings Specific Stock - Specify A-share and HK Stock
+          zh_Hans: 东方财富网-沪深港通持股-具体股票-指定A股和港股
         value: stock_hsgt_individual_em
       # 沪深港通持股-个股详情
       # 注意：该接口数据源暂不可用，暂不显示
@@ -70,14 +95,14 @@ parameters:
     required: false
     form: llm
     default: 北向资金
-    description: 类别一（分时/历史数据类）
-    llm_description: 分时数据和历史数据接口的类别参数
+    description: 资金类别
+    llm_description: 分时数据和历史数据接口的资金类别参数
     human_description:
-      en_US: "Category. Required for: East Money - HSGT Market Overview Minute Data, East Money - HSGT Fund Flow Historical Data. Options: '北向资金'/'南向资金'."
-      zh_Hans: "类别一（分时/历史数据类）。需要此参数的接口：东方财富-沪深港通-市场概括-分时数据、东方财富网-沪深港通资金流向-历史数据。选项：'北向资金'/'南向资金'。"
+      en_US: "Fund Category. Required for: East Money - HSGT Market Overview Minute Data. Options: '北向资金'/'南向资金'."
+      zh_Hans: "资金类别。需要此参数的接口：东方财富网-沪深港通-市场概括-分时数据。选项：'北向资金'/'南向资金'。"
     label:
-      en_US: Category 1 (Minute/Historical Data)
-      zh_Hans: 类别一（分时/历史数据类）
+      en_US: Fund Category
+      zh_Hans: 资金类别
     options:
       - label:
           en_US: Northbound Funds
@@ -87,70 +112,83 @@ parameters:
           en_US: Southbound Funds
           zh_Hans: 南向资金
         value: 南向资金
+  - name: symbol3
+    type: select
+    required: false
+    form: llm
+    default: 北向资金
+    description: 历史数据类别
+    llm_description: 历史数据接口的资金类别参数，用于沪深港通历史数据接口
+    human_description:
+      en_US: "Historical Data Category. Required for: East Money - HSGT Fund Flow Historical Data. Options: '北向资金'/'沪股通'/'深股通'/'南向资金'/'港股通沪'/'港股通深'."
+      zh_Hans: "历史数据类别。需要此参数的接口：东方财富网-沪深港通资金流向-历史数据。选项：'北向资金'/'沪股通'/'深股通'/'南向资金'/'港股通沪'/'港股通深'。"
+    label:
+      en_US: Historical Data Category
+      zh_Hans: 历史数据类别
+    options:
+      - label:
+          en_US: Northbound Funds
+          zh_Hans: 北向资金
+        value: 北向资金
+      - label:
+          en_US: Shanghai-HK Connect
+          zh_Hans: 沪股通
+        value: 沪股通
+      - label:
+          en_US: Shenzhen-HK Connect
+          zh_Hans: 深股通
+        value: 深股通
+      - label:
+          en_US: Southbound Funds
+          zh_Hans: 南向资金
+        value: 南向资金
+      - label:
+          en_US: HK Connect Shanghai
+          zh_Hans: 港股通沪
+        value: 港股通沪
+      - label:
+          en_US: HK Connect Shenzhen
+          zh_Hans: 港股通深
+        value: 港股通深
   - name: symbol2
     type: select
     required: false
     form: llm
     default: 北向资金增持行业板块排行
-    description: 类别二（板块排行类）
-    llm_description: 板块排行类接口的类别参数，用于板块排行接口
+    description: 排行类别
+    llm_description: 排行类接口的类别参数，用于板块排行接口
     human_description:
-      en_US: "Category. Required for: East Money - HSGT Holdings Board Rankings. Options: '北向资金增持行业板块排行'/'南向资金增持行业板块排行'/'北向资金增持概念板块排行'/'南向资金增持概念板块排行'/'北向资金增持市值板块排行'/'南向资金增持市值板块排行'."
-      zh_Hans: "类别二（板块排行类）。需要此参数的接口：东方财富网-沪深港通持股-板块排行。选项：'北向资金增持行业板块排行'/'南向资金增持行业板块排行'/'北向资金增持概念板块排行'/'南向资金增持概念板块排行'/'北向资金增持市值板块排行'/'南向资金增持市值板块排行'。"
+      en_US: "Ranking Category. Required for: East Money - HSGT Holdings Board Rankings. Options: '北向资金增持行业板块排行'/'北向资金增持概念板块排行'/'北向资金增持地域板块排行'."
+      zh_Hans: "排行类别。需要此参数的接口：东方财富网-沪深港通持股-板块排行。选项：'北向资金增持行业板块排行'/'北向资金增持概念板块排行'/'北向资金增持地域板块排行'。"
     label:
-      en_US: Category 2 (Board Ranking)
-      zh_Hans: 类别二（板块排行类）
+      en_US: Ranking Category
+      zh_Hans: 排行类别
     options:
       - label:
           en_US: Northbound Industry Board Ranking
           zh_Hans: 北向资金增持行业板块排行
         value: 北向资金增持行业板块排行
       - label:
-          en_US: Southbound Industry Board Ranking
-          zh_Hans: 南向资金增持行业板块排行
-        value: 南向资金增持行业板块排行
-      - label:
           en_US: Northbound Concept Board Ranking
           zh_Hans: 北向资金增持概念板块排行
         value: 北向资金增持概念板块排行
       - label:
-          en_US: Southbound Concept Board Ranking
-          zh_Hans: 南向资金增持概念板块排行
-        value: 南向资金增持概念板块排行
-      - label:
-          en_US: Northbound Market Cap Board Ranking
-          zh_Hans: 北向资金增持市值板块排行
-        value: 北向资金增持市值板块排行
-      - label:
-          en_US: Southbound Market Cap Board Ranking
-          zh_Hans: 南向资金增持市值板块排行
-        value: 南向资金增持市值板块排行
-  - name: symbol4
-    type: string
-    required: false
-    form: llm
-    default: "000001"
-    description: 股票代码
-    llm_description: 个股类接口的股票代码参数，用于个股相关接口，请输入股票代码（如：000001、600000等）
-    human_description:
-      en_US: "Stock code. Required for: East Money - HSGT Holdings Specific Stock. Format: 000001, 600000, etc."
-      zh_Hans: "股票代码。需要此参数的接口：东方财富网-沪深港通持股-具体股票。格式：000001、600000等。"
-    label:
-      en_US: Stock Code
-      zh_Hans: 股票代码
+          en_US: Northbound Regional Board Ranking
+          zh_Hans: 北向资金增持地域板块排行
+        value: 北向资金增持地域板块排行
   - name: market
     type: select
     required: false
     form: llm
     default: 北向
-    description: 市场一（个股排行类）
-    llm_description: 个股排行类接口的市场参数，用于个股排行接口
+    description: 沪深港通类别
+    llm_description: 个股排行类接口的沪深港通类别参数，用于个股排行接口
     human_description:
-      en_US: "Market. Required for: East Money - HSGT Holdings Stock Rankings. Options: '北向'/'沪股通'/'深股通'."
-      zh_Hans: "市场一（个股排行类）。需要此参数的接口：东方财富网-沪深港通持股-个股排行。选项：'北向'/'沪股通'/'深股通'。"
+      en_US: "HSGT Category. Required for: East Money - HSGT Holdings Stock Rankings. Options: '北向'/'沪股通'/'深股通'."
+      zh_Hans: "沪深港通类别。需要此参数的接口：东方财富网-沪深港通持股-个股排行。选项：'北向'/'沪股通'/'深股通'。"
     label:
-      en_US: Market 1 (Stock Ranking)
-      zh_Hans: 市场一（个股排行类）
+      en_US: HSGT Category
+      zh_Hans: 沪深港通类别
     options:
       - label:
           en_US: Northbound
@@ -169,14 +207,14 @@ parameters:
     required: false
     form: llm
     default: 今日
-    description: 指标一（板块排行类）
-    llm_description: 板块排行类接口的指标参数，用于板块排行接口
+    description: 统计周期
+    llm_description: 统计周期参数，用于板块排行和个股排行接口
     human_description:
-      en_US: "Indicator. Required for: East Money - HSGT Holdings Board Rankings. Options: '今日'/'3日'/'5日'/'10日'/'1月'/'1季'/'1年'."
-      zh_Hans: "指标一（板块排行类）。需要此参数的接口：东方财富网-沪深港通持股-板块排行。选项：'今日'/'3日'/'5日'/'10日'/'1月'/'1季'/'1年'。"
+      en_US: "Statistical Period. Required for: East Money - HSGT Holdings Board Rankings and Stock Rankings. Options: '今日'/'3日'/'5日'/'10日'/'1月'/'1季'/'1年'."
+      zh_Hans: "统计周期。需要此参数的接口：东方财富网-沪深港通持股-板块排行、东方财富网-沪深港通持股-个股排行。选项：'今日'/'3日'/'5日'/'10日'/'1月'/'1季'/'1年'。"
     label:
-      en_US: Indicator 1 (Board Ranking)
-      zh_Hans: 指标一（板块排行类）
+      en_US: Statistical Period
+      zh_Hans: 统计周期
     options:
       - label:
           en_US: Today
@@ -206,48 +244,19 @@ parameters:
           en_US: 1 Year
           zh_Hans: 1年
         value: 1年
-  - name: indicator2
-    type: select
+  - name: symbol4
+    type: string
     required: false
     form: llm
-    default: 今日排行
-    description: 指标二（个股排行类）
-    llm_description: 个股排行类接口的指标参数，用于个股排行接口
+    default: "000001"
+    description: 股票代码
+    llm_description: 个股类接口的股票代码参数，用于个股相关接口，请输入股票代码（如：000001、600000等）
     human_description:
-      en_US: "Indicator. Required for: East Money - HSGT Holdings Stock Rankings. Options: '今日排行'/'3日排行'/'5日排行'/'10日排行'/'月排行'/'季排行'/'年排行'."
-      zh_Hans: "指标二（个股排行类）。需要此参数的接口：东方财富网-沪深港通持股-个股排行。选项：'今日排行'/'3日排行'/'5日排行'/'10日排行'/'月排行'/'季排行'/'年排行'。"
+      en_US: "Stock code. Required for: East Money - HSGT Holdings Specific Stock. Format: 000001, 600000, etc."
+      zh_Hans: "股票代码。需要此参数的接口：东方财富网-沪深港通持股-具体股票。格式：000001、600000等。"
     label:
-      en_US: Indicator 2 (Stock Ranking)
-      zh_Hans: 指标二（个股排行类）
-    options:
-      - label:
-          en_US: Today Rankings
-          zh_Hans: 今日排行
-        value: 今日排行
-      - label:
-          en_US: 3 Days Rankings
-          zh_Hans: 3日排行
-        value: 3日排行
-      - label:
-          en_US: 5 Days Rankings
-          zh_Hans: 5日排行
-        value: 5日排行
-      - label:
-          en_US: 10 Days Rankings
-          zh_Hans: 10日排行
-        value: 10日排行
-      - label:
-          en_US: 1 Month Rankings
-          zh_Hans: 月排行
-        value: 月排行
-      - label:
-          en_US: 1 Quarter Rankings
-          zh_Hans: 季排行
-        value: 季排行
-      - label:
-          en_US: 1 Year Rankings
-          zh_Hans: 年排行
-        value: 年排行
+      en_US: Stock Code
+      zh_Hans: 股票代码
   - name: start_date
     type: string
     required: false

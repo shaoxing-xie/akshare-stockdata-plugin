@@ -1,9 +1,9 @@
 identity:
-  author: shaoxing_xie
+  author: shaoxing-xie
   name: stock_technical_analysis
   label:
-    en_US: Stock Technical Analysis
-    zh_Hans: 股票技术分析
+    en_US: Stock Technical Analysis (Original Interface)
+    zh_Hans: 股票技术分析(原始接口)
 description:
   human:
     en_US: "Stock technical analysis tools including technical indicators, ESG ratings, and market indicators"
@@ -16,22 +16,22 @@ parameters:
     form: llm
     default: stock_rank_cxg_ths
     description: 接口名称
-    llm_description: 通过AKShare数据接口获取股票技术分析相关数据，包括技术选股、ESG评级、个股指标等
+    llm_description: 选择技术分析相关接口。分类包括：创新高/低、连续涨跌、成交量分析、量价分析、突破分析、ESG分析、个股指标、股息率、市场指标。大部分接口需要特定参数如股票代码、指标类型或市场类型。
     human_description:
-      en_US: "Interface parameter description: 1.Innovation High: requires Innovation High Indicator; 2.Innovation Low: requires Innovation Low Indicator; 3.Continuous Rise: no parameters; 4.Continuous Fall: no parameters; 5.Continuous Volume Increase: no parameters; 6.Continuous Volume Decrease: no parameters; 7.Upward Breakthrough: requires MA Type; 8.Downward Breakthrough: requires MA Type; 9.Price-Volume Rise: no parameters; 10.Price-Volume Fall: no parameters; 11.Insurance Capital Disclosure: no parameters; 12.ESG MSCI: no parameters; 13.ESG Refinitiv: no parameters; 14.A-share Individual Indicators: requires Stock Code; 15.A-share Dividend Yield: requires Market Type; 16.HK Dividend Yield: no parameters; 17.Equity-Bond Spread: no parameters; 18.Buffett Index: no parameters."
-      zh_Hans: "接口参数说明：1.创新高:需要创新高技术指标; 2.创新低:需要创新低技术指标; 3.连续上涨:无参数; 4.连续下跌:无参数; 5.持续放量:无参数; 6.持续缩量:无参数; 7.向上突破:需要均线类型; 8.向下突破:需要均线类型; 9.量价齐升:无参数; 10.量价齐跌:无参数; 11.险资举牌:无参数; 12.ESG MSCI:无参数; 13.ESG 路孚特:无参数; 14.A股个股指标:需要股票代码; 15.A股股息率:需要市场类型; 16.恒生指数股息率:无参数; 17.股债利差:无参数; 18.巴菲特指标:无参数。"
+      en_US: "Select the technical analysis interface. Categories: Innovation High/Low, Continuous Rise/Fall, Volume Analysis, Price-Volume Analysis, Breakthrough Analysis, ESG Analysis, Individual Indicators, Dividend Yield, Market Indicators. Most interfaces require specific parameters like stock code, indicator type, or market type."
+      zh_Hans: "选择技术分析相关接口。分类包括：创新高/低、连续涨跌、成交量分析、量价分析、突破分析、ESG分析、个股指标、股息率、市场指标。大部分接口需要特定参数如股票代码、指标类型或市场类型。"
     label:
       en_US: Interface
       zh_Hans: 接口名称
     options:
       # 技术指标类接口
       - label:
-          en_US: Innovation High
-          zh_Hans: 同花顺-技术选股-创新高
+          en_US: Innovation High - Specify High Category
+          zh_Hans: 同花顺-技术选股-创新高-指定新高类别
         value: stock_rank_cxg_ths
       - label:
-          en_US: Innovation Low
-          zh_Hans: 同花顺-技术选股-创新低
+          en_US: Innovation Low - Specify Low Category
+          zh_Hans: 同花顺-技术选股-创新低-指定新低类别
         value: stock_rank_cxd_ths
       - label:
           en_US: Continuous Rise
@@ -50,12 +50,12 @@ parameters:
           zh_Hans: 同花顺-技术选股-持续缩量
         value: stock_rank_cxsl_ths
       - label:
-          en_US: Upward Breakthrough
-          zh_Hans: 同花顺-技术选股-向上突破
+          en_US: Upward Breakthrough - Specify MA Type
+          zh_Hans: 同花顺-技术选股-向上突破-指定均线类型
         value: stock_rank_xstp_ths
       - label:
-          en_US: Downward Breakthrough
-          zh_Hans: 同花顺-技术选股-向下突破
+          en_US: Downward Breakthrough - Specify MA Type
+          zh_Hans: 同花顺-技术选股-向下突破-指定均线类型
         value: stock_rank_xxtp_ths
       - label:
           en_US: Price-Volume Rise
@@ -88,14 +88,14 @@ parameters:
     required: false
     form: llm
     default: 创月新高
-    description: 创新高技术指标类型
+    description: 新高类别
     llm_description: 用于创新高接口的技术指标类型选择
     human_description:
       en_US: "Technical indicator. Required for: Innovation High. Options: Monthly High, 6M High, 1Y High, Historical High."
-      zh_Hans: "创新高技术指标。需要此参数的接口：同花顺-技术选股-创新高。选项：创月新高、半年新高、一年新高、历史新高。"
+      zh_Hans: "新高类别。需要此参数的接口：同花顺-技术选股-创新高。选项：创月新高、半年新高、一年新高、历史新高。"
     label:
       en_US: Innovation High Indicator
-      zh_Hans: 创新高技术指标
+      zh_Hans: 新高类别
     options:
       - label:
           en_US: Monthly High
@@ -118,14 +118,14 @@ parameters:
     required: false
     form: llm
     default: 创月新低
-    description: 创新低技术指标类型
+    description: 新低类别
     llm_description: 用于创新低接口的技术指标类型选择
     human_description:
       en_US: "Technical indicator. Required for: Innovation Low. Options: Monthly Low, 6M Low, 1Y Low, Historical Low."
-      zh_Hans: "创新低技术指标。需要此参数的接口：同花顺-技术选股-创新低。选项：创月新低、半年新低、一年新低、历史新低。"
+      zh_Hans: "新低类别。需要此参数的接口：同花顺-技术选股-创新低。选项：创月新低、半年新低、一年新低、历史新低。"
     label:
       en_US: Innovation Low Indicator
-      zh_Hans: 创新低技术指标
+      zh_Hans: 新低类别
     options:
       - label:
           en_US: Monthly Low

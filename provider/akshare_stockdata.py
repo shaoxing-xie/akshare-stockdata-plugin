@@ -107,11 +107,26 @@ INTERFACE_TIMEOUT_CONFIG = {
         ],
         'timeout': 300.0  # 5分钟
     },
+    # 股东分析接口 - 需要更长时间处理大量数据，需要15分钟
+    'shareholder_analysis': {
+        'interfaces': [
+            'stock_gdfx_holding_analyse_em',  # 东方财富网-股东持股分析(十大股东)
+            'stock_gdfx_free_holding_analyse_em',  # 东方财富网-股东持股分析(十大流通股东)
+            'stock_gdfx_holding_change_em',  # 东方财富网-个股股东持股变动统计(十大股东)
+            'stock_gdfx_free_holding_change_em',  # 东方财富网-个股股东持股变动统计(十大流通股东)
+            'stock_gdfx_holding_detail_em',  # 东方财富网-股东持股明细(十大股东)
+            'stock_gdfx_free_holding_detail_em',  # 东方财富网-股东持股明细(十大流通股东)
+            'stock_gdfx_top_10_em',  # 东方财富网-个股十大股东
+            'stock_gdfx_free_top_10_em'  # 东方财富网-个股十大流通股东
+        ],
+        'timeout': 900.0  # 15分钟
+    },
     # 历史数据接口 - 中等数据量，需要5分钟
     'historical_data': {
         'interfaces': [
             'stock_hist_quotations',  # 所有历史行情相关接口
-            'stock_hsgt_fund_min_em'  # 沪深港通分时数据
+            'stock_hsgt_fund_min_em',  # 沪深港通分时数据
+            'stock_hk_daily'  # 新浪港股历史行情(全量数据)
         ],
         'timeout': 300.0  # 5分钟
     },
@@ -238,15 +253,34 @@ def safe_ak_call(
             
             # 记录子进程的stderr输出用于调试
             if result.stderr:
-                logging.warning(f"Subprocess stderr: {result.stderr}")
+                # 检查是否是AKShare的正常警告信息，而不是真正的错误
+                stderr_lower = result.stderr.lower()
+                if any(normal_warning in stderr_lower for normal_warning in [
+                    "正在下载数据", "请稍等", "downloading data", "please wait",
+                    "debug:", "using timeout", "warn", "warning", "userwarning"
+                ]):
+                    # 这是正常的警告信息，记录为info级别
+                    logging.info(f"Subprocess info: {result.stderr}")
+                else:
+                    # 这可能是真正的错误，记录为warning级别
+                    logging.warning(f"Subprocess stderr: {result.stderr}")
+            
+            # 添加调试信息
+            logging.info(f"Subprocess completed with return code: {result.returncode}")
+            logging.info(f"Subprocess stdout length: {len(result.stdout)}")
+            logging.info(f"Subprocess stderr length: {len(result.stderr)}")
             
             if result.returncode != 0:
                 raise RuntimeError(f"Subprocess failed with return code {result.returncode}: {result.stderr}")
             
             # 解析结果
             try:
+                logging.info(f"Attempting to parse stdout: {result.stdout[:200]}...")  # 只显示前200个字符
                 result_data = json.loads(result.stdout)
+                logging.info(f"Successfully parsed result data: success={result_data.get('success')}, type={result_data.get('type')}")
             except json.JSONDecodeError as e:
+                logging.error(f"JSON parse error: {e}")
+                logging.error(f"Raw stdout: {result.stdout}")
                 raise RuntimeError(f"Failed to parse subprocess output: {e}")
             
             if not result_data.get("success", False):
@@ -255,6 +289,7 @@ def safe_ak_call(
             
             # 重建DataFrame
             if result_data.get("type") == "dataframe":
+                import pandas as pd  # 延迟导入
                 df = pd.DataFrame(result_data["data"])
                 return df
             else:

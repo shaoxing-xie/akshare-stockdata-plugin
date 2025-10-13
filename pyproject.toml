@@ -1,6 +1,6 @@
 [project]
 name = "dify-plugin-akshare-stockdata"
-version = "0.5.0"
+version = "0.6.0"
 description = "AKShare stock data plugin for Dify: comprehensive stock market data wrapper. Built on AKShare library for academic research. No token. Markdown + JSON."
 authors = [
     {name = "shaoxing xie", email = "sxxiefg@163.com"},
@@ -25,10 +25,10 @@ classifiers = [
     "Topic :: Software Development :: Libraries :: Python Modules",
 ]
 dependencies = [
-    "dify_plugin>=0.2.1,<0.3.0",
-    "akshare>=1.16.92",
-    "pandas>=1.5.0",
-    "requests>=2.28.0",
+    "dify-plugin>=0.2.1",  # Dify插件框架
+    "akshare>=1.16.92",  # 股票数据源
+    "mini-racer>=0.12.4",  # JavaScript执行引擎，AKShare核心依赖
+    "pandas",  # 数据清洗，AKShare核心依赖（使用最新版本，会自动安装numpy）
 ]
 
 [project.urls]
@@ -48,3 +48,11 @@ dev = [
 
 [tool.pdm]
 distribution = false
+
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+include = ["provider*"]
+exclude = ["应用示例*", "releases*", "tests*"]

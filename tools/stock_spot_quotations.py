@@ -4,7 +4,6 @@ import pandas as pd
 
 import akshare as ak
 from provider.akshare_stockdata import safe_ak_call, build_error_payload
-from provider.akshare_registry import get_interface_config
 from dify_plugin import Tool
 from dify_plugin.entities.tool import ToolInvokeMessage
 from .common_utils import process_dataframe_output, process_other_output, handle_empty_result, handle_akshare_error
@@ -32,76 +31,65 @@ class StockSpotQuotationsTool(Tool):
         # 定义接口配置 - 按A股、港股、美股顺序排列
         interface_configs = {
             # A股相关接口
+            "stock_bid_ask_em": {
+                "fn": ak.stock_bid_ask_em,
+                "description": "东方财富网-行情报价-指定股票"
+            },
+            "stock_zh_a_spot_em": {
+                "fn": ak.stock_zh_a_spot_em,
+                "description": "东方财富网-沪深京A股-实时行情数据"
+            },
+            "stock_zh_a_spot": {
+                "fn": ak.stock_zh_a_spot,
+                "description": "新浪财经-沪深京A股-实时行情数据"
+            },
             "stock_sh_a_spot_em": {
                 "fn": ak.stock_sh_a_spot_em,
-                "description": "沪A股-实时行情"
+                "description": "东方财富网-沪A股-实时行情数据"
             },
             "stock_sz_a_spot_em": {
                 "fn": ak.stock_sz_a_spot_em,
-                "description": "深A股-实时行情"
+                "description": "东方财富网-深A股-实时行情数据"
             },
             "stock_bj_a_spot_em": {
                 "fn": ak.stock_bj_a_spot_em,
-                "description": "京A股-实时行情"
+                "description": "东方财富网-京A股-实时行情数据"
             },
             "stock_new_a_spot_em": {
                 "fn": ak.stock_new_a_spot_em,
-                "description": "新股-实时行情"
+                "description": "东方财富网-新股-实时行情数据"
             },
             "stock_cy_a_spot_em": {
                 "fn": ak.stock_cy_a_spot_em,
-                "description": "创业板-实时行情"
+                "description": "东方财富网-创业板-实时行情"
             },
             "stock_kc_a_spot_em": {
                 "fn": ak.stock_kc_a_spot_em,
-                "description": "科创板-实时行情"
+                "description": "东方财富网-科创板-实时行情"
             },
             "stock_zh_ah_spot_em": {
                 "fn": ak.stock_zh_ah_spot_em,
-                "description": "沪深港通-AH股比价-实时行情"
+                "description": "东方财富网-沪深港通-AH股比价-实时行情"
             },
             "stock_zh_ab_comparison_em": {
                 "fn": ak.stock_zh_ab_comparison_em,
-                "description": "沪深京A股-全量AB股比价"
+                "description": "东方财富网-沪深京A股-全量AB股比价"
             },
             "stock_zh_a_new": {
                 "fn": ak.stock_zh_a_new,
-                "description": "沪深京A股-新股-实时行情"
+                "description": "新浪财经-沪深股市-次新股-实时行情"
             },
             "stock_zh_a_new_em": {
                 "fn": ak.stock_zh_a_new_em,
-                "description": "沪深个股-新股板块实时行情"
+                "description": "东方财富网-沪深个股-新股板块实时行情"
             },
             "stock_zh_a_stop_em": {
                 "fn": ak.stock_zh_a_stop_em,
-                "description": "沪深个股-两网及退市"
+                "description": "东方财富网-沪深个股-两网及退市"
             },
-            "stock_xgsr_ths": {
-                "fn": ak.stock_xgsr_ths,
-                "description": "沪深京A股-新股申购"
-            },
-            # 港股相关接口
-            "stock_hk_spot_em": {
-                "fn": ak.stock_hk_spot_em,
-                "description": "港股-实时行情"
-            },
-            "stock_hk_main_board_spot_em": {
-                "fn": ak.stock_hk_main_board_spot_em,
-                "description": "港股主板-实时行情"
-            },
-            "stock_hk_famous_spot_em": {
-                "fn": ak.stock_hk_famous_spot_em,
-                "description": "港股市场-知名港股实时行情数据"
-            },
-            # 美股相关接口
-            "stock_us_spot_em": {
-                "fn": ak.stock_us_spot_em,
-                "description": "美股-实时行情"
-            },
-            "stock_us_famous_spot_em": {
-                "fn": ak.stock_us_famous_spot_em,
-                "requires_symbol": True,
-                "description": "美股-知名美股的实时行情数据"
+            "stock_ipo_benefit_ths": {
+                "fn": ak.stock_ipo_benefit_ths,
+                "description": "同花顺-新股数据-IPO受益股"
             },
         }
         
@@ -113,12 +101,8 @@ class StockSpotQuotationsTool(Tool):
             return
         
         try:
-            # 检查是否需要 symbol 参数
+            # 获取参数
             symbol = tool_parameters.get("symbol", "")
-            if config.get("requires_symbol", False) and not symbol:
-                yield self.create_text_message(f"错误：'{config['description']}'接口需要 'symbol' 参数。请选择美股类别。")
-                yield self.create_json_message({"error": "symbol_required", "message": f"{interface} requires 'symbol' parameter"})
-                return
             
             # 网络参数 - 统一处理逻辑
             retries = int(tool_parameters.get("retries", 5))
@@ -128,8 +112,16 @@ class StockSpotQuotationsTool(Tool):
             
             # 构建调用参数
             call_params = {}
-            if config.get("requires_symbol", False) and symbol:
-                call_params["symbol"] = symbol
+            
+            # 对于需要股票代码的接口，添加symbol参数
+            symbol_required_interfaces = ["stock_bid_ask_em"]
+            if interface in symbol_required_interfaces:
+                if not symbol:
+                    yield self.create_text_message(f"错误：'{config['description']}'接口需要 'symbol' 参数。")
+                    yield self.create_json_message({"error": "symbol_required", "message": f"{interface} requires 'symbol' parameter"})
+                    return
+                processed_symbol = self._process_symbol_format(symbol, interface)
+                call_params["symbol"] = processed_symbol
             
             logging.info(f"Call params: {call_params}")
             logging.info(f"Function: {config['fn']}")
@@ -182,4 +174,23 @@ class StockSpotQuotationsTool(Tool):
             yield self.create_text_message(text)
             yield self.create_json_message(payload)
             return
+    
+    def _process_symbol_format(self, symbol: str, interface: str) -> str:
+        """处理股票代码格式，根据接口要求进行转换"""
+        if not symbol:
+            return symbol
+        
+        # 需要带市场前缀的接口
+        prefix_required_interfaces = []
+        
+        # 如果接口需要前缀且当前代码没有前缀
+        if interface in prefix_required_interfaces and not any(symbol.upper().startswith(prefix) for prefix in ['SH', 'SZ', 'HK']):
+            # 根据代码判断市场
+            if symbol.isdigit() and len(symbol) == 6:
+                if symbol.startswith(('60', '68')):
+                    return f"SH{symbol}"
+                elif symbol.startswith(('00', '30')):
+                    return f"SZ{symbol}"
+        
+        return symbol
     

@@ -24,10 +24,11 @@ class StockFinancialAnalysisTool(Tool):
             indicator_us = tool_parameters.get("indicator_us", "")  # 美股指标类型
             start_year = tool_parameters.get("start_year", "")  # 起始年份
             report_type = tool_parameters.get("report_type", "")  # 报表类型
+            report_type_sina = tool_parameters.get("report_type_sina", "")  # 新浪报表类型
             retries = int(tool_parameters.get("retries", 5))
             timeout = float(tool_parameters.get("timeout", 600))
             
-            logging.info(f"Interface: {interface}, Symbol: {symbol}, Date: {date}, IndicatorTHS: {indicator_ths}, IndicatorHK: {indicator_hk}, IndicatorUS: {indicator_us}, StartYear: {start_year}, ReportType: {report_type}, Retries: {retries}, Timeout: {timeout}")
+            logging.info(f"Interface: {interface}, Symbol: {symbol}, Date: {date}, IndicatorTHS: {indicator_ths}, IndicatorHK: {indicator_hk}, IndicatorUS: {indicator_us}, StartYear: {start_year}, ReportType: {report_type}, ReportTypeSina: {report_type_sina}, Retries: {retries}, Timeout: {timeout}")
             
             if not interface:
                 yield self.create_text_message("请选择要调用的接口")
@@ -42,7 +43,37 @@ class StockFinancialAnalysisTool(Tool):
         
         # 定义接口配置 - 按功能分类
         interface_configs = {
-            # 日期类接口（需要date参数）
+            # 日期类接口（需要date参数）- 业绩快报
+            "stock_yjbb_em": {
+                "fn": ak.stock_yjbb_em,
+                "requires_date": True,
+                "requires_symbol": False,
+                "requires_indicator": False,
+                "requires_start_year": False,
+                "timeout": 600,
+                "description": "东方财富网-业绩报表",
+                "param_mapping": {}
+            },
+            "stock_yjkb_em": {
+                "fn": ak.stock_yjkb_em,
+                "requires_date": True,
+                "requires_symbol": False,
+                "requires_indicator": False,
+                "requires_start_year": False,
+                "timeout": 600,
+                "description": "东方财富网-业绩快报",
+                "param_mapping": {}
+            },
+            "stock_yjyg_em": {
+                "fn": ak.stock_yjyg_em,
+                "requires_date": True,
+                "requires_symbol": False,
+                "requires_indicator": False,
+                "requires_start_year": False,
+                "timeout": 600,
+                "description": "东方财富网-业绩预告",
+                "param_mapping": {}
+            },
             "stock_lrb_em": {
                 "fn": ak.stock_lrb_em,
                 "requires_date": True,
@@ -50,7 +81,8 @@ class StockFinancialAnalysisTool(Tool):
                 "requires_indicator": False,
                 "requires_start_year": False,
                 "timeout": 600,
-                "description": "A股-业绩快报-利润表"
+                "description": "东方财富网-业绩快报-利润表",
+                "param_mapping": {}
             },
             "stock_xjll_em": {
                 "fn": ak.stock_xjll_em,
@@ -59,7 +91,8 @@ class StockFinancialAnalysisTool(Tool):
                 "requires_indicator": False,
                 "requires_start_year": False,
                 "timeout": 600,
-                "description": "A股-业绩快报-现金流量表"
+                "description": "东方财富网-业绩快报-现金流量表",
+                "param_mapping": {}
             },
             "stock_zcfz_em": {
                 "fn": ak.stock_zcfz_em,
@@ -67,8 +100,9 @@ class StockFinancialAnalysisTool(Tool):
                 "requires_symbol": False,
                 "requires_indicator": False,
                 "requires_start_year": False,
-                "timeout": 600,  # 设置为200秒，平衡超时和性能
-                "description": "沪深-业绩快报-资产负债表"
+                "timeout": 600,
+                "description": "东方财富网-业绩快报-资产负债表",
+                "param_mapping": {}
             },
             "stock_zcfz_bj_em": {
                 "fn": ak.stock_zcfz_bj_em,
@@ -77,59 +111,165 @@ class StockFinancialAnalysisTool(Tool):
                 "requires_indicator": False,
                 "requires_start_year": False,
                 "timeout": 600,
-                "description": "北交所-业绩快报-资产负债表"
+                "description": "东方财富网-北交所-业绩快报-资产负债表",
+                "param_mapping": {}
             },
-            
-            # 股票代码+指标类接口（需要symbol+indicator_ths参数）
+            # 新浪财务报表接口（需要symbol和report_type_sina参数）
+            "stock_financial_report_sina": {
+                "fn": ak.stock_financial_report_sina,
+                "requires_date": False,
+                "requires_symbol": True,
+                "requires_indicator": False,
+                "requires_start_year": False,
+                "requires_report_type_sina": True,
+                "timeout": 600,
+                "description": "新浪财经-财务报表-三大报表"
+            },
+            # 财务报表接口（需要symbol参数）
+            "stock_balance_sheet_by_report_em": {
+                "fn": ak.stock_balance_sheet_by_report_em,
+                "requires_date": False,
+                "requires_symbol": True,
+                "requires_indicator": False,
+                "requires_start_year": False,
+                "timeout": 600,
+                "description": "东方财富网-资产负债表(按报告期)-指定股票",
+                "param_mapping": {"symbol": "symbol"}
+            },
+            "stock_balance_sheet_by_yearly_em": {
+                "fn": ak.stock_balance_sheet_by_yearly_em,
+                "requires_date": False,
+                "requires_symbol": True,
+                "requires_indicator": False,
+                "requires_start_year": False,
+                "timeout": 600,
+                "description": "东方财富网-资产负债表(按年度)-指定股票",
+                "param_mapping": {"symbol": "symbol"}
+            },
+            "stock_profit_sheet_by_report_em": {
+                "fn": ak.stock_profit_sheet_by_report_em,
+                "requires_date": False,
+                "requires_symbol": True,
+                "requires_indicator": False,
+                "requires_start_year": False,
+                "timeout": 600,
+                "description": "东方财富网-利润表(按报告期)-指定股票",
+                "param_mapping": {"symbol": "symbol"}
+            },
+            "stock_profit_sheet_by_yearly_em": {
+                "fn": ak.stock_profit_sheet_by_yearly_em,
+                "requires_date": False,
+                "requires_symbol": True,
+                "requires_indicator": False,
+                "requires_start_year": False,
+                "timeout": 600,
+                "description": "东方财富网-利润表(按年度)-指定股票",
+                "param_mapping": {"symbol": "symbol"}
+            },
+            "stock_profit_sheet_by_quarterly_em": {
+                "fn": ak.stock_profit_sheet_by_quarterly_em,
+                "requires_date": False,
+                "requires_symbol": True,
+                "requires_indicator": False,
+                "requires_start_year": False,
+                "timeout": 600,
+                "description": "东方财富网-利润表(按单季度)-指定股票",
+                "param_mapping": {"symbol": "symbol"}
+            },
+            "stock_cash_flow_sheet_by_report_em": {
+                "fn": ak.stock_cash_flow_sheet_by_report_em,
+                "requires_date": False,
+                "requires_symbol": True,
+                "requires_indicator": False,
+                "requires_start_year": False,
+                "timeout": 600,
+                "description": "东方财富网-现金流量表(按报告期)-指定股票",
+                "param_mapping": {"symbol": "symbol"}
+            },
+            "stock_cash_flow_sheet_by_yearly_em": {
+                "fn": ak.stock_cash_flow_sheet_by_yearly_em,
+                "requires_date": False,
+                "requires_symbol": True,
+                "requires_indicator": False,
+                "requires_start_year": False,
+                "timeout": 600,
+                "description": "东方财富网-现金流量表(按年度)-指定股票",
+                "param_mapping": {"symbol": "symbol"}
+            },
+            "stock_cash_flow_sheet_by_quarterly_em": {
+                "fn": ak.stock_cash_flow_sheet_by_quarterly_em,
+                "requires_date": False,
+                "requires_symbol": True,
+                "requires_indicator": False,
+                "requires_start_year": False,
+                "timeout": 600,
+                "description": "东方财富网-现金流量表(按单季度)-指定股票",
+                "param_mapping": {"symbol": "symbol"}
+            },
             "stock_financial_debt_ths": {
                 "fn": ak.stock_financial_debt_ths,
                 "requires_date": False,
                 "requires_symbol": True,
-                "requires_indicator_ths": True,
+                "requires_indicator": False,
                 "requires_start_year": False,
-                "timeout": 600,  # 增加超时时间，财务数据量大
-                "description": "A股-财务指标-资产负债表"
+                "requires_report_type": True,
+                "timeout": 600,
+                "description": "同花顺-资产负债表-指定股票、报告类型",
+                "param_mapping": {"symbol": "symbol", "indicator": "report_type"}
             },
             "stock_financial_benefit_ths": {
                 "fn": ak.stock_financial_benefit_ths,
                 "requires_date": False,
                 "requires_symbol": True,
-                "requires_indicator_ths": True,
+                "requires_indicator": False,
                 "requires_start_year": False,
-                "timeout": 600,  # 增加超时时间，财务数据量大
-                "description": "A股-财务指标-利润表"
+                "requires_report_type": True,
+                "timeout": 600,
+                "description": "同花顺-个股利润表-指定股票、报告类型",
+                "param_mapping": {"symbol": "symbol", "indicator": "report_type"}
             },
             "stock_financial_cash_ths": {
                 "fn": ak.stock_financial_cash_ths,
                 "requires_date": False,
                 "requires_symbol": True,
-                "requires_indicator_ths": True,
+                "requires_indicator": False,
                 "requires_start_year": False,
-                "timeout": 600,  # 增加超时时间，财务数据量大
-                "description": "A股-财务指标-现金流量表"
+                "requires_report_type": True,
+                "timeout": 600,
+                "description": "同花顺-现金流量表-指定股票、报告类型",
+                "param_mapping": {"symbol": "symbol", "indicator": "report_type"}
             },
-            "stock_financial_abstract_ths": {
-                "fn": ak.stock_financial_abstract_ths,
-                "requires_date": False,
-                "requires_symbol": True,
-                "requires_indicator_ths": True,
-                "requires_start_year": False,
-                "timeout": 600,  # 增加超时时间，财务数据量大
-                "description": "A股-财务指标-主要指标"
-            },
-            
-            # 股票代码类接口（只需要symbol参数）
             "stock_financial_abstract": {
                 "fn": ak.stock_financial_abstract,
                 "requires_date": False,
                 "requires_symbol": True,
                 "requires_indicator": False,
                 "requires_start_year": False,
-                "timeout": 600,  # 增加超时时间，财务数据量大
-                "description": "A股-财务报表-关键指标"
+                "timeout": 600,
+                "description": "新浪财经-财务报表(关键指标)-指定股票",
+                "param_mapping": {"symbol": "symbol"}
             },
-            
-            # 股票代码+年份类接口（需要symbol+start_year参数）
+            "stock_financial_abstract_ths": {
+                "fn": ak.stock_financial_abstract_ths,
+                "requires_date": False,
+                "requires_symbol": True,
+                "requires_indicator": False,
+                "requires_start_year": False,
+                "requires_indicator_ths": True,
+                "timeout": 600,
+                "description": "同花顺-财务指标-主要指标-指定股票、指标类型",
+                "param_mapping": {"symbol": "symbol", "indicator": "indicator_ths"}
+            },
+            "stock_financial_analysis_indicator_em": {
+                "fn": ak.stock_financial_analysis_indicator_em,
+                "requires_date": False,
+                "requires_symbol": True,
+                "requires_indicator": True,
+                "requires_start_year": False,
+                "timeout": 600,
+                "description": "东方财富网-A股财务分析(主要指标)-指定股票、报告类型",
+                "param_mapping": {"symbol": "symbol", "indicator": "indicator_ths"}
+            },
             "stock_financial_analysis_indicator": {
                 "fn": ak.stock_financial_analysis_indicator,
                 "requires_date": False,
@@ -137,56 +277,10 @@ class StockFinancialAnalysisTool(Tool):
                 "requires_indicator": False,
                 "requires_start_year": True,
                 "timeout": 600,
-                "description": "A股-财务分析-财务指标"
+                "description": "新浪财经-财务分析(财务指标)-指定股票、开始年份",
+                "param_mapping": {"symbol": "symbol", "start_year": "start_year"}
             },
             
-            # 港股财务分析接口（需要symbol+indicator_hk参数）
-            "stock_financial_hk_analysis_indicator_em": {
-                "fn": ak.stock_financial_hk_analysis_indicator_em,
-                "requires_date": False,
-                "requires_symbol": True,
-                "requires_indicator_hk": True,
-                "requires_start_year": False,
-                "timeout": 600,
-                "description": "港股-财务分析-主要指标"
-            },
-            
-            # 美股财务分析接口（需要symbol+indicator_us参数）
-            "stock_financial_us_analysis_indicator_em": {
-                "fn": ak.stock_financial_us_analysis_indicator_em,
-                "requires_date": False,
-                "requires_symbol": True,
-                "requires_indicator_us": True,
-                "requires_start_year": False,
-                "timeout": 600,
-                "description": "美股-财务分析-主要指标"
-            },
-            
-            # 港股财务报表接口（需要stock+symbol+indicator_hk参数）
-            "stock_financial_hk_report_em": {
-                "fn": ak.stock_financial_hk_report_em,
-                "requires_date": False,
-                "requires_symbol": True,
-                "requires_indicator_hk": True,
-                "requires_start_year": False,
-                "requires_report_type": True,  # 需要报表类型参数
-                "timeout": 600,
-                "description": "港股-财务报表-三大报表",
-                "param_mapping": {"stock": "symbol", "symbol": "report_type", "indicator": "indicator_hk"}
-            },
-            
-            # 美股财务报表接口（需要stock+symbol+indicator_us参数）
-            "stock_financial_us_report_em": {
-                "fn": ak.stock_financial_us_report_em,
-                "requires_date": False,
-                "requires_symbol": True,
-                "requires_indicator_us": True,
-                "requires_start_year": False,
-                "requires_report_type": True,  # 需要报表类型参数
-                "timeout": 600,
-                "description": "美股-财务分析-三大报表",
-                "param_mapping": {"stock": "symbol", "symbol": "report_type", "indicator": "indicator"}
-            }
         }
         
         # 获取接口配置  
@@ -214,6 +308,18 @@ class StockFinancialAnalysisTool(Tool):
                 yield self.create_json_message({"error": f"indicator_ths required for {interface}"})
                 return
                 
+            # 验证指标类型是否在允许的范围内
+            if config.get("requires_indicator_ths", False) and indicator_ths:
+                valid_indicators = config.get("valid_indicators", ["按报告期", "按年度", "按单季度"])
+                if indicator_ths not in valid_indicators:
+                    yield self.create_text_message(f"接口 {config['description']} 不支持指标类型 '{indicator_ths}'。\n\n支持的指标类型：{', '.join(valid_indicators)}")
+                    yield self.create_json_message({
+                        "error": f"invalid indicator type: {indicator_ths}",
+                        "valid_indicators": valid_indicators,
+                        "received_indicator": indicator_ths
+                    })
+                return
+                
             if config.get("requires_indicator_hk", False) and not indicator_hk:
                 yield self.create_text_message(f"接口 {config['description']} 需要港股指标类型参数")
                 yield self.create_json_message({"error": f"indicator_hk required for {interface}"})
@@ -232,6 +338,11 @@ class StockFinancialAnalysisTool(Tool):
             if config.get("requires_report_type", False) and not report_type:
                 yield self.create_text_message(f"接口 {config['description']} 需要报表类型参数")
                 yield self.create_json_message({"error": f"report_type required for {interface}"})
+                return
+                
+            if config.get("requires_report_type_sina", False) and not report_type_sina:
+                yield self.create_text_message(f"接口 {config['description']} 需要新浪报表类型参数")
+                yield self.create_json_message({"error": f"report_type_sina required for {interface}"})
                 return
             
             # 验证股票代码格式
@@ -288,6 +399,19 @@ class StockFinancialAnalysisTool(Tool):
                 
             if config.get("requires_report_type", False):
                 call_params["report_type"] = report_type
+                
+            if config.get("requires_report_type_sina", False):
+                # 新浪财经接口需要特殊处理：stock参数需要带市场标识，symbol参数是报表类型
+                if symbol:
+                    # 添加市场标识
+                    clean_symbol = symbol.replace('SH', '').replace('SZ', '').replace('sh', '').replace('sz', '')
+                    if clean_symbol.startswith('6'):
+                        call_params["stock"] = f"sh{clean_symbol}"
+                    elif clean_symbol.startswith(('0', '3')):
+                        call_params["stock"] = f"sz{clean_symbol}"
+                    else:
+                        call_params["stock"] = symbol
+                call_params["symbol"] = report_type_sina
             
             # 使用参数映射系统（如果存在）
             param_mapping = config.get("param_mapping", {})
@@ -296,9 +420,26 @@ class StockFinancialAnalysisTool(Tool):
                 call_params = {}
                 for ak_param, tool_param in param_mapping.items():
                     if tool_param == "symbol" and symbol:
-                        call_params[ak_param] = symbol
+                        # 使用注册文件中的预处理逻辑
+                        registry_config = get_interface_config(interface)
+                        symbol_preprocess = registry_config.get("params", {}).get("required", {}).get("symbol", {}).get("preprocess")
+                        if symbol_preprocess:
+                            # 应用预处理
+                            if symbol_preprocess == "normalize_symbol_with_uppercase_prefix":
+                                call_params[ak_param] = self._normalize_symbol_with_uppercase_prefix(symbol)
+                            elif symbol_preprocess == "normalize_symbol":
+                                call_params[ak_param] = self._normalize_symbol(symbol)
+                            elif symbol_preprocess == "normalize_symbol_with_dot":
+                                call_params[ak_param] = self._normalize_symbol_with_dot(symbol)
+                            else:
+                                call_params[ak_param] = symbol
+                        else:
+                            call_params[ak_param] = symbol
                     elif tool_param == "report_type" and report_type:
                         call_params[ak_param] = report_type
+                    elif tool_param == "indicator_ths" and indicator_ths:
+                        # indicator_ths 映射
+                        call_params[ak_param] = indicator_ths
                     elif tool_param == "indicator":
                         # 根据接口类型选择正确的indicator参数
                         if config.get("requires_indicator_ths", False) and indicator_ths:
@@ -307,12 +448,13 @@ class StockFinancialAnalysisTool(Tool):
                             call_params[ak_param] = indicator_hk
                         elif config.get("requires_indicator_us", False) and indicator_us:
                             call_params[ak_param] = indicator_us
+                    elif tool_param == "start_year" and start_year:
+                        call_params[ak_param] = start_year
             
             # 使用接口特定的超时时间
             interface_timeout = config.get("timeout", timeout)
             
             logging.info(f"Final call params: {call_params}")
-            logging.info(f"Using timeout: {interface_timeout}")
             
         except Exception as e:
             logging.error(f"Error in parameter construction: {e}")
@@ -361,7 +503,7 @@ class StockFinancialAnalysisTool(Tool):
                 })
             else:
                 # 其他错误
-                yield from handle_akshare_error(e, self, f"接口: {interface}, 股票代码: {symbol}, 日期: {date}, 指标: {indicator}, 起始年份: {start_year}", str(interface_timeout))
+                yield from handle_akshare_error(e, self, f"接口: {interface}, 股票代码: {symbol}, 日期: {date}, 指标THS: {indicator_ths}, 指标HK: {indicator_hk}, 指标US: {indicator_us}, 起始年份: {start_year}", str(interface_timeout))
     
     def _validate_date_format(self, date_str: str) -> bool:
         """验证日期格式是否为YYYYMMDD"""
@@ -383,6 +525,44 @@ class StockFinancialAnalysisTool(Tool):
             return True
         except (ValueError, IndexError):
             return False
+    
+    def _normalize_symbol_with_uppercase_prefix(self, symbol: str) -> str:
+        """标准化股票代码，添加大写市场前缀"""
+        if not symbol:
+            return symbol
+            
+        # 移除现有前缀
+        clean_symbol = symbol.replace('SH', '').replace('SZ', '').replace('sh', '').replace('sz', '')
+        
+        # 根据代码判断市场
+        if clean_symbol.startswith('6'):
+            return f"SH{clean_symbol}"
+        elif clean_symbol.startswith(('0', '3')):
+            return f"SZ{clean_symbol}"
+        else:
+            return symbol
+    
+    def _normalize_symbol(self, symbol: str) -> str:
+        """标准化股票代码，移除前缀"""
+        if not symbol:
+            return symbol
+        return symbol.replace('SH', '').replace('SZ', '').replace('sh', '').replace('sz', '')
+    
+    def _normalize_symbol_with_dot(self, symbol: str) -> str:
+        """标准化股票代码，添加点号后缀"""
+        if not symbol:
+            return symbol
+            
+        # 移除现有前缀
+        clean_symbol = symbol.replace('SH', '').replace('SZ', '').replace('sh', '').replace('sz', '')
+        
+        # 根据代码判断市场并添加后缀
+        if clean_symbol.startswith('6'):
+            return f"{clean_symbol}.SH"
+        elif clean_symbol.startswith(('0', '3')):
+            return f"{clean_symbol}.SZ"
+        else:
+            return symbol
     
     def _validate_year_format(self, year_str: str) -> bool:
         """验证年份格式是否为YYYY"""

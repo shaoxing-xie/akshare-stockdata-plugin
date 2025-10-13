@@ -16,6 +16,7 @@ identity:
     - finance
 credentials_for_provider: {}
 tools:
+  # 保持0.5.0版本的工具顺序，确保向后兼容
   - tools/stock_market_summary.yaml
   - tools/stock_individual_info_summary.yaml
   - tools/stock_spot_quotations.yaml
@@ -24,6 +25,10 @@ tools:
   - tools/stock_fund_flow_analysis.yaml
   - tools/stock_financial_analysis.yaml
   - tools/stock_technical_analysis.yaml
+  - tools/stock_comprehensive_technical_indicators.yaml
+  # 0.5.1新增的工具
+  - tools/stock_hk_data.yaml
+  - tools/stock_us_data.yaml
 extra:
   python:
     source: provider/akshare_stockdata.py

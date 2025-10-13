@@ -19,23 +19,23 @@ from .common_utils import (
 )
 
 
-class StockHSGTHoldingsTool(Tool):
+class StockHsgtHoldingsTool(Tool):
     def _invoke(self, tool_parameters: dict[str, Any]) -> Generator[ToolInvokeMessage]:
         import logging
         try:
             logging.info(f"StockHSGTHoldingsTool received parameters: {tool_parameters}")
             
             interface = tool_parameters.get("interface", "")
-            symbol = tool_parameters.get("symbol", "")  # 类别一（分时/历史数据类）
-            symbol2 = tool_parameters.get("symbol2", "")  # 类别二（板块排行类）
+            symbol = tool_parameters.get("symbol", "")  # 资金类别
+            symbol2 = tool_parameters.get("symbol2", "")  # 排行类别
+            symbol3 = tool_parameters.get("symbol3", "")  # 历史数据类别
             symbol4 = tool_parameters.get("symbol4", "")  # 股票代码
-            market = tool_parameters.get("market", "")  # 市场一（个股排行类）
-            indicator = tool_parameters.get("indicator", "")  # 指标一（板块排行类）
-            indicator2 = tool_parameters.get("indicator2", "")  # 指标二（个股排行类）
+            market = tool_parameters.get("market", "")  # 沪深港通类别
+            indicator = tool_parameters.get("indicator", "")  # 统计周期
             start_date = tool_parameters.get("start_date", "")
             end_date = tool_parameters.get("end_date", "")
             
-            logging.info(f"Interface: {interface}, Symbol: {symbol}, Symbol2: {symbol2}, Symbol4: {symbol4}, Market: {market}, Indicator: {indicator}, Indicator2: {indicator2}, Start: {start_date}, End: {end_date}")
+            logging.info(f"Interface: {interface}, Symbol: {symbol}, Symbol2: {symbol2}, Symbol3: {symbol3}, Symbol4: {symbol4}, Market: {market}, Indicator: {indicator}, Start: {start_date}, End: {end_date}")
             
             if not interface:
                 yield self.create_text_message("请选择要调用的接口")
@@ -50,6 +50,42 @@ class StockHSGTHoldingsTool(Tool):
         
         # 定义接口配置
         interface_configs = {
+            # 结算汇率-深港通
+            "stock_sgt_settlement_exchange_rate_szse": {
+                "fn": ak.stock_sgt_settlement_exchange_rate_szse,
+                "requires_symbol": False,
+                "requires_market": False,
+                "requires_indicator": False,
+                "requires_date_range": False,
+                "description": "深港通-港股通业务信息-结算汇率"
+            },
+            # 结算汇率-沪港通
+            "stock_sgt_settlement_exchange_rate_sse": {
+                "fn": ak.stock_sgt_settlement_exchange_rate_sse,
+                "requires_symbol": False,
+                "requires_market": False,
+                "requires_indicator": False,
+                "requires_date_range": False,
+                "description": "沪港通-港股通信息披露-结算汇兑"
+            },
+            # 参考汇率-深港通
+            "stock_sgt_reference_exchange_rate_szse": {
+                "fn": ak.stock_sgt_reference_exchange_rate_szse,
+                "requires_symbol": False,
+                "requires_market": False,
+                "requires_indicator": False,
+                "requires_date_range": False,
+                "description": "深港通-港股通业务信息-参考汇率"
+            },
+            # 参考汇率-沪港通
+            "stock_sgt_reference_exchange_rate_sse": {
+                "fn": ak.stock_sgt_reference_exchange_rate_sse,
+                "requires_symbol": False,
+                "requires_market": False,
+                "requires_indicator": False,
+                "requires_date_range": False,
+                "description": "沪港通-港股通信息披露-参考汇率"
+            },
             # 港股通成份股
             "stock_hk_ggt_components_em": {
                 "fn": ak.stock_hk_ggt_components_em,
@@ -57,7 +93,7 @@ class StockHSGTHoldingsTool(Tool):
                 "requires_market": False,
                 "requires_indicator": False,
                 "requires_date_range": False,
-                "description": "港股通成份股-实时行情"
+                "description": "东方财富网-港股通成份股实时行情"
             },
             # 沪深港通分时数据 - 使用类别一（资金流向类）
             "stock_hsgt_fund_min_em": {
@@ -67,7 +103,7 @@ class StockHSGTHoldingsTool(Tool):
                 "requires_market": False,
                 "requires_indicator": False,
                 "requires_date_range": False,
-                "description": "沪深港通分时数据"
+                "description": "东方财富网-沪深港通-市场概括-分时数据-指定资金类别"
             },
             # 板块排行 - 使用类别二（板块排行类）
             "stock_hsgt_board_rank_em": {
@@ -78,7 +114,7 @@ class StockHSGTHoldingsTool(Tool):
                 "requires_indicator": True,
                 "indicator_type": "board_ranking",  # 板块排行类
                 "requires_date_range": False,
-                "description": "板块排行"
+                "description": "东方财富网-沪深港通持股-板块排行-指定排行类别和统计周期"
             },
             # （已移除）沪深港通持股-个股排行
             # 个股排行
@@ -90,7 +126,16 @@ class StockHSGTHoldingsTool(Tool):
                 "requires_indicator": True,
                 "indicator_type": "stock_ranking",  # 个股排行类
                 "requires_date_range": False,
-                "description": "个股排行"
+                "description": "东方财富网-沪深港通持股-个股排行-指定沪深港通类别和统计周期"
+            },
+            # 沪深港通资金流向
+            "stock_hsgt_fund_flow_summary_em": {
+                "fn": ak.stock_hsgt_fund_flow_summary_em,
+                "requires_symbol": False,
+                "requires_market": False,
+                "requires_indicator": False,
+                "requires_date_range": False,
+                "description": "东方财富网-沪深港通资金流向"
             },
             # 港股通实时行情
             "stock_hsgt_sh_hk_spot_em": {
@@ -99,17 +144,17 @@ class StockHSGTHoldingsTool(Tool):
                 "requires_market": False,
                 "requires_indicator": False,
                 "requires_date_range": False,
-                "description": "沪深港通-港股通(沪>港)实时行情"
+                "description": "东方财富网-港股通(沪>港)-股票实时行情"
             },
-            # 沪深港通历史数据 - 使用类别一（资金流向类）
+            # 沪深港通历史数据 - 使用历史数据类别
             "stock_hsgt_hist_em": {
                 "fn": ak.stock_hsgt_hist_em,
                 "requires_symbol": True,
-                "symbol_type": "fund_flow",  # 资金流向类
+                "symbol_type": "historical_data",  # 历史数据类
                 "requires_market": False,
                 "requires_indicator": False,
                 "requires_date_range": False,
-                "description": "沪深港通历史数据"
+                "description": "东方财富网-沪深港通资金流向-历史数据-指定历史数据类别"
             },
             # 沪深港通持股-个股 - 使用类别三（个股类）
             "stock_hsgt_individual_em": {
@@ -119,7 +164,7 @@ class StockHSGTHoldingsTool(Tool):
                 "requires_market": False,
                 "requires_indicator": False,
                 "requires_date_range": False,
-                "description": "沪深港通持股-个股"
+                "description": "东方财富网-沪深港通持股-具体股票-指定A股和港股"
             },
             # 沪深港通持股-个股详情 - 使用类别三（个股类）
             # 注意：该接口当前数据源不可用，暂时禁用
@@ -146,11 +191,15 @@ class StockHSGTHoldingsTool(Tool):
             # 根据接口类型确定使用哪个类别参数
             symbol_type = config.get("symbol_type", "")
             if symbol_type == "fund_flow" and not symbol:
-                yield self.create_text_message("请提供类别一（资金流向类）参数")
+                yield self.create_text_message("请提供资金类别参数")
                 yield self.create_json_message({"error": "symbol required", "received_params": tool_parameters})
                 return
+            elif symbol_type == "historical_data" and not symbol3:
+                yield self.create_text_message("请提供历史数据类别参数")
+                yield self.create_json_message({"error": "symbol3 required", "received_params": tool_parameters})
+                return
             elif symbol_type == "board_ranking" and not symbol2:
-                yield self.create_text_message("请提供类别二（板块排行类）参数")
+                yield self.create_text_message("请提供排行类别参数")
                 yield self.create_json_message({"error": "symbol2 required", "received_params": tool_parameters})
                 return
             elif symbol_type == "individual_stock" and not symbol4:
@@ -166,7 +215,7 @@ class StockHSGTHoldingsTool(Tool):
             # 根据接口类型确定使用哪个市场参数
             market_type = config.get("market_type", "")
             if market_type == "stock_ranking" and not market:
-                yield self.create_text_message("请提供市场一（个股排行类）参数")
+                yield self.create_text_message("请提供沪深港通类别参数")
                 yield self.create_json_message({"error": "market required", "received_params": tool_parameters})
                 return
             elif not market_type and not market:
@@ -175,18 +224,9 @@ class StockHSGTHoldingsTool(Tool):
                 return
             
         if config.get("requires_indicator", False):
-            # 根据接口类型确定使用哪个指标参数
-            indicator_type = config.get("indicator_type", "")
-            if indicator_type == "board_ranking" and not indicator:
-                yield self.create_text_message("请提供指标一（板块排行类）参数")
-                yield self.create_json_message({"error": "indicator required", "received_params": tool_parameters})
-                return
-            elif indicator_type == "stock_ranking" and not indicator2:
-                yield self.create_text_message("请提供指标二（个股排行类）参数")
-                yield self.create_json_message({"error": "indicator2 required", "received_params": tool_parameters})
-                return
-            elif not indicator_type and not indicator:
-                yield self.create_text_message("请选择指标")
+            # 检查统计周期参数
+            if not indicator:
+                yield self.create_text_message("请提供统计周期参数")
                 yield self.create_json_message({"error": "indicator required", "received_params": tool_parameters})
                 return
         
@@ -260,16 +300,25 @@ class StockHSGTHoldingsTool(Tool):
                 if symbol_type == "fund_flow":
                     if not symbol:
                         yield from handle_akshare_error(
-                            ValueError("缺少必需参数：类别一（分时/历史数据类）"), 
+                            ValueError("缺少必需参数：资金类别"), 
                             self, 
                             f"接口: {interface}"
                         )
                         return
                     call_params["symbol"] = symbol
+                elif symbol_type == "historical_data":
+                    if not symbol3:
+                        yield from handle_akshare_error(
+                            ValueError("缺少必需参数：历史数据类别"), 
+                            self, 
+                            f"接口: {interface}"
+                        )
+                        return
+                    call_params["symbol"] = symbol3
                 elif symbol_type == "board_ranking":
                     if not symbol2:
                         yield from handle_akshare_error(
-                            ValueError("缺少必需参数：类别二（板块排行类）"), 
+                            ValueError("缺少必需参数：排行类别"), 
                             self, 
                             f"接口: {interface}"
                         )
@@ -310,7 +359,7 @@ class StockHSGTHoldingsTool(Tool):
                 if market_type == "stock_ranking":
                     if not market:
                         yield from handle_akshare_error(
-                            ValueError("缺少必需参数：市场一（个股排行类）"), 
+                            ValueError("缺少必需参数：沪深港通类别"), 
                             self, 
                             f"接口: {interface}"
                         )
@@ -320,27 +369,13 @@ class StockHSGTHoldingsTool(Tool):
                     call_params["market"] = market
             
             if config.get("requires_indicator", False):
-                # 根据接口类型确定使用哪个指标参数
+                # 根据接口类型确定指标参数格式
                 indicator_type = config.get("indicator_type", "")
                 if indicator_type == "board_ranking":
-                    if not indicator:
-                        yield from handle_akshare_error(
-                            ValueError("缺少必需参数：指标一（板块排行类）"), 
-                            self, 
-                            f"接口: {interface}"
-                        )
-                        return
+                    # 板块排行接口直接使用indicator
                     call_params["indicator"] = indicator
                 elif indicator_type == "stock_ranking":
-                    if not indicator2:
-                        yield from handle_akshare_error(
-                            ValueError("缺少必需参数：指标二（个股排行类）"), 
-                            self, 
-                            f"接口: {interface}"
-                        )
-                        return
-                    
-                    # 个股排行类指标映射
+                    # 个股排行接口需要转换格式
                     indicator_mapping = {
                         "今日": "今日排行",
                         "3日": "3日排行", 
@@ -351,10 +386,11 @@ class StockHSGTHoldingsTool(Tool):
                         "1年": "年排行"
                     }
                     
-                    # 如果输入的是简化值，则映射到完整值
-                    mapped_indicator = indicator_mapping.get(indicator2, indicator2)
+                    # 转换指标格式
+                    mapped_indicator = indicator_mapping.get(indicator, indicator)
                     call_params["indicator"] = mapped_indicator
-                elif not indicator_type and indicator:
+                else:
+                    # 其他接口直接使用indicator
                     call_params["indicator"] = indicator
             
             if config.get("requires_date_range", False):
@@ -425,7 +461,7 @@ class StockHSGTHoldingsTool(Tool):
                     })
                     return
                 # 其他错误
-                yield from handle_akshare_error(e, self, f"接口: {interface}, 类别: {symbol}, 市场: {market}, 指标: {indicator}, 日期范围: {start_date}-{end_date}", str(timeout))
+                yield from handle_akshare_error(e, self, f"接口: {interface}, 类别: {symbol}, 市场: {market}, 统计周期: {indicator}, 日期范围: {start_date}-{end_date}", str(timeout))
                 return
             
             # 处理结果

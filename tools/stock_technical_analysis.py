@@ -17,15 +17,15 @@ class StockTechnicalAnalysisTool(Tool):
             logging.info(f"StockTechnicalAnalysisTool received parameters: {tool_parameters}")
             
             interface = tool_parameters.get("interface", "")
-            technical_indicator1 = tool_parameters.get("technical_indicator1", "")  # 创新高技术指标类型
-            technical_indicator2 = tool_parameters.get("technical_indicator2", "")  # 创新低技术指标类型
+            technical_indicator1 = tool_parameters.get("technical_indicator1", "")  # 新高类别
+            technical_indicator2 = tool_parameters.get("technical_indicator2", "")  # 新低类别
             ma_type = tool_parameters.get("ma_type", "")  # 均线类型
             stock_code = tool_parameters.get("stock_code", "")  # 股票代码
             market_type = tool_parameters.get("market_type", "")  # 市场类型
             retries = int(tool_parameters.get("retries", 5))
             timeout = float(tool_parameters.get("timeout", 120))
             
-            logging.info(f"Interface: {interface}, Technical Indicator1: {technical_indicator1}, Technical Indicator2: {technical_indicator2}, MA Type: {ma_type}, Stock Code: {stock_code}, Market Type: {market_type}, Retries: {retries}, Timeout: {timeout}")
+            logging.info(f"Interface: {interface}, High Category: {technical_indicator1}, Low Category: {technical_indicator2}, MA Type: {ma_type}, Stock Code: {stock_code}, Market Type: {market_type}, Retries: {retries}, Timeout: {timeout}")
             
             if not interface:
                 yield self.create_text_message("请选择要调用的接口")
@@ -44,13 +44,13 @@ class StockTechnicalAnalysisTool(Tool):
                 "fn": ak.stock_rank_cxg_ths,
                 "requires_technical_indicator1": True,
                 "timeout": 120,  # 设置为120秒（2分钟）
-                "description": "同花顺-技术选股-创新高"
+                "description": "同花顺-技术选股-创新高-指定新高类别"
             },
             "stock_rank_cxd_ths": {
                 "fn": ak.stock_rank_cxd_ths,
                 "requires_technical_indicator2": True,
                 "timeout": 120,  # 设置为120秒（2分钟）
-                "description": "同花顺-技术选股-创新低"
+                "description": "同花顺-技术选股-创新低-指定新低类别"
             },
             "stock_rank_lxsz_ths": {
                 "fn": ak.stock_rank_lxsz_ths,
@@ -80,13 +80,13 @@ class StockTechnicalAnalysisTool(Tool):
                 "fn": ak.stock_rank_xstp_ths,
                 "requires_ma_type": True,
                 "timeout": 120,  # 设置为120秒（2分钟）
-                "description": "同花顺-技术选股-向上突破"
+                "description": "同花顺-技术选股-向上突破-指定均线类型"
             },
             "stock_rank_xxtp_ths": {
                 "fn": ak.stock_rank_xxtp_ths,
                 "requires_ma_type": True,
                 "timeout": 120,  # 设置为120秒（2分钟）
-                "description": "同花顺-技术选股-向下突破"
+                "description": "同花顺-技术选股-向下突破-指定均线类型"
             },
             "stock_rank_ljqs_ths": {
                 "fn": ak.stock_rank_ljqs_ths,

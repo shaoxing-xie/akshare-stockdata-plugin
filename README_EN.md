@@ -224,6 +224,53 @@ If you encounter problems or have suggestions:
 2. Create a new issue with detailed information
 3. Refer to AKShare official documentation
 
+## 🔧 Troubleshooting
+
+### ❌ **Common Issues and Solutions**
+
+#### 1. **Plugin Not Displayed in Dify Tools After Installation**
+**Symptoms**: After plugin installation, the plugin is not visible in Dify's tool list
+
+**Possible Causes and Solutions**:
+
+**Case 1: Pre-compilation Not Yet Complete**
+- ⏰ **Check Pre-compilation Status**: Check Dify backend plugin running logs to confirm if pre-compilation is still in progress
+- 📊 **Monitor Progress**: Pre-compilation process usually takes 5-15 minutes, please wait patiently
+- 🔍 **View Logs**: Check plugin running logs in Dify admin backend to confirm compilation progress
+
+**Case 2: Pre-compilation Complete But Tools Not Displayed**
+- 🔄 **Reinstall**: After pre-compilation is complete, if the plugin is still not displayed in Dify tools, please install the plugin package again, and the plugin will display normally
+- ✅ **Normal Behavior**: This is a known issue with Dify plugin system, reinstalling will resolve it
+
+**Technical Notes**:
+- Pre-compilation timeout setting: 30 minutes (sufficient to complete compilation)
+- Optimized `.difyignore` file to exclude test files and speed up compilation
+- This is a common issue with Dify plugin system that may affect all plugins
+
+#### 2. **Tool Call Returns Empty Data**
+**Symptoms**: Tool call succeeds but returns `{"data": []}`
+
+**Possible Causes**:
+- Network connection issues
+- Data source temporarily unavailable
+- Parameter configuration errors
+
+**Solutions**:
+- Check network connection
+- Increase retry count and timeout duration
+- Verify parameter format (date format: YYYYMMDD)
+
+#### 3. **Dify 0.3.0+ Compatibility Issues**
+**Symptoms**: Plugin cannot work properly in newer versions of Dify
+
+**Solutions**:
+- Ensure using the latest version plugin package
+- Check `.env` file configuration:
+  ```env
+  FORCE_VERIFYING_SIGNATURE=false
+  PLUGIN_PYTHON_ENV_INIT_TIMEOUT=600
+  ```
+
 ## 📚 Detailed Tool Function Documentation
 
 ### Tool 1: Stock Market Summary

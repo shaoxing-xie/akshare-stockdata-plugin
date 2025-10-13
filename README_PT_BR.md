@@ -290,6 +290,53 @@ Para suporte e perguntas:
 - Consulte a documentação oficial
 - Entre em contato com a equipe de desenvolvimento
 
+## 🔧 Solução de Problemas
+
+### ❌ **Problemas Comuns e Soluções**
+
+#### 1. **Plugin Não Exibido nas Ferramentas do Dify Após Instalação**
+**Sintomas**: Após a instalação do plugin, o plugin não está visível na lista de ferramentas do Dify
+
+**Possíveis Causas e Soluções**:
+
+**Caso 1: Pré-compilação Ainda Não Completa**
+- ⏰ **Verificar Status da Pré-compilação**: Verificar os logs de execução do plugin no backend do Dify para confirmar se a pré-compilação ainda está em andamento
+- 📊 **Monitorar Progresso**: O processo de pré-compilação geralmente leva 5-15 minutos, aguarde pacientemente
+- 🔍 **Verificar Logs**: Verificar os logs de execução do plugin no backend administrativo do Dify para confirmar o progresso da compilação
+
+**Caso 2: Pré-compilação Completa Mas Ferramentas Não Exibidas**
+- 🔄 **Reinstalar**: Após a pré-compilação estar completa, se o plugin ainda não estiver exibido nas ferramentas do Dify, instale o pacote do plugin novamente, e o plugin será exibido normalmente
+- ✅ **Comportamento Normal**: Este é um problema conhecido do sistema de plugins do Dify, reinstalar resolverá o problema
+
+**Notas Técnicas**:
+- Configuração de timeout de pré-compilação: 30 minutos (suficiente para completar a compilação)
+- Arquivo `.difyignore` otimizado para excluir arquivos de teste e acelerar a compilação
+- Este é um problema comum do sistema de plugins do Dify que pode afetar todos os plugins
+
+#### 2. **Chamada de Ferramenta Retorna Dados Vazios**
+**Sintomas**: A chamada da ferramenta é bem-sucedida mas retorna `{"data": []}`
+
+**Possíveis Causas**:
+- Problemas de conexão de rede
+- Fonte de dados temporariamente indisponível
+- Erros de configuração de parâmetros
+
+**Soluções**:
+- Verificar conexão de rede
+- Aumentar contagem de tentativas e duração do timeout
+- Verificar formato dos parâmetros (formato de data: YYYYMMDD)
+
+#### 3. **Problemas de Compatibilidade Dify 0.3.0+**
+**Sintomas**: O plugin não pode funcionar adequadamente em versões mais recentes do Dify
+
+**Soluções**:
+- Garantir o uso do pacote de plugin mais recente
+- Verificar configuração do arquivo `.env`:
+  ```env
+  FORCE_VERIFYING_SIGNATURE=false
+  PLUGIN_PYTHON_ENV_INIT_TIMEOUT=600
+  ```
+
 ---
 
 **Desenvolvido com ❤️ para a comunidade de dados financeiros**

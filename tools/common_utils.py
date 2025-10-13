@@ -99,8 +99,13 @@ def process_dataframe_output(result: pd.DataFrame, tool_instance) -> Generator[T
             if result.empty:
                 text_output = "暂无数据"
             else:
+                # 预处理DataFrame，确保所有列都是字符串类型，避免to_markdown转换错误
+                result_clean = result.copy()
+                for col in result_clean.columns:
+                    result_clean[col] = result_clean[col].astype(str)
+                
                 # 使用pandas的to_markdown方法生成标准Markdown表格
-                text_output = result.to_markdown(index=True, tablefmt='pipe')
+                text_output = result_clean.to_markdown(index=True, tablefmt='pipe')
         except Exception as e:
             logging.warning(f"to_markdown failed: {e}, using manual markdown generation")
             try:
@@ -381,8 +386,8 @@ def validate_stock_symbol(symbol: str, tool_instance) -> Generator[ToolInvokeMes
     symbol = symbol.strip().upper()
     
     # 检查是否包含非法字符
-    if not symbol.replace('SH', '').replace('SZ', '').replace('HK', '').replace('-', '').replace('.', '').isalnum():
-        error_msg = f"股票代码包含非法字符。支持的格式：\n- A股：600519、000001、SH600519、SZ000001\n- 港股：00700、03900、HK00700（系统会自动转换为0700、3900格式）\n- 美股：AAPL、MSFT"
+    if not symbol.replace('SH', '').replace('SZ', '').replace('-', '').replace('.', '').isalnum():
+        error_msg = f"股票代码包含非法字符。支持的格式：\n- A股：600519、000001、SH600519、SZ000001"
         yield tool_instance.create_text_message(error_msg)
         yield tool_instance.create_json_message({"error": "invalid_symbol_format", "message": "Stock symbol contains invalid characters"})
         yield False
@@ -390,7 +395,7 @@ def validate_stock_symbol(symbol: str, tool_instance) -> Generator[ToolInvokeMes
     
     # 检查长度是否合理
     if len(symbol) < 2 or len(symbol) > 10:
-        error_msg = f"股票代码长度不合理。支持的格式：\n- A股：600519、000001、SH600519、SZ000001\n- 港股：00700、03900、HK00700（系统会自动转换为0700、3900格式）\n- 美股：AAPL、MSFT"
+        error_msg = f"股票代码长度不合理。支持的格式：\n- A股：600519、000001、SH600519、SZ000001"
         yield tool_instance.create_text_message(error_msg)
         yield tool_instance.create_json_message({"error": "invalid_symbol_length", "message": "Stock symbol length is invalid"})
         yield False
@@ -407,6 +412,7 @@ def handle_akshare_error(error: Exception, tool_instance, context: str = "", tim
         error: 异常对象
         tool_instance: 工具实例
         context: 错误上下文信息
+        timeout_value: 超时值
         
     Yields:
         ToolInvokeMessage: 错误消息
@@ -456,7 +462,7 @@ def handle_akshare_error(error: Exception, tool_instance, context: str = "", tim
     # 4. 股票代码格式错误
     elif ("'zygcfx'" in error_msg or
           error_msg.strip() in ["'zygcfx'", "zygcfx"]):
-        yield tool_instance.create_text_message(f"股票代码格式错误：\n\n{error_msg}\n\n建议：\n1. 检查股票代码格式：\n   - A股：600519、000001、SH600519、SZ000001\n   - 港股：00700、03900、HK00700（系统会自动转换为0700、3900格式）\n   - 美股：AAPL、MSFT\n2. 确认股票代码是否存在于对应市场\n3. 检查接口是否支持该股票代码")
+        yield tool_instance.create_text_message(f"股票代码格式错误：\n\n{error_msg}\n\n建议：\n1. 检查股票代码格式：\n   - A股：600519、000001、SH600519、SZ000001\n2. 确认股票代码是否存在于对应市场\n3. 检查接口是否支持该股票代码")
         yield tool_instance.create_json_message({
             "error": "symbol_format_error",
             "message": "股票代码格式不正确",
@@ -465,7 +471,32 @@ def handle_akshare_error(error: Exception, tool_instance, context: str = "", tim
         })
         return
     
-    # 5. 参数错误
+    # 5. 股东分析接口数据结构错误
+    elif ("'sdltgd'" in error_msg or
+          error_msg.strip() in ["'sdltgd'", "sdltgd"]):
+        yield tool_instance.create_text_message(f"股东分析数据源结构错误：\n\n{error_msg}\n\n可能原因：\n1. 数据源API结构发生变化\n2. 该股票在当前时间段无股东分析数据\n3. 数据源暂时不可用\n\n建议：\n1. 尝试其他时间段的股东分析数据\n2. 稍后重试（数据源可能正在更新）\n3. 检查股票代码是否正确")
+        yield tool_instance.create_json_message({
+            "error": "data_structure_error",
+            "message": "股东分析数据源结构错误",
+            "details": error_msg,
+            "suggestion": "数据源结构可能已变化，建议稍后重试或更换时间段"
+        })
+        return
+    
+    # 6. JSON解析错误
+    elif ("JSONDecodeError" in error_msg or
+          "Expecting value" in error_msg or
+          "line 1 column 1" in error_msg):
+        yield tool_instance.create_text_message(f"数据解析错误：\n\n{error_msg}\n\n可能原因：\n1. 数据源返回了空响应或非JSON格式数据\n2. 网络连接不稳定导致响应不完整\n3. 数据源服务器暂时不可用\n4. 请求被限制或阻止\n\n建议：\n1. 稍后重试（数据源可能正在维护）\n2. 检查网络连接稳定性\n3. 尝试其他时间段的数据\n4. 如果问题持续，可能是数据源暂时不可用")
+        yield tool_instance.create_json_message({
+            "error": "json_decode_error",
+            "message": "数据解析失败，服务器返回非JSON格式数据",
+            "details": error_msg,
+            "suggestion": "数据源可能暂时不可用，建议稍后重试"
+        })
+        return
+    
+    # 7. 参数错误
     elif any(keyword in error_msg.lower() for keyword in ["invalid", "parameter", "argument", "unexpected"]):
         yield tool_instance.create_text_message(f"参数错误：\n\n{error_msg}\n\n建议：\n1. 检查参数格式是否正确\n2. 确认参数值是否有效")
         yield tool_instance.create_json_message({
@@ -476,7 +507,7 @@ def handle_akshare_error(error: Exception, tool_instance, context: str = "", tim
         })
         return
     
-    # 5. 其他错误
+    # 8. 其他错误
     else:
         yield tool_instance.create_text_message(f"接口调用错误：\n\n{error_msg}\n\n建议：\n1. 检查参数是否正确\n2. 稍后重试\n3. 联系技术支持")
         yield tool_instance.create_json_message({
@@ -505,9 +536,7 @@ def validate_period(period: str, tool_instance, interface: str = None) -> Genera
     """
     # 分时行情接口的周期参数
     minute_interfaces = [
-        "stock_zh_a_hist_min_em",
-        "stock_hk_hist_min_em",
-        "stock_us_hist_min_em"
+        "stock_zh_a_hist_min_em"
     ]
     
     if interface in minute_interfaces:
@@ -622,16 +651,6 @@ def process_symbol_format(symbol: str, interface: str) -> str:
         # "stock_zh_a_hist",  # A股历史数据不需要SH/SZ前缀
     ]
     
-    # 港股接口需要特殊格式处理
-    hk_interfaces = [
-        "stock_hk_hist",  # 港股历史数据
-    ]
-    
-    # 美股接口需要特殊格式处理
-    us_interfaces = [
-        "stock_us_hist",  # 美股历史数据
-        "stock_us_hist_min_em",  # 美股分时数据
-    ]
     
     # 科创板接口需要特殊格式处理
     kcb_interfaces = [
@@ -646,40 +665,9 @@ def process_symbol_format(symbol: str, interface: str) -> str:
                 return f"sh{symbol}"
         return symbol
     
-    # 处理港股接口的代码格式
-    elif interface in hk_interfaces:
-        # 移除HK前缀（如果有）
-        if symbol.upper().startswith('HK'):
-            symbol = symbol[2:]
-        
-        # 港股代码保持原始格式，不进行转换
-        # 因为ak.stock_hk_hist需要00700格式，而不是0700格式
-        return symbol
-    
-    # 处理美股接口的代码格式
-    elif interface in us_interfaces:
-        # 美股代码需要特殊格式处理
-        # 如果输入的是简单代码（如MSFT, AAPL），需要查找对应的完整代码
-        if symbol.isalpha() and len(symbol) <= 5:
-            # 常见美股代码映射
-            us_stock_mapping = {
-                'MSFT': '105.MSFT',
-                'AAPL': '105.AAPL', 
-                'GOOGL': '105.GOOGL',
-                'AMZN': '105.AMZN',
-                'TSLA': '105.TSLA',
-                'NVDA': '105.NVDA',
-                'META': '105.META',
-                'NFLX': '105.NFLX',
-                'GOOG': '105.GOOG',
-                'BRK.A': '105.BRK.A',
-                'BRK.B': '105.BRK.B'
-            }
-            return us_stock_mapping.get(symbol.upper(), symbol.upper())
-        return symbol.upper()
     
     # 如果接口需要前缀且当前代码没有前缀
-    if interface in prefix_required_interfaces and not any(symbol.upper().startswith(prefix) for prefix in ['SH', 'SZ', 'HK']):
+    if interface in prefix_required_interfaces and not any(symbol.upper().startswith(prefix) for prefix in ['SH', 'SZ']):
         # 根据代码判断市场
         if symbol.isdigit() and len(symbol) == 6:
             if symbol.startswith(('60', '68')):
@@ -688,3 +676,45 @@ def process_symbol_format(symbol: str, interface: str) -> str:
                 return f"SZ{symbol}"
     
     return symbol
+
+
+def process_large_dataframe_output(df: pd.DataFrame, tool_instance, chunk_size=1000) -> Generator[ToolInvokeMessage, None, None]:
+    """
+    处理大数据量DataFrame输出，分块发送以避免Dify工作流卡住
+    
+    Args:
+        df: 要处理的DataFrame
+        tool_instance: 工具实例
+        chunk_size: 每块的行数，默认1000行
+        
+    Yields:
+        ToolInvokeMessage: 分块的数据消息
+    """
+    if df.empty:
+        yield tool_instance.create_text_message("暂无数据")
+        yield tool_instance.create_json_message({"data": []})
+        return
+    
+    total_rows = len(df)
+    if total_rows <= chunk_size:
+        # 数据量不大，直接处理
+        yield from process_dataframe_output(df, tool_instance)
+        return
+    
+    # 数据量大，分块处理
+    yield tool_instance.create_text_message(f"数据量较大（{total_rows} 行），正在分块处理...")
+    
+    for i in range(0, total_rows, chunk_size):
+        chunk = df.iloc[i:i+chunk_size]
+        chunk_num = i // chunk_size + 1
+        total_chunks = (total_rows + chunk_size - 1) // chunk_size
+        
+        # 发送进度信息
+        yield tool_instance.create_text_message(f"数据块 {chunk_num}/{total_chunks} ({len(chunk)} 行)")
+        
+        # 处理当前块
+        chunk_json = chunk.to_json(orient="records", force_ascii=False)
+        yield tool_instance.create_json_message(chunk_json)
+    
+    # 发送完成信息
+    yield tool_instance.create_text_message(f"数据处理完成，共 {total_rows} 行")

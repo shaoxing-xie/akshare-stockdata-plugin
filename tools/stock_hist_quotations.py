@@ -4,7 +4,7 @@ import pandas as pd
 
 import akshare as ak
 from provider.akshare_stockdata import safe_ak_call, build_error_payload
-from provider.akshare_registry import get_interface_config
+from provider.akshare_registry import get_interface_config, normalize_symbol_with_market_prefix, normalize_symbol_with_uppercase_prefix
 from dify_plugin import Tool
 from dify_plugin.entities.tool import ToolInvokeMessage
 from .common_utils import (
@@ -76,7 +76,16 @@ class StockHistQuotationsTool(Tool):
                 "period_type": "historical",  # 历史行情类
                 "requires_date_range": True,
                 "requires_adjust": True,
-                "description": "沪深京A股日频率数据"
+                "description": "东方财富网-沪深京A股-日频率数据-指定股票、周期、复权方式和指定日期区间"
+            },
+            "stock_zh_a_hist_tx": {
+                "fn": ak.stock_zh_a_hist_tx,
+                "requires_symbol": True,
+                "requires_period": False,
+                "requires_date_range": True,
+                "requires_adjust": True,
+                "supports_timeout": True,
+                "description": "东方财富网-沪深京A股-历史行情日频率数据-指定股票、复权方式和日期区间"
             },
             "stock_zh_a_hist_min_em": {
                 "fn": ak.stock_zh_a_hist_min_em,
@@ -86,7 +95,7 @@ class StockHistQuotationsTool(Tool):
                 "requires_date_range": True,
                 "requires_adjust": True,
                 "supports_timeout": False,
-                "description": "A股-每日分时行情(周期：'1', '5', '15', '30', '60')"
+                "description": "东方财富网-沪深京A股-每日分时行情-指定股票、分时周期、复权方式和日期区间"
             },
             "stock_intraday_em": {
                 "fn": ak.stock_intraday_em,
@@ -95,7 +104,7 @@ class StockHistQuotationsTool(Tool):
                 "requires_date_range": False,
                 "requires_adjust": False,
                 "supports_timeout": False,
-                "description": "A股-最近一个交易日分时数据"
+                "description": "东方财富网-最近一个交易日-日内分时数据(包括盘前)-指定股票"
             },
             "stock_zh_a_hist_pre_min_em": {
                 "fn": ak.stock_zh_a_hist_pre_min_em,
@@ -105,7 +114,16 @@ class StockHistQuotationsTool(Tool):
                 "requires_adjust": False,
                 "requires_time": True,  # 需要时间参数
                 "supports_timeout": False,
-                "description": "A股-最近一个交易日盘前数据"
+                "description": "东方财富网-最近一个交易日-分钟数据(包括盘前)-指定股票、时间区间"
+            },
+            "stock_zh_a_tick_tx": {
+                "fn": ak.stock_zh_a_tick_tx_js,
+                "requires_symbol": True,
+                "requires_period": False,
+                "requires_date_range": False,
+                "requires_adjust": False,
+                "supports_timeout": True,
+                "description": "腾讯财经-最近交易日-历史分笔行情数据-指定股票"
             },
             "stock_zh_kcb_daily": {
                 "fn": ak.stock_zh_kcb_daily,
@@ -114,49 +132,53 @@ class StockHistQuotationsTool(Tool):
                 "requires_date_range": False,
                 "requires_adjust": True,
                 "supports_timeout": False,
-                "description": "科创板股票历史行情数据"
+                "description": "新浪财经-科创板股票历史行情数据-指定股票、复权方式"
             },
-            # 港股相关接口
-            "stock_hk_hist": {
-                "fn": ak.stock_hk_hist,
-                "requires_symbol": True,
-                "requires_period": True,
-                "period_type": "historical",  # 历史行情类
-                "requires_date_range": True,
-                "requires_adjust": True,
-                "supports_timeout": False,
-                "description": "港股-历史行情数据"
-            },
-            "stock_hk_hist_min_em": {
-                "fn": ak.stock_hk_hist_min_em,
-                "requires_symbol": True,
-                "requires_period": True,
-                "period_type": "minute",  # 分时行情类
-                "requires_date_range": True,
-                "requires_adjust": True,
-                "supports_timeout": False,
-                "description": "港股-每日分时行情(最近 5 个交易日分钟数据)"
-            },
-            # 美股相关接口
-            "stock_us_hist": {
-                "fn": ak.stock_us_hist,
-                "requires_symbol": True,
-                "requires_period": True,
-                "period_type": "historical",  # 历史行情类
-                "requires_date_range": True,
-                "requires_adjust": True,
-                "supports_timeout": False,
-                "description": "美股-每日行情"
-            },
-            "stock_us_hist_min_em": {
-                "fn": ak.stock_us_hist_min_em,
+            "stock_zh_growth_comparison_em": {
+                "fn": ak.stock_zh_growth_comparison_em,
                 "requires_symbol": True,
                 "requires_period": False,
-                "requires_date_range": True,
+                "requires_date_range": False,
+                "requires_adjust": False,
+                "supports_timeout": True,
+                "description": "东方财富网-同行比较-成长性比较-指定股票"
+            },
+            "stock_zh_valuation_comparison_em": {
+                "fn": ak.stock_zh_valuation_comparison_em,
+                "requires_symbol": True,
+                "requires_period": False,
+                "requires_date_range": False,
+                "requires_adjust": False,
+                "supports_timeout": True,
+                "description": "东方财富网-同行比较-估值比较-指定股票"
+            },
+            "stock_zh_dupont_comparison_em": {
+                "fn": ak.stock_zh_dupont_comparison_em,
+                "requires_symbol": True,
+                "requires_period": False,
+                "requires_date_range": False,
+                "requires_adjust": False,
+                "supports_timeout": True,
+                "description": "东方财富网-同行比较-杜邦分析比较-指定股票"
+            },
+            "stock_zh_scale_comparison_em": {
+                "fn": ak.stock_zh_scale_comparison_em,
+                "requires_symbol": True,
+                "requires_period": False,
+                "requires_date_range": False,
+                "requires_adjust": False,
+                "supports_timeout": True,
+                "description": "东方财富网-同行比较-公司规模-指定股票"
+            },
+            "stock_xgsr_ths": {
+                "fn": ak.stock_xgsr_ths,
+                "requires_symbol": False,
+                "requires_period": False,
+                "requires_date_range": False,
                 "requires_adjust": False,
                 "supports_timeout": False,
-                "description": "美股-每日分时行情"
-            }
+                "description": "同花顺-新股上市-新股上市首日"
+            },
         }
         
         # 获取接口配置
@@ -241,27 +263,74 @@ class StockHistQuotationsTool(Tool):
             timeout = float(timeout_param) if timeout_param is not None else None
             logging.info(f"Network params - retries: {retries}, timeout: {timeout} (auto-determined by interface type)")
             
-            # 处理股票代码格式
-            processed_symbol = process_symbol_format(symbol, interface)
-            
             # 构建调用参数 - 根据接口要求动态构建
-            call_params = {
-                "symbol": processed_symbol
-            }
+            call_params = {}
+            
+            # 只有当接口需要symbol参数时才添加
+            if config.get("requires_symbol", False):
+                # 从akshare_registry获取接口配置，确定使用哪个预处理函数
+                from provider.akshare_registry import REGISTRY, normalize_symbol
+                registry_config = REGISTRY.get(interface, {})
+                symbol_params = registry_config.get("params", {}).get("required", {}).get("symbol", {})
+                preprocess_func = symbol_params.get("preprocess", "normalize_symbol")
+                
+                # 根据预处理函数选择相应的处理函数
+                if preprocess_func == "normalize_symbol_with_uppercase_prefix":
+                    processed_symbol = normalize_symbol_with_uppercase_prefix(symbol)
+                elif preprocess_func == "normalize_symbol_with_market_prefix":
+                    processed_symbol = normalize_symbol_with_market_prefix(symbol)
+                else:  # 默认使用纯数字格式
+                    processed_symbol = normalize_symbol(symbol)
+                
+                call_params["symbol"] = processed_symbol
+            
+            # 初始化period_type变量
+            period_type = config.get("period_type", "")
             
             # 根据接口要求添加参数
             if config.get("requires_period", False):
-                period_type = config.get("period_type", "")
                 if period_type == "historical":
                     # 历史行情接口使用周期一
                     call_params["period"] = period
                 elif period_type == "minute":
                     # 分时行情接口使用周期二
                     call_params["period"] = period2
+                    
+                    # 特殊处理：1分钟数据智能调整时间范围
+                    if period2 == "1":
+                        try:
+                            from datetime import datetime, timedelta
+                            
+                            # 获取当前日期
+                            today = datetime.now()
+                            
+                            # 计算最近5个交易日（简单实现：往前推7天，确保包含5个交易日）
+                            start_date_obj = today - timedelta(days=7)
+                            end_date_obj = today
+                            
+                            # 转换为字符串格式
+                            adjusted_start_date = start_date_obj.strftime("%Y%m%d")
+                            adjusted_end_date = end_date_obj.strftime("%Y%m%d")
+                            
+                            # 更新调用参数
+                            call_params["start_date"] = adjusted_start_date
+                            call_params["end_date"] = adjusted_end_date
+                            
+                            # 1分钟数据不支持复权，强制设置为空
+                            call_params["adjust"] = ""
+                            
+                            logging.info(f"1分钟数据智能调整：时间范围调整为 {adjusted_start_date} 到 {adjusted_end_date}")
+                            
+                        except Exception as e:
+                            logging.warning(f"1分钟数据时间调整失败: {e}")
+                            # 如果调整失败，继续使用原始参数
+            
             
             if config.get("requires_date_range", False):
-                call_params["start_date"] = start_date
-                call_params["end_date"] = end_date
+                # 只有在没有进行1分钟数据智能调整时才使用原始日期
+                if not (period_type == "minute" and period2 == "1"):
+                    call_params["start_date"] = start_date
+                    call_params["end_date"] = end_date
             
             if config.get("requires_adjust", False):
                 if adjust == "none":

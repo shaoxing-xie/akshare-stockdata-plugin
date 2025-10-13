@@ -1,14 +1,14 @@
 identity:
-  author: shaoxing_xie
+  author: shaoxing-xie
   name: stock_market_summary
   label:
-    zh_Hans: 股票市场总貌
-    en_US: Stock Market Summary
+    zh_Hans: 股市信息总貌(原始接口)
+    en_US: Stock Market Summary (Original Interface)
 description:
   human:
-    zh_Hans: 通过AKShare数据接口获取股票市场总貌数据，包括上交所、深交所市场概况、地区统计、成交数据等。
+    zh_Hans: 通过AKShare数据接口获取股市信息总貌数据，包括上交所、深交所市场概况、地区统计、成交数据等。
     en_US: Get stock market summary data through AKShare interfaces, including SSE, SZSE market overview, regional statistics, trading data, etc.
-  llm: 通过AKShare数据接口获取股票市场总貌数据，包括上交所、深交所市场概况、地区统计、成交数据、公司动态、风险警示板等。
+  llm: 通过AKShare数据接口获取股市信息总貌数据，包括上交所、深交所市场概况、地区统计、成交数据、公司动态、风险警示板等。
 parameters:
   - name: interface
     type: select
@@ -18,104 +18,229 @@ parameters:
     description: 接口名称
     llm_description: 通过AKShare数据接口获取股票市场总貌数据，包括上交所、深交所市场概况、地区统计、成交数据、公司动态、风险警示板等
     human_description:
-      en_US: "Interface parameter description: 1.Stock Data Summary: no parameters;
-      2.Market Summary - Securities Category Statistics: trading date required;
-      3.Daily Stock Situation: trading date required;
-      4.Risk Warning Board: no parameters;
-      5.Stock Calendar - Company Dynamics: trading date required;
-      6.Equity Pledge Market Overview: no parameters;
-      7.Industry Pledge Ratio Data: no parameters;
-      8.A-Share Goodwill Market Overview: no parameters;
-      9.Stock Account Statistics: no parameters;
-      10.Stock Comments: no parameters;
-      11.IPO Lottery Yield: no parameters;
-      12.Trading Alert - Suspension & Resumption: no parameters;
-      13.Trading Alert - Dividend Distribution: no parameters."
-      zh_Hans: "接口参数说明：1.股票数据总貌:无参数;
-      2.市场总貌-证券类别统计:需要交易日期;
-      3.每日股票情况:需要交易日期;
-      4.风险警示板:无参数;
-      5.股市日历-公司动态:需要交易日期;
-      6.股权质押市场概况:无参数;
-      7.上市公司质押比例-行业数据:无参数;
-      8.A股商誉市场概况:无参数;
-      9.股票账户统计:无参数;
-      10.千股千评:无参数;
-      11.打新收益率:无参数;
-      12.交易提醒-停复牌:无参数;
-      13.交易提醒-分红派息:无参数."
+      en_US: "Interface parameter description: Different interfaces require different input parameters"
+      zh_Hans: "接口参数说明：根据接口选择不同输入参数"
     label:
       en_US: Interface
       zh_Hans: 接口名称
     options:
       # A股相关接口
       - label:
-          en_US: SSE Stock Data Summary
-          zh_Hans: 上交所-股票数据总貌
+          en_US: SSE Stock Data Summary - Latest Trading Day
+          zh_Hans: 上交所-股票数据总貌-最近交易日
         value: stock_sse_summary
       - label:
           en_US: SSE Stock Trading Overview - Daily Stock Situation
           zh_Hans: 上交所-股票成交概况-每日股票情况
         value: stock_sse_deal_daily
       - label:
-          en_US: SZSE Market Summary - Securities Category Statistics
-          zh_Hans: 深交所-市场总貌-证券类别统计
+          en_US: SZSE Securities Category Statistics - Specified Trading Day
+          zh_Hans: 深交所-证券类别统计-指定交易日
         value: stock_szse_summary
       - label:
           en_US: Eastmoney - A-Share Risk Warning Board
           zh_Hans: 东方财富网-沪深个股-风险警示板
         value: stock_zh_a_st_em
       - label:
-          en_US: Eastmoney - Stock Calendar - Company Dynamics
-          zh_Hans: 东方财富网-股市日历-公司动态
+          en_US: Eastmoney - Company Dynamics - Specified Trading Day
+          zh_Hans: 东方财富网-公司动态-指定交易日
         value: stock_gsrl_gsdt_em
       # 新增的7个接口
       - label:
-          en_US: Eastmoney - Equity Pledge - Market Overview
-          zh_Hans: 东方财富网-股权质押-股权质押市场概况
+          en_US: Eastmoney - Equity Pledge Market Overview - All History
+          zh_Hans: 东方财富网-股权质押市场概况-所有历史
         value: stock_gpzy_profile_em
       - label:
-          en_US: Eastmoney - Equity Pledge - Industry Pledge Ratio Data
-          zh_Hans: 东方财富网-股权质押-上市公司质押比例-行业数据
+          en_US: Eastmoney - Listed Company Pledge Ratio - Specified Trading Day
+          zh_Hans: 东方财富网-上市公司质押比例-指定交易日
+        value: stock_gpzy_pledge_ratio_em
+      - label:
+          en_US: Eastmoney - Industry Pledge Ratio Data
+          zh_Hans: 东方财富网-上市公司质押比例-行业数据
         value: stock_gpzy_industry_data_em
       - label:
-          en_US: Eastmoney - Goodwill - A-Share Market Overview
-          zh_Hans: 东方财富网-商誉-A股商誉市场概况
+          en_US: Eastmoney - Pledge Institution Distribution - Securities Companies
+          zh_Hans: 东方财富网-质押机构分布统计-证券公司
+        value: stock_gpzy_distribute_statistics_company_em
+      - label:
+          en_US: Eastmoney - Pledge Institution Distribution - Banks
+          zh_Hans: 东方财富网-质押机构分布统计-银行
+        value: stock_gpzy_distribute_statistics_bank_em
+      - label:
+          en_US: Eastmoney - A-Share Goodwill Market Overview - All History
+          zh_Hans: 东方财富网-A股商誉市场概况-所有历史
         value: stock_sy_profile_em
       - label:
-          en_US: Eastmoney - Special Data - Stock Account Statistics
-          zh_Hans: 东方财富网-特色数据-股票账户统计
+          en_US: Eastmoney - Individual Stock Goodwill Impairment Details - Specified Date (Quarter End)
+          zh_Hans: 东方财富网-个股商誉减值明细-指定日期(季末)
+        value: stock_sy_jz_em
+      - label:
+          en_US: Eastmoney - Individual Stock Goodwill Details - Specified Date (Quarter End)
+          zh_Hans: 东方财富网-个股商誉明细-指定日期(季末)
+        value: stock_sy_em
+      - label:
+          en_US: Eastmoney - Industry Goodwill - Specified Date (Quarter End)
+          zh_Hans: 东方财富网-行业商誉-指定日期(季末)
+        value: stock_sy_hy_em
+      - label:
+          en_US: Eastmoney - Stock Account Statistics Monthly - All History
+          zh_Hans: 东方财富网-股票账户统计月度-所有历史
         value: stock_account_statistics_em
       - label:
-          en_US: Eastmoney - Special Data - Stock Comments
-          zh_Hans: 东方财富网-特色数据-千股千评
+          en_US: Eastmoney - Stock Comments - All Data
+          zh_Hans: 东方财富网-千股千评-所有数据
         value: stock_comment_em
       - label:
-          en_US: Eastmoney - IPO Subscription - Lottery Yield
-          zh_Hans: 东方财富网-新股申购-打新收益率
+          en_US: Eastmoney - Lottery Yield - All Data
+          zh_Hans: 东方财富网-打新收益率-所有数据
         value: stock_dxsyl_em
+      - label:
+          en_US: Eastmoney - IPO Subscription & Lottery - Specified Market
+          zh_Hans: 东方财富网-新股申购与中签-指定市场
+        value: stock_xgsglb_em
       # 停复牌和分红派息
       - label:
-          en_US: Baidu Stock - Trading Alert - Suspension & Resumption
-          zh_Hans: 百度股市通-交易提醒-停复牌
+          en_US: Baidu Stock - Suspension & Resumption - Specified Date
+          zh_Hans: 百度股市通-停复牌-指定日期
         value: news_trade_notify_suspend_baidu
       - label:
-          en_US: Baidu Stock - Trading Alert - Dividend Distribution
-          zh_Hans: 百度股市通-交易提醒-分红派息
+          en_US: Baidu Stock - Dividend Distribution - Specified Date
+          zh_Hans: 百度股市通-分红派息-指定日期
         value: news_trade_notify_dividend_baidu
+      - label:
+          en_US: Eastmoney - Dividend Distribution - Specified Date
+          zh_Hans: 东方财富网-分红配送-指定日期
+        value: stock_fhps_em
+      - label:
+          en_US: Sina Finance - Historical Dividend
+          zh_Hans: 新浪财经-历史分红
+        value: stock_history_dividend
+      - label:
+          en_US: Sina Finance - Institutional Holdings Overview
+          zh_Hans: 新浪财经-机构持股一览表-指定报告期
+        value: stock_institute_hold
+      - label:
+          en_US: Sina Finance - Institutional Recommendation Pool - Specific Indicator
+          zh_Hans: 新浪财经-机构推荐池-指定指标
+        value: stock_institute_recommend
+      - label:
+          en_US: All A-Share Stock Codes and Names
+          zh_Hans: 沪深京A股-股票代码和简称
+        value: stock_info_a_code_name
   - name: date
     type: string
     required: false
     form: llm
-    default: "20250808"
+    default: "20250630"
     description: 交易日期
     llm_description: 交易日期，格式如20240101；"上交所-股票数据总貌"、"沪深个股-风险警示板"、"股权质押-股权质押市场概况"、"股权质押-上市公司质押比例-行业数据"、"商誉-A股商誉市场概况"、"特色数据-股票账户统计"、"特色数据-千股千评"、"资金流向-沪深港通资金流向"接口不需要此参数，其他接口都需要
     human_description:
-      en_US: "Trading date. Format: YYYYMMDD (20240101). Required for: SZSE Market Summary, SSE Daily Trading, Company Dynamics."
-      zh_Hans: "交易日期。格式：YYYYMMDD(20240101)。需要此参数的接口：深交所-市场总貌-证券类别统计、上交所-每日股票情况、股市日历-公司动态。"
+      en_US: "Trading date. Format: YYYYMMDD. Required for most interfaces."
+      zh_Hans: "交易日期。格式：YYYYMMDD。大部分接口需要此参数。"
     label:
       en_US: Trading Date
       zh_Hans: 交易日期
+  - name: symbol
+    type: select
+    required: false
+    form: llm
+    default: "全部股票"
+    description: 市场选择
+    llm_description: 市场选择，用于新股申购与中签查询接口
+    human_description:
+      en_US: "Market selection for IPO subscription and lottery query."
+      zh_Hans: "市场选择，用于新股申购与中签查询。"
+    label:
+      en_US: Market Selection
+      zh_Hans: 市场选择
+    options:
+      - label:
+          en_US: All Stocks
+          zh_Hans: 全部股票
+        value: "全部股票"
+      - label:
+          en_US: Shanghai Main Board
+          zh_Hans: 沪市主板
+        value: "沪市主板"
+      - label:
+          en_US: STAR Market
+          zh_Hans: 科创板
+        value: "科创板"
+      - label:
+          en_US: Shenzhen Main Board
+          zh_Hans: 深市主板
+        value: "深市主板"
+      - label:
+          en_US: ChiNext
+          zh_Hans: 创业板
+        value: "创业板"
+      - label:
+          en_US: Beijing Stock Exchange
+          zh_Hans: 北交所
+        value: "北交所"
+  - name: quarter
+    type: string
+    required: false
+    form: llm
+    default: "20251"
+    description: 报告期
+    llm_description: 报告期，格式如20241（2024年一季报），从2005年开始，一季报用1、中报用2、三季报用3、年报用4，如20193表示2019年三季报；仅"新浪财经-机构持股一览表"接口需要此参数
+    human_description:
+      en_US: "Reporting period. Format: YYYY[1-4] (e.g., 20241 for Q1 2024). Required only for Sina Finance - Institutional Holdings Overview."
+      zh_Hans: "报告期。格式：YYYY[1-4]（如20241表示2024年一季报）。仅新浪财经-机构持股一览表接口需要此参数。"
+    label:
+      en_US: Reporting Period (Quarter)
+      zh_Hans: 报告期
+  - name: recommend_indicator
+    type: select
+    required: false
+    form: llm
+    default: 最新投资评级
+    description: 机构推荐指标
+    llm_description: 机构推荐指标类型，仅"新浪财经-机构推荐池"接口需要此参数
+    human_description:
+      en_US: "Institutional recommendation indicator type. Required only for Sina Finance - Institutional Recommendation Pool."
+      zh_Hans: "机构推荐指标类型。仅新浪财经-机构推荐池接口需要此参数。"
+    label:
+      en_US: Recommendation Indicator
+      zh_Hans: 推荐指标
+    options:
+      - label:
+          en_US: Latest Investment Rating
+          zh_Hans: 最新投资评级
+        value: 最新投资评级
+      - label:
+          en_US: Upgraded Stocks
+          zh_Hans: 上调评级股票
+        value: 上调评级股票
+      - label:
+          en_US: Downgraded Stocks
+          zh_Hans: 下调评级股票
+        value: 下调评级股票
+      - label:
+          en_US: Comprehensive Stock Rating
+          zh_Hans: 股票综合评级
+        value: 股票综合评级
+      - label:
+          en_US: First Time Rated Stocks
+          zh_Hans: 首次评级股票
+        value: 首次评级股票
+      - label:
+          en_US: Target Price Increase Ranking
+          zh_Hans: 目标涨幅排名
+        value: 目标涨幅排名
+      - label:
+          en_US: Institutional Attention
+          zh_Hans: 机构关注度
+        value: 机构关注度
+      - label:
+          en_US: Industry Attention
+          zh_Hans: 行业关注度
+        value: 行业关注度
+      - label:
+          en_US: Investment Rating Stock Selection
+          zh_Hans: 投资评级选股
+        value: 投资评级选股
   - name: retries
     type: number
     required: false
@@ -139,8 +264,8 @@ parameters:
     description: 子进程超时时间
     llm_description: 子进程执行超时时间（秒），默认240秒；历史数据接口（股权质押市场概况、股票账户统计、千股千评）默认300秒
     human_description:
-      en_US: "Subprocess execution timeout in seconds. Range: 5-3600. Default: 240. Historical data interfaces (Equity Pledge Market Overview, Stock Account Statistics, Stock Comments) default to 300 seconds. Increase for slow networks or large data requests."
-      zh_Hans: "子进程执行超时时间（秒）。范围：5-3600。默认：240。历史数据接口（股权质押市场概况、股票账户统计、千股千评）默认300秒。网络较慢或数据量较大时可增加。"
+      en_US: "Subprocess execution timeout in seconds. Range: 5-3600. Default: 240."
+      zh_Hans: "子进程执行超时时间（秒）。范围：5-3600。默认：240。"
     label:
       en_US: Subprocess Timeout
       zh_Hans: 子进程超时时间

@@ -1,0 +1,204 @@
+identity:
+  author: shaoxing-xie
+  name: stock_comprehensive_technical_indicators
+  label:
+    en_US: Stock Comprehensive Technical Indicators (Extended Indicators)
+    zh_Hans: 个股综合技术指标(拓展指标)
+description:
+  human:
+    en_US: "Calculate comprehensive and extended indicators for individual stocks based on raw interface data to provide deeper insights into overall stock performance, including trend momentum oscillators based on historical data and dynamic valuation metrics based on latest financial data. Parameter requirements: 1.Trend Momentum Oscillator: requires symbol, period, start_date, end_date, adjust; 2.Dynamic Valuation Indicators: requires symbol only; 3.Historical Valuation Indicators: requires symbol, period, start_date, end_date, adjust; 4.Stock Basic Info Summary: requires symbol only."
+    zh_Hans: "根据个股的原始接口数据，计算个股综合性或拓展性指标，以更深层次地反映个股的整体情况，如，基于历史数据的趋势动量震荡指标和基于最新财务数据的动态估值指标。参数要求：1.趋势动量震荡指标：需要股票代码、数据周期、开始日期、结束日期、复权方式；2.动态估值指标：只需要股票代码；3.历史估值指标：需要股票代码、数据周期、开始日期、结束日期、复权方式；4.个股基本信息汇总：只需要股票代码。"
+  llm: 根据个股的原始接口数据，计算个股综合性或拓展性指标，以更深层次地反映个股的整体情况，如，基于历史数据的趋势动量震荡指标和基于最新财务数据的动态估值指标。参数要求：1.趋势动量震荡指标：需要股票代码、数据周期、开始日期、结束日期、复权方式；2.动态估值指标：只需要股票代码；3.历史估值指标：需要股票代码、数据周期、开始日期、结束日期、复权方式；4.个股基本信息汇总：只需要股票代码。
+parameters:
+  - name: indicator
+    type: select
+    required: true
+    form: llm
+    default: trend_momentum_oscillator
+    description: 指标类型
+    llm_description: 选择综合技术指标相关接口。分类包括：趋势动量震荡指标(日频/分钟)、动态估值指标、历史估值指标、个股基本信息汇总。大部分接口需要特定参数如股票代码、周期或日期范围。
+    human_description:
+      en_US: "Select the comprehensive technical indicators interface. Categories: Trend Momentum Oscillator (Daily/Minute), Dynamic Valuation Indicators, Historical Valuation Indicators, Stock Basic Info Summary. Most interfaces require specific parameters like stock code, period, or date range."
+      zh_Hans: "选择综合技术指标相关接口。分类包括：趋势动量震荡指标(日频/分钟)、动态估值指标、历史估值指标、个股基本信息汇总。大部分接口需要特定参数如股票代码、周期或日期范围。"
+    label:
+      en_US: Indicator Type
+      zh_Hans: 指标类型
+    options:
+      - label:
+          en_US: Trend Momentum Oscillator (Daily) - Specify Stock Code, Daily Period
+          zh_Hans: 趋势动量震荡指标(日频)-指定股票代码、周期(日频)
+        value: trend_momentum_oscillator
+      - label:
+          en_US: Trend Momentum Oscillator (Minute) - Specify Stock Code, Minute Period
+          zh_Hans: 趋势动量震荡指标(分钟)-指定股票代码、周期(分钟)
+        value: trend_momentum_oscillator_minute
+      - label:
+          en_US: Dynamic Valuation Indicators - Specify Stock Code
+          zh_Hans: 动态估值指标-指定股票代码
+        value: dynamic_valuation_indicators
+      - label:
+          en_US: Historical Valuation Indicators - Specify Stock Code, Daily Period, Date Range
+          zh_Hans: 历史估值指标-指定股票代码、周期(日频)、日期范围
+        value: historical_valuation_indicators
+      - label:
+          en_US: Stock Basic Info Summary - Specify Stock Code
+          zh_Hans: 个股基本信息汇总-指定股票代码
+        value: stock_basic_info_summary
+  - name: symbol
+    type: string
+    required: true
+    form: llm
+    default: "000001"
+    description: 股票代码
+    llm_description: 股票代码，用于所有指标类型
+    human_description:
+      en_US: "Stock code. Required for: Trend Momentum Oscillator, Dynamic Valuation Indicators, Historical Valuation Indicators, Stock Basic Info Summary. Format: 000001, 600519, 688356, etc."
+      zh_Hans: "股票代码。需要此参数的指标：趋势动量震荡指标、动态估值指标、历史估值指标、个股基本信息汇总。格式：000001、600519、688356等。"
+    label:
+      en_US: Stock Code
+      zh_Hans: 股票代码
+  - name: period_daily
+    type: select
+    required: false
+    form: llm
+    default: daily
+    description: 周期(日频)
+    llm_description: 日频数据周期类型，用于趋势动量震荡指标(日频)和历史估值指标
+    human_description:
+      en_US: "Daily data period type. Required for: Trend Momentum Oscillator (Daily), Historical Valuation Indicators. Options: daily (日线), weekly (周线), monthly (月线). Not required for: Trend Momentum Oscillator (Minute), Dynamic Valuation Indicators, Stock Basic Info Summary."
+      zh_Hans: "日频数据周期类型。需要此参数的指标：趋势动量震荡指标(日频)、历史估值指标。选项：daily(日线)、weekly(周线)、monthly(月线)。不需要此参数的指标：趋势动量震荡指标(分钟)、动态估值指标、个股基本信息汇总。"
+    label:
+      en_US: Daily Period
+      zh_Hans: 周期(日频)
+    options:
+      - label:
+          en_US: Daily
+          zh_Hans: 日线
+        value: daily
+      - label:
+          en_US: Weekly
+          zh_Hans: 周线
+        value: weekly
+      - label:
+          en_US: Monthly
+          zh_Hans: 月线
+        value: monthly
+  - name: period_minute
+    type: select
+    required: false
+    form: llm
+    default: "15"
+    description: 周期(分钟)
+    llm_description: 分钟级数据周期类型，用于趋势动量震荡指标(分钟)
+    human_description:
+      en_US: "Minute data period type. Required for: Trend Momentum Oscillator (Minute). Options: 1 (1分钟), 5 (5分钟), 15 (15分钟), 30 (30分钟), 60 (60分钟). Not required for: Trend Momentum Oscillator (Daily), Dynamic Valuation Indicators, Historical Valuation Indicators, Stock Basic Info Summary."
+      zh_Hans: "分钟级数据周期类型。需要此参数的指标：趋势动量震荡指标(分钟)。选项：1(1分钟)、5(5分钟)、15(15分钟)、30(30分钟)、60(60分钟)。不需要此参数的指标：趋势动量震荡指标(日频)、动态估值指标、历史估值指标、个股基本信息汇总。"
+    label:
+      en_US: Minute Period
+      zh_Hans: 周期(分钟)
+    options:
+      - label:
+          en_US: 1 Minute
+          zh_Hans: 1分钟
+        value: "1"
+      - label:
+          en_US: 5 Minutes
+          zh_Hans: 5分钟
+        value: "5"
+      - label:
+          en_US: 15 Minutes
+          zh_Hans: 15分钟
+        value: "15"
+      - label:
+          en_US: 30 Minutes
+          zh_Hans: 30分钟
+        value: "30"
+      - label:
+          en_US: 60 Minutes
+          zh_Hans: 60分钟
+        value: "60"
+  - name: start_date
+    type: string
+    required: false
+    form: llm
+    default: "20250101"
+    description: 开始日期
+    llm_description: 开始日期，用于趋势动量震荡指标和历史估值指标
+    human_description:
+      en_US: "Start date. Required for: Trend Momentum Oscillator (Daily), Trend Momentum Oscillator (Minute), Historical Valuation Indicators. Format: YYYYMMDD (20250101) or YYYY-MM-DD (2025-01-01). For minute indicators, automatically converts to YYYY-MM-DD 09:30:00. Default: 20250101. Not required for: Dynamic Valuation Indicators, Stock Basic Info Summary."
+      zh_Hans: "开始日期。需要此参数的指标：趋势动量震荡指标(日频)、趋势动量震荡指标(分钟)、历史估值指标。格式：YYYYMMDD(20250101)或YYYY-MM-DD(2025-01-01)。对于分钟级指标，自动转换为YYYY-MM-DD 09:30:00。缺省：20250101。不需要此参数的指标：动态估值指标、个股基本信息汇总。"
+    label:
+      en_US: Start Date
+      zh_Hans: 开始日期
+  - name: end_date
+    type: string
+    required: false
+    form: llm
+    default: ""
+    description: 结束日期
+    llm_description: 结束日期，用于趋势动量震荡指标和历史估值指标
+    human_description:
+      en_US: "End date. Required for: Trend Momentum Oscillator (Daily), Trend Momentum Oscillator (Minute), Historical Valuation Indicators. Format: YYYYMMDD (20250115) or YYYY-MM-DD (2025-01-15). For minute indicators, automatically converts to YYYY-MM-DD 15:00:00. Default: current date (auto-calculated). Not required for: Dynamic Valuation Indicators, Stock Basic Info Summary."
+      zh_Hans: "结束日期。需要此参数的指标：趋势动量震荡指标(日频)、趋势动量震荡指标(分钟)、历史估值指标。格式：YYYYMMDD(20250115)或YYYY-MM-DD(2025-01-15)。对于分钟级指标，自动转换为YYYY-MM-DD 15:00:00。缺省：当前日期（自动计算）。不需要此参数的指标：动态估值指标、个股基本信息汇总。"
+    label:
+      en_US: End Date
+      zh_Hans: 结束日期
+  - name: adjust
+    type: select
+    required: false
+    form: llm
+    default: qfq
+    description: 复权方式
+    llm_description: 复权方式选择，用于趋势动量震荡指标和历史估值指标
+    human_description:
+      en_US: "Adjustment method. Required for: Trend Momentum Oscillator, Historical Valuation Indicators. Options: qfq (前复权), hfq (后复权), none (不复权). Not required for: Dynamic Valuation Indicators, Stock Basic Info Summary."
+      zh_Hans: "复权方式。需要此参数的指标：趋势动量震荡指标、历史估值指标。选项：qfq(前复权)、hfq(后复权)、none(不复权)。不需要此参数的指标：动态估值指标、个股基本信息汇总。"
+    label:
+      en_US: Adjustment Method
+      zh_Hans: 复权方式
+    options:
+      - label:
+          en_US: Forward Adjustment
+          zh_Hans: 前复权
+        value: qfq
+      - label:
+          en_US: Backward Adjustment
+          zh_Hans: 后复权
+        value: hfq
+      - label:
+          en_US: No Adjustment
+          zh_Hans: 不复权
+        value: "none"
+  - name: retries
+    type: number
+    required: false
+    form: llm
+    default: 5
+    description: 重试次数
+    llm_description: 接口调用失败时的重试次数，默认为5次
+    human_description:
+      en_US: "Number of retries when interface call fails, default is 5"
+      zh_Hans: "接口调用失败时的重试次数，默认为5次"
+    label:
+      en_US: Retries
+      zh_Hans: 重试次数
+    min: 1
+    max: 10
+  - name: timeout
+    type: number
+    required: false
+    form: llm
+    default: 1200
+    description: 超时时间
+    llm_description: 接口调用的超时时间（秒），默认为600秒
+    human_description:
+      en_US: "Timeout for interface calls in seconds, default is 600"
+      zh_Hans: "接口调用的超时时间（秒），默认为600秒"
+    label:
+      en_US: Timeout
+      zh_Hans: 超时时间
+    min: 5
+    max: 3000
+extra:
+  python:
+    source: tools/stock_comprehensive_technical_indicators.py

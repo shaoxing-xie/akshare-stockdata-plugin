@@ -1,5 +1,18 @@
-# Core dependencies for AKShare Stock Data Plugin
-dify_plugin>=0.2.1,<0.3.0
-akshare>=1.16.92
-pandas>=1.5.0
-requests>=2.28.0
+# 最小化依赖 - 仅包含股票数据插件必需的依赖
+akshare>=1.16.92  # 股票数据源
+dify-plugin>=0.2.1  # Dify插件框架
+
+# AKShare核心依赖（根据官方依赖说明）
+mini-racer>=0.12.4  # JavaScript执行引擎，AKShare核心依赖
+pandas  # 数据清洗，AKShare核心依赖（使用最新版本，会自动安装numpy）
+
+# 可选依赖 - 技术指标计算增强（如果安装失败会自动降级到pandas内置函数）
+# pandas-ta>=0.3.14b  # 可选：增强技术指标计算
+# TA-Lib>=0.6.7       # 可选：专业级技术指标库（需要编译环境）
+
+# 以下依赖由dify-plugin自动安装，但股票数据插件实际不需要
+# pydub~=0.25.1  # 音频处理，股票数据插件不需要
+# tiktoken~=0.8.0  # Token计算，股票数据插件不需要
+# dpkt~=1.9.8  # 网络包解析，股票数据插件不需要
+# flask~=3.0.3  # Web框架，股票数据插件不需要
+# gevent~=24.11.1  # 协程库，股票数据插件使用子进程

@@ -242,6 +242,20 @@ INTERFACE_TIMEOUT_CONFIG = {
         ],
         'timeout': 300.0  # 5分钟
     },
+    # 股东分析接口 - 需要更长时间处理大量数据，需要15分钟
+    'shareholder_analysis': {
+        'interfaces': [
+            'stock_gdfx_holding_analyse_em',  # 东方财富网-股东持股分析(十大股东)
+            'stock_gdfx_free_holding_analyse_em',  # 东方财富网-股东持股分析(十大流通股东)
+            'stock_gdfx_holding_change_em',  # 东方财富网-个股股东持股变动统计(十大股东)
+            'stock_gdfx_free_holding_change_em',  # 东方财富网-个股股东持股变动统计(十大流通股东)
+            'stock_gdfx_holding_detail_em',  # 东方财富网-股东持股明细(十大股东)
+            'stock_gdfx_free_holding_detail_em',  # 东方财富网-股东持股明细(十大流通股东)
+            'stock_gdfx_top_10_em',  # 东方财富网-个股十大股东
+            'stock_gdfx_free_top_10_em'  # 东方财富网-个股十大流通股东
+        ],
+        'timeout': 900.0  # 15分钟
+    },
     # 历史数据接口 - 中等数据量，需要5分钟
     'historical_data': {
         'interfaces': [
@@ -281,7 +295,11 @@ def call_akshare_function(function_name, **kwargs):
         else:
             raise ValueError(f"Function {function_name} not found in akshare")
         
-        # 调用函数
+        # 获取接口超时时间
+        interface_timeout = get_interface_timeout_for_worker(function_name)
+        print(f"DEBUG: Using timeout {interface_timeout}s for {function_name}", file=sys.stderr)
+        
+        # 调用函数 - 这里直接调用，超时由主进程的subprocess.run控制
         result = func(**kwargs)
         
         # 处理结果

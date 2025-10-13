@@ -22,13 +22,13 @@ class StockFundFlowAnalysisTool(Tool):
             indicator = tool_parameters.get("indicator", "")  # 指标
             sector_type = tool_parameters.get("sector_type", "")  # 板块类型
             market_choice = tool_parameters.get("market_choice", "")  # 市场选择
-            industry_name = tool_parameters.get("industry_name", "")  # 行业名称
-            concept_name = tool_parameters.get("concept_name", "")  # 概念名称
+            industry_name_concept_name = tool_parameters.get("industry_name_concept_name", "")  # 行业名称/概念名称
+            symbol = tool_parameters.get("symbol", "")  # 排行类别
             adjust = tool_parameters.get("adjust", "")  # 复权方式
             retries = int(tool_parameters.get("retries", 5))
             timeout = float(tool_parameters.get("timeout", 600))
             
-            logging.info(f"Interface: {interface}, StockCode: {stock_code}, Market: {market}, Indicator: {indicator}, SectorType: {sector_type}, MarketChoice: {market_choice}, IndustryName: {industry_name}, ConceptName: {concept_name}, Adjust: {adjust}, Retries: {retries}, Timeout: {timeout}")
+            logging.info(f"Interface: {interface}, StockCode: {stock_code}, Market: {market}, Indicator: {indicator}, SectorType: {sector_type}, MarketChoice: {market_choice}, IndustryNameConceptName: {industry_name_concept_name}, Symbol: {symbol}, Adjust: {adjust}, Retries: {retries}, Timeout: {timeout}")
             
             if not interface:
                 yield self.create_text_message("请选择要调用的接口")
@@ -51,10 +51,9 @@ class StockFundFlowAnalysisTool(Tool):
                 "requires_indicator": False,
                 "requires_sector_type": False,
                 "requires_market_choice": False,
-                "requires_industry_name": False,
-                "requires_concept_name": False,
+                "requires_industry_name_concept_name": False,
                 "requires_adjust": False,
-                "description": "个股资金流向",
+                "description": "东方财富网-个股资金流向-指定股票、证交所",
                 "timeout": 600,
                 "param_mapping": {"stock": "stock_code", "market": "market"}
             },
@@ -65,10 +64,9 @@ class StockFundFlowAnalysisTool(Tool):
                 "requires_indicator": True,
                 "requires_sector_type": False,
                 "requires_market_choice": False,
-                "requires_industry_name": False,
-                "requires_concept_name": False,
+                "requires_industry_name_concept_name": False,
                 "requires_adjust": False,
-                "description": "个股资金流向排行",
+                "description": "东方财富网-资金流向-排名-指定统计周期",
                 "timeout": 600,  # 增加到3分钟，因为需要处理53页数据
                 "param_mapping": {"indicator": "indicator"}
             },
@@ -79,12 +77,54 @@ class StockFundFlowAnalysisTool(Tool):
                 "requires_indicator": False,
                 "requires_sector_type": False,
                 "requires_market_choice": False,
-                "requires_industry_name": False,
-                "requires_concept_name": False,
+                "requires_industry_name_concept_name": False,
                 "requires_adjust": True,
-                "description": "筹码分布",
+                "description": "东方财富网-日K-筹码分布-指定股票、复权方式",
                 "timeout": 600,
                 "param_mapping": {"symbol": "stock_code", "adjust": "adjust"}
+            },
+            # 同花顺资金流接口
+            "stock_fund_flow_individual": {
+                "fn": ak.stock_fund_flow_individual,
+                "requires_stock_code": False,
+                "requires_market": False,
+                "requires_indicator": False,
+                "requires_sector_type": False,
+                "requires_market_choice": False,
+                "requires_industry_name_concept_name": False,
+                "requires_adjust": False,
+                "requires_symbol": True,
+                "description": "同花顺-个股资金流-指定排行类别",
+                "timeout": 600,
+                "param_mapping": {"symbol": "symbol"}
+            },
+            "stock_fund_flow_concept": {
+                "fn": ak.stock_fund_flow_concept,
+                "requires_stock_code": False,
+                "requires_market": False,
+                "requires_indicator": False,
+                "requires_sector_type": False,
+                "requires_market_choice": False,
+                "requires_industry_name_concept_name": False,
+                "requires_adjust": False,
+                "requires_symbol": True,
+                "description": "同花顺-概念资金流-指定排行类别",
+                "timeout": 600,
+                "param_mapping": {"symbol": "symbol"}
+            },
+            "stock_fund_flow_industry": {
+                "fn": ak.stock_fund_flow_industry,
+                "requires_stock_code": False,
+                "requires_market": False,
+                "requires_indicator": False,
+                "requires_sector_type": False,
+                "requires_market_choice": False,
+                "requires_industry_name_concept_name": False,
+                "requires_adjust": False,
+                "requires_symbol": True,
+                "description": "同花顺-行业资金流-指定排行类别",
+                "timeout": 600,
+                "param_mapping": {"symbol": "symbol"}
             },
             # 市场类接口
             "stock_market_fund_flow": {
@@ -94,10 +134,9 @@ class StockFundFlowAnalysisTool(Tool):
                 "requires_indicator": False,
                 "requires_sector_type": False,
                 "requires_market_choice": False,
-                "requires_industry_name": False,
-                "requires_concept_name": False,
+                "requires_industry_name_concept_name": False,
                 "requires_adjust": False,
-                "description": "市场资金流向",
+                "description": "东方财富网-资金流向-大盘-历史数据",
                 "timeout": 600,
                 "param_mapping": {}
             },
@@ -108,10 +147,9 @@ class StockFundFlowAnalysisTool(Tool):
                 "requires_indicator": False,
                 "requires_sector_type": False,
                 "requires_market_choice": True,  # 使用market_choice参数
-                "requires_industry_name": False,
-                "requires_concept_name": False,
+                "requires_industry_name_concept_name": False,
                 "requires_adjust": False,
-                "description": "主力资金流向",
+                "description": "东方财富网-主力净流入排名-指定市场选择",
                 "timeout": 600,  # 增加到200秒，因为需要处理28页数据，耗时较长
                 "param_mapping": {"symbol": "market_choice"}
             },
@@ -123,10 +161,9 @@ class StockFundFlowAnalysisTool(Tool):
                 "requires_indicator": True,
                 "requires_sector_type": True,
                 "requires_market_choice": False,
-                "requires_industry_name": False,
-                "requires_concept_name": False,
+                "requires_industry_name_concept_name": False,
                 "requires_adjust": False,
-                "description": "板块资金流向排行",
+                "description": "东方财富网-板块资金流-排名-指定统计周期、板块类型",
                 "timeout": 600,  # 增加超时时间，板块数据量较大
                 "param_mapping": {"indicator": "indicator", "sector_type": "sector_type"}
             },
@@ -137,12 +174,11 @@ class StockFundFlowAnalysisTool(Tool):
                 "requires_indicator": True,
                 "requires_sector_type": False,
                 "requires_market_choice": False,
-                "requires_industry_name": True,  # 使用industry_name参数
-                "requires_concept_name": False,
+                "requires_industry_name_concept_name": True,  # 使用industry_name_concept_name参数
                 "requires_adjust": False,
-                "description": "行业个股资金流向",
+                "description": "东方财富网-行业资金流-xx行业个股资金流-指定行业名称、统计周期",
                 "timeout": 600,  # 增加超时时间，行业数据量较大
-                "param_mapping": {"symbol": "industry_name", "indicator": "indicator"}
+                "param_mapping": {"symbol": "industry_name_concept_name", "indicator": "indicator"}
             },
             "stock_sector_fund_flow_hist": {
                 "fn": ak.stock_sector_fund_flow_hist,
@@ -151,12 +187,11 @@ class StockFundFlowAnalysisTool(Tool):
                 "requires_indicator": False,
                 "requires_sector_type": False,
                 "requires_market_choice": False,
-                "requires_industry_name": True,  # 使用industry_name参数
-                "requires_concept_name": False,
+                "requires_industry_name_concept_name": True,  # 使用industry_name_concept_name参数
                 "requires_adjust": False,
-                "description": "行业历史资金流向",
+                "description": "东方财富网-行业历史资金流-指定行业名称",
                 "timeout": 600,
-                "param_mapping": {"symbol": "industry_name"}
+                "param_mapping": {"symbol": "industry_name_concept_name"}
             },
             # 概念类接口
             "stock_concept_fund_flow_hist": {
@@ -166,12 +201,11 @@ class StockFundFlowAnalysisTool(Tool):
                 "requires_indicator": False,
                 "requires_sector_type": False,
                 "requires_market_choice": False,
-                "requires_industry_name": False,
-                "requires_concept_name": True,  # 使用concept_name参数
+                "requires_industry_name_concept_name": True,  # 使用industry_name_concept_name参数
                 "requires_adjust": False,
-                "description": "概念历史资金流向",
+                "description": "东方财富网-概念历史资金流-指定概念名称",
                 "timeout": 600,
-                "param_mapping": {"symbol": "concept_name"}
+                "param_mapping": {"symbol": "industry_name_concept_name"}
             },
             # 大单追踪接口
             "stock_fund_flow_big_deal": {
@@ -181,10 +215,9 @@ class StockFundFlowAnalysisTool(Tool):
                 "requires_indicator": False,
                 "requires_sector_type": False,
                 "requires_market_choice": False,
-                "requires_industry_name": False,
-                "requires_concept_name": False,
+                "requires_industry_name_concept_name": False,
                 "requires_adjust": False,
-                "description": "A股-资金流向-大单追踪",
+                "description": "东方财富网-资金流向-大单追踪",
                 "timeout": 600,
                 "param_mapping": {}
             },
@@ -196,10 +229,9 @@ class StockFundFlowAnalysisTool(Tool):
                 "requires_indicator": False,
                 "requires_sector_type": False,
                 "requires_market_choice": False,
-                "requires_industry_name": False,
-                "requires_concept_name": False,
+                "requires_industry_name_concept_name": False,
                 "requires_adjust": False,
-                "description": "资金流向-沪深港通资金流向",
+                "description": "东方财富网-沪深港通资金流向",
                 "timeout": 600,
                 "param_mapping": {}
             }
@@ -228,6 +260,17 @@ class StockFundFlowAnalysisTool(Tool):
             yield self.create_json_message({"error": "indicator_required", "message": f"{interface} requires 'indicator' parameter"})
             return
         
+        # 特殊验证：某些接口不支持"3日"指标
+        if indicator == "3日":
+            if interface == "stock_sector_fund_flow_rank":
+                yield self.create_text_message(f"错误：'{config['description']}'接口不支持 '3日' 指标。\n\n该接口支持的指标选项为：今日、5日、10日。\n请选择正确的指标参数。")
+                yield self.create_json_message({"error": "invalid_indicator", "message": f"{interface} does not support '3日' indicator, only supports: 今日, 5日, 10日"})
+                return
+            elif interface == "stock_sector_fund_flow_summary":
+                yield self.create_text_message(f"错误：'{config['description']}'接口不支持 '3日' 指标。\n\n该接口支持的指标选项为：今日、5日、10日。\n请选择正确的指标参数。")
+                yield self.create_json_message({"error": "invalid_indicator", "message": f"{interface} does not support '3日' indicator, only supports: 今日, 5日, 10日"})
+                return
+        
         if config["requires_sector_type"] and not sector_type:
             yield self.create_text_message(f"错误：'{config['description']}'接口需要 'sector_type' 参数。请提供板块类型。")
             yield self.create_json_message({"error": "sector_type_required", "message": f"{interface} requires 'sector_type' parameter"})
@@ -238,19 +281,19 @@ class StockFundFlowAnalysisTool(Tool):
             yield self.create_json_message({"error": "market_choice_required", "message": f"{interface} requires 'market_choice' parameter"})
             return
         
-        if config["requires_industry_name"] and not industry_name:
-            yield self.create_text_message(f"错误：'{config['description']}'接口需要 'industry_name' 参数。请提供行业名称。")
-            yield self.create_json_message({"error": "industry_name_required", "message": f"{interface} requires 'industry_name' parameter"})
-            return
-        
-        if config["requires_concept_name"] and not concept_name:
-            yield self.create_text_message(f"错误：'{config['description']}'接口需要 'concept_name' 参数。请提供概念名称。")
-            yield self.create_json_message({"error": "concept_name_required", "message": f"{interface} requires 'concept_name' parameter"})
+        if config["requires_industry_name_concept_name"] and not industry_name_concept_name:
+            yield self.create_text_message(f"错误：'{config['description']}'接口需要 'industry_name_concept_name' 参数。请提供行业名称或概念名称。")
+            yield self.create_json_message({"error": "industry_name_concept_name_required", "message": f"{interface} requires 'industry_name_concept_name' parameter"})
             return
         
         if config["requires_adjust"] and adjust is None:
             yield self.create_text_message(f"错误：'{config['description']}'接口需要 'adjust' 参数。请提供复权方式。")
             yield self.create_json_message({"error": "adjust_required", "message": f"{interface} requires 'adjust' parameter"})
+            return
+        
+        if config.get("requires_symbol") and not symbol:
+            yield self.create_text_message(f"错误：'{config['description']}'接口需要 'symbol' 参数。请提供排行类别。")
+            yield self.create_json_message({"error": "symbol_required", "message": f"{interface} requires 'symbol' parameter"})
             return
         
         # 股票代码格式验证（仅对需要股票代码的接口）
@@ -287,10 +330,10 @@ class StockFundFlowAnalysisTool(Tool):
                 call_params[ak_param] = sector_type
             elif tool_param == "market_choice" and market_choice:
                 call_params[ak_param] = market_choice
-            elif tool_param == "industry_name" and industry_name:
-                call_params[ak_param] = industry_name
-            elif tool_param == "concept_name" and concept_name:
-                call_params[ak_param] = concept_name
+            elif tool_param == "industry_name_concept_name" and industry_name_concept_name:
+                call_params[ak_param] = industry_name_concept_name
+            elif tool_param == "symbol" and symbol:
+                call_params[ak_param] = symbol
             elif tool_param == "adjust" and adjust is not None:
                 if adjust == "none":
                     call_params[ak_param] = ""  # "none" 对应空字符串，表示不复权
@@ -324,7 +367,7 @@ class StockFundFlowAnalysisTool(Tool):
                     "suggestion": "稍后重试或使用其他接口"
                 })
                 return
-            elif "KeyError" in error_msg and ("sector" in call_params or "symbol" in call_params):
+            elif "KeyError" in error_msg and "symbol" in call_params:
                 # 处理行业名称或概念名称错误的情况
                 yield from self._handle_invalid_sector_name(e, interface, call_params)
                 return
@@ -339,7 +382,12 @@ class StockFundFlowAnalysisTool(Tool):
                 return
             else:
                 # 使用统一的错误处理机制
-                yield from handle_akshare_error(e, self, f"接口: {interface}, 股票代码: {symbol}, 市场: {market}, 指标: {indicator}, 板块类型: {sector_type}, 市场选择: {market_choice}, 行业/概念: {sector}, 复权: {adjust}", str(interface_timeout))
+                # 根据接口类型确定行业/概念参数
+                sector_info = ""
+                if industry_name_concept_name:
+                    sector_info = f"行业/概念: {industry_name_concept_name}"
+                
+                yield from handle_akshare_error(e, self, f"接口: {interface}, 股票代码: {stock_code}, 市场: {market}, 指标: {indicator}, 板块类型: {sector_type}, 市场选择: {market_choice}, {sector_info}, 复权: {adjust}", str(interface_timeout))
                 return
         
         # 处理结果
@@ -368,8 +416,11 @@ class StockFundFlowAnalysisTool(Tool):
             if interface == "stock_concept_fund_flow_hist":
                 # 概念历史资金流向 - 获取概念名称
                 yield from self._get_concept_names(error)
-            else:
+            elif interface in ["stock_sector_fund_flow_summary", "stock_sector_fund_flow_hist"]:
                 # 行业相关接口 - 获取行业名称
+                yield from self._get_industry_names(error)
+            else:
+                # 其他接口 - 获取行业名称
                 yield from self._get_industry_names(error)
                 
         except Exception as e:

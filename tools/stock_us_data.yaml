@@ -1,0 +1,351 @@
+identity:
+  author: shaoxing-xie
+  name: stock_us_data
+  label:
+    en_US: US Stock Quotes (Original Interface)
+    zh_Hans: 美股股票行情(原始接口)
+description:
+  human:
+    en_US: "Get comprehensive US stock market data using AKShare library wrapper. Provides real-time quotes, historical data, and financial analysis for US stocks."
+    zh_Hans: "使用 AKShare 库封装获取全面的美股市场数据，提供美股实时行情、历史数据和财务分析数据。"
+  llm: 使用 AKShare 库封装获取全面的美股市场数据，提供美股实时行情、历史数据和财务分析数据。
+parameters:
+  # ==================== 核心参数 ====================
+  - name: interface
+    type: select
+    required: true
+    form: llm
+    default: stock_us_spot_em
+    description: 接口名称
+    llm_description: 选择美股数据相关接口。分类包括：实时行情、股票代码信息、历史数据、分时数据、财务分析、财务报表。大部分接口需要特定参数如美股代码、周期、日期范围或指标类型。
+    human_description:
+      en_US: "Select the US stock data interface. Categories: Real-time Quotes, Stock Code Information, Historical Data, Minute Data, Financial Analysis, Financial Statements. Most interfaces require specific parameters like US stock code, period, date range, or indicator type."
+      zh_Hans: "选择美股数据相关接口。分类包括：实时行情、股票代码信息、历史数据、分时数据、财务分析、财务报表。大部分接口需要特定参数如美股代码、周期、日期范围或指标类型。"
+    label:
+      en_US: Interface
+      zh_Hans: 接口名称
+    options:
+      # 美股实时行情接口
+      - label:
+          en_US: East Money - US Stock - Real-time Quotes
+          zh_Hans: 东方财富网-美股-实时行情
+        value: stock_us_spot_em
+      - label:
+          en_US: Sina - US Stock - Real-time Quotes (15min delay)
+          zh_Hans: 新浪-美股-实时行情(延15分钟)
+        value: stock_us_spot
+      - label:
+          en_US: East Money - US Stock - Famous US Stocks Real-time Quotes - Specify Category
+          zh_Hans: 东方财富网-美股-知名美股的实时行情数据-指定类别
+        value: stock_us_famous_spot_em
+      # 美股历史行情接口
+      - label:
+          en_US: Sina - US Stock - Historical Daily Data - Specify Stock Code, Adjustment Method
+          zh_Hans: 新浪-美股-历史行情数据-指定股票代码、复权方式
+        value: stock_us_daily
+      - label:
+          en_US: East Money - US Stock - Daily Data - Specify Stock Code, Period, Date Range, Adjustment Method
+          zh_Hans: 东方财富网-美股-每日行情-指定股票代码、周期、日期范围、复权方式
+        value: stock_us_hist
+      - label:
+          en_US: East Money - US Stock - Daily Minute Data (Auto 5 Days) - Specify Stock Code
+          zh_Hans: 东方财富网-美股-每日分时行情(自动最近5天)-指定股票代码
+        value: stock_us_hist_min_em
+      # 美股财务分析接口
+      - label:
+          en_US: East Money - US - Financial Analysis - Main Indicators - Specify Stock Code, Indicator Type
+          zh_Hans: 东方财富网-美股-财务分析-主要指标-指定股票代码、指标类型
+        value: stock_financial_us_analysis_indicator_em
+      - label:
+          en_US: East Money - US - Financial Analysis - Three Major Reports - Specify Stock Code, Report Type, Indicator Type
+          zh_Hans: 东方财富网-美股-财务分析-三大报表-指定股票代码、报表类型、指标类型
+        value: stock_financial_us_report_em
+
+  # ==================== 股票标识参数 ====================
+  - name: symbol
+    type: string
+    required: false
+    form: llm
+    default: "AAPL"
+    description: 美股代码
+    llm_description: 美股个股代码，格式：AAPL、MSFT、GOOGL等。新浪历史数据接口(stock_us_daily)使用原始格式，东方财富历史数据接口会自动转换为105.AAPL格式，财务分析接口使用原始格式
+    human_description:
+      en_US: "US stock code. Required for: US Stock - Historical Daily Data (Sina), US Stock - Daily Data (East Money), US Stock - Daily Minute Data (Auto 5 Days), US - Financial Analysis - Main Indicators, US - Financial Analysis - Three Major Reports. Format: AAPL, MSFT, GOOGL, NVDA, etc. Sina historical data interface (stock_us_daily) uses original format, East Money historical data interfaces will automatically convert to 105.AAPL format, financial analysis interfaces use original format."
+      zh_Hans: "美股代码。需要此参数的接口：美股-历史行情数据(新浪)、美股-每日行情(东方财富)、美股-每日分时行情(自动最近5天)、美股-财务分析-主要指标、美股-财务分析-三大报表。格式：AAPL、MSFT、GOOGL、NVDA等。新浪历史数据接口(stock_us_daily)使用原始格式，东方财富历史数据接口会自动转换为105.AAPL格式，财务分析接口使用原始格式。"
+    label:
+      en_US: US Stock Code
+      zh_Hans: 美股代码
+
+  - name: category
+    type: select
+    required: false
+    form: llm
+    default: "科技类"
+    description: 美股类别
+    llm_description: 知名美股的类别，用于获取特定类别的知名股票数据
+    human_description:
+      en_US: "US stock category. Required for: Famous US Stocks Real-time Quotes. Options: 科技类 (Technology), 金融类 (Finance), 医疗类 (Healthcare), 消费类 (Consumer), 工业类 (Industrial), 能源类 (Energy), 材料类 (Materials), 公用事业类 (Utilities), 房地产类 (Real Estate), 通信类 (Communication)."
+      zh_Hans: "美股类别。需要此参数的接口：知名美股的实时行情数据。选项：科技类、金融类、医疗类、消费类、工业类、能源类、材料类、公用事业类、房地产类、通信类。"
+    label:
+      en_US: US Stock Category
+      zh_Hans: 美股类别
+    options:
+      - label:
+          en_US: Technology
+          zh_Hans: 科技类
+        value: "科技类"
+      - label:
+          en_US: Finance
+          zh_Hans: 金融类
+        value: "金融类"
+      - label:
+          en_US: Healthcare
+          zh_Hans: 医疗类
+        value: "医疗类"
+      - label:
+          en_US: Consumer
+          zh_Hans: 消费类
+        value: "消费类"
+      - label:
+          en_US: Industrial
+          zh_Hans: 工业类
+        value: "工业类"
+      - label:
+          en_US: Energy
+          zh_Hans: 能源类
+        value: "能源类"
+      - label:
+          en_US: Materials
+          zh_Hans: 材料类
+        value: "材料类"
+      - label:
+          en_US: Utilities
+          zh_Hans: 公用事业类
+        value: "公用事业类"
+      - label:
+          en_US: Real Estate
+          zh_Hans: 房地产类
+        value: "房地产类"
+      - label:
+          en_US: Communication
+          zh_Hans: 通信类
+        value: "通信类"
+
+  # ==================== 时间周期参数 ====================
+  - name: period
+    type: select
+    required: false
+    form: llm
+    default: daily
+    description: 周期（历史行情类）
+    llm_description: 历史行情接口的周期参数，用于美股历史数据接口
+    human_description:
+      en_US: "Period. Required for: US Stock - Daily Data. Options: daily (日线), weekly (周线), monthly (月线)."
+      zh_Hans: "周期（历史行情类）。需要此参数的接口：美股-每日行情。选项：daily(日线)、weekly(周线)、monthly(月线)。"
+    label:
+      en_US: Period (Historical Data)
+      zh_Hans: 周期（历史行情类）
+    options:
+      - label:
+          en_US: Daily
+          zh_Hans: 日线
+        value: "daily"
+      - label:
+          en_US: Weekly
+          zh_Hans: 周线
+        value: "weekly"
+      - label:
+          en_US: Monthly
+          zh_Hans: 月线
+        value: "monthly"
+
+  - name: period2
+    type: select
+    required: false
+    form: llm
+    default: 5
+    description: 周期（分时行情类）
+    llm_description: 分时行情接口的周期参数，用于美股分时数据接口
+    human_description:
+      en_US: "Period. Required for: US Stock - Daily Minute Data (Auto 5 Days). Options: 1 (1分钟), 5 (5分钟), 15 (15分钟), 30 (30分钟), 60 (60分钟)."
+      zh_Hans: "周期（分时行情类）。需要此参数的接口：美股-每日分时行情(自动最近5天)。选项：1(1分钟)、5(5分钟)、15(15分钟)、30(30分钟)、60(60分钟)。"
+    label:
+      en_US: Period (Minute Data)
+      zh_Hans: 周期（分时行情类）
+    options:
+      - label:
+          en_US: 1 Minute
+          zh_Hans: 1分钟
+        value: "1"
+      - label:
+          en_US: 5 Minutes
+          zh_Hans: 5分钟
+        value: "5"
+      - label:
+          en_US: 15 Minutes
+          zh_Hans: 15分钟
+        value: "15"
+      - label:
+          en_US: 30 Minutes
+          zh_Hans: 30分钟
+        value: "30"
+      - label:
+          en_US: 60 Minutes
+          zh_Hans: 60分钟
+        value: "60"
+
+  # ==================== 日期范围参数 ====================
+  - name: start_date
+    type: string
+    required: false
+    form: llm
+    default: "20250101"
+    description: 开始日期
+    llm_description: 历史数据的开始日期，格式为YYYYMMDD
+    human_description:
+      en_US: "Start date. Required for: US Stock - Daily Data. NOT required for: US Stock - Daily Minute Data (Auto 5 Days). Format: YYYYMMDD (20250101) or YYYY-MM-DD (2025-01-01). Default: 20250101."
+      zh_Hans: "开始日期。需要此参数的接口：美股-每日行情。不需要此参数的接口：美股-每日分时行情(自动最近5天)。格式：YYYYMMDD(20250101)或YYYY-MM-DD(2025-01-01)。缺省：20250101。"
+    label:
+      en_US: Start Date
+      zh_Hans: 开始日期
+
+  - name: end_date
+    type: string
+    required: false
+    form: llm
+    default: "20250915"
+    description: 结束日期
+    llm_description: 历史数据的结束日期，格式为YYYYMMDD
+    human_description:
+      en_US: "End date. Required for: US Stock - Daily Data. NOT required for: US Stock - Daily Minute Data (Auto 5 Days). Format: YYYYMMDD (20250915) or YYYY-MM-DD (2025-09-15). Default: current date (auto-calculated)."
+      zh_Hans: "结束日期。需要此参数的接口：美股-每日行情。不需要此参数的接口：美股-每日分时行情(自动最近5天)。格式：YYYYMMDD(20250915)或YYYY-MM-DD(2025-09-15)。缺省：当前日期（自动计算）。"
+    label:
+      en_US: End Date
+      zh_Hans: 结束日期
+
+  # ==================== 数据调整参数 ====================
+  - name: adjust
+    type: select
+    required: false
+    form: llm
+    default: "none"
+    description: 复权方式
+    llm_description: 价格复权方式，支持前复权、后复权、不复权。新浪接口(stock_us_daily)支持qfq(前复权)、hfq(后复权)、空字符串(不复权)，以及qfq-factor(前复权因子)、hfq-factor(后复权因子)
+    human_description:
+      en_US: "Adjustment method. Required for: US Stock - Historical Daily Data (Sina), US Stock - Daily Data (East Money). NOT required for: US Stock - Daily Minute Data (Auto 5 Days). Options: empty string (不复权), qfq (前复权), hfq (后复权), qfq-factor (前复权因子), hfq-factor (后复权因子). Note: stock_us_daily (Sina) supports all options including factor modes."
+      zh_Hans: "复权方式。需要此参数的接口：美股-历史行情数据(新浪)、美股-每日行情(东方财富)。不需要此参数的接口：美股-每日分时行情(自动最近5天)。选项：空字符串(不复权)、qfq(前复权)、hfq(后复权)、qfq-factor(前复权因子)、hfq-factor(后复权因子)。注意：stock_us_daily(新浪)支持所有选项包括因子模式。"
+    label:
+      en_US: Adjustment
+      zh_Hans: 复权方式
+    options:
+      - label:
+          en_US: No Adjustment
+          zh_Hans: 不复权
+        value: "none"
+      - label:
+          en_US: Forward Adjustment
+          zh_Hans: 前复权
+        value: "qfq"
+      - label:
+          en_US: Backward Adjustment
+          zh_Hans: 后复权
+        value: "hfq"
+      - label:
+          en_US: Forward Adjustment Factor (Sina interfaces only)
+          zh_Hans: 前复权因子 (仅新浪接口)
+        value: "qfq-factor"
+      - label:
+          en_US: Backward Adjustment Factor (Sina interfaces only)
+          zh_Hans: 后复权因子 (仅新浪接口)
+        value: "hfq-factor"
+
+  # ==================== 财务分析参数 ====================
+  - name: indicator_us
+    type: select
+    required: false
+    form: llm
+    default: 年报
+    description: 美股指标类型
+    llm_description: 美股财务指标接口的指标类型参数
+    human_description:
+      en_US: "US indicator type. Required for: US - Financial Analysis - Main Indicators, US - Financial Analysis - Three Major Reports. Options: 年报 (Annual Report), 单季报 (Single Quarter), 累计季报 (Cumulative Quarter)."
+      zh_Hans: "美股指标类型。需要此参数的接口：美股-财务分析-主要指标、美股-财务分析-三大报表。选项：年报、单季报、累计季报。"
+    label:
+      en_US: US Indicator Type
+      zh_Hans: 美股指标类型
+    options:
+      - label:
+          en_US: Annual Report
+          zh_Hans: 年报
+        value: "年报"
+      - label:
+          en_US: Single Quarter
+          zh_Hans: 单季报
+        value: "单季报"
+      - label:
+          en_US: Cumulative Quarter
+          zh_Hans: 累计季报
+        value: "累计季报"
+
+  - name: report_type
+    type: select
+    required: false
+    form: llm
+    default: 资产负债表
+    description: 报表类型
+    llm_description: 美股三大报表接口的报表类型参数
+    human_description:
+      en_US: "Report type. Required for: US - Financial Analysis - Three Major Reports. Options: 资产负债表 (Balance Sheet), 利润表 (Profit Statement), 现金流量表 (Cash Flow Statement)."
+      zh_Hans: "报表类型。需要此参数的接口：美股-财务分析-三大报表。选项：资产负债表、利润表、现金流量表。"
+    label:
+      en_US: Report Type
+      zh_Hans: 报表类型
+    options:
+      - label:
+          en_US: Balance Sheet
+          zh_Hans: 资产负债表
+        value: "资产负债表"
+      - label:
+          en_US: Profit Statement
+          zh_Hans: 利润表
+        value: "利润表"
+      - label:
+          en_US: Cash Flow Statement
+          zh_Hans: 现金流量表
+        value: "现金流量表"
+
+  # ==================== 系统配置参数 ====================
+  - name: retries
+    type: number
+    required: false
+    form: llm
+    default: 5
+    description: 重试次数
+    llm_description: 网络请求重试次数，默认5次
+    human_description:
+      en_US: "Number of retries for network requests, default is 5"
+      zh_Hans: "网络请求重试次数，默认5次"
+    label:
+      en_US: Retries
+      zh_Hans: 重试次数
+    min: 1
+    max: 10
+
+  - name: timeout
+    type: number
+    required: false
+    form: llm
+    default: 600
+    description: 子进程超时时间
+    llm_description: 子进程执行超时时间（秒），默认600秒
+    human_description:
+      en_US: "Subprocess execution timeout in seconds, default is 600"
+      zh_Hans: "子进程执行超时时间（秒），默认600秒"
+    label:
+      en_US: Subprocess Timeout
+      zh_Hans: 子进程超时时间
+    min: 5
+    max: 3600
+extra:
+  python:
+    source: tools/stock_us_data.py

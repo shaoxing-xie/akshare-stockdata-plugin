@@ -36,83 +36,154 @@ class StockMarketSummaryTool(Tool):
                 "fn": ak.stock_sse_summary,
                 "requires_date": False,
                 "date_format": None,
-                "description": "上交所-股票数据总貌"
+                "description": "上交所-股票数据总貌-最近交易日"
             },
             "stock_szse_summary": {
                 "fn": ak.stock_szse_summary,
                 "requires_date": True,
                 "date_format": "YYYYMMDD",
-                "description": "深交所-市场总貌-证券类别统计"
+                "description": "深交所-证券类别统计-指定交易日"
             },
             "stock_sse_deal_daily": {
                 "fn": ak.stock_sse_deal_daily,
                 "requires_date": True,
                 "date_format": "YYYYMMDD",
-                "description": "上交所-每日股票情况"
+                "description": "上交所-股票成交概况-每日股票情况"
             },
             "stock_zh_a_st_em": {
                 "fn": ak.stock_zh_a_st_em,
                 "requires_date": False,
                 "date_format": None,
-                "description": "沪深个股-风险警示板"
+                "description": "东方财富网-沪深个股-风险警示板"
             },
             "stock_gsrl_gsdt_em": {
                 "fn": ak.stock_gsrl_gsdt_em,
                 "requires_date": True,
                 "date_format": "YYYYMMDD",
-                "description": "股市日历-公司动态"
+                "description": "东方财富网-公司动态-指定交易日"
             },
             # 新增的7个接口
             "stock_gpzy_profile_em": {
                 "fn": ak.stock_gpzy_profile_em,
                 "requires_date": False,
                 "date_format": None,
-                "description": "股权质押-股权质押市场概况"
+                "description": "东方财富网-股权质押市场概况-所有历史"
+            },
+            "stock_gpzy_pledge_ratio_em": {
+                "fn": ak.stock_gpzy_pledge_ratio_em,
+                "requires_date": True,
+                "date_format": "YYYYMMDD",
+                "description": "东方财富网-上市公司质押比例-指定交易日"
             },
             "stock_gpzy_industry_data_em": {
                 "fn": ak.stock_gpzy_industry_data_em,
                 "requires_date": False,
                 "date_format": None,
-                "description": "股权质押-上市公司质押比例-行业数据"
+                "description": "东方财富网-上市公司质押比例-行业数据"
+            },
+            "stock_gpzy_distribute_statistics_company_em": {
+                "fn": ak.stock_gpzy_distribute_statistics_company_em,
+                "requires_date": False,
+                "date_format": None,
+                "description": "东方财富网-质押机构分布统计-证券公司"
+            },
+            "stock_gpzy_distribute_statistics_bank_em": {
+                "fn": ak.stock_gpzy_distribute_statistics_bank_em,
+                "requires_date": False,
+                "date_format": None,
+                "description": "东方财富网-质押机构分布统计-银行"
             },
             "stock_sy_profile_em": {
                 "fn": ak.stock_sy_profile_em,
                 "requires_date": False,
                 "date_format": None,
-                "description": "商誉-A股商誉市场概况"
+                "description": "东方财富网-A股商誉市场概况-所有历史"
+            },
+            "stock_sy_jz_em": {
+                "fn": ak.stock_sy_jz_em,
+                "requires_date": True,
+                "date_format": "YYYYMMDD",
+                "description": "东方财富网-个股商誉减值明细-指定日期(季末)"
+            },
+            "stock_sy_em": {
+                "fn": ak.stock_sy_em,
+                "requires_date": True,
+                "date_format": "YYYYMMDD",
+                "description": "东方财富网-个股商誉明细-指定日期(季末)"
+            },
+            "stock_sy_hy_em": {
+                "fn": ak.stock_sy_hy_em,
+                "requires_date": True,
+                "date_format": "YYYYMMDD",
+                "description": "东方财富网-行业商誉-指定日期(季末)"
             },
             "stock_account_statistics_em": {
                 "fn": ak.stock_account_statistics_em,
                 "requires_date": False,
                 "date_format": None,
-                "description": "特色数据-股票账户统计"
+                "description": "东方财富网-股票账户统计月度-所有历史"
             },
             "stock_comment_em": {
                 "fn": ak.stock_comment_em,
                 "requires_date": False,
                 "date_format": None,
-                "description": "特色数据-千股千评"
+                "description": "东方财富网-千股千评-所有数据"
             },
             # 新股申购-打新收益率
             "stock_dxsyl_em": {
                 "fn": ak.stock_dxsyl_em,
                 "requires_date": False,
                 "date_format": None,
-                "description": "A股-新股申购-打新收益率"
+                "description": "东方财富网-打新收益率-所有数据"
+            },
+            "stock_xgsglb_em": {
+                "fn": ak.stock_xgsglb_em,
+                "requires_date": False,
+                "requires_symbol": True,
+                "date_format": None,
+                "description": "东方财富网-新股申购与中签-指定市场"
             },
             # 停复牌
             "news_trade_notify_suspend_baidu": {
                 "fn": ak.news_trade_notify_suspend_baidu,
                 "requires_date": True,
                 "date_format": "YYYYMMDD",
-                "description": "百度股市通-交易提醒-停复牌"
+                "description": "百度股市通-停复牌-指定日期"
             },
             # 分红派息
             "news_trade_notify_dividend_baidu": {
                 "fn": ak.news_trade_notify_dividend_baidu,
                 "requires_date": True,
                 "date_format": "YYYYMMDD",
-                "description": "百度股市通-交易提醒-分红派息"
+                "description": "百度股市通-分红派息-指定日期"
+            },
+            "stock_fhps_em": {
+                "fn": ak.stock_fhps_em,
+                "requires_date": True,
+                "date_format": "YYYYMMDD",
+                "description": "东方财富网-分红配送-指定日期"
+            },
+            "stock_history_dividend": {
+                "fn": ak.stock_history_dividend,
+                "requires_date": False,
+                "description": "新浪财经-历史分红"
+            },
+            "stock_institute_hold": {
+                "fn": ak.stock_institute_hold,
+                "requires_date": False,
+                "requires_quarter": True,
+                "description": "新浪财经-机构持股一览表-指定报告期"
+            },
+            "stock_institute_recommend": {
+                "fn": ak.stock_institute_recommend,
+                "requires_date": False,
+                "requires_recommend_indicator": True,
+                "description": "新浪财经-机构推荐池-指定指标"
+            },
+            "stock_info_a_code_name": {
+                "fn": ak.stock_info_a_code_name,
+                "requires_date": False,
+                "description": "沪深京A股-股票代码和简称"
             }
         }
         
@@ -145,6 +216,20 @@ class StockMarketSummaryTool(Tool):
                     return
                 logging.info(f"Date validation passed for {date}")
             
+            # 检查报告期参数要求
+            quarter = tool_parameters.get("quarter", "")
+            if config.get("requires_quarter", False) and not quarter:
+                yield self.create_text_message(f"错误：'{config['description']}'接口需要 'quarter' 参数。请提供报告期格式如 '20241'（2024年一季报）。")
+                yield self.create_json_message({"error": "quarter_required", "message": f"{interface} requires 'quarter' parameter"})
+                return
+            
+            # 检查推荐指标参数要求
+            recommend_indicator = tool_parameters.get("recommend_indicator", "")
+            if config.get("requires_recommend_indicator", False) and not recommend_indicator:
+                yield self.create_text_message(f"错误：'{config['description']}'接口需要 'recommend_indicator' 参数。请选择推荐指标类型。")
+                yield self.create_json_message({"error": "recommend_indicator_required", "message": f"{interface} requires 'recommend_indicator' parameter"})
+                return
+            
             # 网络参数 - 统一处理逻辑
             retries = int(tool_parameters.get("retries", 5))
             timeout_param = tool_parameters.get("timeout")  # 让子进程根据接口类型自动决定超时时间
@@ -155,10 +240,17 @@ class StockMarketSummaryTool(Tool):
             call_params = {}
             if config["requires_date"] and date:
                 call_params["date"] = date
+            if config.get("requires_symbol"):
+                symbol = tool_parameters.get("symbol", "全部股票")
+                call_params["symbol"] = symbol
+            if config.get("requires_quarter") and quarter:
+                call_params["symbol"] = quarter
+            if config.get("requires_recommend_indicator") and recommend_indicator:
+                call_params["symbol"] = recommend_indicator
             
             logging.info(f"Call params: {call_params}")
             logging.info(f"Function: {config['fn']}")
-            logging.info(f"Interface: {interface}, Date: {date}")
+            logging.info(f"Interface: {interface}, Date: {date}, Quarter: {quarter}, Recommend Indicator: {recommend_indicator}")
             
             # 调用AKShare接口 - timeout现在仅用于子进程超时控制
             try:
