@@ -54,22 +54,6 @@ parameters:
           zh_Hans: 新浪财经-科创板股票历史行情数据-指定股票、复权方式
         value: stock_zh_kcb_daily
       - label:
-          en_US: Eastmoney - Peer Comparison - Growth Comparison - Specified Stock
-          zh_Hans: 东方财富网-同行比较-成长性比较-指定股票
-        value: stock_zh_growth_comparison_em
-      - label:
-          en_US: Eastmoney - Peer Comparison - Valuation Comparison - Specified Stock
-          zh_Hans: 东方财富网-同行比较-估值比较-指定股票
-        value: stock_zh_valuation_comparison_em
-      - label:
-          en_US: Eastmoney - Peer Comparison - DuPont Analysis Comparison - Specified Stock
-          zh_Hans: 东方财富网-同行比较-杜邦分析比较-指定股票
-        value: stock_zh_dupont_comparison_em
-      - label:
-          en_US: Eastmoney - Peer Comparison - Company Scale - Specified Stock
-          zh_Hans: 东方财富网-同行比较-公司规模-指定股票
-        value: stock_zh_scale_comparison_em
-      - label:
           en_US: THS - New Stock Listing - New Stock First Day
           zh_Hans: 同花顺-新股上市-新股上市首日
         value: stock_xgsr_ths
@@ -77,7 +61,7 @@ parameters:
     type: string
     required: true
     form: llm
-    default: "000001"
+    default: "600519"
     description: 股票代码
     llm_description: 股票代码，支持A股格式
     human_description:

@@ -75,7 +75,7 @@ class StockUsDataTool(Tool):
                 "fn": ak.stock_financial_us_analysis_indicator_em,
                 "requires_symbol": True,
                 "requires_indicator_us": True,
-                "timeout": 600,
+                "timeout": 900,
                 "description": "美股-财务分析-主要指标-指定股票代码、指标类型"
             },
             "stock_financial_us_report_em": {
@@ -83,7 +83,7 @@ class StockUsDataTool(Tool):
                 "requires_symbol": True,
                 "requires_report_type": True,
                 "requires_indicator_us": True,
-                "timeout": 600,
+                "timeout": 900,
                 "param_mapping": {
                     "stock": "symbol",
                     "symbol": "report_type", 
@@ -191,7 +191,7 @@ class StockUsDataTool(Tool):
             
             # 获取重试次数和超时时间
             retries = tool_parameters.get("retries", 5)
-            timeout = tool_parameters.get("timeout", 600)
+            timeout = tool_parameters.get("timeout", 900)
             
             # 使用接口特定的超时时间
             interface_timeout = config.get("timeout", timeout)

@@ -248,7 +248,7 @@ parameters:
     type: string
     required: false
     form: llm
-    default: "000001"
+    default: "600519"
     description: 股票代码
     llm_description: 个股类接口的股票代码参数，用于个股相关接口，请输入股票代码（如：000001、600000等）
     human_description:

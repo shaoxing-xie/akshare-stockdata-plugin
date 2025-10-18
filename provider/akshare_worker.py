@@ -211,7 +211,9 @@ INTERFACE_TIMEOUT_CONFIG = {
             'stock_kc_a_spot_em', 'stock_hk_spot_em', 'stock_hk_main_board_spot_em',
             'stock_zh_ah_spot_em', 'stock_zh_ab_comparison_em',
             'stock_zh_a_new', 'stock_zh_a_new_em', 'stock_xgsr_ths',
-            'stock_hsgt_sh_hk_spot_em'  # 沪深港通实时行情
+            'stock_hsgt_sh_hk_spot_em',  # 沪深港通实时行情
+            'stock_us_spot_em', 'stock_us_spot', 'stock_us_famous_spot_em',  # 美股实时行情
+            'stock_zh_a_stop_em', 'stock_ipo_benefit_ths', 'stock_bid_ask_em'  # 其他A股实时行情接口
         ],
         'timeout': 900.0  # 15分钟
     },
@@ -227,7 +229,8 @@ INTERFACE_TIMEOUT_CONFIG = {
         'interfaces': [
             'stock_lrb_em', 'stock_xjll_em', 'stock_zcfz_em', 'stock_zcfz_bj_em',
             'stock_financial_debt_ths', 'stock_financial_benefit_ths', 'stock_financial_cash_ths',
-            'stock_financial_abstract_ths', 'stock_financial_analysis_indicator'
+            'stock_financial_abstract_ths', 'stock_financial_analysis_indicator',
+            'stock_financial_us_analysis_indicator_em', 'stock_financial_us_report_em'  # 美股财务分析
         ],
         'timeout': 300.0  # 5分钟
     },
@@ -260,7 +263,8 @@ INTERFACE_TIMEOUT_CONFIG = {
     'historical_data': {
         'interfaces': [
             'stock_hist_quotations',  # 所有历史行情相关接口
-            'stock_hsgt_fund_min_em'  # 沪深港通分时数据
+            'stock_hsgt_fund_min_em',  # 沪深港通分时数据
+            'stock_us_daily', 'stock_us_hist', 'stock_us_hist_min_em'  # 美股历史数据
         ],
         'timeout': 300.0  # 5分钟
     },
@@ -285,6 +289,31 @@ def get_interface_timeout_for_worker(function_name: str) -> float:
     # 默认使用基础接口的超时时间
     return INTERFACE_TIMEOUT_CONFIG['basic']['timeout']
 import pandas as pd
+
+def get_market_identifier(symbol: str, case_type: str) -> str:
+    """
+    根据股票代码判断所属交易所，并根据大小写类型返回标识。
+    :param symbol: 股票代码，如 '600519'
+    :param case_type: 'lower' 返回小写 (sh/sz/bj), 'upper' 返回大写 (SH/SZ/BJ)
+    :return: 交易所标识
+    """
+    # 移除可能的后缀并转换为大写
+    symbol = str(symbol).split('.')[0].upper()
+
+    # 根据前缀判断
+    if symbol.startswith(('60',)) or symbol.startswith(('688',)):
+        market = 'sh'
+    elif symbol.startswith(('00',)) or symbol.startswith(('300', '301')):
+        market = 'sz'
+    elif symbol.startswith('8'):
+        market = 'bj'
+    else:
+        raise ValueError(f"Unknown market for symbol: {symbol}")
+
+    if case_type.lower() == 'upper':
+        return market.upper()
+    else:
+        return market.lower()
 
 def call_akshare_function(function_name, **kwargs):
     """调用指定的AKShare函数"""

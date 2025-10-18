@@ -129,7 +129,7 @@ parameters:
     type: string
     required: false
     form: llm
-    default: "000001"
+    default: "600519"
     description: 股票代码
     llm_description: 股票代码，格式：600519、000001、SH600519、SZ000001；A股：6位数字代码(600519)或市场前缀(SH600519)；B股：9位数字代码(900001)或市场前缀(SH900001)
     human_description:

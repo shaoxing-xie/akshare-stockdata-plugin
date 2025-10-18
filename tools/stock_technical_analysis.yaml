@@ -189,19 +189,6 @@ parameters:
           en_US: 500 Day MA
           zh_Hans: 500日均线
         value: 500日均线
-  - name: stock_code
-    type: string
-    required: false
-    form: llm
-    default: "000001"
-    description: 股票代码
-    llm_description: 用于个股指标接口的股票代码，如000001、600519等
-    human_description:
-      en_US: "Stock code. Required for: A-share Individual Indicators. Format: 000001, 600519, etc."
-      zh_Hans: "股票代码。需要此参数的接口：同花顺-技术选股-A股个股指标。格式：000001、600519等。"
-    label:
-      en_US: Stock Code
-      zh_Hans: 股票代码
   - name: market_type
     type: select
     required: false

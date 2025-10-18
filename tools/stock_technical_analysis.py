@@ -20,12 +20,11 @@ class StockTechnicalAnalysisTool(Tool):
             technical_indicator1 = tool_parameters.get("technical_indicator1", "")  # 新高类别
             technical_indicator2 = tool_parameters.get("technical_indicator2", "")  # 新低类别
             ma_type = tool_parameters.get("ma_type", "")  # 均线类型
-            stock_code = tool_parameters.get("stock_code", "")  # 股票代码
             market_type = tool_parameters.get("market_type", "")  # 市场类型
             retries = int(tool_parameters.get("retries", 5))
             timeout = float(tool_parameters.get("timeout", 120))
             
-            logging.info(f"Interface: {interface}, High Category: {technical_indicator1}, Low Category: {technical_indicator2}, MA Type: {ma_type}, Stock Code: {stock_code}, Market Type: {market_type}, Retries: {retries}, Timeout: {timeout}")
+            logging.info(f"Interface: {interface}, High Category: {technical_indicator1}, Low Category: {technical_indicator2}, MA Type: {ma_type}, Market Type: {market_type}, Retries: {retries}, Timeout: {timeout}")
             
             if not interface:
                 yield self.create_text_message("请选择要调用的接口")
@@ -152,10 +151,6 @@ class StockTechnicalAnalysisTool(Tool):
                 yield self.create_text_message(f"接口 {config['description']} 需要均线类型参数")
                 yield self.create_json_message({"error": f"ma_type required for {interface}"})
                 return
-            if config.get("requires_stock_code", False) and not stock_code:
-                yield self.create_text_message(f"接口 {config['description']} 需要股票代码参数")
-                yield self.create_json_message({"error": f"stock_code required for {interface}"})
-                return
             if config.get("requires_market_type", False) and not market_type:
                 yield self.create_text_message(f"接口 {config['description']} 需要市场类型参数")
                 yield self.create_json_message({"error": f"market_type required for {interface}"})
@@ -177,8 +172,6 @@ class StockTechnicalAnalysisTool(Tool):
                 call_params["symbol"] = technical_indicator2
             if config.get("requires_ma_type", False) and ma_type:
                 call_params["symbol"] = ma_type
-            if config.get("requires_stock_code", False) and stock_code:
-                call_params["symbol"] = stock_code
             if config.get("requires_market_type", False) and market_type:
                 call_params["symbol"] = market_type
             

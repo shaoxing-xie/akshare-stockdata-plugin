@@ -7,7 +7,8 @@ from provider.akshare_stockdata import safe_ak_call, build_error_payload
 from provider.akshare_registry import get_interface_config
 from dify_plugin import Tool
 from dify_plugin.entities.tool import ToolInvokeMessage
-from .common_utils import process_dataframe_output, process_other_output, handle_empty_result, validate_required_params, handle_akshare_error, validate_stock_symbol
+from .common_utils import process_dataframe_output, process_other_output, handle_empty_result, validate_required_params, handle_akshare_error, validate_stock_symbol, validate_stock_symbol_smart
+from provider.akshare_worker import get_market_identifier
 
 
 class StockFundFlowAnalysisTool(Tool):
@@ -18,7 +19,6 @@ class StockFundFlowAnalysisTool(Tool):
             
             interface = tool_parameters.get("interface", "")
             stock_code = tool_parameters.get("stock_code", "")  # 股票代码
-            market = tool_parameters.get("market", "")  # 市场
             indicator = tool_parameters.get("indicator", "")  # 指标
             sector_type = tool_parameters.get("sector_type", "")  # 板块类型
             market_choice = tool_parameters.get("market_choice", "")  # 市场选择
@@ -28,7 +28,7 @@ class StockFundFlowAnalysisTool(Tool):
             retries = int(tool_parameters.get("retries", 5))
             timeout = float(tool_parameters.get("timeout", 600))
             
-            logging.info(f"Interface: {interface}, StockCode: {stock_code}, Market: {market}, Indicator: {indicator}, SectorType: {sector_type}, MarketChoice: {market_choice}, IndustryNameConceptName: {industry_name_concept_name}, Symbol: {symbol}, Adjust: {adjust}, Retries: {retries}, Timeout: {timeout}")
+            logging.info(f"Interface: {interface}, StockCode: {stock_code}, Indicator: {indicator}, SectorType: {sector_type}, MarketChoice: {market_choice}, IndustryNameConceptName: {industry_name_concept_name}, Symbol: {symbol}, Adjust: {adjust}, Retries: {retries}, Timeout: {timeout}")
             
             if not interface:
                 yield self.create_text_message("请选择要调用的接口")
@@ -47,15 +47,15 @@ class StockFundFlowAnalysisTool(Tool):
             "stock_individual_fund_flow": {
                 "fn": ak.stock_individual_fund_flow,
                 "requires_stock_code": True,
-                "requires_market": True,
+                "requires_market": False,
                 "requires_indicator": False,
                 "requires_sector_type": False,
                 "requires_market_choice": False,
                 "requires_industry_name_concept_name": False,
                 "requires_adjust": False,
-                "description": "东方财富网-个股资金流向-指定股票、证交所",
+                "description": "东方财富网-个股资金流向-指定股票",
                 "timeout": 600,
-                "param_mapping": {"stock": "stock_code", "market": "market"}
+                "param_mapping": {"stock": "stock_code"}
             },
             "stock_individual_fund_flow_rank": {
                 "fn": ak.stock_individual_fund_flow_rank,
@@ -250,10 +250,11 @@ class StockFundFlowAnalysisTool(Tool):
             yield self.create_json_message({"error": "stock_code_required", "message": f"{interface} requires 'stock_code' parameter"})
             return
         
-        if config["requires_market"] and not market:
-            yield self.create_text_message(f"错误：'{config['description']}'接口需要 'market' 参数。请提供市场代码（sh/sz/bj）。")
-            yield self.create_json_message({"error": "market_required", "message": f"{interface} requires 'market' parameter"})
-            return
+        # 自动推断市场（如果需要且未提供）
+        if config["requires_market"] and stock_code:
+            market = get_market_identifier(stock_code, 'lower')
+        else:
+            market = ""
         
         if config["requires_indicator"] and not indicator:
             yield self.create_text_message(f"错误：'{config['description']}'接口需要 'indicator' 参数。请提供指标（今日/3日/5日/10日）。")
@@ -296,10 +297,10 @@ class StockFundFlowAnalysisTool(Tool):
             yield self.create_json_message({"error": "symbol_required", "message": f"{interface} requires 'symbol' parameter"})
             return
         
-        # 股票代码格式验证（仅对需要股票代码的接口）
+        # 智能验证股票代码格式和接口兼容性（仅对需要股票代码的接口）
         if config["requires_stock_code"] and stock_code:
             validation_result = None
-            for result in validate_stock_symbol(stock_code, self):
+            for result in validate_stock_symbol_smart(stock_code, interface, self):
                 if isinstance(result, bool):
                     validation_result = result
                 else:
@@ -307,12 +308,9 @@ class StockFundFlowAnalysisTool(Tool):
             if validation_result is False:
                 return
             
-            # 验证市场参数与股票代码的匹配性
-            if config["requires_market"] and market and stock_code:
-                if not self._validate_market_symbol_match(stock_code, market):
-                    yield self.create_text_message(f"错误：股票代码 '{stock_code}' 与市场 '{market}' 不匹配。\n\n请检查：\n- 600xxx、601xxx、603xxx、688xxx、689xxx 对应 'sh'（上海）\n- 000xxx、001xxx、002xxx、003xxx、300xxx 对应 'sz'（深圳）\n- 430xxx、830xxx、870xxx 对应 'bj'（北京）")
-                    yield self.create_json_message({"error": "market_symbol_mismatch", "message": f"Stock symbol '{stock_code}' does not match market '{market}'"})
-                    return
+            # 自动推断市场（如果需要）
+            if config["requires_market"]:
+                market = get_market_identifier(stock_code, 'lower')
         
         # 构建调用参数 - 使用参数映射系统
         call_params = {}
@@ -387,7 +385,7 @@ class StockFundFlowAnalysisTool(Tool):
                 if industry_name_concept_name:
                     sector_info = f"行业/概念: {industry_name_concept_name}"
                 
-                yield from handle_akshare_error(e, self, f"接口: {interface}, 股票代码: {stock_code}, 市场: {market}, 指标: {indicator}, 板块类型: {sector_type}, 市场选择: {market_choice}, {sector_info}, 复权: {adjust}", str(interface_timeout))
+                yield from handle_akshare_error(e, self, f"接口: {interface}, 股票代码: {stock_code}, 指标: {indicator}, 板块类型: {sector_type}, 市场选择: {market_choice}, {sector_info}, 复权: {adjust}", str(interface_timeout))
                 return
         
         # 处理结果
@@ -515,33 +513,5 @@ class StockFundFlowAnalysisTool(Tool):
             })
     
     def _validate_market_symbol_match(self, symbol: str, market: str) -> bool:
-        """
-        验证市场参数与股票代码的匹配性
-        
-        Args:
-            symbol: 股票代码
-            market: 市场代码
-            
-        Returns:
-            bool: 是否匹配
-        """
-        if not symbol or not market:
-            return True  # 如果任一为空，跳过验证
-            
-        symbol = symbol.strip().upper()
-        market = market.strip().lower()
-        
-        # 移除市场前缀（如SH、SZ等）
-        clean_symbol = symbol.replace('SH', '').replace('SZ', '').replace('HK', '').replace('-', '').replace('.', '')
-        
-        # 上海证券交易所：600xxx, 601xxx, 603xxx, 688xxx, 689xxx
-        if clean_symbol.startswith(('600', '601', '603', '688', '689')):
-            return market == 'sh'
-        # 深圳证券交易所：000xxx, 001xxx, 002xxx, 003xxx, 300xxx
-        elif clean_symbol.startswith(('000', '001', '002', '003', '300')):
-            return market == 'sz'
-        # 北京证券交易所：430xxx, 830xxx, 870xxx
-        elif clean_symbol.startswith(('430', '830', '870')):
-            return market == 'bj'
-        else:
-            return True  # 无法识别的代码，跳过验证
+        # This function is now deprecated as validation is handled in _invoke using get_market_identifier
+        return True

@@ -335,12 +335,12 @@ parameters:
     type: number
     required: false
     form: llm
-    default: 600
+    default: 900
     description: 子进程超时时间
-    llm_description: 子进程执行超时时间（秒），默认600秒
+    llm_description: 子进程执行超时时间（秒），默认900秒（15分钟），适合美股实时行情等大数据量接口
     human_description:
-      en_US: "Subprocess execution timeout in seconds, default is 600"
-      zh_Hans: "子进程执行超时时间（秒），默认600秒"
+      en_US: "Subprocess execution timeout in seconds, default is 900 (15 minutes), suitable for US stock real-time quotes and other data-intensive interfaces"
+      zh_Hans: "子进程执行超时时间（秒），默认900秒（15分钟），适合美股实时行情等大数据量接口"
     label:
       en_US: Subprocess Timeout
       zh_Hans: 子进程超时时间

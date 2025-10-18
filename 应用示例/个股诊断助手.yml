@@ -1,0 +1,4571 @@
+app:
+  description: ''
+  icon: 🤖
+  icon_background: '#FFEAD5'
+  mode: advanced-chat
+  name: 个股诊断助手
+  use_icon_as_answer_icon: false
+dependencies:
+- current_identifier: null
+  type: package
+  value:
+    plugin_unique_identifier: shaoxing-xie/akshare_stockdata:0.6.0@cc49b8ed14083aa6455d9ba889b1fd2dcffd896a86c3bcf58dcd3c379cd12408
+    version: null
+- current_identifier: null
+  type: marketplace
+  value:
+    marketplace_plugin_unique_identifier: langgenius/deepseek:0.0.6@dd589dc093c8084925858034ab5ec1fdf0d33819f43226c2f8c4a749a9acbbb2
+    version: null
+kind: app
+version: 0.4.0
+workflow:
+  conversation_variables: []
+  environment_variables: []
+  features:
+    file_upload:
+      allowed_file_extensions:
+      - .JPG
+      - .JPEG
+      - .PNG
+      - .GIF
+      - .WEBP
+      - .SVG
+      allowed_file_types:
+      - image
+      allowed_file_upload_methods:
+      - local_file
+      - remote_url
+      enabled: false
+      fileUploadConfig:
+        audio_file_size_limit: 50
+        batch_count_limit: 5
+        file_size_limit: 50
+        image_file_size_limit: 10
+        video_file_size_limit: 100
+        workflow_file_upload_limit: 10
+      image:
+        enabled: false
+        number_limits: 3
+        transfer_methods:
+        - local_file
+        - remote_url
+      number_limits: 3
+    opening_statement: ''
+    retriever_resource:
+      enabled: true
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions: []
+    suggested_questions_after_answer:
+      enabled: false
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: start
+        targetType: code
+      id: 1760390449027-source-1760392261128-target
+      selected: false
+      source: '1760390449027'
+      sourceHandle: source
+      target: '1760392261128'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: code
+        targetType: iteration
+      id: 1760392261128-source-1760391592346-target
+      selected: false
+      source: '1760392261128'
+      sourceHandle: source
+      target: '1760391592346'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: true
+        isInLoop: false
+        iteration_id: '1760391592346'
+        sourceType: iteration-start
+        targetType: if-else
+      id: 1760391592346start-source-1760392417675-target
+      selected: false
+      source: 1760391592346start
+      sourceHandle: source
+      target: '1760392417675'
+      targetHandle: target
+      type: custom
+      zIndex: 1002
+    - data:
+        isInIteration: true
+        isInLoop: false
+        iteration_id: '1760391592346'
+        sourceType: if-else
+        targetType: tool
+      id: 1760392417675-true-1760408897272-target
+      selected: false
+      source: '1760392417675'
+      sourceHandle: 'true'
+      target: '1760408897272'
+      targetHandle: target
+      type: custom
+      zIndex: 1002
+    - data:
+        isInIteration: true
+        isInLoop: false
+        iteration_id: '1760391592346'
+        sourceType: if-else
+        targetType: tool
+      id: 1760392417675-61bfa8d3-c108-40be-be4f-87a409d89caf-1760409262191-target
+      selected: false
+      source: '1760392417675'
+      sourceHandle: 61bfa8d3-c108-40be-be4f-87a409d89caf
+      target: '1760409262191'
+      targetHandle: target
+      type: custom
+      zIndex: 1002
+    - data:
+        isInIteration: true
+        isInLoop: false
+        iteration_id: '1760391592346'
+        sourceType: if-else
+        targetType: tool
+      id: 1760392417675-c342dbd0-5a97-4b2d-b472-91b595d722bf-1760409337399-target
+      selected: false
+      source: '1760392417675'
+      sourceHandle: c342dbd0-5a97-4b2d-b472-91b595d722bf
+      target: '1760409337399'
+      targetHandle: target
+      type: custom
+      zIndex: 1002
+    - data:
+        isInIteration: true
+        isInLoop: false
+        iteration_id: '1760391592346'
+        sourceType: if-else
+        targetType: tool
+      id: 1760392417675-331d5ee8-db5c-41b3-894a-7bdd509fce97-1760409421729-target
+      selected: false
+      source: '1760392417675'
+      sourceHandle: 331d5ee8-db5c-41b3-894a-7bdd509fce97
+      target: '1760409421729'
+      targetHandle: target
+      type: custom
+      zIndex: 1002
+    - data:
+        isInIteration: true
+        isInLoop: false
+        iteration_id: '1760391592346'
+        sourceType: if-else
+        targetType: tool
+      id: 1760392417675-46372912-b7af-40a4-8443-481b3cd406a5-1760409610004-target
+      selected: false
+      source: '1760392417675'
+      sourceHandle: 46372912-b7af-40a4-8443-481b3cd406a5
+      target: '1760409610004'
+      targetHandle: target
+      type: custom
+      zIndex: 1002
+    - data:
+        isInIteration: true
+        isInLoop: false
+        iteration_id: '1760391592346'
+        sourceType: if-else
+        targetType: tool
+      id: 1760392417675-306cff76-de40-422d-a3bd-a6e37af94623-1760409822483-target
+      selected: false
+      source: '1760392417675'
+      sourceHandle: 306cff76-de40-422d-a3bd-a6e37af94623
+      target: '1760409822483'
+      targetHandle: target
+      type: custom
+      zIndex: 1002
+    - data:
+        isInIteration: true
+        isInLoop: false
+        iteration_id: '1760391592346'
+        sourceType: if-else
+        targetType: tool
+      id: 1760392417675-c8e15ad5-1b9a-4680-9a19-b673ae1b3dae-1760423797640-target
+      selected: false
+      source: '1760392417675'
+      sourceHandle: c8e15ad5-1b9a-4680-9a19-b673ae1b3dae
+      target: '1760423797640'
+      targetHandle: target
+      type: custom
+      zIndex: 1002
+    - data:
+        isInIteration: true
+        isInLoop: false
+        iteration_id: '1760391592346'
+        sourceType: tool
+        targetType: variable-aggregator
+      id: 1760408897272-source-1760436189278-target
+      selected: false
+      source: '1760408897272'
+      sourceHandle: source
+      target: '1760436189278'
+      targetHandle: target
+      type: custom
+      zIndex: 1002
+    - data:
+        isInIteration: true
+        isInLoop: false
+        iteration_id: '1760391592346'
+        sourceType: tool
+        targetType: variable-aggregator
+      id: 1760409262191-source-1760436189278-target
+      selected: false
+      source: '1760409262191'
+      sourceHandle: source
+      target: '1760436189278'
+      targetHandle: target
+      type: custom
+      zIndex: 1002
+    - data:
+        isInIteration: true
+        isInLoop: false
+        iteration_id: '1760391592346'
+        sourceType: variable-aggregator
+        targetType: llm
+      id: 1760436189278-source-1760392848433-target
+      selected: false
+      source: '1760436189278'
+      sourceHandle: source
+      target: '1760392848433'
+      targetHandle: target
+      type: custom
+      zIndex: 1002
+    - data:
+        isInIteration: true
+        isInLoop: false
+        iteration_id: '1760391592346'
+        sourceType: tool
+        targetType: variable-aggregator
+      id: 1760409337399-source-1760436189278-target
+      source: '1760409337399'
+      sourceHandle: source
+      target: '1760436189278'
+      targetHandle: target
+      type: custom
+      zIndex: 1002
+    - data:
+        isInIteration: true
+        isInLoop: false
+        iteration_id: '1760391592346'
+        sourceType: tool
+        targetType: variable-aggregator
+      id: 1760409421729-source-1760436189278-target
+      source: '1760409421729'
+      sourceHandle: source
+      target: '1760436189278'
+      targetHandle: target
+      type: custom
+      zIndex: 1002
+    - data:
+        isInIteration: true
+        isInLoop: false
+        iteration_id: '1760391592346'
+        sourceType: tool
+        targetType: variable-aggregator
+      id: 1760409610004-source-1760436189278-target
+      source: '1760409610004'
+      sourceHandle: source
+      target: '1760436189278'
+      targetHandle: target
+      type: custom
+      zIndex: 1002
+    - data:
+        isInIteration: true
+        isInLoop: false
+        iteration_id: '1760391592346'
+        sourceType: tool
+        targetType: variable-aggregator
+      id: 1760409822483-source-1760436189278-target
+      source: '1760409822483'
+      sourceHandle: source
+      target: '1760436189278'
+      targetHandle: target
+      type: custom
+      zIndex: 1002
+    - data:
+        isInIteration: true
+        isInLoop: false
+        iteration_id: '1760391592346'
+        sourceType: tool
+        targetType: variable-aggregator
+      id: 1760423797640-source-1760436189278-target
+      source: '1760423797640'
+      sourceHandle: source
+      target: '1760436189278'
+      targetHandle: target
+      type: custom
+      zIndex: 1002
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: iteration
+        targetType: code
+      id: 1760391592346-source-1760445568936-target
+      source: '1760391592346'
+      sourceHandle: source
+      target: '1760445568936'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: code
+        targetType: answer
+      id: 1760445568936-source-answer-target
+      source: '1760445568936'
+      sourceHandle: source
+      target: answer
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    nodes:
+    - data:
+        selected: false
+        title: 开始
+        type: start
+        variables:
+        - default: 个股基本信息汇总,趋势动量震荡指标(日频),趋势动量震荡指标(分钟),动态估值指标,历史估值指标,A股-财务分析
+          hint: ''
+          label: 轮次列表
+          max_length: 256
+          options:
+          - basic
+          - financial
+          - technical
+          - fund_flow
+          - history
+          placeholder: ''
+          required: true
+          type: text-input
+          variable: phases_string
+        - default: '600519'
+          hint: ''
+          label: 股票代码
+          max_length: 48
+          options: []
+          placeholder: ''
+          required: true
+          type: text-input
+          variable: symbol
+        - default: 上海证券交易所
+          hint: ''
+          label: 证交所
+          max_length: 48
+          options:
+          - 上海证券交易所
+          - 深证证券交易所
+          - 北京证券交易所
+          placeholder: ''
+          required: true
+          type: select
+          variable: market
+        - default: daily
+          hint: ''
+          label: 周期(日频)
+          max_length: 48
+          options:
+          - daily
+          - weekly
+          - monthly
+          placeholder: ''
+          required: true
+          type: select
+          variable: period_daily
+        - default: '20250101'
+          hint: ''
+          label: 开始日期(日频)
+          max_length: 48
+          options: []
+          placeholder: ''
+          required: true
+          type: text-input
+          variable: start_date
+        - default: '15'
+          hint: ''
+          label: 周期(分钟)
+          max_length: 48
+          options:
+          - '1'
+          - '5'
+          - '15'
+          - '30'
+          - '60'
+          placeholder: ''
+          required: true
+          type: select
+          variable: period_minute
+        - default: '20250801'
+          hint: ''
+          label: 开始日期(分钟）
+          max_length: 48
+          options: []
+          placeholder: ''
+          required: true
+          type: text-input
+          variable: start_time
+      height: 244
+      id: '1760390449027'
+      position:
+        x: -1242.2608997278762
+        y: 106.89802059645473
+      positionAbsolute:
+        x: -1242.2608997278762
+        y: 106.89802059645473
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        answer: '{{#1760445568936.final_report#}}'
+        selected: false
+        title: 直接回复
+        type: answer
+        variables: []
+      height: 103
+      id: answer
+      position:
+        x: 1588.0931436214323
+        y: 106.89802059645473
+      positionAbsolute:
+        x: 1588.0931436214323
+        y: 106.89802059645473
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        error_handle_mode: terminated
+        height: 568.102195373191
+        is_parallel: false
+        iterator_input_type: array[string]
+        iterator_selector:
+        - '1760392261128'
+        - phases
+        output_selector:
+        - '1760392848433'
+        - text
+        output_type: array[string]
+        parallel_nums: 10
+        selected: false
+        start_node_id: 1760391592346start
+        title: 迭代
+        type: iteration
+        width: 1164
+      height: 568
+      id: '1760391592346'
+      position:
+        x: -284.91519300517075
+        y: -81.15911970636353
+      positionAbsolute:
+        x: -284.91519300517075
+        y: -81.15911970636353
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 1164
+      zIndex: 1
+    - data:
+        desc: ''
+        isInIteration: true
+        selected: false
+        title: ''
+        type: iteration-start
+      draggable: false
+      height: 48
+      id: 1760391592346start
+      parentId: '1760391592346'
+      position:
+        x: 24
+        y: 68
+      positionAbsolute:
+        x: -260.91519300517075
+        y: -13.159119706363526
+      selectable: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom-iteration-start
+      width: 44
+      zIndex: 1002
+    - data:
+        code: "def main(phases_string: str):\n    phases = phases_string.split(\"\
+          ,\")\n    return {\"phases\": phases}"
+        code_language: python3
+        outputs:
+          phases:
+            children: null
+            type: array[string]
+        selected: false
+        title: 代码执行
+        type: code
+        variables:
+        - value_selector:
+          - '1760390449027'
+          - phases_string
+          value_type: string
+          variable: phases_string
+      height: 52
+      id: '1760392261128'
+      position:
+        x: -952.2454129176906
+        y: 121.13926768866844
+      positionAbsolute:
+        x: -952.2454129176906
+        y: 121.13926768866844
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        cases:
+        - case_id: 'true'
+          conditions:
+          - comparison_operator: contains
+            id: ed27429c-c6db-4857-bd08-8ae35b41772e
+            value: 个股基本信息汇总
+            varType: string
+            variable_selector:
+            - '1760391592346'
+            - item
+          id: 'true'
+          logical_operator: and
+        - case_id: 61bfa8d3-c108-40be-be4f-87a409d89caf
+          conditions:
+          - comparison_operator: contains
+            id: 05d6f2cc-8289-4140-82e2-e59ea390d00a
+            value: 趋势动量震荡指标(日频)
+            varType: string
+            variable_selector:
+            - '1760391592346'
+            - item
+          id: 61bfa8d3-c108-40be-be4f-87a409d89caf
+          logical_operator: and
+        - case_id: c342dbd0-5a97-4b2d-b472-91b595d722bf
+          conditions:
+          - comparison_operator: contains
+            id: b2897634-b111-4638-af4d-9f30f8276e7e
+            value: 趋势动量震荡指标(分钟)
+            varType: string
+            variable_selector:
+            - '1760391592346'
+            - item
+          id: c342dbd0-5a97-4b2d-b472-91b595d722bf
+          logical_operator: and
+        - case_id: 331d5ee8-db5c-41b3-894a-7bdd509fce97
+          conditions:
+          - comparison_operator: contains
+            id: b8c1186f-eaef-4520-9573-c6418bb0374e
+            value: 动态估值指标
+            varType: string
+            variable_selector:
+            - '1760391592346'
+            - item
+          id: 331d5ee8-db5c-41b3-894a-7bdd509fce97
+          logical_operator: and
+        - case_id: 46372912-b7af-40a4-8443-481b3cd406a5
+          conditions:
+          - comparison_operator: contains
+            id: 6c12760c-edc7-480d-8f63-d6c9ba8323bf
+            value: 历史估值指标
+            varType: string
+            variable_selector:
+            - '1760391592346'
+            - item
+          id: 46372912-b7af-40a4-8443-481b3cd406a5
+          logical_operator: and
+        - case_id: 306cff76-de40-422d-a3bd-a6e37af94623
+          conditions:
+          - comparison_operator: contains
+            id: d0baa176-d241-4834-8295-7cdc5477e55d
+            value: A股-财务分析
+            varType: string
+            variable_selector:
+            - '1760391592346'
+            - item
+          id: 306cff76-de40-422d-a3bd-a6e37af94623
+          logical_operator: and
+        - case_id: c8e15ad5-1b9a-4680-9a19-b673ae1b3dae
+          conditions:
+          - comparison_operator: contains
+            id: 41eb8cd7-306d-4804-aac8-b0331167c386
+            value: 个股资金流向
+            varType: string
+            variable_selector:
+            - '1760391592346'
+            - item
+          id: c8e15ad5-1b9a-4680-9a19-b673ae1b3dae
+          logical_operator: and
+        isInIteration: true
+        isInLoop: false
+        iteration_id: '1760391592346'
+        selected: false
+        title: 条件分支
+        type: if-else
+      height: 412
+      id: '1760392417675'
+      parentId: '1760391592346'
+      position:
+        x: 29.14503296470218
+        y: 130.366414443699
+      positionAbsolute:
+        x: -255.77016004046857
+        y: 49.207294737335474
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+      zIndex: 1002
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        isInIteration: true
+        isInLoop: false
+        iteration_id: '1760391592346'
+        memory:
+          query_prompt_template: ''
+          role_prefix:
+            assistant: ''
+            user: ''
+          window:
+            enabled: false
+            size: 50
+        model:
+          completion_params: {}
+          mode: chat
+          name: deepseek-chat
+          provider: langgenius/deepseek/deepseek
+        prompt_template:
+        - id: 739c454f-5cd9-4e08-8f61-9240d52336d5
+          role: system
+          text: '      你是一位拥有15年经验的资深股票分析师，具备深厚的技术分析和基本面分析功底。请基于以下真实的股票数据：多轮插件返回的完整原始数据，进行分析；不要使用训练时的股票数据、主观意见；生成一份专业、客观的股票诊断分析报告。必须严格按照提供的接口数据进行分析，如果某项数据缺失或异常，请如实说明并标记“无数据可用”或解释原因。
+
+             
+
+            本轮{{#1760391592346.item#}}原始数据,:{{#1760436189278.output#}}
+
+             
+
+            更新报告（结构化，逐步累积，基于所有数据）：
+
+            **报告要求：**
+
+            请严格按照以下结构生成1200-1500字的专业分析报告，每个部分必须引用具体数据支撑，避免空泛描述：
+
+             
+
+            ## 1. 股票概况 (200-250字)
+
+            - 基于“个股基本信息汇总”数据，分析公司基本面：行业地位、主营业务、市值规模、股本结构（引用股票代码、总市值、收入占比等字段）。
+
+            - 总结公司核心业务特点（基于经营范围和产品类型）。
+
+            - 说明当前股价和市场表现（基于最新价格和市值）。
+
+             
+
+            ## 2. 技术面分析 (400-500字)
+
+            - **趋势分析**：基于“趋势动量震荡指标(日频)”的MA均线系统，判断短中长期趋势方向（引用MA5/MA10等值）。
+
+            - **动量指标**：解读RSI、MACD、KDJ等指标，评估超买超卖状态和动能变化（引用RSI>70超买、MACD金叉等）。
+
+            - **技术形态**：分析布林带位置、支撑阻力位（基于日频数据）。
+
+            - **成交量分析**：结合VMA成交量指标，判断量价配合情况（引用成交量字段）。
+
+            - **估值位置**：基于“历史估值指标”，判断当前估值水平是否合理（引用历史PE/PB百分位）。
+
+             
+
+            ## 3. 基本面分析 (300-400字)
+
+            - **盈利能力**：分析每股收益、净资产收益率、销售净利率等盈利指标（基于“A股-财务分析”的ROE、毛利率等）。
+
+            - **成长性**：评估营收增长率、净利润增长率等成长指标（引用增长率字段）。
+
+            - **财务健康度**：基于“动态估值指标”和“A股-财务分析”数据，重点分析：
+
+              - 财务健康度评分：综合盈利能力、偿债能力、运营效率（引用评分/等级）。
+
+              - 成长性评分：收入增长、利润增长、净资产增长的综合评估（引用评分）。
+
+              - 运营效率评分：资产周转、存货管理、应收账款管理等效率指标（引用周转率等）。
+
+              - 综合财务评分和等级：整体财务质量评估（引用总分）。
+
+            - **估值分析**：基于“动态估值指标”，分析动态PE、PB、PCF、PEG等（引用PEG<1低估等）；结合“历史估值指标”对比历史水平。
+
+            - **行业对比**：将关键财务指标与行业平均水平对比（如果数据提供，否则标记无数据）。
+
+             
+
+            ## 4. 历史行情分析 (150-200字)
+
+            - 基于“历史估值指标”和日频技术数据，分析近期短线走势特征（引用日期、PE/PB变化）。
+
+            - 关注历史技术指标的变化，判断短线信号（引用MACD/RSI历史值）。
+
+            - 分析历史波动幅度和成交量变化（基于日频数据）。
+
+             
+
+            ## 5. 日内行情分析 (150-200字)
+
+            - 基于“趋势动量震荡指标(分钟)”，分析当日或近期短线走势特征（引用分钟时间、价格、RSI/MACD）。
+
+            - 关注分钟级技术指标的变化，判断短线信号（引用KDJ超买/超卖）。
+
+            - 分析日内波动幅度和成交量变化（引用成交量字段）。
+
+             
+
+            ## 6. 资金面分析 (150-200字)
+
+            - 基于“个股资金流向”数据，分析主力/散户资金流入流出（引用净流入额、总资金净额）。
+
+            - 评估资金动向趋势（引用日期序列）。
+
+             
+
+            ## 7. 投资建议与风险提醒 (150-200字)
+
+            - **风险提醒**：基于数据指出潜在问题，如估值过高（PE异常）、资金流出（负净额）、财务评分低等，指出主要投资风险点。
+
+            - **短期建议**（1个月内）：基于技术面给出操作建议和关键点位
+
+            - **中长期建议**（3-12个月）：基于基本面给出投资价值判断
+
+            - **目标价位**：给出合理的价格区间预期
+
+             
+
+            **注意事项：**
+
+            1. 必须基于提供的真实数据进行分析，不得编造数据。
+
+            2. 对于数据中的异常值要合理解释（如负PE表示亏损）。
+
+            3. 分析要客观中性，避免过度乐观或悲观。
+
+            4. 使用专业术语但保持通俗易懂。
+
+            5. 每个部分都要有具体数据支撑，避免空泛描述。
+
+            6. 如果某项数据缺失或异常，请如实说明。
+
+            7. **重点关注财务健康度评分**：将综合财务评分、成长性评分、运营效率评分作为关键参考。
+
+            8. **动态估值分析**：结合PE、PB、PEG等动态估值指标，判断当前股价的合理性和投资价值（仅描述事实）。
+
+             
+
+            请开始生成分析报告。
+
+             
+
+            输出为 Markdown 格式的完整报告。'
+        selected: false
+        title: LLM 2
+        type: llm
+        vision:
+          enabled: false
+      height: 88
+      id: '1760392848433'
+      parentId: '1760391592346'
+      position:
+        x: 881.7862825848899
+        y: 190.25179417770715
+      positionAbsolute:
+        x: 596.8710895797192
+        y: 109.09267447134363
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+      zIndex: 1002
+    - data:
+        isInIteration: true
+        isInLoop: false
+        is_team_authorization: true
+        iteration_id: '1760391592346'
+        paramSchemas:
+        - auto_generate: null
+          default: trend_momentum_oscillator
+          form: llm
+          human_description:
+            en_US: 'Select the comprehensive technical indicators interface. Categories:
+              Trend Momentum Oscillator (Daily/Minute), Dynamic Valuation Indicators,
+              Historical Valuation Indicators, Stock Basic Info Summary. Most interfaces
+              require specific parameters like stock code, period, or date range.'
+            ja_JP: 'Select the comprehensive technical indicators interface. Categories:
+              Trend Momentum Oscillator (Daily/Minute), Dynamic Valuation Indicators,
+              Historical Valuation Indicators, Stock Basic Info Summary. Most interfaces
+              require specific parameters like stock code, period, or date range.'
+            pt_BR: 'Select the comprehensive technical indicators interface. Categories:
+              Trend Momentum Oscillator (Daily/Minute), Dynamic Valuation Indicators,
+              Historical Valuation Indicators, Stock Basic Info Summary. Most interfaces
+              require specific parameters like stock code, period, or date range.'
+            zh_Hans: 选择综合技术指标相关接口。分类包括：趋势动量震荡指标(日频/分钟)、动态估值指标、历史估值指标、个股基本信息汇总。大部分接口需要特定参数如股票代码、周期或日期范围。
+          label:
+            en_US: Indicator Type
+            ja_JP: Indicator Type
+            pt_BR: Indicator Type
+            zh_Hans: 指标类型
+          llm_description: 选择综合技术指标相关接口。分类包括：趋势动量震荡指标(日频/分钟)、动态估值指标、历史估值指标、个股基本信息汇总。大部分接口需要特定参数如股票代码、周期或日期范围。
+          max: null
+          min: null
+          name: indicator
+          options:
+          - icon: ''
+            label:
+              en_US: Trend Momentum Oscillator (Daily) - Specify Stock Code, Daily
+                Period
+              ja_JP: Trend Momentum Oscillator (Daily) - Specify Stock Code, Daily
+                Period
+              pt_BR: Trend Momentum Oscillator (Daily) - Specify Stock Code, Daily
+                Period
+              zh_Hans: 趋势动量震荡指标(日频)-指定股票代码、周期(日频)
+            value: trend_momentum_oscillator
+          - icon: ''
+            label:
+              en_US: Trend Momentum Oscillator (Minute) - Specify Stock Code, Minute
+                Period
+              ja_JP: Trend Momentum Oscillator (Minute) - Specify Stock Code, Minute
+                Period
+              pt_BR: Trend Momentum Oscillator (Minute) - Specify Stock Code, Minute
+                Period
+              zh_Hans: 趋势动量震荡指标(分钟)-指定股票代码、周期(分钟)
+            value: trend_momentum_oscillator_minute
+          - icon: ''
+            label:
+              en_US: Dynamic Valuation Indicators - Specify Stock Code
+              ja_JP: Dynamic Valuation Indicators - Specify Stock Code
+              pt_BR: Dynamic Valuation Indicators - Specify Stock Code
+              zh_Hans: 动态估值指标-指定股票代码
+            value: dynamic_valuation_indicators
+          - icon: ''
+            label:
+              en_US: Historical Valuation Indicators - Specify Stock Code, Daily Period,
+                Date Range
+              ja_JP: Historical Valuation Indicators - Specify Stock Code, Daily Period,
+                Date Range
+              pt_BR: Historical Valuation Indicators - Specify Stock Code, Daily Period,
+                Date Range
+              zh_Hans: 历史估值指标-指定股票代码、周期(日频)、日期范围
+            value: historical_valuation_indicators
+          - icon: ''
+            label:
+              en_US: Stock Basic Info Summary - Specify Stock Code
+              ja_JP: Stock Basic Info Summary - Specify Stock Code
+              pt_BR: Stock Basic Info Summary - Specify Stock Code
+              zh_Hans: 个股基本信息汇总-指定股票代码
+            value: stock_basic_info_summary
+          placeholder: null
+          precision: null
+          required: true
+          scope: null
+          template: null
+          type: select
+        - auto_generate: null
+          default: '000001'
+          form: llm
+          human_description:
+            en_US: 'Stock code. Required for: Trend Momentum Oscillator, Dynamic Valuation
+              Indicators, Historical Valuation Indicators, Stock Basic Info Summary.
+              Format: 000001, 600519, 688356, etc.'
+            ja_JP: 'Stock code. Required for: Trend Momentum Oscillator, Dynamic Valuation
+              Indicators, Historical Valuation Indicators, Stock Basic Info Summary.
+              Format: 000001, 600519, 688356, etc.'
+            pt_BR: 'Stock code. Required for: Trend Momentum Oscillator, Dynamic Valuation
+              Indicators, Historical Valuation Indicators, Stock Basic Info Summary.
+              Format: 000001, 600519, 688356, etc.'
+            zh_Hans: 股票代码。需要此参数的指标：趋势动量震荡指标、动态估值指标、历史估值指标、个股基本信息汇总。格式：000001、600519、688356等。
+          label:
+            en_US: Stock Code
+            ja_JP: Stock Code
+            pt_BR: Stock Code
+            zh_Hans: 股票代码
+          llm_description: 股票代码，用于所有指标类型
+          max: null
+          min: null
+          name: symbol
+          options: []
+          placeholder: null
+          precision: null
+          required: true
+          scope: null
+          template: null
+          type: string
+        - auto_generate: null
+          default: daily
+          form: llm
+          human_description:
+            en_US: 'Daily data period type. Required for: Trend Momentum Oscillator
+              (Daily), Historical Valuation Indicators. Options: daily (日线), weekly
+              (周线), monthly (月线). Not required for: Trend Momentum Oscillator (Minute),
+              Dynamic Valuation Indicators, Stock Basic Info Summary.'
+            ja_JP: 'Daily data period type. Required for: Trend Momentum Oscillator
+              (Daily), Historical Valuation Indicators. Options: daily (日线), weekly
+              (周线), monthly (月线). Not required for: Trend Momentum Oscillator (Minute),
+              Dynamic Valuation Indicators, Stock Basic Info Summary.'
+            pt_BR: 'Daily data period type. Required for: Trend Momentum Oscillator
+              (Daily), Historical Valuation Indicators. Options: daily (日线), weekly
+              (周线), monthly (月线). Not required for: Trend Momentum Oscillator (Minute),
+              Dynamic Valuation Indicators, Stock Basic Info Summary.'
+            zh_Hans: 日频数据周期类型。需要此参数的指标：趋势动量震荡指标(日频)、历史估值指标。选项：daily(日线)、weekly(周线)、monthly(月线)。不需要此参数的指标：趋势动量震荡指标(分钟)、动态估值指标、个股基本信息汇总。
+          label:
+            en_US: Daily Period
+            ja_JP: Daily Period
+            pt_BR: Daily Period
+            zh_Hans: 周期(日频)
+          llm_description: 日频数据周期类型，用于趋势动量震荡指标(日频)和历史估值指标
+          max: null
+          min: null
+          name: period_daily
+          options:
+          - icon: ''
+            label:
+              en_US: Daily
+              ja_JP: Daily
+              pt_BR: Daily
+              zh_Hans: 日线
+            value: daily
+          - icon: ''
+            label:
+              en_US: Weekly
+              ja_JP: Weekly
+              pt_BR: Weekly
+              zh_Hans: 周线
+            value: weekly
+          - icon: ''
+            label:
+              en_US: Monthly
+              ja_JP: Monthly
+              pt_BR: Monthly
+              zh_Hans: 月线
+            value: monthly
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: select
+        - auto_generate: null
+          default: '15'
+          form: llm
+          human_description:
+            en_US: 'Minute data period type. Required for: Trend Momentum Oscillator
+              (Minute). Options: 1 (1分钟), 5 (5分钟), 15 (15分钟), 30 (30分钟), 60 (60分钟).
+              Not required for: Trend Momentum Oscillator (Daily), Dynamic Valuation
+              Indicators, Historical Valuation Indicators, Stock Basic Info Summary.'
+            ja_JP: 'Minute data period type. Required for: Trend Momentum Oscillator
+              (Minute). Options: 1 (1分钟), 5 (5分钟), 15 (15分钟), 30 (30分钟), 60 (60分钟).
+              Not required for: Trend Momentum Oscillator (Daily), Dynamic Valuation
+              Indicators, Historical Valuation Indicators, Stock Basic Info Summary.'
+            pt_BR: 'Minute data period type. Required for: Trend Momentum Oscillator
+              (Minute). Options: 1 (1分钟), 5 (5分钟), 15 (15分钟), 30 (30分钟), 60 (60分钟).
+              Not required for: Trend Momentum Oscillator (Daily), Dynamic Valuation
+              Indicators, Historical Valuation Indicators, Stock Basic Info Summary.'
+            zh_Hans: 分钟级数据周期类型。需要此参数的指标：趋势动量震荡指标(分钟)。选项：1(1分钟)、5(5分钟)、15(15分钟)、30(30分钟)、60(60分钟)。不需要此参数的指标：趋势动量震荡指标(日频)、动态估值指标、历史估值指标、个股基本信息汇总。
+          label:
+            en_US: Minute Period
+            ja_JP: Minute Period
+            pt_BR: Minute Period
+            zh_Hans: 周期(分钟)
+          llm_description: 分钟级数据周期类型，用于趋势动量震荡指标(分钟)
+          max: null
+          min: null
+          name: period_minute
+          options:
+          - icon: ''
+            label:
+              en_US: 1 Minute
+              ja_JP: 1 Minute
+              pt_BR: 1 Minute
+              zh_Hans: 1分钟
+            value: '1'
+          - icon: ''
+            label:
+              en_US: 5 Minutes
+              ja_JP: 5 Minutes
+              pt_BR: 5 Minutes
+              zh_Hans: 5分钟
+            value: '5'
+          - icon: ''
+            label:
+              en_US: 15 Minutes
+              ja_JP: 15 Minutes
+              pt_BR: 15 Minutes
+              zh_Hans: 15分钟
+            value: '15'
+          - icon: ''
+            label:
+              en_US: 30 Minutes
+              ja_JP: 30 Minutes
+              pt_BR: 30 Minutes
+              zh_Hans: 30分钟
+            value: '30'
+          - icon: ''
+            label:
+              en_US: 60 Minutes
+              ja_JP: 60 Minutes
+              pt_BR: 60 Minutes
+              zh_Hans: 60分钟
+            value: '60'
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: select
+        - auto_generate: null
+          default: '20250101'
+          form: llm
+          human_description:
+            en_US: 'Start date. Required for: Trend Momentum Oscillator (Daily), Trend
+              Momentum Oscillator (Minute), Historical Valuation Indicators. Format:
+              YYYYMMDD (20250101) or YYYY-MM-DD (2025-01-01). For minute indicators,
+              automatically converts to YYYY-MM-DD 09:30:00. Default: 20250101. Not
+              required for: Dynamic Valuation Indicators, Stock Basic Info Summary.'
+            ja_JP: 'Start date. Required for: Trend Momentum Oscillator (Daily), Trend
+              Momentum Oscillator (Minute), Historical Valuation Indicators. Format:
+              YYYYMMDD (20250101) or YYYY-MM-DD (2025-01-01). For minute indicators,
+              automatically converts to YYYY-MM-DD 09:30:00. Default: 20250101. Not
+              required for: Dynamic Valuation Indicators, Stock Basic Info Summary.'
+            pt_BR: 'Start date. Required for: Trend Momentum Oscillator (Daily), Trend
+              Momentum Oscillator (Minute), Historical Valuation Indicators. Format:
+              YYYYMMDD (20250101) or YYYY-MM-DD (2025-01-01). For minute indicators,
+              automatically converts to YYYY-MM-DD 09:30:00. Default: 20250101. Not
+              required for: Dynamic Valuation Indicators, Stock Basic Info Summary.'
+            zh_Hans: 开始日期。需要此参数的指标：趋势动量震荡指标(日频)、趋势动量震荡指标(分钟)、历史估值指标。格式：YYYYMMDD(20250101)或YYYY-MM-DD(2025-01-01)。对于分钟级指标，自动转换为YYYY-MM-DD
+              09:30:00。缺省：20250101。不需要此参数的指标：动态估值指标、个股基本信息汇总。
+          label:
+            en_US: Start Date
+            ja_JP: Start Date
+            pt_BR: Start Date
+            zh_Hans: 开始日期
+          llm_description: 开始日期，用于趋势动量震荡指标和历史估值指标
+          max: null
+          min: null
+          name: start_date
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: string
+        - auto_generate: null
+          default: ''
+          form: llm
+          human_description:
+            en_US: 'End date. Required for: Trend Momentum Oscillator (Daily), Trend
+              Momentum Oscillator (Minute), Historical Valuation Indicators. Format:
+              YYYYMMDD (20250115) or YYYY-MM-DD (2025-01-15). For minute indicators,
+              automatically converts to YYYY-MM-DD 15:00:00. Default: current date
+              (auto-calculated). Not required for: Dynamic Valuation Indicators, Stock
+              Basic Info Summary.'
+            ja_JP: 'End date. Required for: Trend Momentum Oscillator (Daily), Trend
+              Momentum Oscillator (Minute), Historical Valuation Indicators. Format:
+              YYYYMMDD (20250115) or YYYY-MM-DD (2025-01-15). For minute indicators,
+              automatically converts to YYYY-MM-DD 15:00:00. Default: current date
+              (auto-calculated). Not required for: Dynamic Valuation Indicators, Stock
+              Basic Info Summary.'
+            pt_BR: 'End date. Required for: Trend Momentum Oscillator (Daily), Trend
+              Momentum Oscillator (Minute), Historical Valuation Indicators. Format:
+              YYYYMMDD (20250115) or YYYY-MM-DD (2025-01-15). For minute indicators,
+              automatically converts to YYYY-MM-DD 15:00:00. Default: current date
+              (auto-calculated). Not required for: Dynamic Valuation Indicators, Stock
+              Basic Info Summary.'
+            zh_Hans: 结束日期。需要此参数的指标：趋势动量震荡指标(日频)、趋势动量震荡指标(分钟)、历史估值指标。格式：YYYYMMDD(20250115)或YYYY-MM-DD(2025-01-15)。对于分钟级指标，自动转换为YYYY-MM-DD
+              15:00:00。缺省：当前日期（自动计算）。不需要此参数的指标：动态估值指标、个股基本信息汇总。
+          label:
+            en_US: End Date
+            ja_JP: End Date
+            pt_BR: End Date
+            zh_Hans: 结束日期
+          llm_description: 结束日期，用于趋势动量震荡指标和历史估值指标
+          max: null
+          min: null
+          name: end_date
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: string
+        - auto_generate: null
+          default: qfq
+          form: llm
+          human_description:
+            en_US: 'Adjustment method. Required for: Trend Momentum Oscillator, Historical
+              Valuation Indicators. Options: qfq (前复权), hfq (后复权), none (不复权). Not
+              required for: Dynamic Valuation Indicators, Stock Basic Info Summary.'
+            ja_JP: 'Adjustment method. Required for: Trend Momentum Oscillator, Historical
+              Valuation Indicators. Options: qfq (前复权), hfq (后复权), none (不复权). Not
+              required for: Dynamic Valuation Indicators, Stock Basic Info Summary.'
+            pt_BR: 'Adjustment method. Required for: Trend Momentum Oscillator, Historical
+              Valuation Indicators. Options: qfq (前复权), hfq (后复权), none (不复权). Not
+              required for: Dynamic Valuation Indicators, Stock Basic Info Summary.'
+            zh_Hans: 复权方式。需要此参数的指标：趋势动量震荡指标、历史估值指标。选项：qfq(前复权)、hfq(后复权)、none(不复权)。不需要此参数的指标：动态估值指标、个股基本信息汇总。
+          label:
+            en_US: Adjustment Method
+            ja_JP: Adjustment Method
+            pt_BR: Adjustment Method
+            zh_Hans: 复权方式
+          llm_description: 复权方式选择，用于趋势动量震荡指标和历史估值指标
+          max: null
+          min: null
+          name: adjust
+          options:
+          - icon: ''
+            label:
+              en_US: Forward Adjustment
+              ja_JP: Forward Adjustment
+              pt_BR: Forward Adjustment
+              zh_Hans: 前复权
+            value: qfq
+          - icon: ''
+            label:
+              en_US: Backward Adjustment
+              ja_JP: Backward Adjustment
+              pt_BR: Backward Adjustment
+              zh_Hans: 后复权
+            value: hfq
+          - icon: ''
+            label:
+              en_US: No Adjustment
+              ja_JP: No Adjustment
+              pt_BR: No Adjustment
+              zh_Hans: 不复权
+            value: none
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: select
+        - auto_generate: null
+          default: 5
+          form: llm
+          human_description:
+            en_US: Number of retries when interface call fails, default is 5
+            ja_JP: Number of retries when interface call fails, default is 5
+            pt_BR: Number of retries when interface call fails, default is 5
+            zh_Hans: 接口调用失败时的重试次数，默认为5次
+          label:
+            en_US: Retries
+            ja_JP: Retries
+            pt_BR: Retries
+            zh_Hans: 重试次数
+          llm_description: 接口调用失败时的重试次数，默认为5次
+          max: 10
+          min: 1
+          name: retries
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: number
+        - auto_generate: null
+          default: 1200
+          form: llm
+          human_description:
+            en_US: Timeout for interface calls in seconds, default is 600
+            ja_JP: Timeout for interface calls in seconds, default is 600
+            pt_BR: Timeout for interface calls in seconds, default is 600
+            zh_Hans: 接口调用的超时时间（秒），默认为600秒
+          label:
+            en_US: Timeout
+            ja_JP: Timeout
+            pt_BR: Timeout
+            zh_Hans: 超时时间
+          llm_description: 接口调用的超时时间（秒），默认为600秒
+          max: 3000
+          min: 5
+          name: timeout
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: number
+        params:
+          adjust: ''
+          end_date: ''
+          indicator: ''
+          period_daily: ''
+          period_minute: ''
+          retries: ''
+          start_date: ''
+          symbol: ''
+          timeout: ''
+        provider_id: shaoxing-xie/akshare_stockdata/akshare_stockdata
+        provider_name: shaoxing-xie/akshare_stockdata/akshare_stockdata
+        provider_type: builtin
+        selected: false
+        title: 个股基本信息汇总-个股综合技术指标(拓展指标)
+        tool_configurations: {}
+        tool_description: 根据个股的原始接口数据，计算个股综合性或拓展性指标，以更深层次地反映个股的整体情况，如，基于历史数据的趋势动量震荡指标和基于最新财务数据的动态估值指标。参数要求：1.趋势动量震荡指标：需要股票代码、数据周期、开始日期、结束日期、复权方式；2.动态估值指标：只需要股票代码；3.历史估值指标：需要股票代码、数据周期、开始日期、结束日期、复权方式；4.个股基本信息汇总：只需要股票代码。
+        tool_label: 个股综合技术指标(拓展指标)
+        tool_name: stock_comprehensive_technical_indicators
+        tool_node_version: '2'
+        tool_parameters:
+          adjust:
+            type: constant
+            value: qfq
+          end_date:
+            type: mixed
+            value: ''
+          indicator:
+            type: constant
+            value: stock_basic_info_summary
+          period_daily:
+            type: constant
+            value: daily
+          period_minute:
+            type: constant
+            value: '15'
+          retries:
+            type: constant
+            value: 5
+          start_date:
+            type: mixed
+            value: '20250101'
+          symbol:
+            type: mixed
+            value: '{{#1760390449027.symbol#}}'
+          timeout:
+            type: constant
+            value: 1200
+        type: tool
+      height: 52
+      id: '1760408897272'
+      parentId: '1760391592346'
+      position:
+        x: 300.7572932275182
+        y: 86.7283116153202
+      positionAbsolute:
+        x: 15.842100222347426
+        y: 5.569191908956668
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+      zIndex: 1002
+    - data:
+        isInIteration: true
+        isInLoop: false
+        is_team_authorization: true
+        iteration_id: '1760391592346'
+        paramSchemas:
+        - auto_generate: null
+          default: trend_momentum_oscillator
+          form: llm
+          human_description:
+            en_US: 'Select the comprehensive technical indicators interface. Categories:
+              Trend Momentum Oscillator (Daily/Minute), Dynamic Valuation Indicators,
+              Historical Valuation Indicators, Stock Basic Info Summary. Most interfaces
+              require specific parameters like stock code, period, or date range.'
+            ja_JP: 'Select the comprehensive technical indicators interface. Categories:
+              Trend Momentum Oscillator (Daily/Minute), Dynamic Valuation Indicators,
+              Historical Valuation Indicators, Stock Basic Info Summary. Most interfaces
+              require specific parameters like stock code, period, or date range.'
+            pt_BR: 'Select the comprehensive technical indicators interface. Categories:
+              Trend Momentum Oscillator (Daily/Minute), Dynamic Valuation Indicators,
+              Historical Valuation Indicators, Stock Basic Info Summary. Most interfaces
+              require specific parameters like stock code, period, or date range.'
+            zh_Hans: 选择综合技术指标相关接口。分类包括：趋势动量震荡指标(日频/分钟)、动态估值指标、历史估值指标、个股基本信息汇总。大部分接口需要特定参数如股票代码、周期或日期范围。
+          label:
+            en_US: Indicator Type
+            ja_JP: Indicator Type
+            pt_BR: Indicator Type
+            zh_Hans: 指标类型
+          llm_description: 选择综合技术指标相关接口。分类包括：趋势动量震荡指标(日频/分钟)、动态估值指标、历史估值指标、个股基本信息汇总。大部分接口需要特定参数如股票代码、周期或日期范围。
+          max: null
+          min: null
+          name: indicator
+          options:
+          - icon: ''
+            label:
+              en_US: Trend Momentum Oscillator (Daily) - Specify Stock Code, Daily
+                Period
+              ja_JP: Trend Momentum Oscillator (Daily) - Specify Stock Code, Daily
+                Period
+              pt_BR: Trend Momentum Oscillator (Daily) - Specify Stock Code, Daily
+                Period
+              zh_Hans: 趋势动量震荡指标(日频)-指定股票代码、周期(日频)
+            value: trend_momentum_oscillator
+          - icon: ''
+            label:
+              en_US: Trend Momentum Oscillator (Minute) - Specify Stock Code, Minute
+                Period
+              ja_JP: Trend Momentum Oscillator (Minute) - Specify Stock Code, Minute
+                Period
+              pt_BR: Trend Momentum Oscillator (Minute) - Specify Stock Code, Minute
+                Period
+              zh_Hans: 趋势动量震荡指标(分钟)-指定股票代码、周期(分钟)
+            value: trend_momentum_oscillator_minute
+          - icon: ''
+            label:
+              en_US: Dynamic Valuation Indicators - Specify Stock Code
+              ja_JP: Dynamic Valuation Indicators - Specify Stock Code
+              pt_BR: Dynamic Valuation Indicators - Specify Stock Code
+              zh_Hans: 动态估值指标-指定股票代码
+            value: dynamic_valuation_indicators
+          - icon: ''
+            label:
+              en_US: Historical Valuation Indicators - Specify Stock Code, Daily Period,
+                Date Range
+              ja_JP: Historical Valuation Indicators - Specify Stock Code, Daily Period,
+                Date Range
+              pt_BR: Historical Valuation Indicators - Specify Stock Code, Daily Period,
+                Date Range
+              zh_Hans: 历史估值指标-指定股票代码、周期(日频)、日期范围
+            value: historical_valuation_indicators
+          - icon: ''
+            label:
+              en_US: Stock Basic Info Summary - Specify Stock Code
+              ja_JP: Stock Basic Info Summary - Specify Stock Code
+              pt_BR: Stock Basic Info Summary - Specify Stock Code
+              zh_Hans: 个股基本信息汇总-指定股票代码
+            value: stock_basic_info_summary
+          placeholder: null
+          precision: null
+          required: true
+          scope: null
+          template: null
+          type: select
+        - auto_generate: null
+          default: '000001'
+          form: llm
+          human_description:
+            en_US: 'Stock code. Required for: Trend Momentum Oscillator, Dynamic Valuation
+              Indicators, Historical Valuation Indicators, Stock Basic Info Summary.
+              Format: 000001, 600519, 688356, etc.'
+            ja_JP: 'Stock code. Required for: Trend Momentum Oscillator, Dynamic Valuation
+              Indicators, Historical Valuation Indicators, Stock Basic Info Summary.
+              Format: 000001, 600519, 688356, etc.'
+            pt_BR: 'Stock code. Required for: Trend Momentum Oscillator, Dynamic Valuation
+              Indicators, Historical Valuation Indicators, Stock Basic Info Summary.
+              Format: 000001, 600519, 688356, etc.'
+            zh_Hans: 股票代码。需要此参数的指标：趋势动量震荡指标、动态估值指标、历史估值指标、个股基本信息汇总。格式：000001、600519、688356等。
+          label:
+            en_US: Stock Code
+            ja_JP: Stock Code
+            pt_BR: Stock Code
+            zh_Hans: 股票代码
+          llm_description: 股票代码，用于所有指标类型
+          max: null
+          min: null
+          name: symbol
+          options: []
+          placeholder: null
+          precision: null
+          required: true
+          scope: null
+          template: null
+          type: string
+        - auto_generate: null
+          default: daily
+          form: llm
+          human_description:
+            en_US: 'Daily data period type. Required for: Trend Momentum Oscillator
+              (Daily), Historical Valuation Indicators. Options: daily (日线), weekly
+              (周线), monthly (月线). Not required for: Trend Momentum Oscillator (Minute),
+              Dynamic Valuation Indicators, Stock Basic Info Summary.'
+            ja_JP: 'Daily data period type. Required for: Trend Momentum Oscillator
+              (Daily), Historical Valuation Indicators. Options: daily (日线), weekly
+              (周线), monthly (月线). Not required for: Trend Momentum Oscillator (Minute),
+              Dynamic Valuation Indicators, Stock Basic Info Summary.'
+            pt_BR: 'Daily data period type. Required for: Trend Momentum Oscillator
+              (Daily), Historical Valuation Indicators. Options: daily (日线), weekly
+              (周线), monthly (月线). Not required for: Trend Momentum Oscillator (Minute),
+              Dynamic Valuation Indicators, Stock Basic Info Summary.'
+            zh_Hans: 日频数据周期类型。需要此参数的指标：趋势动量震荡指标(日频)、历史估值指标。选项：daily(日线)、weekly(周线)、monthly(月线)。不需要此参数的指标：趋势动量震荡指标(分钟)、动态估值指标、个股基本信息汇总。
+          label:
+            en_US: Daily Period
+            ja_JP: Daily Period
+            pt_BR: Daily Period
+            zh_Hans: 周期(日频)
+          llm_description: 日频数据周期类型，用于趋势动量震荡指标(日频)和历史估值指标
+          max: null
+          min: null
+          name: period_daily
+          options:
+          - icon: ''
+            label:
+              en_US: Daily
+              ja_JP: Daily
+              pt_BR: Daily
+              zh_Hans: 日线
+            value: daily
+          - icon: ''
+            label:
+              en_US: Weekly
+              ja_JP: Weekly
+              pt_BR: Weekly
+              zh_Hans: 周线
+            value: weekly
+          - icon: ''
+            label:
+              en_US: Monthly
+              ja_JP: Monthly
+              pt_BR: Monthly
+              zh_Hans: 月线
+            value: monthly
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: select
+        - auto_generate: null
+          default: '15'
+          form: llm
+          human_description:
+            en_US: 'Minute data period type. Required for: Trend Momentum Oscillator
+              (Minute). Options: 1 (1分钟), 5 (5分钟), 15 (15分钟), 30 (30分钟), 60 (60分钟).
+              Not required for: Trend Momentum Oscillator (Daily), Dynamic Valuation
+              Indicators, Historical Valuation Indicators, Stock Basic Info Summary.'
+            ja_JP: 'Minute data period type. Required for: Trend Momentum Oscillator
+              (Minute). Options: 1 (1分钟), 5 (5分钟), 15 (15分钟), 30 (30分钟), 60 (60分钟).
+              Not required for: Trend Momentum Oscillator (Daily), Dynamic Valuation
+              Indicators, Historical Valuation Indicators, Stock Basic Info Summary.'
+            pt_BR: 'Minute data period type. Required for: Trend Momentum Oscillator
+              (Minute). Options: 1 (1分钟), 5 (5分钟), 15 (15分钟), 30 (30分钟), 60 (60分钟).
+              Not required for: Trend Momentum Oscillator (Daily), Dynamic Valuation
+              Indicators, Historical Valuation Indicators, Stock Basic Info Summary.'
+            zh_Hans: 分钟级数据周期类型。需要此参数的指标：趋势动量震荡指标(分钟)。选项：1(1分钟)、5(5分钟)、15(15分钟)、30(30分钟)、60(60分钟)。不需要此参数的指标：趋势动量震荡指标(日频)、动态估值指标、历史估值指标、个股基本信息汇总。
+          label:
+            en_US: Minute Period
+            ja_JP: Minute Period
+            pt_BR: Minute Period
+            zh_Hans: 周期(分钟)
+          llm_description: 分钟级数据周期类型，用于趋势动量震荡指标(分钟)
+          max: null
+          min: null
+          name: period_minute
+          options:
+          - icon: ''
+            label:
+              en_US: 1 Minute
+              ja_JP: 1 Minute
+              pt_BR: 1 Minute
+              zh_Hans: 1分钟
+            value: '1'
+          - icon: ''
+            label:
+              en_US: 5 Minutes
+              ja_JP: 5 Minutes
+              pt_BR: 5 Minutes
+              zh_Hans: 5分钟
+            value: '5'
+          - icon: ''
+            label:
+              en_US: 15 Minutes
+              ja_JP: 15 Minutes
+              pt_BR: 15 Minutes
+              zh_Hans: 15分钟
+            value: '15'
+          - icon: ''
+            label:
+              en_US: 30 Minutes
+              ja_JP: 30 Minutes
+              pt_BR: 30 Minutes
+              zh_Hans: 30分钟
+            value: '30'
+          - icon: ''
+            label:
+              en_US: 60 Minutes
+              ja_JP: 60 Minutes
+              pt_BR: 60 Minutes
+              zh_Hans: 60分钟
+            value: '60'
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: select
+        - auto_generate: null
+          default: '20250101'
+          form: llm
+          human_description:
+            en_US: 'Start date. Required for: Trend Momentum Oscillator (Daily), Trend
+              Momentum Oscillator (Minute), Historical Valuation Indicators. Format:
+              YYYYMMDD (20250101) or YYYY-MM-DD (2025-01-01). For minute indicators,
+              automatically converts to YYYY-MM-DD 09:30:00. Default: 20250101. Not
+              required for: Dynamic Valuation Indicators, Stock Basic Info Summary.'
+            ja_JP: 'Start date. Required for: Trend Momentum Oscillator (Daily), Trend
+              Momentum Oscillator (Minute), Historical Valuation Indicators. Format:
+              YYYYMMDD (20250101) or YYYY-MM-DD (2025-01-01). For minute indicators,
+              automatically converts to YYYY-MM-DD 09:30:00. Default: 20250101. Not
+              required for: Dynamic Valuation Indicators, Stock Basic Info Summary.'
+            pt_BR: 'Start date. Required for: Trend Momentum Oscillator (Daily), Trend
+              Momentum Oscillator (Minute), Historical Valuation Indicators. Format:
+              YYYYMMDD (20250101) or YYYY-MM-DD (2025-01-01). For minute indicators,
+              automatically converts to YYYY-MM-DD 09:30:00. Default: 20250101. Not
+              required for: Dynamic Valuation Indicators, Stock Basic Info Summary.'
+            zh_Hans: 开始日期。需要此参数的指标：趋势动量震荡指标(日频)、趋势动量震荡指标(分钟)、历史估值指标。格式：YYYYMMDD(20250101)或YYYY-MM-DD(2025-01-01)。对于分钟级指标，自动转换为YYYY-MM-DD
+              09:30:00。缺省：20250101。不需要此参数的指标：动态估值指标、个股基本信息汇总。
+          label:
+            en_US: Start Date
+            ja_JP: Start Date
+            pt_BR: Start Date
+            zh_Hans: 开始日期
+          llm_description: 开始日期，用于趋势动量震荡指标和历史估值指标
+          max: null
+          min: null
+          name: start_date
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: string
+        - auto_generate: null
+          default: ''
+          form: llm
+          human_description:
+            en_US: 'End date. Required for: Trend Momentum Oscillator (Daily), Trend
+              Momentum Oscillator (Minute), Historical Valuation Indicators. Format:
+              YYYYMMDD (20250115) or YYYY-MM-DD (2025-01-15). For minute indicators,
+              automatically converts to YYYY-MM-DD 15:00:00. Default: current date
+              (auto-calculated). Not required for: Dynamic Valuation Indicators, Stock
+              Basic Info Summary.'
+            ja_JP: 'End date. Required for: Trend Momentum Oscillator (Daily), Trend
+              Momentum Oscillator (Minute), Historical Valuation Indicators. Format:
+              YYYYMMDD (20250115) or YYYY-MM-DD (2025-01-15). For minute indicators,
+              automatically converts to YYYY-MM-DD 15:00:00. Default: current date
+              (auto-calculated). Not required for: Dynamic Valuation Indicators, Stock
+              Basic Info Summary.'
+            pt_BR: 'End date. Required for: Trend Momentum Oscillator (Daily), Trend
+              Momentum Oscillator (Minute), Historical Valuation Indicators. Format:
+              YYYYMMDD (20250115) or YYYY-MM-DD (2025-01-15). For minute indicators,
+              automatically converts to YYYY-MM-DD 15:00:00. Default: current date
+              (auto-calculated). Not required for: Dynamic Valuation Indicators, Stock
+              Basic Info Summary.'
+            zh_Hans: 结束日期。需要此参数的指标：趋势动量震荡指标(日频)、趋势动量震荡指标(分钟)、历史估值指标。格式：YYYYMMDD(20250115)或YYYY-MM-DD(2025-01-15)。对于分钟级指标，自动转换为YYYY-MM-DD
+              15:00:00。缺省：当前日期（自动计算）。不需要此参数的指标：动态估值指标、个股基本信息汇总。
+          label:
+            en_US: End Date
+            ja_JP: End Date
+            pt_BR: End Date
+            zh_Hans: 结束日期
+          llm_description: 结束日期，用于趋势动量震荡指标和历史估值指标
+          max: null
+          min: null
+          name: end_date
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: string
+        - auto_generate: null
+          default: qfq
+          form: llm
+          human_description:
+            en_US: 'Adjustment method. Required for: Trend Momentum Oscillator, Historical
+              Valuation Indicators. Options: qfq (前复权), hfq (后复权), none (不复权). Not
+              required for: Dynamic Valuation Indicators, Stock Basic Info Summary.'
+            ja_JP: 'Adjustment method. Required for: Trend Momentum Oscillator, Historical
+              Valuation Indicators. Options: qfq (前复权), hfq (后复权), none (不复权). Not
+              required for: Dynamic Valuation Indicators, Stock Basic Info Summary.'
+            pt_BR: 'Adjustment method. Required for: Trend Momentum Oscillator, Historical
+              Valuation Indicators. Options: qfq (前复权), hfq (后复权), none (不复权). Not
+              required for: Dynamic Valuation Indicators, Stock Basic Info Summary.'
+            zh_Hans: 复权方式。需要此参数的指标：趋势动量震荡指标、历史估值指标。选项：qfq(前复权)、hfq(后复权)、none(不复权)。不需要此参数的指标：动态估值指标、个股基本信息汇总。
+          label:
+            en_US: Adjustment Method
+            ja_JP: Adjustment Method
+            pt_BR: Adjustment Method
+            zh_Hans: 复权方式
+          llm_description: 复权方式选择，用于趋势动量震荡指标和历史估值指标
+          max: null
+          min: null
+          name: adjust
+          options:
+          - icon: ''
+            label:
+              en_US: Forward Adjustment
+              ja_JP: Forward Adjustment
+              pt_BR: Forward Adjustment
+              zh_Hans: 前复权
+            value: qfq
+          - icon: ''
+            label:
+              en_US: Backward Adjustment
+              ja_JP: Backward Adjustment
+              pt_BR: Backward Adjustment
+              zh_Hans: 后复权
+            value: hfq
+          - icon: ''
+            label:
+              en_US: No Adjustment
+              ja_JP: No Adjustment
+              pt_BR: No Adjustment
+              zh_Hans: 不复权
+            value: none
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: select
+        - auto_generate: null
+          default: 5
+          form: llm
+          human_description:
+            en_US: Number of retries when interface call fails, default is 5
+            ja_JP: Number of retries when interface call fails, default is 5
+            pt_BR: Number of retries when interface call fails, default is 5
+            zh_Hans: 接口调用失败时的重试次数，默认为5次
+          label:
+            en_US: Retries
+            ja_JP: Retries
+            pt_BR: Retries
+            zh_Hans: 重试次数
+          llm_description: 接口调用失败时的重试次数，默认为5次
+          max: 10
+          min: 1
+          name: retries
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: number
+        - auto_generate: null
+          default: 1200
+          form: llm
+          human_description:
+            en_US: Timeout for interface calls in seconds, default is 600
+            ja_JP: Timeout for interface calls in seconds, default is 600
+            pt_BR: Timeout for interface calls in seconds, default is 600
+            zh_Hans: 接口调用的超时时间（秒），默认为600秒
+          label:
+            en_US: Timeout
+            ja_JP: Timeout
+            pt_BR: Timeout
+            zh_Hans: 超时时间
+          llm_description: 接口调用的超时时间（秒），默认为600秒
+          max: 3000
+          min: 5
+          name: timeout
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: number
+        params:
+          adjust: ''
+          end_date: ''
+          indicator: ''
+          period_daily: ''
+          period_minute: ''
+          retries: ''
+          start_date: ''
+          symbol: ''
+          timeout: ''
+        provider_id: shaoxing-xie/akshare_stockdata/akshare_stockdata
+        provider_name: shaoxing-xie/akshare_stockdata/akshare_stockdata
+        provider_type: builtin
+        selected: false
+        title: 趋势动量震荡指标(日频)-个股综合技术指标(拓展指标)
+        tool_configurations: {}
+        tool_description: 根据个股的原始接口数据，计算个股综合性或拓展性指标，以更深层次地反映个股的整体情况，如，基于历史数据的趋势动量震荡指标和基于最新财务数据的动态估值指标。参数要求：1.趋势动量震荡指标：需要股票代码、数据周期、开始日期、结束日期、复权方式；2.动态估值指标：只需要股票代码；3.历史估值指标：需要股票代码、数据周期、开始日期、结束日期、复权方式；4.个股基本信息汇总：只需要股票代码。
+        tool_label: 个股综合技术指标(拓展指标)
+        tool_name: stock_comprehensive_technical_indicators
+        tool_node_version: '2'
+        tool_parameters:
+          adjust:
+            type: constant
+            value: qfq
+          end_date:
+            type: mixed
+            value: ''
+          indicator:
+            type: constant
+            value: trend_momentum_oscillator
+          period_daily:
+            type: constant
+            value: daily
+          period_minute:
+            type: constant
+            value: '15'
+          retries:
+            type: constant
+            value: 5
+          start_date:
+            type: mixed
+            value: '20250101'
+          symbol:
+            type: mixed
+            value: '{{#1760390449027.symbol#}}'
+          timeout:
+            type: constant
+            value: 1200
+        type: tool
+      height: 52
+      id: '1760409262191'
+      parentId: '1760391592346'
+      position:
+        x: 298.8794313754178
+        y: 143.9267982775143
+      positionAbsolute:
+        x: 13.964238370247074
+        y: 62.76767857115078
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+      zIndex: 1002
+    - data:
+        isInIteration: true
+        isInLoop: false
+        is_team_authorization: true
+        iteration_id: '1760391592346'
+        paramSchemas:
+        - auto_generate: null
+          default: trend_momentum_oscillator
+          form: llm
+          human_description:
+            en_US: 'Select the comprehensive technical indicators interface. Categories:
+              Trend Momentum Oscillator (Daily/Minute), Dynamic Valuation Indicators,
+              Historical Valuation Indicators, Stock Basic Info Summary. Most interfaces
+              require specific parameters like stock code, period, or date range.'
+            ja_JP: 'Select the comprehensive technical indicators interface. Categories:
+              Trend Momentum Oscillator (Daily/Minute), Dynamic Valuation Indicators,
+              Historical Valuation Indicators, Stock Basic Info Summary. Most interfaces
+              require specific parameters like stock code, period, or date range.'
+            pt_BR: 'Select the comprehensive technical indicators interface. Categories:
+              Trend Momentum Oscillator (Daily/Minute), Dynamic Valuation Indicators,
+              Historical Valuation Indicators, Stock Basic Info Summary. Most interfaces
+              require specific parameters like stock code, period, or date range.'
+            zh_Hans: 选择综合技术指标相关接口。分类包括：趋势动量震荡指标(日频/分钟)、动态估值指标、历史估值指标、个股基本信息汇总。大部分接口需要特定参数如股票代码、周期或日期范围。
+          label:
+            en_US: Indicator Type
+            ja_JP: Indicator Type
+            pt_BR: Indicator Type
+            zh_Hans: 指标类型
+          llm_description: 选择综合技术指标相关接口。分类包括：趋势动量震荡指标(日频/分钟)、动态估值指标、历史估值指标、个股基本信息汇总。大部分接口需要特定参数如股票代码、周期或日期范围。
+          max: null
+          min: null
+          name: indicator
+          options:
+          - icon: ''
+            label:
+              en_US: Trend Momentum Oscillator (Daily) - Specify Stock Code, Daily
+                Period
+              ja_JP: Trend Momentum Oscillator (Daily) - Specify Stock Code, Daily
+                Period
+              pt_BR: Trend Momentum Oscillator (Daily) - Specify Stock Code, Daily
+                Period
+              zh_Hans: 趋势动量震荡指标(日频)-指定股票代码、周期(日频)
+            value: trend_momentum_oscillator
+          - icon: ''
+            label:
+              en_US: Trend Momentum Oscillator (Minute) - Specify Stock Code, Minute
+                Period
+              ja_JP: Trend Momentum Oscillator (Minute) - Specify Stock Code, Minute
+                Period
+              pt_BR: Trend Momentum Oscillator (Minute) - Specify Stock Code, Minute
+                Period
+              zh_Hans: 趋势动量震荡指标(分钟)-指定股票代码、周期(分钟)
+            value: trend_momentum_oscillator_minute
+          - icon: ''
+            label:
+              en_US: Dynamic Valuation Indicators - Specify Stock Code
+              ja_JP: Dynamic Valuation Indicators - Specify Stock Code
+              pt_BR: Dynamic Valuation Indicators - Specify Stock Code
+              zh_Hans: 动态估值指标-指定股票代码
+            value: dynamic_valuation_indicators
+          - icon: ''
+            label:
+              en_US: Historical Valuation Indicators - Specify Stock Code, Daily Period,
+                Date Range
+              ja_JP: Historical Valuation Indicators - Specify Stock Code, Daily Period,
+                Date Range
+              pt_BR: Historical Valuation Indicators - Specify Stock Code, Daily Period,
+                Date Range
+              zh_Hans: 历史估值指标-指定股票代码、周期(日频)、日期范围
+            value: historical_valuation_indicators
+          - icon: ''
+            label:
+              en_US: Stock Basic Info Summary - Specify Stock Code
+              ja_JP: Stock Basic Info Summary - Specify Stock Code
+              pt_BR: Stock Basic Info Summary - Specify Stock Code
+              zh_Hans: 个股基本信息汇总-指定股票代码
+            value: stock_basic_info_summary
+          placeholder: null
+          precision: null
+          required: true
+          scope: null
+          template: null
+          type: select
+        - auto_generate: null
+          default: '000001'
+          form: llm
+          human_description:
+            en_US: 'Stock code. Required for: Trend Momentum Oscillator, Dynamic Valuation
+              Indicators, Historical Valuation Indicators, Stock Basic Info Summary.
+              Format: 000001, 600519, 688356, etc.'
+            ja_JP: 'Stock code. Required for: Trend Momentum Oscillator, Dynamic Valuation
+              Indicators, Historical Valuation Indicators, Stock Basic Info Summary.
+              Format: 000001, 600519, 688356, etc.'
+            pt_BR: 'Stock code. Required for: Trend Momentum Oscillator, Dynamic Valuation
+              Indicators, Historical Valuation Indicators, Stock Basic Info Summary.
+              Format: 000001, 600519, 688356, etc.'
+            zh_Hans: 股票代码。需要此参数的指标：趋势动量震荡指标、动态估值指标、历史估值指标、个股基本信息汇总。格式：000001、600519、688356等。
+          label:
+            en_US: Stock Code
+            ja_JP: Stock Code
+            pt_BR: Stock Code
+            zh_Hans: 股票代码
+          llm_description: 股票代码，用于所有指标类型
+          max: null
+          min: null
+          name: symbol
+          options: []
+          placeholder: null
+          precision: null
+          required: true
+          scope: null
+          template: null
+          type: string
+        - auto_generate: null
+          default: daily
+          form: llm
+          human_description:
+            en_US: 'Daily data period type. Required for: Trend Momentum Oscillator
+              (Daily), Historical Valuation Indicators. Options: daily (日线), weekly
+              (周线), monthly (月线). Not required for: Trend Momentum Oscillator (Minute),
+              Dynamic Valuation Indicators, Stock Basic Info Summary.'
+            ja_JP: 'Daily data period type. Required for: Trend Momentum Oscillator
+              (Daily), Historical Valuation Indicators. Options: daily (日线), weekly
+              (周线), monthly (月线). Not required for: Trend Momentum Oscillator (Minute),
+              Dynamic Valuation Indicators, Stock Basic Info Summary.'
+            pt_BR: 'Daily data period type. Required for: Trend Momentum Oscillator
+              (Daily), Historical Valuation Indicators. Options: daily (日线), weekly
+              (周线), monthly (月线). Not required for: Trend Momentum Oscillator (Minute),
+              Dynamic Valuation Indicators, Stock Basic Info Summary.'
+            zh_Hans: 日频数据周期类型。需要此参数的指标：趋势动量震荡指标(日频)、历史估值指标。选项：daily(日线)、weekly(周线)、monthly(月线)。不需要此参数的指标：趋势动量震荡指标(分钟)、动态估值指标、个股基本信息汇总。
+          label:
+            en_US: Daily Period
+            ja_JP: Daily Period
+            pt_BR: Daily Period
+            zh_Hans: 周期(日频)
+          llm_description: 日频数据周期类型，用于趋势动量震荡指标(日频)和历史估值指标
+          max: null
+          min: null
+          name: period_daily
+          options:
+          - icon: ''
+            label:
+              en_US: Daily
+              ja_JP: Daily
+              pt_BR: Daily
+              zh_Hans: 日线
+            value: daily
+          - icon: ''
+            label:
+              en_US: Weekly
+              ja_JP: Weekly
+              pt_BR: Weekly
+              zh_Hans: 周线
+            value: weekly
+          - icon: ''
+            label:
+              en_US: Monthly
+              ja_JP: Monthly
+              pt_BR: Monthly
+              zh_Hans: 月线
+            value: monthly
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: select
+        - auto_generate: null
+          default: '15'
+          form: llm
+          human_description:
+            en_US: 'Minute data period type. Required for: Trend Momentum Oscillator
+              (Minute). Options: 1 (1分钟), 5 (5分钟), 15 (15分钟), 30 (30分钟), 60 (60分钟).
+              Not required for: Trend Momentum Oscillator (Daily), Dynamic Valuation
+              Indicators, Historical Valuation Indicators, Stock Basic Info Summary.'
+            ja_JP: 'Minute data period type. Required for: Trend Momentum Oscillator
+              (Minute). Options: 1 (1分钟), 5 (5分钟), 15 (15分钟), 30 (30分钟), 60 (60分钟).
+              Not required for: Trend Momentum Oscillator (Daily), Dynamic Valuation
+              Indicators, Historical Valuation Indicators, Stock Basic Info Summary.'
+            pt_BR: 'Minute data period type. Required for: Trend Momentum Oscillator
+              (Minute). Options: 1 (1分钟), 5 (5分钟), 15 (15分钟), 30 (30分钟), 60 (60分钟).
+              Not required for: Trend Momentum Oscillator (Daily), Dynamic Valuation
+              Indicators, Historical Valuation Indicators, Stock Basic Info Summary.'
+            zh_Hans: 分钟级数据周期类型。需要此参数的指标：趋势动量震荡指标(分钟)。选项：1(1分钟)、5(5分钟)、15(15分钟)、30(30分钟)、60(60分钟)。不需要此参数的指标：趋势动量震荡指标(日频)、动态估值指标、历史估值指标、个股基本信息汇总。
+          label:
+            en_US: Minute Period
+            ja_JP: Minute Period
+            pt_BR: Minute Period
+            zh_Hans: 周期(分钟)
+          llm_description: 分钟级数据周期类型，用于趋势动量震荡指标(分钟)
+          max: null
+          min: null
+          name: period_minute
+          options:
+          - icon: ''
+            label:
+              en_US: 1 Minute
+              ja_JP: 1 Minute
+              pt_BR: 1 Minute
+              zh_Hans: 1分钟
+            value: '1'
+          - icon: ''
+            label:
+              en_US: 5 Minutes
+              ja_JP: 5 Minutes
+              pt_BR: 5 Minutes
+              zh_Hans: 5分钟
+            value: '5'
+          - icon: ''
+            label:
+              en_US: 15 Minutes
+              ja_JP: 15 Minutes
+              pt_BR: 15 Minutes
+              zh_Hans: 15分钟
+            value: '15'
+          - icon: ''
+            label:
+              en_US: 30 Minutes
+              ja_JP: 30 Minutes
+              pt_BR: 30 Minutes
+              zh_Hans: 30分钟
+            value: '30'
+          - icon: ''
+            label:
+              en_US: 60 Minutes
+              ja_JP: 60 Minutes
+              pt_BR: 60 Minutes
+              zh_Hans: 60分钟
+            value: '60'
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: select
+        - auto_generate: null
+          default: '20250101'
+          form: llm
+          human_description:
+            en_US: 'Start date. Required for: Trend Momentum Oscillator (Daily), Trend
+              Momentum Oscillator (Minute), Historical Valuation Indicators. Format:
+              YYYYMMDD (20250101) or YYYY-MM-DD (2025-01-01). For minute indicators,
+              automatically converts to YYYY-MM-DD 09:30:00. Default: 20250101. Not
+              required for: Dynamic Valuation Indicators, Stock Basic Info Summary.'
+            ja_JP: 'Start date. Required for: Trend Momentum Oscillator (Daily), Trend
+              Momentum Oscillator (Minute), Historical Valuation Indicators. Format:
+              YYYYMMDD (20250101) or YYYY-MM-DD (2025-01-01). For minute indicators,
+              automatically converts to YYYY-MM-DD 09:30:00. Default: 20250101. Not
+              required for: Dynamic Valuation Indicators, Stock Basic Info Summary.'
+            pt_BR: 'Start date. Required for: Trend Momentum Oscillator (Daily), Trend
+              Momentum Oscillator (Minute), Historical Valuation Indicators. Format:
+              YYYYMMDD (20250101) or YYYY-MM-DD (2025-01-01). For minute indicators,
+              automatically converts to YYYY-MM-DD 09:30:00. Default: 20250101. Not
+              required for: Dynamic Valuation Indicators, Stock Basic Info Summary.'
+            zh_Hans: 开始日期。需要此参数的指标：趋势动量震荡指标(日频)、趋势动量震荡指标(分钟)、历史估值指标。格式：YYYYMMDD(20250101)或YYYY-MM-DD(2025-01-01)。对于分钟级指标，自动转换为YYYY-MM-DD
+              09:30:00。缺省：20250101。不需要此参数的指标：动态估值指标、个股基本信息汇总。
+          label:
+            en_US: Start Date
+            ja_JP: Start Date
+            pt_BR: Start Date
+            zh_Hans: 开始日期
+          llm_description: 开始日期，用于趋势动量震荡指标和历史估值指标
+          max: null
+          min: null
+          name: start_date
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: string
+        - auto_generate: null
+          default: ''
+          form: llm
+          human_description:
+            en_US: 'End date. Required for: Trend Momentum Oscillator (Daily), Trend
+              Momentum Oscillator (Minute), Historical Valuation Indicators. Format:
+              YYYYMMDD (20250115) or YYYY-MM-DD (2025-01-15). For minute indicators,
+              automatically converts to YYYY-MM-DD 15:00:00. Default: current date
+              (auto-calculated). Not required for: Dynamic Valuation Indicators, Stock
+              Basic Info Summary.'
+            ja_JP: 'End date. Required for: Trend Momentum Oscillator (Daily), Trend
+              Momentum Oscillator (Minute), Historical Valuation Indicators. Format:
+              YYYYMMDD (20250115) or YYYY-MM-DD (2025-01-15). For minute indicators,
+              automatically converts to YYYY-MM-DD 15:00:00. Default: current date
+              (auto-calculated). Not required for: Dynamic Valuation Indicators, Stock
+              Basic Info Summary.'
+            pt_BR: 'End date. Required for: Trend Momentum Oscillator (Daily), Trend
+              Momentum Oscillator (Minute), Historical Valuation Indicators. Format:
+              YYYYMMDD (20250115) or YYYY-MM-DD (2025-01-15). For minute indicators,
+              automatically converts to YYYY-MM-DD 15:00:00. Default: current date
+              (auto-calculated). Not required for: Dynamic Valuation Indicators, Stock
+              Basic Info Summary.'
+            zh_Hans: 结束日期。需要此参数的指标：趋势动量震荡指标(日频)、趋势动量震荡指标(分钟)、历史估值指标。格式：YYYYMMDD(20250115)或YYYY-MM-DD(2025-01-15)。对于分钟级指标，自动转换为YYYY-MM-DD
+              15:00:00。缺省：当前日期（自动计算）。不需要此参数的指标：动态估值指标、个股基本信息汇总。
+          label:
+            en_US: End Date
+            ja_JP: End Date
+            pt_BR: End Date
+            zh_Hans: 结束日期
+          llm_description: 结束日期，用于趋势动量震荡指标和历史估值指标
+          max: null
+          min: null
+          name: end_date
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: string
+        - auto_generate: null
+          default: qfq
+          form: llm
+          human_description:
+            en_US: 'Adjustment method. Required for: Trend Momentum Oscillator, Historical
+              Valuation Indicators. Options: qfq (前复权), hfq (后复权), none (不复权). Not
+              required for: Dynamic Valuation Indicators, Stock Basic Info Summary.'
+            ja_JP: 'Adjustment method. Required for: Trend Momentum Oscillator, Historical
+              Valuation Indicators. Options: qfq (前复权), hfq (后复权), none (不复权). Not
+              required for: Dynamic Valuation Indicators, Stock Basic Info Summary.'
+            pt_BR: 'Adjustment method. Required for: Trend Momentum Oscillator, Historical
+              Valuation Indicators. Options: qfq (前复权), hfq (后复权), none (不复权). Not
+              required for: Dynamic Valuation Indicators, Stock Basic Info Summary.'
+            zh_Hans: 复权方式。需要此参数的指标：趋势动量震荡指标、历史估值指标。选项：qfq(前复权)、hfq(后复权)、none(不复权)。不需要此参数的指标：动态估值指标、个股基本信息汇总。
+          label:
+            en_US: Adjustment Method
+            ja_JP: Adjustment Method
+            pt_BR: Adjustment Method
+            zh_Hans: 复权方式
+          llm_description: 复权方式选择，用于趋势动量震荡指标和历史估值指标
+          max: null
+          min: null
+          name: adjust
+          options:
+          - icon: ''
+            label:
+              en_US: Forward Adjustment
+              ja_JP: Forward Adjustment
+              pt_BR: Forward Adjustment
+              zh_Hans: 前复权
+            value: qfq
+          - icon: ''
+            label:
+              en_US: Backward Adjustment
+              ja_JP: Backward Adjustment
+              pt_BR: Backward Adjustment
+              zh_Hans: 后复权
+            value: hfq
+          - icon: ''
+            label:
+              en_US: No Adjustment
+              ja_JP: No Adjustment
+              pt_BR: No Adjustment
+              zh_Hans: 不复权
+            value: none
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: select
+        - auto_generate: null
+          default: 5
+          form: llm
+          human_description:
+            en_US: Number of retries when interface call fails, default is 5
+            ja_JP: Number of retries when interface call fails, default is 5
+            pt_BR: Number of retries when interface call fails, default is 5
+            zh_Hans: 接口调用失败时的重试次数，默认为5次
+          label:
+            en_US: Retries
+            ja_JP: Retries
+            pt_BR: Retries
+            zh_Hans: 重试次数
+          llm_description: 接口调用失败时的重试次数，默认为5次
+          max: 10
+          min: 1
+          name: retries
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: number
+        - auto_generate: null
+          default: 1200
+          form: llm
+          human_description:
+            en_US: Timeout for interface calls in seconds, default is 600
+            ja_JP: Timeout for interface calls in seconds, default is 600
+            pt_BR: Timeout for interface calls in seconds, default is 600
+            zh_Hans: 接口调用的超时时间（秒），默认为600秒
+          label:
+            en_US: Timeout
+            ja_JP: Timeout
+            pt_BR: Timeout
+            zh_Hans: 超时时间
+          llm_description: 接口调用的超时时间（秒），默认为600秒
+          max: 3000
+          min: 5
+          name: timeout
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: number
+        params:
+          adjust: ''
+          end_date: ''
+          indicator: ''
+          period_daily: ''
+          period_minute: ''
+          retries: ''
+          start_date: ''
+          symbol: ''
+          timeout: ''
+        provider_id: shaoxing-xie/akshare_stockdata/akshare_stockdata
+        provider_name: shaoxing-xie/akshare_stockdata/akshare_stockdata
+        provider_type: builtin
+        selected: false
+        title: 趋势动量震荡指标(分钟)-个股综合技术指标(拓展指标)
+        tool_configurations: {}
+        tool_description: 根据个股的原始接口数据，计算个股综合性或拓展性指标，以更深层次地反映个股的整体情况，如，基于历史数据的趋势动量震荡指标和基于最新财务数据的动态估值指标。参数要求：1.趋势动量震荡指标：需要股票代码、数据周期、开始日期、结束日期、复权方式；2.动态估值指标：只需要股票代码；3.历史估值指标：需要股票代码、数据周期、开始日期、结束日期、复权方式；4.个股基本信息汇总：只需要股票代码。
+        tool_label: 个股综合技术指标(拓展指标)
+        tool_name: stock_comprehensive_technical_indicators
+        tool_node_version: '2'
+        tool_parameters:
+          adjust:
+            type: constant
+            value: qfq
+          end_date:
+            type: mixed
+            value: ''
+          indicator:
+            type: constant
+            value: trend_momentum_oscillator_minute
+          period_daily:
+            type: constant
+            value: daily
+          period_minute:
+            type: constant
+            value: '15'
+          retries:
+            type: constant
+            value: 5
+          start_date:
+            type: mixed
+            value: '{{#1760390449027.start_time#}}'
+          symbol:
+            type: mixed
+            value: '{{#1760390449027.symbol#}}'
+          timeout:
+            type: constant
+            value: 1200
+        type: tool
+      height: 52
+      id: '1760409337399'
+      parentId: '1760391592346'
+      position:
+        x: 298.8794313754178
+        y: 206.7588704960096
+      positionAbsolute:
+        x: 13.964238370247074
+        y: 125.59975078964607
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+      zIndex: 1002
+    - data:
+        isInIteration: true
+        isInLoop: false
+        is_team_authorization: true
+        iteration_id: '1760391592346'
+        paramSchemas:
+        - auto_generate: null
+          default: trend_momentum_oscillator
+          form: llm
+          human_description:
+            en_US: 'Select the comprehensive technical indicators interface. Categories:
+              Trend Momentum Oscillator (Daily/Minute), Dynamic Valuation Indicators,
+              Historical Valuation Indicators, Stock Basic Info Summary. Most interfaces
+              require specific parameters like stock code, period, or date range.'
+            ja_JP: 'Select the comprehensive technical indicators interface. Categories:
+              Trend Momentum Oscillator (Daily/Minute), Dynamic Valuation Indicators,
+              Historical Valuation Indicators, Stock Basic Info Summary. Most interfaces
+              require specific parameters like stock code, period, or date range.'
+            pt_BR: 'Select the comprehensive technical indicators interface. Categories:
+              Trend Momentum Oscillator (Daily/Minute), Dynamic Valuation Indicators,
+              Historical Valuation Indicators, Stock Basic Info Summary. Most interfaces
+              require specific parameters like stock code, period, or date range.'
+            zh_Hans: 选择综合技术指标相关接口。分类包括：趋势动量震荡指标(日频/分钟)、动态估值指标、历史估值指标、个股基本信息汇总。大部分接口需要特定参数如股票代码、周期或日期范围。
+          label:
+            en_US: Indicator Type
+            ja_JP: Indicator Type
+            pt_BR: Indicator Type
+            zh_Hans: 指标类型
+          llm_description: 选择综合技术指标相关接口。分类包括：趋势动量震荡指标(日频/分钟)、动态估值指标、历史估值指标、个股基本信息汇总。大部分接口需要特定参数如股票代码、周期或日期范围。
+          max: null
+          min: null
+          name: indicator
+          options:
+          - icon: ''
+            label:
+              en_US: Trend Momentum Oscillator (Daily) - Specify Stock Code, Daily
+                Period
+              ja_JP: Trend Momentum Oscillator (Daily) - Specify Stock Code, Daily
+                Period
+              pt_BR: Trend Momentum Oscillator (Daily) - Specify Stock Code, Daily
+                Period
+              zh_Hans: 趋势动量震荡指标(日频)-指定股票代码、周期(日频)
+            value: trend_momentum_oscillator
+          - icon: ''
+            label:
+              en_US: Trend Momentum Oscillator (Minute) - Specify Stock Code, Minute
+                Period
+              ja_JP: Trend Momentum Oscillator (Minute) - Specify Stock Code, Minute
+                Period
+              pt_BR: Trend Momentum Oscillator (Minute) - Specify Stock Code, Minute
+                Period
+              zh_Hans: 趋势动量震荡指标(分钟)-指定股票代码、周期(分钟)
+            value: trend_momentum_oscillator_minute
+          - icon: ''
+            label:
+              en_US: Dynamic Valuation Indicators - Specify Stock Code
+              ja_JP: Dynamic Valuation Indicators - Specify Stock Code
+              pt_BR: Dynamic Valuation Indicators - Specify Stock Code
+              zh_Hans: 动态估值指标-指定股票代码
+            value: dynamic_valuation_indicators
+          - icon: ''
+            label:
+              en_US: Historical Valuation Indicators - Specify Stock Code, Daily Period,
+                Date Range
+              ja_JP: Historical Valuation Indicators - Specify Stock Code, Daily Period,
+                Date Range
+              pt_BR: Historical Valuation Indicators - Specify Stock Code, Daily Period,
+                Date Range
+              zh_Hans: 历史估值指标-指定股票代码、周期(日频)、日期范围
+            value: historical_valuation_indicators
+          - icon: ''
+            label:
+              en_US: Stock Basic Info Summary - Specify Stock Code
+              ja_JP: Stock Basic Info Summary - Specify Stock Code
+              pt_BR: Stock Basic Info Summary - Specify Stock Code
+              zh_Hans: 个股基本信息汇总-指定股票代码
+            value: stock_basic_info_summary
+          placeholder: null
+          precision: null
+          required: true
+          scope: null
+          template: null
+          type: select
+        - auto_generate: null
+          default: '000001'
+          form: llm
+          human_description:
+            en_US: 'Stock code. Required for: Trend Momentum Oscillator, Dynamic Valuation
+              Indicators, Historical Valuation Indicators, Stock Basic Info Summary.
+              Format: 000001, 600519, 688356, etc.'
+            ja_JP: 'Stock code. Required for: Trend Momentum Oscillator, Dynamic Valuation
+              Indicators, Historical Valuation Indicators, Stock Basic Info Summary.
+              Format: 000001, 600519, 688356, etc.'
+            pt_BR: 'Stock code. Required for: Trend Momentum Oscillator, Dynamic Valuation
+              Indicators, Historical Valuation Indicators, Stock Basic Info Summary.
+              Format: 000001, 600519, 688356, etc.'
+            zh_Hans: 股票代码。需要此参数的指标：趋势动量震荡指标、动态估值指标、历史估值指标、个股基本信息汇总。格式：000001、600519、688356等。
+          label:
+            en_US: Stock Code
+            ja_JP: Stock Code
+            pt_BR: Stock Code
+            zh_Hans: 股票代码
+          llm_description: 股票代码，用于所有指标类型
+          max: null
+          min: null
+          name: symbol
+          options: []
+          placeholder: null
+          precision: null
+          required: true
+          scope: null
+          template: null
+          type: string
+        - auto_generate: null
+          default: daily
+          form: llm
+          human_description:
+            en_US: 'Daily data period type. Required for: Trend Momentum Oscillator
+              (Daily), Historical Valuation Indicators. Options: daily (日线), weekly
+              (周线), monthly (月线). Not required for: Trend Momentum Oscillator (Minute),
+              Dynamic Valuation Indicators, Stock Basic Info Summary.'
+            ja_JP: 'Daily data period type. Required for: Trend Momentum Oscillator
+              (Daily), Historical Valuation Indicators. Options: daily (日线), weekly
+              (周线), monthly (月线). Not required for: Trend Momentum Oscillator (Minute),
+              Dynamic Valuation Indicators, Stock Basic Info Summary.'
+            pt_BR: 'Daily data period type. Required for: Trend Momentum Oscillator
+              (Daily), Historical Valuation Indicators. Options: daily (日线), weekly
+              (周线), monthly (月线). Not required for: Trend Momentum Oscillator (Minute),
+              Dynamic Valuation Indicators, Stock Basic Info Summary.'
+            zh_Hans: 日频数据周期类型。需要此参数的指标：趋势动量震荡指标(日频)、历史估值指标。选项：daily(日线)、weekly(周线)、monthly(月线)。不需要此参数的指标：趋势动量震荡指标(分钟)、动态估值指标、个股基本信息汇总。
+          label:
+            en_US: Daily Period
+            ja_JP: Daily Period
+            pt_BR: Daily Period
+            zh_Hans: 周期(日频)
+          llm_description: 日频数据周期类型，用于趋势动量震荡指标(日频)和历史估值指标
+          max: null
+          min: null
+          name: period_daily
+          options:
+          - icon: ''
+            label:
+              en_US: Daily
+              ja_JP: Daily
+              pt_BR: Daily
+              zh_Hans: 日线
+            value: daily
+          - icon: ''
+            label:
+              en_US: Weekly
+              ja_JP: Weekly
+              pt_BR: Weekly
+              zh_Hans: 周线
+            value: weekly
+          - icon: ''
+            label:
+              en_US: Monthly
+              ja_JP: Monthly
+              pt_BR: Monthly
+              zh_Hans: 月线
+            value: monthly
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: select
+        - auto_generate: null
+          default: '15'
+          form: llm
+          human_description:
+            en_US: 'Minute data period type. Required for: Trend Momentum Oscillator
+              (Minute). Options: 1 (1分钟), 5 (5分钟), 15 (15分钟), 30 (30分钟), 60 (60分钟).
+              Not required for: Trend Momentum Oscillator (Daily), Dynamic Valuation
+              Indicators, Historical Valuation Indicators, Stock Basic Info Summary.'
+            ja_JP: 'Minute data period type. Required for: Trend Momentum Oscillator
+              (Minute). Options: 1 (1分钟), 5 (5分钟), 15 (15分钟), 30 (30分钟), 60 (60分钟).
+              Not required for: Trend Momentum Oscillator (Daily), Dynamic Valuation
+              Indicators, Historical Valuation Indicators, Stock Basic Info Summary.'
+            pt_BR: 'Minute data period type. Required for: Trend Momentum Oscillator
+              (Minute). Options: 1 (1分钟), 5 (5分钟), 15 (15分钟), 30 (30分钟), 60 (60分钟).
+              Not required for: Trend Momentum Oscillator (Daily), Dynamic Valuation
+              Indicators, Historical Valuation Indicators, Stock Basic Info Summary.'
+            zh_Hans: 分钟级数据周期类型。需要此参数的指标：趋势动量震荡指标(分钟)。选项：1(1分钟)、5(5分钟)、15(15分钟)、30(30分钟)、60(60分钟)。不需要此参数的指标：趋势动量震荡指标(日频)、动态估值指标、历史估值指标、个股基本信息汇总。
+          label:
+            en_US: Minute Period
+            ja_JP: Minute Period
+            pt_BR: Minute Period
+            zh_Hans: 周期(分钟)
+          llm_description: 分钟级数据周期类型，用于趋势动量震荡指标(分钟)
+          max: null
+          min: null
+          name: period_minute
+          options:
+          - icon: ''
+            label:
+              en_US: 1 Minute
+              ja_JP: 1 Minute
+              pt_BR: 1 Minute
+              zh_Hans: 1分钟
+            value: '1'
+          - icon: ''
+            label:
+              en_US: 5 Minutes
+              ja_JP: 5 Minutes
+              pt_BR: 5 Minutes
+              zh_Hans: 5分钟
+            value: '5'
+          - icon: ''
+            label:
+              en_US: 15 Minutes
+              ja_JP: 15 Minutes
+              pt_BR: 15 Minutes
+              zh_Hans: 15分钟
+            value: '15'
+          - icon: ''
+            label:
+              en_US: 30 Minutes
+              ja_JP: 30 Minutes
+              pt_BR: 30 Minutes
+              zh_Hans: 30分钟
+            value: '30'
+          - icon: ''
+            label:
+              en_US: 60 Minutes
+              ja_JP: 60 Minutes
+              pt_BR: 60 Minutes
+              zh_Hans: 60分钟
+            value: '60'
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: select
+        - auto_generate: null
+          default: '20250101'
+          form: llm
+          human_description:
+            en_US: 'Start date. Required for: Trend Momentum Oscillator (Daily), Trend
+              Momentum Oscillator (Minute), Historical Valuation Indicators. Format:
+              YYYYMMDD (20250101) or YYYY-MM-DD (2025-01-01). For minute indicators,
+              automatically converts to YYYY-MM-DD 09:30:00. Default: 20250101. Not
+              required for: Dynamic Valuation Indicators, Stock Basic Info Summary.'
+            ja_JP: 'Start date. Required for: Trend Momentum Oscillator (Daily), Trend
+              Momentum Oscillator (Minute), Historical Valuation Indicators. Format:
+              YYYYMMDD (20250101) or YYYY-MM-DD (2025-01-01). For minute indicators,
+              automatically converts to YYYY-MM-DD 09:30:00. Default: 20250101. Not
+              required for: Dynamic Valuation Indicators, Stock Basic Info Summary.'
+            pt_BR: 'Start date. Required for: Trend Momentum Oscillator (Daily), Trend
+              Momentum Oscillator (Minute), Historical Valuation Indicators. Format:
+              YYYYMMDD (20250101) or YYYY-MM-DD (2025-01-01). For minute indicators,
+              automatically converts to YYYY-MM-DD 09:30:00. Default: 20250101. Not
+              required for: Dynamic Valuation Indicators, Stock Basic Info Summary.'
+            zh_Hans: 开始日期。需要此参数的指标：趋势动量震荡指标(日频)、趋势动量震荡指标(分钟)、历史估值指标。格式：YYYYMMDD(20250101)或YYYY-MM-DD(2025-01-01)。对于分钟级指标，自动转换为YYYY-MM-DD
+              09:30:00。缺省：20250101。不需要此参数的指标：动态估值指标、个股基本信息汇总。
+          label:
+            en_US: Start Date
+            ja_JP: Start Date
+            pt_BR: Start Date
+            zh_Hans: 开始日期
+          llm_description: 开始日期，用于趋势动量震荡指标和历史估值指标
+          max: null
+          min: null
+          name: start_date
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: string
+        - auto_generate: null
+          default: ''
+          form: llm
+          human_description:
+            en_US: 'End date. Required for: Trend Momentum Oscillator (Daily), Trend
+              Momentum Oscillator (Minute), Historical Valuation Indicators. Format:
+              YYYYMMDD (20250115) or YYYY-MM-DD (2025-01-15). For minute indicators,
+              automatically converts to YYYY-MM-DD 15:00:00. Default: current date
+              (auto-calculated). Not required for: Dynamic Valuation Indicators, Stock
+              Basic Info Summary.'
+            ja_JP: 'End date. Required for: Trend Momentum Oscillator (Daily), Trend
+              Momentum Oscillator (Minute), Historical Valuation Indicators. Format:
+              YYYYMMDD (20250115) or YYYY-MM-DD (2025-01-15). For minute indicators,
+              automatically converts to YYYY-MM-DD 15:00:00. Default: current date
+              (auto-calculated). Not required for: Dynamic Valuation Indicators, Stock
+              Basic Info Summary.'
+            pt_BR: 'End date. Required for: Trend Momentum Oscillator (Daily), Trend
+              Momentum Oscillator (Minute), Historical Valuation Indicators. Format:
+              YYYYMMDD (20250115) or YYYY-MM-DD (2025-01-15). For minute indicators,
+              automatically converts to YYYY-MM-DD 15:00:00. Default: current date
+              (auto-calculated). Not required for: Dynamic Valuation Indicators, Stock
+              Basic Info Summary.'
+            zh_Hans: 结束日期。需要此参数的指标：趋势动量震荡指标(日频)、趋势动量震荡指标(分钟)、历史估值指标。格式：YYYYMMDD(20250115)或YYYY-MM-DD(2025-01-15)。对于分钟级指标，自动转换为YYYY-MM-DD
+              15:00:00。缺省：当前日期（自动计算）。不需要此参数的指标：动态估值指标、个股基本信息汇总。
+          label:
+            en_US: End Date
+            ja_JP: End Date
+            pt_BR: End Date
+            zh_Hans: 结束日期
+          llm_description: 结束日期，用于趋势动量震荡指标和历史估值指标
+          max: null
+          min: null
+          name: end_date
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: string
+        - auto_generate: null
+          default: qfq
+          form: llm
+          human_description:
+            en_US: 'Adjustment method. Required for: Trend Momentum Oscillator, Historical
+              Valuation Indicators. Options: qfq (前复权), hfq (后复权), none (不复权). Not
+              required for: Dynamic Valuation Indicators, Stock Basic Info Summary.'
+            ja_JP: 'Adjustment method. Required for: Trend Momentum Oscillator, Historical
+              Valuation Indicators. Options: qfq (前复权), hfq (后复权), none (不复权). Not
+              required for: Dynamic Valuation Indicators, Stock Basic Info Summary.'
+            pt_BR: 'Adjustment method. Required for: Trend Momentum Oscillator, Historical
+              Valuation Indicators. Options: qfq (前复权), hfq (后复权), none (不复权). Not
+              required for: Dynamic Valuation Indicators, Stock Basic Info Summary.'
+            zh_Hans: 复权方式。需要此参数的指标：趋势动量震荡指标、历史估值指标。选项：qfq(前复权)、hfq(后复权)、none(不复权)。不需要此参数的指标：动态估值指标、个股基本信息汇总。
+          label:
+            en_US: Adjustment Method
+            ja_JP: Adjustment Method
+            pt_BR: Adjustment Method
+            zh_Hans: 复权方式
+          llm_description: 复权方式选择，用于趋势动量震荡指标和历史估值指标
+          max: null
+          min: null
+          name: adjust
+          options:
+          - icon: ''
+            label:
+              en_US: Forward Adjustment
+              ja_JP: Forward Adjustment
+              pt_BR: Forward Adjustment
+              zh_Hans: 前复权
+            value: qfq
+          - icon: ''
+            label:
+              en_US: Backward Adjustment
+              ja_JP: Backward Adjustment
+              pt_BR: Backward Adjustment
+              zh_Hans: 后复权
+            value: hfq
+          - icon: ''
+            label:
+              en_US: No Adjustment
+              ja_JP: No Adjustment
+              pt_BR: No Adjustment
+              zh_Hans: 不复权
+            value: none
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: select
+        - auto_generate: null
+          default: 5
+          form: llm
+          human_description:
+            en_US: Number of retries when interface call fails, default is 5
+            ja_JP: Number of retries when interface call fails, default is 5
+            pt_BR: Number of retries when interface call fails, default is 5
+            zh_Hans: 接口调用失败时的重试次数，默认为5次
+          label:
+            en_US: Retries
+            ja_JP: Retries
+            pt_BR: Retries
+            zh_Hans: 重试次数
+          llm_description: 接口调用失败时的重试次数，默认为5次
+          max: 10
+          min: 1
+          name: retries
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: number
+        - auto_generate: null
+          default: 1200
+          form: llm
+          human_description:
+            en_US: Timeout for interface calls in seconds, default is 600
+            ja_JP: Timeout for interface calls in seconds, default is 600
+            pt_BR: Timeout for interface calls in seconds, default is 600
+            zh_Hans: 接口调用的超时时间（秒），默认为600秒
+          label:
+            en_US: Timeout
+            ja_JP: Timeout
+            pt_BR: Timeout
+            zh_Hans: 超时时间
+          llm_description: 接口调用的超时时间（秒），默认为600秒
+          max: 3000
+          min: 5
+          name: timeout
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: number
+        params:
+          adjust: ''
+          end_date: ''
+          indicator: ''
+          period_daily: ''
+          period_minute: ''
+          retries: ''
+          start_date: ''
+          symbol: ''
+          timeout: ''
+        provider_id: shaoxing-xie/akshare_stockdata/akshare_stockdata
+        provider_name: shaoxing-xie/akshare_stockdata/akshare_stockdata
+        provider_type: builtin
+        selected: false
+        title: 动态估值指标-个股综合技术指标(拓展指标)
+        tool_configurations: {}
+        tool_description: 根据个股的原始接口数据，计算个股综合性或拓展性指标，以更深层次地反映个股的整体情况，如，基于历史数据的趋势动量震荡指标和基于最新财务数据的动态估值指标。参数要求：1.趋势动量震荡指标：需要股票代码、数据周期、开始日期、结束日期、复权方式；2.动态估值指标：只需要股票代码；3.历史估值指标：需要股票代码、数据周期、开始日期、结束日期、复权方式；4.个股基本信息汇总：只需要股票代码。
+        tool_label: 个股综合技术指标(拓展指标)
+        tool_name: stock_comprehensive_technical_indicators
+        tool_node_version: '2'
+        tool_parameters:
+          adjust:
+            type: constant
+            value: qfq
+          end_date:
+            type: mixed
+            value: ''
+          indicator:
+            type: constant
+            value: dynamic_valuation_indicators
+          period_daily:
+            type: constant
+            value: daily
+          period_minute:
+            type: constant
+            value: '15'
+          retries:
+            type: constant
+            value: 5
+          start_date:
+            type: mixed
+            value: '20250101'
+          symbol:
+            type: mixed
+            value: '{{#1760390449027.symbol#}}'
+          timeout:
+            type: constant
+            value: 1200
+        type: tool
+      height: 52
+      id: '1760409421729'
+      parentId: '1760391592346'
+      position:
+        x: 303.22353388376956
+        y: 265.83521901030406
+      positionAbsolute:
+        x: 18.308340878598813
+        y: 184.67609930394053
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+      zIndex: 1002
+    - data:
+        isInIteration: true
+        isInLoop: false
+        is_team_authorization: true
+        iteration_id: '1760391592346'
+        paramSchemas:
+        - auto_generate: null
+          default: trend_momentum_oscillator
+          form: llm
+          human_description:
+            en_US: 'Select the comprehensive technical indicators interface. Categories:
+              Trend Momentum Oscillator (Daily/Minute), Dynamic Valuation Indicators,
+              Historical Valuation Indicators, Stock Basic Info Summary. Most interfaces
+              require specific parameters like stock code, period, or date range.'
+            ja_JP: 'Select the comprehensive technical indicators interface. Categories:
+              Trend Momentum Oscillator (Daily/Minute), Dynamic Valuation Indicators,
+              Historical Valuation Indicators, Stock Basic Info Summary. Most interfaces
+              require specific parameters like stock code, period, or date range.'
+            pt_BR: 'Select the comprehensive technical indicators interface. Categories:
+              Trend Momentum Oscillator (Daily/Minute), Dynamic Valuation Indicators,
+              Historical Valuation Indicators, Stock Basic Info Summary. Most interfaces
+              require specific parameters like stock code, period, or date range.'
+            zh_Hans: 选择综合技术指标相关接口。分类包括：趋势动量震荡指标(日频/分钟)、动态估值指标、历史估值指标、个股基本信息汇总。大部分接口需要特定参数如股票代码、周期或日期范围。
+          label:
+            en_US: Indicator Type
+            ja_JP: Indicator Type
+            pt_BR: Indicator Type
+            zh_Hans: 指标类型
+          llm_description: 选择综合技术指标相关接口。分类包括：趋势动量震荡指标(日频/分钟)、动态估值指标、历史估值指标、个股基本信息汇总。大部分接口需要特定参数如股票代码、周期或日期范围。
+          max: null
+          min: null
+          name: indicator
+          options:
+          - icon: ''
+            label:
+              en_US: Trend Momentum Oscillator (Daily) - Specify Stock Code, Daily
+                Period
+              ja_JP: Trend Momentum Oscillator (Daily) - Specify Stock Code, Daily
+                Period
+              pt_BR: Trend Momentum Oscillator (Daily) - Specify Stock Code, Daily
+                Period
+              zh_Hans: 趋势动量震荡指标(日频)-指定股票代码、周期(日频)
+            value: trend_momentum_oscillator
+          - icon: ''
+            label:
+              en_US: Trend Momentum Oscillator (Minute) - Specify Stock Code, Minute
+                Period
+              ja_JP: Trend Momentum Oscillator (Minute) - Specify Stock Code, Minute
+                Period
+              pt_BR: Trend Momentum Oscillator (Minute) - Specify Stock Code, Minute
+                Period
+              zh_Hans: 趋势动量震荡指标(分钟)-指定股票代码、周期(分钟)
+            value: trend_momentum_oscillator_minute
+          - icon: ''
+            label:
+              en_US: Dynamic Valuation Indicators - Specify Stock Code
+              ja_JP: Dynamic Valuation Indicators - Specify Stock Code
+              pt_BR: Dynamic Valuation Indicators - Specify Stock Code
+              zh_Hans: 动态估值指标-指定股票代码
+            value: dynamic_valuation_indicators
+          - icon: ''
+            label:
+              en_US: Historical Valuation Indicators - Specify Stock Code, Daily Period,
+                Date Range
+              ja_JP: Historical Valuation Indicators - Specify Stock Code, Daily Period,
+                Date Range
+              pt_BR: Historical Valuation Indicators - Specify Stock Code, Daily Period,
+                Date Range
+              zh_Hans: 历史估值指标-指定股票代码、周期(日频)、日期范围
+            value: historical_valuation_indicators
+          - icon: ''
+            label:
+              en_US: Stock Basic Info Summary - Specify Stock Code
+              ja_JP: Stock Basic Info Summary - Specify Stock Code
+              pt_BR: Stock Basic Info Summary - Specify Stock Code
+              zh_Hans: 个股基本信息汇总-指定股票代码
+            value: stock_basic_info_summary
+          placeholder: null
+          precision: null
+          required: true
+          scope: null
+          template: null
+          type: select
+        - auto_generate: null
+          default: '000001'
+          form: llm
+          human_description:
+            en_US: 'Stock code. Required for: Trend Momentum Oscillator, Dynamic Valuation
+              Indicators, Historical Valuation Indicators, Stock Basic Info Summary.
+              Format: 000001, 600519, 688356, etc.'
+            ja_JP: 'Stock code. Required for: Trend Momentum Oscillator, Dynamic Valuation
+              Indicators, Historical Valuation Indicators, Stock Basic Info Summary.
+              Format: 000001, 600519, 688356, etc.'
+            pt_BR: 'Stock code. Required for: Trend Momentum Oscillator, Dynamic Valuation
+              Indicators, Historical Valuation Indicators, Stock Basic Info Summary.
+              Format: 000001, 600519, 688356, etc.'
+            zh_Hans: 股票代码。需要此参数的指标：趋势动量震荡指标、动态估值指标、历史估值指标、个股基本信息汇总。格式：000001、600519、688356等。
+          label:
+            en_US: Stock Code
+            ja_JP: Stock Code
+            pt_BR: Stock Code
+            zh_Hans: 股票代码
+          llm_description: 股票代码，用于所有指标类型
+          max: null
+          min: null
+          name: symbol
+          options: []
+          placeholder: null
+          precision: null
+          required: true
+          scope: null
+          template: null
+          type: string
+        - auto_generate: null
+          default: daily
+          form: llm
+          human_description:
+            en_US: 'Daily data period type. Required for: Trend Momentum Oscillator
+              (Daily), Historical Valuation Indicators. Options: daily (日线), weekly
+              (周线), monthly (月线). Not required for: Trend Momentum Oscillator (Minute),
+              Dynamic Valuation Indicators, Stock Basic Info Summary.'
+            ja_JP: 'Daily data period type. Required for: Trend Momentum Oscillator
+              (Daily), Historical Valuation Indicators. Options: daily (日线), weekly
+              (周线), monthly (月线). Not required for: Trend Momentum Oscillator (Minute),
+              Dynamic Valuation Indicators, Stock Basic Info Summary.'
+            pt_BR: 'Daily data period type. Required for: Trend Momentum Oscillator
+              (Daily), Historical Valuation Indicators. Options: daily (日线), weekly
+              (周线), monthly (月线). Not required for: Trend Momentum Oscillator (Minute),
+              Dynamic Valuation Indicators, Stock Basic Info Summary.'
+            zh_Hans: 日频数据周期类型。需要此参数的指标：趋势动量震荡指标(日频)、历史估值指标。选项：daily(日线)、weekly(周线)、monthly(月线)。不需要此参数的指标：趋势动量震荡指标(分钟)、动态估值指标、个股基本信息汇总。
+          label:
+            en_US: Daily Period
+            ja_JP: Daily Period
+            pt_BR: Daily Period
+            zh_Hans: 周期(日频)
+          llm_description: 日频数据周期类型，用于趋势动量震荡指标(日频)和历史估值指标
+          max: null
+          min: null
+          name: period_daily
+          options:
+          - icon: ''
+            label:
+              en_US: Daily
+              ja_JP: Daily
+              pt_BR: Daily
+              zh_Hans: 日线
+            value: daily
+          - icon: ''
+            label:
+              en_US: Weekly
+              ja_JP: Weekly
+              pt_BR: Weekly
+              zh_Hans: 周线
+            value: weekly
+          - icon: ''
+            label:
+              en_US: Monthly
+              ja_JP: Monthly
+              pt_BR: Monthly
+              zh_Hans: 月线
+            value: monthly
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: select
+        - auto_generate: null
+          default: '15'
+          form: llm
+          human_description:
+            en_US: 'Minute data period type. Required for: Trend Momentum Oscillator
+              (Minute). Options: 1 (1分钟), 5 (5分钟), 15 (15分钟), 30 (30分钟), 60 (60分钟).
+              Not required for: Trend Momentum Oscillator (Daily), Dynamic Valuation
+              Indicators, Historical Valuation Indicators, Stock Basic Info Summary.'
+            ja_JP: 'Minute data period type. Required for: Trend Momentum Oscillator
+              (Minute). Options: 1 (1分钟), 5 (5分钟), 15 (15分钟), 30 (30分钟), 60 (60分钟).
+              Not required for: Trend Momentum Oscillator (Daily), Dynamic Valuation
+              Indicators, Historical Valuation Indicators, Stock Basic Info Summary.'
+            pt_BR: 'Minute data period type. Required for: Trend Momentum Oscillator
+              (Minute). Options: 1 (1分钟), 5 (5分钟), 15 (15分钟), 30 (30分钟), 60 (60分钟).
+              Not required for: Trend Momentum Oscillator (Daily), Dynamic Valuation
+              Indicators, Historical Valuation Indicators, Stock Basic Info Summary.'
+            zh_Hans: 分钟级数据周期类型。需要此参数的指标：趋势动量震荡指标(分钟)。选项：1(1分钟)、5(5分钟)、15(15分钟)、30(30分钟)、60(60分钟)。不需要此参数的指标：趋势动量震荡指标(日频)、动态估值指标、历史估值指标、个股基本信息汇总。
+          label:
+            en_US: Minute Period
+            ja_JP: Minute Period
+            pt_BR: Minute Period
+            zh_Hans: 周期(分钟)
+          llm_description: 分钟级数据周期类型，用于趋势动量震荡指标(分钟)
+          max: null
+          min: null
+          name: period_minute
+          options:
+          - icon: ''
+            label:
+              en_US: 1 Minute
+              ja_JP: 1 Minute
+              pt_BR: 1 Minute
+              zh_Hans: 1分钟
+            value: '1'
+          - icon: ''
+            label:
+              en_US: 5 Minutes
+              ja_JP: 5 Minutes
+              pt_BR: 5 Minutes
+              zh_Hans: 5分钟
+            value: '5'
+          - icon: ''
+            label:
+              en_US: 15 Minutes
+              ja_JP: 15 Minutes
+              pt_BR: 15 Minutes
+              zh_Hans: 15分钟
+            value: '15'
+          - icon: ''
+            label:
+              en_US: 30 Minutes
+              ja_JP: 30 Minutes
+              pt_BR: 30 Minutes
+              zh_Hans: 30分钟
+            value: '30'
+          - icon: ''
+            label:
+              en_US: 60 Minutes
+              ja_JP: 60 Minutes
+              pt_BR: 60 Minutes
+              zh_Hans: 60分钟
+            value: '60'
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: select
+        - auto_generate: null
+          default: '20250101'
+          form: llm
+          human_description:
+            en_US: 'Start date. Required for: Trend Momentum Oscillator (Daily), Trend
+              Momentum Oscillator (Minute), Historical Valuation Indicators. Format:
+              YYYYMMDD (20250101) or YYYY-MM-DD (2025-01-01). For minute indicators,
+              automatically converts to YYYY-MM-DD 09:30:00. Default: 20250101. Not
+              required for: Dynamic Valuation Indicators, Stock Basic Info Summary.'
+            ja_JP: 'Start date. Required for: Trend Momentum Oscillator (Daily), Trend
+              Momentum Oscillator (Minute), Historical Valuation Indicators. Format:
+              YYYYMMDD (20250101) or YYYY-MM-DD (2025-01-01). For minute indicators,
+              automatically converts to YYYY-MM-DD 09:30:00. Default: 20250101. Not
+              required for: Dynamic Valuation Indicators, Stock Basic Info Summary.'
+            pt_BR: 'Start date. Required for: Trend Momentum Oscillator (Daily), Trend
+              Momentum Oscillator (Minute), Historical Valuation Indicators. Format:
+              YYYYMMDD (20250101) or YYYY-MM-DD (2025-01-01). For minute indicators,
+              automatically converts to YYYY-MM-DD 09:30:00. Default: 20250101. Not
+              required for: Dynamic Valuation Indicators, Stock Basic Info Summary.'
+            zh_Hans: 开始日期。需要此参数的指标：趋势动量震荡指标(日频)、趋势动量震荡指标(分钟)、历史估值指标。格式：YYYYMMDD(20250101)或YYYY-MM-DD(2025-01-01)。对于分钟级指标，自动转换为YYYY-MM-DD
+              09:30:00。缺省：20250101。不需要此参数的指标：动态估值指标、个股基本信息汇总。
+          label:
+            en_US: Start Date
+            ja_JP: Start Date
+            pt_BR: Start Date
+            zh_Hans: 开始日期
+          llm_description: 开始日期，用于趋势动量震荡指标和历史估值指标
+          max: null
+          min: null
+          name: start_date
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: string
+        - auto_generate: null
+          default: ''
+          form: llm
+          human_description:
+            en_US: 'End date. Required for: Trend Momentum Oscillator (Daily), Trend
+              Momentum Oscillator (Minute), Historical Valuation Indicators. Format:
+              YYYYMMDD (20250115) or YYYY-MM-DD (2025-01-15). For minute indicators,
+              automatically converts to YYYY-MM-DD 15:00:00. Default: current date
+              (auto-calculated). Not required for: Dynamic Valuation Indicators, Stock
+              Basic Info Summary.'
+            ja_JP: 'End date. Required for: Trend Momentum Oscillator (Daily), Trend
+              Momentum Oscillator (Minute), Historical Valuation Indicators. Format:
+              YYYYMMDD (20250115) or YYYY-MM-DD (2025-01-15). For minute indicators,
+              automatically converts to YYYY-MM-DD 15:00:00. Default: current date
+              (auto-calculated). Not required for: Dynamic Valuation Indicators, Stock
+              Basic Info Summary.'
+            pt_BR: 'End date. Required for: Trend Momentum Oscillator (Daily), Trend
+              Momentum Oscillator (Minute), Historical Valuation Indicators. Format:
+              YYYYMMDD (20250115) or YYYY-MM-DD (2025-01-15). For minute indicators,
+              automatically converts to YYYY-MM-DD 15:00:00. Default: current date
+              (auto-calculated). Not required for: Dynamic Valuation Indicators, Stock
+              Basic Info Summary.'
+            zh_Hans: 结束日期。需要此参数的指标：趋势动量震荡指标(日频)、趋势动量震荡指标(分钟)、历史估值指标。格式：YYYYMMDD(20250115)或YYYY-MM-DD(2025-01-15)。对于分钟级指标，自动转换为YYYY-MM-DD
+              15:00:00。缺省：当前日期（自动计算）。不需要此参数的指标：动态估值指标、个股基本信息汇总。
+          label:
+            en_US: End Date
+            ja_JP: End Date
+            pt_BR: End Date
+            zh_Hans: 结束日期
+          llm_description: 结束日期，用于趋势动量震荡指标和历史估值指标
+          max: null
+          min: null
+          name: end_date
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: string
+        - auto_generate: null
+          default: qfq
+          form: llm
+          human_description:
+            en_US: 'Adjustment method. Required for: Trend Momentum Oscillator, Historical
+              Valuation Indicators. Options: qfq (前复权), hfq (后复权), none (不复权). Not
+              required for: Dynamic Valuation Indicators, Stock Basic Info Summary.'
+            ja_JP: 'Adjustment method. Required for: Trend Momentum Oscillator, Historical
+              Valuation Indicators. Options: qfq (前复权), hfq (后复权), none (不复权). Not
+              required for: Dynamic Valuation Indicators, Stock Basic Info Summary.'
+            pt_BR: 'Adjustment method. Required for: Trend Momentum Oscillator, Historical
+              Valuation Indicators. Options: qfq (前复权), hfq (后复权), none (不复权). Not
+              required for: Dynamic Valuation Indicators, Stock Basic Info Summary.'
+            zh_Hans: 复权方式。需要此参数的指标：趋势动量震荡指标、历史估值指标。选项：qfq(前复权)、hfq(后复权)、none(不复权)。不需要此参数的指标：动态估值指标、个股基本信息汇总。
+          label:
+            en_US: Adjustment Method
+            ja_JP: Adjustment Method
+            pt_BR: Adjustment Method
+            zh_Hans: 复权方式
+          llm_description: 复权方式选择，用于趋势动量震荡指标和历史估值指标
+          max: null
+          min: null
+          name: adjust
+          options:
+          - icon: ''
+            label:
+              en_US: Forward Adjustment
+              ja_JP: Forward Adjustment
+              pt_BR: Forward Adjustment
+              zh_Hans: 前复权
+            value: qfq
+          - icon: ''
+            label:
+              en_US: Backward Adjustment
+              ja_JP: Backward Adjustment
+              pt_BR: Backward Adjustment
+              zh_Hans: 后复权
+            value: hfq
+          - icon: ''
+            label:
+              en_US: No Adjustment
+              ja_JP: No Adjustment
+              pt_BR: No Adjustment
+              zh_Hans: 不复权
+            value: none
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: select
+        - auto_generate: null
+          default: 5
+          form: llm
+          human_description:
+            en_US: Number of retries when interface call fails, default is 5
+            ja_JP: Number of retries when interface call fails, default is 5
+            pt_BR: Number of retries when interface call fails, default is 5
+            zh_Hans: 接口调用失败时的重试次数，默认为5次
+          label:
+            en_US: Retries
+            ja_JP: Retries
+            pt_BR: Retries
+            zh_Hans: 重试次数
+          llm_description: 接口调用失败时的重试次数，默认为5次
+          max: 10
+          min: 1
+          name: retries
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: number
+        - auto_generate: null
+          default: 1200
+          form: llm
+          human_description:
+            en_US: Timeout for interface calls in seconds, default is 600
+            ja_JP: Timeout for interface calls in seconds, default is 600
+            pt_BR: Timeout for interface calls in seconds, default is 600
+            zh_Hans: 接口调用的超时时间（秒），默认为600秒
+          label:
+            en_US: Timeout
+            ja_JP: Timeout
+            pt_BR: Timeout
+            zh_Hans: 超时时间
+          llm_description: 接口调用的超时时间（秒），默认为600秒
+          max: 3000
+          min: 5
+          name: timeout
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: number
+        params:
+          adjust: ''
+          end_date: ''
+          indicator: ''
+          period_daily: ''
+          period_minute: ''
+          retries: ''
+          start_date: ''
+          symbol: ''
+          timeout: ''
+        provider_id: shaoxing-xie/akshare_stockdata/akshare_stockdata
+        provider_name: shaoxing-xie/akshare_stockdata/akshare_stockdata
+        provider_type: builtin
+        selected: false
+        title: 历史估值指标-个股综合技术指标(拓展指标)
+        tool_configurations: {}
+        tool_description: 根据个股的原始接口数据，计算个股综合性或拓展性指标，以更深层次地反映个股的整体情况，如，基于历史数据的趋势动量震荡指标和基于最新财务数据的动态估值指标。参数要求：1.趋势动量震荡指标：需要股票代码、数据周期、开始日期、结束日期、复权方式；2.动态估值指标：只需要股票代码；3.历史估值指标：需要股票代码、数据周期、开始日期、结束日期、复权方式；4.个股基本信息汇总：只需要股票代码。
+        tool_label: 个股综合技术指标(拓展指标)
+        tool_name: stock_comprehensive_technical_indicators
+        tool_node_version: '2'
+        tool_parameters:
+          adjust:
+            type: constant
+            value: qfq
+          end_date:
+            type: mixed
+            value: ''
+          indicator:
+            type: constant
+            value: historical_valuation_indicators
+          period_daily:
+            type: constant
+            value: daily
+          period_minute:
+            type: constant
+            value: '15'
+          retries:
+            type: constant
+            value: 5
+          start_date:
+            type: mixed
+            value: '20250101'
+          symbol:
+            type: mixed
+            value: '{{#1760390449027.symbol#}}'
+          timeout:
+            type: constant
+            value: 1200
+        type: tool
+      height: 52
+      id: '1760409610004'
+      parentId: '1760391592346'
+      position:
+        x: 300.7572932275181
+        y: 328.2374635461494
+      positionAbsolute:
+        x: 15.84210022234737
+        y: 247.07834383978587
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+      zIndex: 1002
+    - data:
+        isInIteration: true
+        isInLoop: false
+        is_team_authorization: true
+        iteration_id: '1760391592346'
+        paramSchemas:
+        - auto_generate: null
+          default: stock_yjbb_em
+          form: llm
+          human_description:
+            en_US: 'Select the A-share financial analysis interface. Categories: Performance
+              Reports, Financial Indicators, Financial Statements, Financial Analysis.
+              Most interfaces require specific parameters like stock code, date, indicator,
+              or report type.'
+            ja_JP: 'Select the A-share financial analysis interface. Categories: Performance
+              Reports, Financial Indicators, Financial Statements, Financial Analysis.
+              Most interfaces require specific parameters like stock code, date, indicator,
+              or report type.'
+            pt_BR: 'Select the A-share financial analysis interface. Categories: Performance
+              Reports, Financial Indicators, Financial Statements, Financial Analysis.
+              Most interfaces require specific parameters like stock code, date, indicator,
+              or report type.'
+            zh_Hans: 选择A股财务分析相关接口。分类包括：业绩快报、财务指标、财务报表、财务分析。大部分接口需要特定参数如股票代码、日期、指标或报表类型。
+          label:
+            en_US: Interface
+            ja_JP: Interface
+            pt_BR: Interface
+            zh_Hans: 接口名称
+          llm_description: 选择A股财务分析相关接口。分类包括：业绩快报、财务指标、财务报表、财务分析。大部分接口需要特定参数如股票代码、日期、指标或报表类型。
+          max: null
+          min: null
+          name: interface
+          options:
+          - icon: ''
+            label:
+              en_US: East Money - Performance Report - Specify Report Date
+              ja_JP: East Money - Performance Report - Specify Report Date
+              pt_BR: East Money - Performance Report - Specify Report Date
+              zh_Hans: 东方财富网-业绩报表-指定报告日期
+            value: stock_yjbb_em
+          - icon: ''
+            label:
+              en_US: East Money - Performance Forecast - Specify Report Date
+              ja_JP: East Money - Performance Forecast - Specify Report Date
+              pt_BR: East Money - Performance Forecast - Specify Report Date
+              zh_Hans: 东方财富网-业绩快报-指定报告日期
+            value: stock_yjkb_em
+          - icon: ''
+            label:
+              en_US: East Money - Performance Prediction - Specify Report Date
+              ja_JP: East Money - Performance Prediction - Specify Report Date
+              pt_BR: East Money - Performance Prediction - Specify Report Date
+              zh_Hans: 东方财富网-业绩预告-指定报告日期
+            value: stock_yjyg_em
+          - icon: ''
+            label:
+              en_US: East Money - Performance Report - Profit Statement - Specify
+                Report Date
+              ja_JP: East Money - Performance Report - Profit Statement - Specify
+                Report Date
+              pt_BR: East Money - Performance Report - Profit Statement - Specify
+                Report Date
+              zh_Hans: 东方财富网-业绩快报-利润表-指定报告日期
+            value: stock_lrb_em
+          - icon: ''
+            label:
+              en_US: East Money - Performance Report - Cash Flow Statement - Specify
+                Report Date
+              ja_JP: East Money - Performance Report - Cash Flow Statement - Specify
+                Report Date
+              pt_BR: East Money - Performance Report - Cash Flow Statement - Specify
+                Report Date
+              zh_Hans: 东方财富网-业绩快报-现金流量表-指定报告日期
+            value: stock_xjll_em
+          - icon: ''
+            label:
+              en_US: East Money - Performance Report - Balance Sheet - Specify Report
+                Date
+              ja_JP: East Money - Performance Report - Balance Sheet - Specify Report
+                Date
+              pt_BR: East Money - Performance Report - Balance Sheet - Specify Report
+                Date
+              zh_Hans: 东方财富网-业绩快报-资产负债表-指定报告日期
+            value: stock_zcfz_em
+          - icon: ''
+            label:
+              en_US: East Money - BJ Exchange - Performance Report - Balance Sheet
+                - Specify Report Date
+              ja_JP: East Money - BJ Exchange - Performance Report - Balance Sheet
+                - Specify Report Date
+              pt_BR: East Money - BJ Exchange - Performance Report - Balance Sheet
+                - Specify Report Date
+              zh_Hans: 东方财富网-北交所-业绩快报-资产负债表-指定报告日期
+            value: stock_zcfz_bj_em
+          - icon: ''
+            label:
+              en_US: Sina Finance - Financial Report - Specify Stock, Report Type
+              ja_JP: Sina Finance - Financial Report - Specify Stock, Report Type
+              pt_BR: Sina Finance - Financial Report - Specify Stock, Report Type
+              zh_Hans: 新浪财经-财务报表-指定股票、报表类型
+            value: stock_financial_report_sina
+          - icon: ''
+            label:
+              en_US: Eastmoney - Balance Sheet (by Report Period) - Specific Stock
+              ja_JP: Eastmoney - Balance Sheet (by Report Period) - Specific Stock
+              pt_BR: Eastmoney - Balance Sheet (by Report Period) - Specific Stock
+              zh_Hans: 东方财富网-资产负债表-按报告期-指定股票
+            value: stock_balance_sheet_by_report_em
+          - icon: ''
+            label:
+              en_US: Eastmoney - Balance Sheet (by Yearly) - Specific Stock
+              ja_JP: Eastmoney - Balance Sheet (by Yearly) - Specific Stock
+              pt_BR: Eastmoney - Balance Sheet (by Yearly) - Specific Stock
+              zh_Hans: 东方财富网-资产负债表-按年度-指定股票
+            value: stock_balance_sheet_by_yearly_em
+          - icon: ''
+            label:
+              en_US: Eastmoney - Profit Sheet (by Report Period) - Specific Stock
+              ja_JP: Eastmoney - Profit Sheet (by Report Period) - Specific Stock
+              pt_BR: Eastmoney - Profit Sheet (by Report Period) - Specific Stock
+              zh_Hans: 东方财富网-利润表-按报告期-指定股票
+            value: stock_profit_sheet_by_report_em
+          - icon: ''
+            label:
+              en_US: Eastmoney - Profit Sheet (by Yearly) - Specific Stock
+              ja_JP: Eastmoney - Profit Sheet (by Yearly) - Specific Stock
+              pt_BR: Eastmoney - Profit Sheet (by Yearly) - Specific Stock
+              zh_Hans: 东方财富网-利润表-按年度-指定股票
+            value: stock_profit_sheet_by_yearly_em
+          - icon: ''
+            label:
+              en_US: Eastmoney - Profit Sheet (by Quarterly) - Specific Stock
+              ja_JP: Eastmoney - Profit Sheet (by Quarterly) - Specific Stock
+              pt_BR: Eastmoney - Profit Sheet (by Quarterly) - Specific Stock
+              zh_Hans: 东方财富网-利润表-按单季度-指定股票
+            value: stock_profit_sheet_by_quarterly_em
+          - icon: ''
+            label:
+              en_US: Eastmoney - Cash Flow Sheet (by Report Period) - Specific Stock
+              ja_JP: Eastmoney - Cash Flow Sheet (by Report Period) - Specific Stock
+              pt_BR: Eastmoney - Cash Flow Sheet (by Report Period) - Specific Stock
+              zh_Hans: 东方财富网-现金流量表-按报告期-指定股票
+            value: stock_cash_flow_sheet_by_report_em
+          - icon: ''
+            label:
+              en_US: Eastmoney - Cash Flow Sheet (by Yearly) - Specific Stock
+              ja_JP: Eastmoney - Cash Flow Sheet (by Yearly) - Specific Stock
+              pt_BR: Eastmoney - Cash Flow Sheet (by Yearly) - Specific Stock
+              zh_Hans: 东方财富网-现金流量表-按年度-指定股票
+            value: stock_cash_flow_sheet_by_yearly_em
+          - icon: ''
+            label:
+              en_US: Eastmoney - Cash Flow Sheet (by Quarterly) - Specific Stock
+              ja_JP: Eastmoney - Cash Flow Sheet (by Quarterly) - Specific Stock
+              pt_BR: Eastmoney - Cash Flow Sheet (by Quarterly) - Specific Stock
+              zh_Hans: 东方财富网-现金流量表-按单季度-指定股票
+            value: stock_cash_flow_sheet_by_quarterly_em
+          - icon: ''
+            label:
+              en_US: THS - Individual Balance Sheet - By Report Type
+              ja_JP: THS - Individual Balance Sheet - By Report Type
+              pt_BR: THS - Individual Balance Sheet - By Report Type
+              zh_Hans: 同花顺-资产负债表-指定股票、报告类型
+            value: stock_financial_debt_ths
+          - icon: ''
+            label:
+              en_US: THS - Individual Income Statement - By Report Type
+              ja_JP: THS - Individual Income Statement - By Report Type
+              pt_BR: THS - Individual Income Statement - By Report Type
+              zh_Hans: 同花顺-个股利润表-指定股票、报告类型
+            value: stock_financial_benefit_ths
+          - icon: ''
+            label:
+              en_US: THS - Individual Cash Flow Statement - By Report Type
+              ja_JP: THS - Individual Cash Flow Statement - By Report Type
+              pt_BR: THS - Individual Cash Flow Statement - By Report Type
+              zh_Hans: 同花顺-现金流量表-指定股票、报告类型
+            value: stock_financial_cash_ths
+          - icon: ''
+            label:
+              en_US: Sina Finance - Financial Statements (Key Indicators) - Specific
+                Stock
+              ja_JP: Sina Finance - Financial Statements (Key Indicators) - Specific
+                Stock
+              pt_BR: Sina Finance - Financial Statements (Key Indicators) - Specific
+                Stock
+              zh_Hans: 新浪财经-财务报表-关键指标-指定股票
+            value: stock_financial_abstract
+          - icon: ''
+            label:
+              en_US: Flush - Financial Indicators - Main Indicators - Specify Stock,
+                Indicator Type
+              ja_JP: Flush - Financial Indicators - Main Indicators - Specify Stock,
+                Indicator Type
+              pt_BR: Flush - Financial Indicators - Main Indicators - Specify Stock,
+                Indicator Type
+              zh_Hans: 同花顺-财务指标-主要指标-指定股票、指标类型
+            value: stock_financial_abstract_ths
+          - icon: ''
+            label:
+              en_US: Eastmoney - A-share Financial Analysis (Main Indicators) - By
+                Report Type
+              ja_JP: Eastmoney - A-share Financial Analysis (Main Indicators) - By
+                Report Type
+              pt_BR: Eastmoney - A-share Financial Analysis (Main Indicators) - By
+                Report Type
+              zh_Hans: 东方财富网-A股财务分析-主要指标-指定股票、报告类型
+            value: stock_financial_analysis_indicator_em
+          - icon: ''
+            label:
+              en_US: Sina Finance - Financial Analysis - Financial Indicators - Specify
+                Stock, Start Year
+              ja_JP: Sina Finance - Financial Analysis - Financial Indicators - Specify
+                Stock, Start Year
+              pt_BR: Sina Finance - Financial Analysis - Financial Indicators - Specify
+                Stock, Start Year
+              zh_Hans: 新浪财经-财务分析-财务指标-指定股票、起始年份
+            value: stock_financial_analysis_indicator
+          placeholder: null
+          precision: null
+          required: true
+          scope: null
+          template: null
+          type: select
+        - auto_generate: null
+          default: '000001'
+          form: llm
+          human_description:
+            en_US: 'Stock code. Required for: Flush - Financial Indicators - Balance
+              Sheet, Flush - Financial Indicators - Profit Statement, Flush - Financial
+              Indicators - Cash Flow Statement, Financial Statements - Key Indicators,
+              Flush - Financial Indicators - Main Indicators, Financial Analysis -
+              Financial Indicators.'
+            ja_JP: 'Stock code. Required for: Flush - Financial Indicators - Balance
+              Sheet, Flush - Financial Indicators - Profit Statement, Flush - Financial
+              Indicators - Cash Flow Statement, Financial Statements - Key Indicators,
+              Flush - Financial Indicators - Main Indicators, Financial Analysis -
+              Financial Indicators.'
+            pt_BR: 'Stock code. Required for: Flush - Financial Indicators - Balance
+              Sheet, Flush - Financial Indicators - Profit Statement, Flush - Financial
+              Indicators - Cash Flow Statement, Financial Statements - Key Indicators,
+              Flush - Financial Indicators - Main Indicators, Financial Analysis -
+              Financial Indicators.'
+            zh_Hans: 股票代码。需要此参数的接口：同花顺-财务指标-资产负债表、同花顺-财务指标-利润表、同花顺-财务指标-现金流量表、财务报表-关键指标、财务指标-主要指标、财务分析-财务指标。
+          label:
+            en_US: Stock Code
+            ja_JP: Stock Code
+            pt_BR: Stock Code
+            zh_Hans: 股票代码
+          llm_description: 股票代码，用于需要股票代码的接口
+          max: null
+          min: null
+          name: symbol
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: string
+        - auto_generate: null
+          default: '20250630'
+          form: llm
+          human_description:
+            en_US: 'Report date. Format: ''XXXX0331'', ''XXXX0630'', ''XXXX0930'',
+              ''XXXX1231''; Starting from 20120331. Required for: Performance Report
+              - Profit Statement, Performance Report - Cash Flow Statement, Performance
+              Report - Balance Sheet, BJ Exchange - Performance Report - Balance Sheet.'
+            ja_JP: 'Report date. Format: ''XXXX0331'', ''XXXX0630'', ''XXXX0930'',
+              ''XXXX1231''; Starting from 20120331. Required for: Performance Report
+              - Profit Statement, Performance Report - Cash Flow Statement, Performance
+              Report - Balance Sheet, BJ Exchange - Performance Report - Balance Sheet.'
+            pt_BR: 'Report date. Format: ''XXXX0331'', ''XXXX0630'', ''XXXX0930'',
+              ''XXXX1231''; Starting from 20120331. Required for: Performance Report
+              - Profit Statement, Performance Report - Cash Flow Statement, Performance
+              Report - Balance Sheet, BJ Exchange - Performance Report - Balance Sheet.'
+            zh_Hans: 报告日期。格式："XXXX0331", "XXXX0630", "XXXX0930", "XXXX1231"; 从 20120331
+              开始。需要此参数的接口：业绩快报-利润表、业绩快报-现金流量表、业绩快报-资产负债表、北交所-业绩快报-资产负债表。
+          label:
+            en_US: Report Date
+            ja_JP: Report Date
+            pt_BR: Report Date
+            zh_Hans: 报告日期
+          llm_description: 报告日期，格式为YYYYMMDD，用于业绩快报类接口
+          max: null
+          min: null
+          name: date
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: string
+        - auto_generate: null
+          default: 按报告期
+          form: llm
+          human_description:
+            en_US: 'A-share THS indicator type. Required for: Flush - Financial Indicators
+              - Balance Sheet, Flush - Financial Indicators - Profit Statement, Flush
+              - Financial Indicators - Cash Flow Statement, Flush - Financial Indicators
+              - Main Indicators.'
+            ja_JP: 'A-share THS indicator type. Required for: Flush - Financial Indicators
+              - Balance Sheet, Flush - Financial Indicators - Profit Statement, Flush
+              - Financial Indicators - Cash Flow Statement, Flush - Financial Indicators
+              - Main Indicators.'
+            pt_BR: 'A-share THS indicator type. Required for: Flush - Financial Indicators
+              - Balance Sheet, Flush - Financial Indicators - Profit Statement, Flush
+              - Financial Indicators - Cash Flow Statement, Flush - Financial Indicators
+              - Main Indicators.'
+            zh_Hans: A股同花顺指标类型。需要此参数的接口：同花顺-财务指标-资产负债表、同花顺-财务指标-利润表、同花顺-财务指标-现金流量表、同花顺-财务指标-主要指标。
+          label:
+            en_US: Indicator Type
+            ja_JP: Indicator Type
+            pt_BR: Indicator Type
+            zh_Hans: 指标类型
+          llm_description: A股同花顺财务指标接口的指标类型参数
+          max: null
+          min: null
+          name: indicator_ths
+          options:
+          - icon: ''
+            label:
+              en_US: By Report Period
+              ja_JP: By Report Period
+              pt_BR: By Report Period
+              zh_Hans: 按报告期
+            value: 按报告期
+          - icon: ''
+            label:
+              en_US: By Year
+              ja_JP: By Year
+              pt_BR: By Year
+              zh_Hans: 按年度
+            value: 按年度
+          - icon: ''
+            label:
+              en_US: By Single Quarter
+              ja_JP: By Single Quarter
+              pt_BR: By Single Quarter
+              zh_Hans: 按单季度
+            value: 按单季度
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: select
+        - auto_generate: null
+          default: 年报
+          form: llm
+          human_description:
+            en_US: 'Report type. Required for: THS - Individual Balance Sheet, THS
+              - Individual Income Statement, THS - Individual Cash Flow Statement.
+              Options: Annual Report (年报), Quarterly Report (季报), Interim Report (中报).'
+            ja_JP: 'Report type. Required for: THS - Individual Balance Sheet, THS
+              - Individual Income Statement, THS - Individual Cash Flow Statement.
+              Options: Annual Report (年报), Quarterly Report (季报), Interim Report (中报).'
+            pt_BR: 'Report type. Required for: THS - Individual Balance Sheet, THS
+              - Individual Income Statement, THS - Individual Cash Flow Statement.
+              Options: Annual Report (年报), Quarterly Report (季报), Interim Report (中报).'
+            zh_Hans: 报告类型。需要此参数的接口：同花顺-资产负债表、同花顺-个股利润表、同花顺-现金流量表。选项：年报、季报、中报。
+          label:
+            en_US: Report Type
+            ja_JP: Report Type
+            pt_BR: Report Type
+            zh_Hans: 报告类型
+          llm_description: 财务报表的报告类型，用于同花顺财务报表接口
+          max: null
+          min: null
+          name: report_type
+          options:
+          - icon: ''
+            label:
+              en_US: Annual Report
+              ja_JP: Annual Report
+              pt_BR: Annual Report
+              zh_Hans: 年报
+            value: 年报
+          - icon: ''
+            label:
+              en_US: Quarterly Report
+              ja_JP: Quarterly Report
+              pt_BR: Quarterly Report
+              zh_Hans: 季报
+            value: 季报
+          - icon: ''
+            label:
+              en_US: Interim Report
+              ja_JP: Interim Report
+              pt_BR: Interim Report
+              zh_Hans: 中报
+            value: 中报
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: select
+        - auto_generate: null
+          default: '2024'
+          form: llm
+          human_description:
+            en_US: 'Start year. Required for: Financial Analysis - Financial Indicators
+              - Specify Stock, Start Year.'
+            ja_JP: 'Start year. Required for: Financial Analysis - Financial Indicators
+              - Specify Stock, Start Year.'
+            pt_BR: 'Start year. Required for: Financial Analysis - Financial Indicators
+              - Specify Stock, Start Year.'
+            zh_Hans: 起始年份。需要此参数的接口：财务分析-财务指标-指定股票、起始年份。
+          label:
+            en_US: Start Year
+            ja_JP: Start Year
+            pt_BR: Start Year
+            zh_Hans: 起始年份
+          llm_description: 起始年份，用于财务分析指标接口
+          max: null
+          min: null
+          name: start_year
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: string
+        - auto_generate: null
+          default: 资产负债表
+          form: llm
+          human_description:
+            en_US: 'Sina Finance report type. Required for: Sina Finance - Financial
+              Report. Options: Balance Sheet (资产负债表), Income Statement (利润表), Cash
+              Flow Statement (现金流量表).'
+            ja_JP: 'Sina Finance report type. Required for: Sina Finance - Financial
+              Report. Options: Balance Sheet (资产负债表), Income Statement (利润表), Cash
+              Flow Statement (现金流量表).'
+            pt_BR: 'Sina Finance report type. Required for: Sina Finance - Financial
+              Report. Options: Balance Sheet (资产负债表), Income Statement (利润表), Cash
+              Flow Statement (现金流量表).'
+            zh_Hans: 新浪财经报表类型。需要此参数的接口：新浪财经-财务报表。选项：资产负债表、利润表、现金流量表。
+          label:
+            en_US: Sina Report Type
+            ja_JP: Sina Report Type
+            pt_BR: Sina Report Type
+            zh_Hans: 新浪报表类型
+          llm_description: 新浪财经财务报表的报表类型
+          max: null
+          min: null
+          name: report_type_sina
+          options:
+          - icon: ''
+            label:
+              en_US: Balance Sheet
+              ja_JP: Balance Sheet
+              pt_BR: Balance Sheet
+              zh_Hans: 资产负债表
+            value: 资产负债表
+          - icon: ''
+            label:
+              en_US: Income Statement
+              ja_JP: Income Statement
+              pt_BR: Income Statement
+              zh_Hans: 利润表
+            value: 利润表
+          - icon: ''
+            label:
+              en_US: Cash Flow Statement
+              ja_JP: Cash Flow Statement
+              pt_BR: Cash Flow Statement
+              zh_Hans: 现金流量表
+            value: 现金流量表
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: select
+        - auto_generate: null
+          default: 5
+          form: llm
+          human_description:
+            en_US: Number of retries when interface call fails
+            ja_JP: Number of retries when interface call fails
+            pt_BR: Number of retries when interface call fails
+            zh_Hans: 接口调用失败时的重试次数
+          label:
+            en_US: Retries
+            ja_JP: Retries
+            pt_BR: Retries
+            zh_Hans: 重试次数
+          llm_description: 接口调用失败时的重试次数
+          max: 10
+          min: 1
+          name: retries
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: number
+        - auto_generate: null
+          default: 900
+          form: llm
+          human_description:
+            en_US: Timeout for interface calls in seconds
+            ja_JP: Timeout for interface calls in seconds
+            pt_BR: Timeout for interface calls in seconds
+            zh_Hans: 接口调用的超时时间（秒）
+          label:
+            en_US: Timeout
+            ja_JP: Timeout
+            pt_BR: Timeout
+            zh_Hans: 超时时间
+          llm_description: 接口调用的超时时间（秒）
+          max: 3600
+          min: 5
+          name: timeout
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: number
+        params:
+          date: ''
+          indicator_ths: ''
+          interface: ''
+          report_type: ''
+          report_type_sina: ''
+          retries: ''
+          start_year: ''
+          symbol: ''
+          timeout: ''
+        provider_id: shaoxing-xie/akshare_stockdata/akshare_stockdata
+        provider_name: shaoxing-xie/akshare_stockdata/akshare_stockdata
+        provider_type: builtin
+        selected: false
+        title: A股-财务分析(中报)-股票财务数据分析(原始接口)
+        tool_configurations: {}
+        tool_description: 获取股票财务数据分析，包括利润表、现金流量表、资产负债表、财务指标等数据
+        tool_label: 股票财务数据分析(原始接口)
+        tool_name: stock_financial_analysis
+        tool_node_version: '2'
+        tool_parameters:
+          date:
+            type: mixed
+            value: '20250630'
+          indicator_ths:
+            type: constant
+            value: 按报告期
+          interface:
+            type: constant
+            value: stock_financial_analysis_indicator_em
+          report_type:
+            type: constant
+            value: 中报
+          report_type_sina:
+            type: constant
+            value: 资产负债表
+          retries:
+            type: constant
+            value: 5
+          start_year:
+            type: mixed
+            value: '2024'
+          symbol:
+            type: mixed
+            value: '{{#1760390449027.symbol#}}'
+          timeout:
+            type: constant
+            value: 900
+        type: tool
+      height: 52
+      id: '1760409822483'
+      parentId: '1760391592346'
+      position:
+        x: 300.75729322751806
+        y: 393.3772252993946
+      positionAbsolute:
+        x: 15.842100222347312
+        y: 312.21810559303105
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+      zIndex: 1002
+    - data:
+        isInIteration: true
+        isInLoop: false
+        is_team_authorization: true
+        iteration_id: '1760391592346'
+        paramSchemas:
+        - auto_generate: null
+          default: stock_fund_flow_individual
+          form: llm
+          human_description:
+            en_US: 'Select the fund flow analysis interface. Categories: Individual
+              Stock Analysis, Market Rankings, Sector Analysis, Industry Analysis,
+              Concept Analysis, Big Deal Tracking, HSGT Fund Flow, Chip Distribution,
+              Flush Fund Flow. Most interfaces require specific parameters like stock
+              code, statistical period, sector type, or ranking category.'
+            ja_JP: 'Select the fund flow analysis interface. Categories: Individual
+              Stock Analysis, Market Rankings, Sector Analysis, Industry Analysis,
+              Concept Analysis, Big Deal Tracking, HSGT Fund Flow, Chip Distribution,
+              Flush Fund Flow. Most interfaces require specific parameters like stock
+              code, statistical period, sector type, or ranking category.'
+            pt_BR: 'Select the fund flow analysis interface. Categories: Individual
+              Stock Analysis, Market Rankings, Sector Analysis, Industry Analysis,
+              Concept Analysis, Big Deal Tracking, HSGT Fund Flow, Chip Distribution,
+              Flush Fund Flow. Most interfaces require specific parameters like stock
+              code, statistical period, sector type, or ranking category.'
+            zh_Hans: 选择资金流向分析接口。分类包括：个股分析、市场排行、板块分析、行业分析、概念分析、大单追踪、沪深港通资金流向、筹码分布、同花顺资金流。大部分接口需要特定参数如股票代码、统计周期、板块类型或排行类别。
+          label:
+            en_US: Interface
+            ja_JP: Interface
+            pt_BR: Interface
+            zh_Hans: 接口名称
+          llm_description: 选择资金流向分析接口。分类包括：个股分析、市场排行、板块分析、行业分析、概念分析、大单追踪、沪深港通资金流向、筹码分布、同花顺资金流。大部分接口需要特定参数如股票代码、统计周期、板块类型或排行类别。
+          max: null
+          min: null
+          name: interface
+          options:
+          - icon: ''
+            label:
+              en_US: Flush - Individual Stock Fund Flow - Specify Ranking Category
+              ja_JP: Flush - Individual Stock Fund Flow - Specify Ranking Category
+              pt_BR: Flush - Individual Stock Fund Flow - Specify Ranking Category
+              zh_Hans: 同花顺-个股资金流-指定排行类别
+            value: stock_fund_flow_individual
+          - icon: ''
+            label:
+              en_US: Flush - Concept Fund Flow - Specify Ranking Category
+              ja_JP: Flush - Concept Fund Flow - Specify Ranking Category
+              pt_BR: Flush - Concept Fund Flow - Specify Ranking Category
+              zh_Hans: 同花顺-概念资金流-指定排行类别
+            value: stock_fund_flow_concept
+          - icon: ''
+            label:
+              en_US: Flush - Industry Fund Flow - Specify Ranking Category
+              ja_JP: Flush - Industry Fund Flow - Specify Ranking Category
+              pt_BR: Flush - Industry Fund Flow - Specify Ranking Category
+              zh_Hans: 同花顺-行业资金流-指定排行类别
+            value: stock_fund_flow_industry
+          - icon: ''
+            label:
+              en_US: Flush - Fund Flow Big Deal Tracking
+              ja_JP: Flush - Fund Flow Big Deal Tracking
+              pt_BR: Flush - Fund Flow Big Deal Tracking
+              zh_Hans: 同花顺--资金流向-大单追踪
+            value: stock_fund_flow_big_deal
+          - icon: ''
+            label:
+              en_US: East Money - Individual Stock Fund Flow - Specified Stock, Stock
+                Exchange
+              ja_JP: East Money - Individual Stock Fund Flow - Specified Stock, Stock
+                Exchange
+              pt_BR: East Money - Individual Stock Fund Flow - Specified Stock, Stock
+                Exchange
+              zh_Hans: 东方财富网-个股资金流向-指定股票
+            value: stock_individual_fund_flow
+          - icon: ''
+            label:
+              en_US: East Money - Fund Flow Rankings - Specified Statistical Period
+              ja_JP: East Money - Fund Flow Rankings - Specified Statistical Period
+              pt_BR: East Money - Fund Flow Rankings - Specified Statistical Period
+              zh_Hans: 东方财富网-资金流向-排名-指定统计周期
+            value: stock_individual_fund_flow_rank
+          - icon: ''
+            label:
+              en_US: East Money - Market Fund Flow - Historical Data
+              ja_JP: East Money - Market Fund Flow - Historical Data
+              pt_BR: East Money - Market Fund Flow - Historical Data
+              zh_Hans: 东方财富网-资金流向-大盘-历史数据
+            value: stock_market_fund_flow
+          - icon: ''
+            label:
+              en_US: East Money - Sector Fund Flow Rankings - Specified Statistical
+                Period, Sector Type
+              ja_JP: East Money - Sector Fund Flow Rankings - Specified Statistical
+                Period, Sector Type
+              pt_BR: East Money - Sector Fund Flow Rankings - Specified Statistical
+                Period, Sector Type
+              zh_Hans: 东方财富网-板块资金流-排名-指定统计周期、板块类型
+            value: stock_sector_fund_flow_rank
+          - icon: ''
+            label:
+              en_US: East Money - Main Fund Flow Rankings - Specified Market Choice
+              ja_JP: East Money - Main Fund Flow Rankings - Specified Market Choice
+              pt_BR: East Money - Main Fund Flow Rankings - Specified Market Choice
+              zh_Hans: 东方财富网-主力净流入排名-指定市场选择
+            value: stock_main_fund_flow
+          - icon: ''
+            label:
+              en_US: East Money - Sector Fund Flow - Individual Stocks - Specified
+                Industry Name, Statistical Period
+              ja_JP: East Money - Sector Fund Flow - Individual Stocks - Specified
+                Industry Name, Statistical Period
+              pt_BR: East Money - Sector Fund Flow - Individual Stocks - Specified
+                Industry Name, Statistical Period
+              zh_Hans: 东方财富网-行业资金流-xx行业个股资金流-指定行业名称、统计周期
+            value: stock_sector_fund_flow_summary
+          - icon: ''
+            label:
+              en_US: East Money - Sector Historical Fund Flow - Specified Industry
+                Name
+              ja_JP: East Money - Sector Historical Fund Flow - Specified Industry
+                Name
+              pt_BR: East Money - Sector Historical Fund Flow - Specified Industry
+                Name
+              zh_Hans: 东方财富网-行业历史资金流-指定行业名称
+            value: stock_sector_fund_flow_hist
+          - icon: ''
+            label:
+              en_US: East Money - Concept Historical Fund Flow - Specified Concept
+                Name
+              ja_JP: East Money - Concept Historical Fund Flow - Specified Concept
+                Name
+              pt_BR: East Money - Concept Historical Fund Flow - Specified Concept
+                Name
+              zh_Hans: 东方财富网-概念历史资金流-指定概念名称
+            value: stock_concept_fund_flow_hist
+          - icon: ''
+            label:
+              en_US: East Money - HSGT Fund Flow Summary
+              ja_JP: East Money - HSGT Fund Flow Summary
+              pt_BR: East Money - HSGT Fund Flow Summary
+              zh_Hans: 东方财富网-沪深港通资金流向
+            value: stock_hsgt_fund_flow_summary_em
+          - icon: ''
+            label:
+              en_US: East Money - Daily K Chip Distribution - Specified Stock, Adjustment
+                Method
+              ja_JP: East Money - Daily K Chip Distribution - Specified Stock, Adjustment
+                Method
+              pt_BR: East Money - Daily K Chip Distribution - Specified Stock, Adjustment
+                Method
+              zh_Hans: 东方财富网-日K-筹码分布-指定股票、复权方式
+            value: stock_cyq_em
+          placeholder: null
+          precision: null
+          required: true
+          scope: null
+          template: null
+          type: select
+        - auto_generate: null
+          default: 即时
+          form: llm
+          human_description:
+            en_US: 'Ranking category. Required for: Flush - Individual Stock Fund
+              Flow, Flush - Concept Fund Flow, Flush - Industry Fund Flow. Options:
+              Real-time (即时), 3-day ranking (3日排行), 5-day ranking (5日排行), 10-day ranking
+              (10日排行), 20-day ranking (20日排行).'
+            ja_JP: 'Ranking category. Required for: Flush - Individual Stock Fund
+              Flow, Flush - Concept Fund Flow, Flush - Industry Fund Flow. Options:
+              Real-time (即时), 3-day ranking (3日排行), 5-day ranking (5日排行), 10-day ranking
+              (10日排行), 20-day ranking (20日排行).'
+            pt_BR: 'Ranking category. Required for: Flush - Individual Stock Fund
+              Flow, Flush - Concept Fund Flow, Flush - Industry Fund Flow. Options:
+              Real-time (即时), 3-day ranking (3日排行), 5-day ranking (5日排行), 10-day ranking
+              (10日排行), 20-day ranking (20日排行).'
+            zh_Hans: 排行类别。需要此参数的接口：同花顺-个股资金流、同花顺-概念资金流、同花顺-行业资金流。选项：即时、3日排行、5日排行、10日排行、20日排行。
+          label:
+            en_US: Ranking Category
+            ja_JP: Ranking Category
+            pt_BR: Ranking Category
+            zh_Hans: 排行类别
+          llm_description: 同花顺资金流接口的排行类别参数，用于个股资金流、概念资金流、行业资金流接口
+          max: null
+          min: null
+          name: symbol
+          options:
+          - icon: ''
+            label:
+              en_US: Real-time
+              ja_JP: Real-time
+              pt_BR: Real-time
+              zh_Hans: 即时
+            value: 即时
+          - icon: ''
+            label:
+              en_US: 3-day Ranking
+              ja_JP: 3-day Ranking
+              pt_BR: 3-day Ranking
+              zh_Hans: 3日排行
+            value: 3日排行
+          - icon: ''
+            label:
+              en_US: 5-day Ranking
+              ja_JP: 5-day Ranking
+              pt_BR: 5-day Ranking
+              zh_Hans: 5日排行
+            value: 5日排行
+          - icon: ''
+            label:
+              en_US: 10-day Ranking
+              ja_JP: 10-day Ranking
+              pt_BR: 10-day Ranking
+              zh_Hans: 10日排行
+            value: 10日排行
+          - icon: ''
+            label:
+              en_US: 20-day Ranking
+              ja_JP: 20-day Ranking
+              pt_BR: 20-day Ranking
+              zh_Hans: 20日排行
+            value: 20日排行
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: select
+        - auto_generate: null
+          default: '600519'
+          form: llm
+          human_description:
+            en_US: 'Stock code. Required for: East Money - Individual Stock Fund Flow,
+              East Money - Fund Flow Rankings, East Money - Sector Fund Flow - Individual
+              Stocks, Flush - Fund Flow Big Deal Tracking. Format: 000001, 600519,
+              000002, 600036.'
+            ja_JP: 'Stock code. Required for: East Money - Individual Stock Fund Flow,
+              East Money - Fund Flow Rankings, East Money - Sector Fund Flow - Individual
+              Stocks, Flush - Fund Flow Big Deal Tracking. Format: 000001, 600519,
+              000002, 600036.'
+            pt_BR: 'Stock code. Required for: East Money - Individual Stock Fund Flow,
+              East Money - Fund Flow Rankings, East Money - Sector Fund Flow - Individual
+              Stocks, Flush - Fund Flow Big Deal Tracking. Format: 000001, 600519,
+              000002, 600036.'
+            zh_Hans: 股票代码。需要此参数的接口：东方财富网-个股资金流向、东方财富网-资金流向-排名、东方财富网-行业资金流-xx行业个股资金流、同花顺--资金流向-大单追踪。格式：000001、600519、000002、600036。
+          label:
+            en_US: Stock Code
+            ja_JP: Stock Code
+            pt_BR: Stock Code
+            zh_Hans: 股票代码
+          llm_description: 个股资金流向和筹码分布接口的股票代码参数
+          max: null
+          min: null
+          name: stock_code
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: string
+        - auto_generate: null
+          default: sh
+          form: llm
+          human_description:
+            en_US: 'Stock Exchange. Required for: East Money - Individual Stock Fund
+              Flow. Options: Shanghai Stock Exchange (sh), Shenzhen Stock Exchange
+              (sz), Beijing Stock Exchange (bj).'
+            ja_JP: 'Stock Exchange. Required for: East Money - Individual Stock Fund
+              Flow. Options: Shanghai Stock Exchange (sh), Shenzhen Stock Exchange
+              (sz), Beijing Stock Exchange (bj).'
+            pt_BR: 'Stock Exchange. Required for: East Money - Individual Stock Fund
+              Flow. Options: Shanghai Stock Exchange (sh), Shenzhen Stock Exchange
+              (sz), Beijing Stock Exchange (bj).'
+            zh_Hans: 证交所。需要此参数的接口：东方财富网-个股资金流向。选项：上海证券交易所(sh)、深圳证券交易所(sz)、北京证券交易所(bj)。
+          label:
+            en_US: Stock Exchange
+            ja_JP: Stock Exchange
+            pt_BR: Stock Exchange
+            zh_Hans: 证交所
+          llm_description: 个股资金流向接口的证交所参数，用于指定股票所属证交所
+          max: null
+          min: null
+          name: market
+          options:
+          - icon: ''
+            label:
+              en_US: Shanghai Stock Exchange
+              ja_JP: Shanghai Stock Exchange
+              pt_BR: Shanghai Stock Exchange
+              zh_Hans: 上海证券交易所
+            value: sh
+          - icon: ''
+            label:
+              en_US: Shenzhen Stock Exchange
+              ja_JP: Shenzhen Stock Exchange
+              pt_BR: Shenzhen Stock Exchange
+              zh_Hans: 深圳证券交易所
+            value: sz
+          - icon: ''
+            label:
+              en_US: Beijing Stock Exchange
+              ja_JP: Beijing Stock Exchange
+              pt_BR: Beijing Stock Exchange
+              zh_Hans: 北京证券交易所
+            value: bj
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: select
+        - auto_generate: null
+          default: 今日
+          form: llm
+          human_description:
+            en_US: 'Indicator. Required for: East Money - Fund Flow Rankings, East
+              Money - Sector Fund Flow Rankings, East Money - Main Fund Flow Rankings,
+              East Money - Sector Fund Flow - Individual Stocks. Options: Today, 3
+              Days, 5 Days, 10 Days. Note: East Money - Sector Fund Flow Rankings
+              and East Money - Sector Fund Flow - Individual Stocks only support Today,
+              5 Days, 10 Days (not 3 Days).'
+            ja_JP: 'Indicator. Required for: East Money - Fund Flow Rankings, East
+              Money - Sector Fund Flow Rankings, East Money - Main Fund Flow Rankings,
+              East Money - Sector Fund Flow - Individual Stocks. Options: Today, 3
+              Days, 5 Days, 10 Days. Note: East Money - Sector Fund Flow Rankings
+              and East Money - Sector Fund Flow - Individual Stocks only support Today,
+              5 Days, 10 Days (not 3 Days).'
+            pt_BR: 'Indicator. Required for: East Money - Fund Flow Rankings, East
+              Money - Sector Fund Flow Rankings, East Money - Main Fund Flow Rankings,
+              East Money - Sector Fund Flow - Individual Stocks. Options: Today, 3
+              Days, 5 Days, 10 Days. Note: East Money - Sector Fund Flow Rankings
+              and East Money - Sector Fund Flow - Individual Stocks only support Today,
+              5 Days, 10 Days (not 3 Days).'
+            zh_Hans: 统计周期。需要此参数的接口：东方财富网-资金流向-排名、东方财富网-板块资金流-排名、东方财富网-主力净流入排名、东方财富网-行业资金流-xx行业个股资金流。选项：今日、3日、5日、10日。注意：东方财富网-板块资金流-排名接口和东方财富网-行业资金流-xx行业个股资金流接口只支持今日、5日、10日（不支持3日）。
+          label:
+            en_US: Indicator
+            ja_JP: Indicator
+            pt_BR: Indicator
+            zh_Hans: 统计周期
+          llm_description: 排行类接口的统计周期参数，用于个股资金流向排行、板块资金流向排行、行业个股资金流向接口。注意：个股资金流向排行接口只需要此参数，不需要股票代码或市场参数。特别提醒：东方财富网-板块资金流-排名接口和东方财富网-行业资金流-xx行业个股资金流接口不支持"3日"选项，只支持"今日"、"5日"、"10日"。
+          max: null
+          min: null
+          name: indicator
+          options:
+          - icon: ''
+            label:
+              en_US: Today
+              ja_JP: Today
+              pt_BR: Today
+              zh_Hans: 今日
+            value: 今日
+          - icon: ''
+            label:
+              en_US: 3 Days
+              ja_JP: 3 Days
+              pt_BR: 3 Days
+              zh_Hans: 3日
+            value: 3日
+          - icon: ''
+            label:
+              en_US: 5 Days
+              ja_JP: 5 Days
+              pt_BR: 5 Days
+              zh_Hans: 5日
+            value: 5日
+          - icon: ''
+            label:
+              en_US: 10 Days
+              ja_JP: 10 Days
+              pt_BR: 10 Days
+              zh_Hans: 10日
+            value: 10日
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: select
+        - auto_generate: null
+          default: 行业资金流
+          form: llm
+          human_description:
+            en_US: 'Sector type. Required for: East Money - Sector Fund Flow Rankings.
+              Options: Industry Fund Flow, Concept Fund Flow, Regional Fund Flow.'
+            ja_JP: 'Sector type. Required for: East Money - Sector Fund Flow Rankings.
+              Options: Industry Fund Flow, Concept Fund Flow, Regional Fund Flow.'
+            pt_BR: 'Sector type. Required for: East Money - Sector Fund Flow Rankings.
+              Options: Industry Fund Flow, Concept Fund Flow, Regional Fund Flow.'
+            zh_Hans: 板块类型。需要此参数的接口：东方财富网-板块资金流-排名。选项：行业资金流、概念资金流、地域资金流。
+          label:
+            en_US: Sector Type
+            ja_JP: Sector Type
+            pt_BR: Sector Type
+            zh_Hans: 板块类型
+          llm_description: 板块资金流向排行接口的板块类型参数
+          max: null
+          min: null
+          name: sector_type
+          options:
+          - icon: ''
+            label:
+              en_US: Industry Fund Flow
+              ja_JP: Industry Fund Flow
+              pt_BR: Industry Fund Flow
+              zh_Hans: 行业资金流
+            value: 行业资金流
+          - icon: ''
+            label:
+              en_US: Concept Fund Flow
+              ja_JP: Concept Fund Flow
+              pt_BR: Concept Fund Flow
+              zh_Hans: 概念资金流
+            value: 概念资金流
+          - icon: ''
+            label:
+              en_US: Regional Fund Flow
+              ja_JP: Regional Fund Flow
+              pt_BR: Regional Fund Flow
+              zh_Hans: 地域资金流
+            value: 地域资金流
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: select
+        - auto_generate: null
+          default: 全部股票
+          form: llm
+          human_description:
+            en_US: 'Market choice. Required for: East Money - Main Fund Flow Rankings.
+              Options: All Stocks, Shanghai-Shenzhen A Shares, Shanghai A-shares,
+              STAR Market, Shenzhen A-shares, ChiNext, Shanghai B-shares, Shenzhen
+              B-shares.'
+            ja_JP: 'Market choice. Required for: East Money - Main Fund Flow Rankings.
+              Options: All Stocks, Shanghai-Shenzhen A Shares, Shanghai A-shares,
+              STAR Market, Shenzhen A-shares, ChiNext, Shanghai B-shares, Shenzhen
+              B-shares.'
+            pt_BR: 'Market choice. Required for: East Money - Main Fund Flow Rankings.
+              Options: All Stocks, Shanghai-Shenzhen A Shares, Shanghai A-shares,
+              STAR Market, Shenzhen A-shares, ChiNext, Shanghai B-shares, Shenzhen
+              B-shares.'
+            zh_Hans: 市场选择。需要此参数的接口：东方财富网-主力净流入排名。选项：全部股票、沪深A股、沪市A股、科创板、深市A股、创业板、沪市B股、深市B股。
+          label:
+            en_US: Market Choice
+            ja_JP: Market Choice
+            pt_BR: Market Choice
+            zh_Hans: 市场选择
+          llm_description: 主力资金流向接口的市场选择参数
+          max: null
+          min: null
+          name: market_choice
+          options:
+          - icon: ''
+            label:
+              en_US: All Stocks
+              ja_JP: All Stocks
+              pt_BR: All Stocks
+              zh_Hans: 全部股票
+            value: 全部股票
+          - icon: ''
+            label:
+              en_US: Shanghai-Shenzhen A Shares
+              ja_JP: Shanghai-Shenzhen A Shares
+              pt_BR: Shanghai-Shenzhen A Shares
+              zh_Hans: 沪深A股
+            value: 沪深A股
+          - icon: ''
+            label:
+              en_US: Shanghai A-shares
+              ja_JP: Shanghai A-shares
+              pt_BR: Shanghai A-shares
+              zh_Hans: 沪市A股
+            value: 沪市A股
+          - icon: ''
+            label:
+              en_US: STAR Market
+              ja_JP: STAR Market
+              pt_BR: STAR Market
+              zh_Hans: 科创板
+            value: 科创板
+          - icon: ''
+            label:
+              en_US: Shenzhen A-shares
+              ja_JP: Shenzhen A-shares
+              pt_BR: Shenzhen A-shares
+              zh_Hans: 深市A股
+            value: 深市A股
+          - icon: ''
+            label:
+              en_US: ChiNext
+              ja_JP: ChiNext
+              pt_BR: ChiNext
+              zh_Hans: 创业板
+            value: 创业板
+          - icon: ''
+            label:
+              en_US: Shanghai B-shares
+              ja_JP: Shanghai B-shares
+              pt_BR: Shanghai B-shares
+              zh_Hans: 沪市B股
+            value: 沪市B股
+          - icon: ''
+            label:
+              en_US: Shenzhen B-shares
+              ja_JP: Shenzhen B-shares
+              pt_BR: Shenzhen B-shares
+              zh_Hans: 深市B股
+            value: 深市B股
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: select
+        - auto_generate: null
+          default: 汽车服务
+          form: llm
+          human_description:
+            en_US: 'Industry name or concept name. Required for: East Money - Sector
+              Fund Flow - Individual Stocks, East Money - Sector Historical Fund Flow,
+              East Money - Concept Historical Fund Flow. Examples: ''Automobile Services'',
+              ''Power Equipment'', ''Data Elements'', ''Equal Rights for Rent and
+              Purchase'', etc. Reference: https://data.eastmoney.com/bkzj/hy.html
+              (for industry), https://data.eastmoney.com/bkzj/gn.html (for concept).'
+            ja_JP: 'Industry name or concept name. Required for: East Money - Sector
+              Fund Flow - Individual Stocks, East Money - Sector Historical Fund Flow,
+              East Money - Concept Historical Fund Flow. Examples: ''Automobile Services'',
+              ''Power Equipment'', ''Data Elements'', ''Equal Rights for Rent and
+              Purchase'', etc. Reference: https://data.eastmoney.com/bkzj/hy.html
+              (for industry), https://data.eastmoney.com/bkzj/gn.html (for concept).'
+            pt_BR: 'Industry name or concept name. Required for: East Money - Sector
+              Fund Flow - Individual Stocks, East Money - Sector Historical Fund Flow,
+              East Money - Concept Historical Fund Flow. Examples: ''Automobile Services'',
+              ''Power Equipment'', ''Data Elements'', ''Equal Rights for Rent and
+              Purchase'', etc. Reference: https://data.eastmoney.com/bkzj/hy.html
+              (for industry), https://data.eastmoney.com/bkzj/gn.html (for concept).'
+            zh_Hans: 行业名称或概念名称。需要此参数的接口：东方财富网-行业资金流-xx行业个股资金流、东方财富网-行业历史资金流、东方财富网-概念历史资金流。示例：汽车服务、电源设备、数据要素、租售同权等。参照：https://data.eastmoney.com/bkzj/hy.html（行业）、https://data.eastmoney.com/bkzj/gn.html（概念）。
+          label:
+            en_US: Industry Name/Concept Name
+            ja_JP: Industry Name/Concept Name
+            pt_BR: Industry Name/Concept Name
+            zh_Hans: 行业名称/概念名称
+          llm_description: 行业或概念相关接口的名称参数，用于行业个股资金流向、行业历史资金流向、概念历史资金流向接口
+          max: null
+          min: null
+          name: industry_name_concept_name
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: string
+        - auto_generate: null
+          default: qfq
+          form: llm
+          human_description:
+            en_US: 'Adjustment method. Required for: Flush - Fund Flow Big Deal Tracking.
+              Options: Forward Adjustment (qfq), Backward Adjustment (hfq), No Adjustment
+              (none).'
+            ja_JP: 'Adjustment method. Required for: Flush - Fund Flow Big Deal Tracking.
+              Options: Forward Adjustment (qfq), Backward Adjustment (hfq), No Adjustment
+              (none).'
+            pt_BR: 'Adjustment method. Required for: Flush - Fund Flow Big Deal Tracking.
+              Options: Forward Adjustment (qfq), Backward Adjustment (hfq), No Adjustment
+              (none).'
+            zh_Hans: 复权方式。需要此参数的接口：同花顺--资金流向-大单追踪。选项：前复权(qfq)、后复权(hfq)、不复权(none)。
+          label:
+            en_US: Adjustment Method
+            ja_JP: Adjustment Method
+            pt_BR: Adjustment Method
+            zh_Hans: 复权方式
+          llm_description: 筹码分布接口的复权方式参数
+          max: null
+          min: null
+          name: adjust
+          options:
+          - icon: ''
+            label:
+              en_US: Forward Adjustment
+              ja_JP: Forward Adjustment
+              pt_BR: Forward Adjustment
+              zh_Hans: 前复权
+            value: qfq
+          - icon: ''
+            label:
+              en_US: Backward Adjustment
+              ja_JP: Backward Adjustment
+              pt_BR: Backward Adjustment
+              zh_Hans: 后复权
+            value: hfq
+          - icon: ''
+            label:
+              en_US: No Adjustment
+              ja_JP: No Adjustment
+              pt_BR: No Adjustment
+              zh_Hans: 不复权
+            value: none
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: select
+        - auto_generate: null
+          default: 5
+          form: llm
+          human_description:
+            en_US: Number of retries for failed network requests, default is 5
+            ja_JP: Number of retries for failed network requests, default is 5
+            pt_BR: Number of retries for failed network requests, default is 5
+            zh_Hans: 网络请求失败时的重试次数，默认为5次
+          label:
+            en_US: Retries
+            ja_JP: Retries
+            pt_BR: Retries
+            zh_Hans: 重试次数
+          llm_description: 网络请求失败时的重试次数，默认为5次
+          max: 10
+          min: 1
+          name: retries
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: number
+        - auto_generate: null
+          default: 300
+          form: llm
+          human_description:
+            en_US: Timeout for interface calls in seconds, default is 120 seconds
+            ja_JP: Timeout for interface calls in seconds, default is 120 seconds
+            pt_BR: Timeout for interface calls in seconds, default is 120 seconds
+            zh_Hans: 接口调用的超时时间，单位为秒，默认为120秒
+          label:
+            en_US: Timeout (seconds)
+            ja_JP: Timeout (seconds)
+            pt_BR: Timeout (seconds)
+            zh_Hans: 超时时间（秒）
+          llm_description: 接口调用的超时时间，单位为秒，默认为120秒
+          max: 3600
+          min: 5
+          name: timeout
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: number
+        params:
+          adjust: ''
+          indicator: ''
+          industry_name_concept_name: ''
+          interface: ''
+          market: ''
+          market_choice: ''
+          retries: ''
+          sector_type: ''
+          stock_code: ''
+          symbol: ''
+          timeout: ''
+        provider_id: shaoxing-xie/akshare_stockdata/akshare_stockdata
+        provider_name: shaoxing-xie/akshare_stockdata/akshare_stockdata
+        provider_type: builtin
+        selected: false
+        title: 个股资金流向-资金流向分析(原始接口)
+        tool_configurations: {}
+        tool_description: 获取股票资金流向分析数据，包括个股资金流向、市场资金流向、板块资金流向排行、筹码分布等数据
+        tool_label: 资金流向分析(原始接口)
+        tool_name: stock_fund_flow_analysis
+        tool_node_version: '2'
+        tool_parameters:
+          adjust:
+            type: constant
+            value: qfq
+          indicator:
+            type: constant
+            value: 今日
+          industry_name_concept_name:
+            type: mixed
+            value: 汽车服务
+          interface:
+            type: constant
+            value: stock_individual_fund_flow
+          market:
+            type: variable
+            value:
+            - '1760390449027'
+            - market
+          market_choice:
+            type: constant
+            value: 全部股票
+          retries:
+            type: constant
+            value: 5
+          sector_type:
+            type: constant
+            value: 行业资金流
+          stock_code:
+            type: mixed
+            value: '{{#1760390449027.symbol#}}'
+          symbol:
+            type: constant
+            value: 5日排行
+          timeout:
+            type: constant
+            value: 300
+        type: tool
+      height: 52
+      id: '1760423797640'
+      parentId: '1760391592346'
+      position:
+        x: 300.757293227518
+        y: 456.2092975178897
+      positionAbsolute:
+        x: 15.842100222347256
+        y: 375.05017781152617
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+      zIndex: 1002
+    - data:
+        isInIteration: true
+        isInLoop: false
+        iteration_id: '1760391592346'
+        output_type: string
+        selected: false
+        title: 变量聚合器
+        type: variable-aggregator
+        variables:
+        - - '1760408897272'
+          - text
+        - - '1760409262191'
+          - text
+        - - '1760409337399'
+          - text
+        - - '1760409421729'
+          - text
+        - - '1760409610004'
+          - text
+        - - '1760409822483'
+          - text
+        - - '1760423797640'
+          - text
+      height: 265
+      id: '1760436189278'
+      parentId: '1760391592346'
+      position:
+        x: 604.4124107654943
+        y: 99.43006521148175
+      positionAbsolute:
+        x: 319.49721776032357
+        y: 18.27094550511822
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+      zIndex: 1002
+    - data:
+        code: "from typing import List\n\ndef main(reports: List[str]) -> dict:\n\
+          \    if reports and len(reports) > 0:\n        return {\"final_report\"\
+          : reports[-1]}  # 取出最后一个元素\n    else:\n        return {\"final_report\"\
+          : \"No report generated\"}"
+        code_language: python3
+        outputs:
+          final_report:
+            children: null
+            type: string
+        selected: false
+        title: 代码执行 2
+        type: code
+        variables:
+        - value_selector:
+          - '1760391592346'
+          - output
+          value_type: array[string]
+          variable: reports
+      height: 52
+      id: '1760445568936'
+      position:
+        x: 1118.6029700085812
+        y: 37.99322778611025
+      positionAbsolute:
+        x: 1118.6029700085812
+        y: 37.99322778611025
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    viewport:
+      x: 246.2536286688591
+      y: 174.4272638299144
+      zoom: 0.37723903072187437
+  rag_pipeline_variables: []

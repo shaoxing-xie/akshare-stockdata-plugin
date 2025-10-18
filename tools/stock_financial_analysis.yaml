@@ -116,12 +116,28 @@ parameters:
           en_US: Sina Finance - Financial Analysis - Financial Indicators - Specify Stock, Start Year
           zh_Hans: 新浪财经-财务分析-财务指标-指定股票、起始年份
         value: stock_financial_analysis_indicator
+      - label:
+          en_US: Eastmoney - Peer Comparison - Growth Comparison - Specified Stock
+          zh_Hans: 东方财富网-同行比较-成长性比较-指定股票
+        value: stock_zh_growth_comparison_em
+      - label:
+          en_US: Eastmoney - Peer Comparison - Valuation Comparison - Specified Stock
+          zh_Hans: 东方财富网-同行比较-估值比较-指定股票
+        value: stock_zh_valuation_comparison_em
+      - label:
+          en_US: Eastmoney - Peer Comparison - DuPont Analysis Comparison - Specified Stock
+          zh_Hans: 东方财富网-同行比较-杜邦分析比较-指定股票
+        value: stock_zh_dupont_comparison_em
+      - label:
+          en_US: Eastmoney - Peer Comparison - Company Scale - Specified Stock
+          zh_Hans: 东方财富网-同行比较-公司规模-指定股票
+        value: stock_zh_scale_comparison_em
 
   - name: symbol
     type: string
     required: false
     form: llm
-    default: "000001"
+    default: "600519"
     description: 股票代码
     llm_description: 股票代码，用于需要股票代码的接口
     human_description:

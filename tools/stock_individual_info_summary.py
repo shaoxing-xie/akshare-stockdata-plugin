@@ -7,7 +7,7 @@ from provider.akshare_stockdata import safe_ak_call, build_error_payload
 from provider.akshare_registry import get_interface_config
 from dify_plugin import Tool
 from dify_plugin.entities.tool import ToolInvokeMessage
-from .common_utils import process_dataframe_output, process_other_output, handle_empty_result, validate_required_params, handle_akshare_error, validate_stock_symbol
+from .common_utils import process_dataframe_output, process_other_output, handle_empty_result, validate_required_params, handle_akshare_error, validate_stock_symbol, validate_stock_symbol_smart
 
 
 class StockIndividualInfoSummaryTool(Tool):
@@ -63,9 +63,9 @@ class StockIndividualInfoSummaryTool(Tool):
                             return
             
             
-            # 验证股票代码格式
+            # 智能验证股票代码格式和接口兼容性
             validation_result = None
-            for result in validate_stock_symbol(symbol, self):
+            for result in validate_stock_symbol_smart(symbol, interface, self):
                 if isinstance(result, bool):
                     validation_result = result
                 else:

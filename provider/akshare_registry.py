@@ -480,7 +480,7 @@ REGISTRY: Dict[str, Dict[str, Any]] = {
     
     # 资金流向分析相关接口
     "stock_individual_fund_flow": {
-        "label": {"zh_Hans": "东方财富网-个股资金流向-指定股票、证交所", "en_US": "East Money - Individual Stock Fund Flow - Specified Stock, Stock Exchange"},
+        "label": {"zh_Hans": "东方财富网-个股资金流向-指定股票", "en_US": "East Money - Individual Stock Fund Flow - Specified Stock"},
         "fn": ak.stock_individual_fund_flow,
         "params": {
             "required": {

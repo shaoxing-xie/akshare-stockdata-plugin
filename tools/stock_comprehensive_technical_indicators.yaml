@@ -48,7 +48,7 @@ parameters:
     type: string
     required: true
     form: llm
-    default: "000001"
+    default: "600519"
     description: 股票代码
     llm_description: 股票代码，用于所有指标类型
     human_description:

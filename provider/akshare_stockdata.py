@@ -76,7 +76,9 @@ INTERFACE_TIMEOUT_CONFIG = {
             'stock_kc_a_spot_em', 'stock_hk_spot_em', 'stock_hk_main_board_spot_em',
             'stock_zh_ah_spot_em', 'stock_zh_ab_comparison_em',
             'stock_zh_a_new', 'stock_zh_a_new_em', 'stock_xgsr_ths',
-            'stock_hsgt_sh_hk_spot_em'  # 沪深港通实时行情
+            'stock_hsgt_sh_hk_spot_em',  # 沪深港通实时行情
+            'stock_us_spot_em', 'stock_us_spot', 'stock_us_famous_spot_em',  # 美股实时行情
+            'stock_zh_a_stop_em', 'stock_ipo_benefit_ths', 'stock_bid_ask_em'  # 其他A股实时行情接口
         ],
         'timeout': 900.0  # 15分钟
     },
@@ -92,7 +94,8 @@ INTERFACE_TIMEOUT_CONFIG = {
         'interfaces': [
             'stock_lrb_em', 'stock_xjll_em', 'stock_zcfz_em', 'stock_zcfz_bj_em',
             'stock_financial_debt_ths', 'stock_financial_benefit_ths', 'stock_financial_cash_ths',
-            'stock_financial_abstract_ths', 'stock_financial_analysis_indicator'
+            'stock_financial_abstract_ths', 'stock_financial_analysis_indicator',
+            'stock_financial_us_analysis_indicator_em', 'stock_financial_us_report_em'  # 美股财务分析
         ],
         'timeout': 300.0  # 5分钟
     },
@@ -126,7 +129,8 @@ INTERFACE_TIMEOUT_CONFIG = {
         'interfaces': [
             'stock_hist_quotations',  # 所有历史行情相关接口
             'stock_hsgt_fund_min_em',  # 沪深港通分时数据
-            'stock_hk_daily'  # 新浪港股历史行情(全量数据)
+            'stock_hk_daily',  # 新浪港股历史行情(全量数据)
+            'stock_us_daily', 'stock_us_hist', 'stock_us_hist_min_em'  # 美股历史数据
         ],
         'timeout': 300.0  # 5分钟
     },

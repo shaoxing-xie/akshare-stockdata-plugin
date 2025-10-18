@@ -14,6 +14,7 @@ from .common_utils import (
     validate_required_params, 
     handle_akshare_error, 
     validate_stock_symbol,
+    validate_stock_symbol_by_market,
     validate_period,
     validate_date_range,
     validate_adjust,
@@ -59,6 +60,17 @@ class StockHistQuotationsTool(Tool):
                     yield result
             if validation_result is False:
                 return
+            
+            # 如果是科创板接口，额外验证是否为科创板股票
+            if interface == "stock_zh_kcb_daily":
+                validation_result = None
+                for result in validate_stock_symbol_by_market(symbol, "KCB", self):
+                    if isinstance(result, bool):
+                        validation_result = result
+                    else:
+                        yield result
+                if validation_result is False:
+                    return
                 
         except Exception as e:
             logging.error(f"Error in _invoke start: {e}")
@@ -133,42 +145,6 @@ class StockHistQuotationsTool(Tool):
                 "requires_adjust": True,
                 "supports_timeout": False,
                 "description": "新浪财经-科创板股票历史行情数据-指定股票、复权方式"
-            },
-            "stock_zh_growth_comparison_em": {
-                "fn": ak.stock_zh_growth_comparison_em,
-                "requires_symbol": True,
-                "requires_period": False,
-                "requires_date_range": False,
-                "requires_adjust": False,
-                "supports_timeout": True,
-                "description": "东方财富网-同行比较-成长性比较-指定股票"
-            },
-            "stock_zh_valuation_comparison_em": {
-                "fn": ak.stock_zh_valuation_comparison_em,
-                "requires_symbol": True,
-                "requires_period": False,
-                "requires_date_range": False,
-                "requires_adjust": False,
-                "supports_timeout": True,
-                "description": "东方财富网-同行比较-估值比较-指定股票"
-            },
-            "stock_zh_dupont_comparison_em": {
-                "fn": ak.stock_zh_dupont_comparison_em,
-                "requires_symbol": True,
-                "requires_period": False,
-                "requires_date_range": False,
-                "requires_adjust": False,
-                "supports_timeout": True,
-                "description": "东方财富网-同行比较-杜邦分析比较-指定股票"
-            },
-            "stock_zh_scale_comparison_em": {
-                "fn": ak.stock_zh_scale_comparison_em,
-                "requires_symbol": True,
-                "requires_period": False,
-                "requires_date_range": False,
-                "requires_adjust": False,
-                "supports_timeout": True,
-                "description": "东方财富网-同行比较-公司规模-指定股票"
             },
             "stock_xgsr_ths": {
                 "fn": ak.stock_xgsr_ths,

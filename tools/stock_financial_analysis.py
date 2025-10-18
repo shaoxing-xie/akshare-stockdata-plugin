@@ -7,7 +7,7 @@ from provider.akshare_stockdata import safe_ak_call, build_error_payload
 from provider.akshare_registry import get_interface_config
 from dify_plugin import Tool
 from dify_plugin.entities.tool import ToolInvokeMessage
-from .common_utils import process_dataframe_output, process_other_output, handle_empty_result, validate_required_params, handle_akshare_error, validate_stock_symbol
+from .common_utils import process_dataframe_output, process_other_output, handle_empty_result, validate_required_params, handle_akshare_error, validate_stock_symbol, validate_stock_symbol_smart
 
 
 class StockFinancialAnalysisTool(Tool):
@@ -280,6 +280,47 @@ class StockFinancialAnalysisTool(Tool):
                 "description": "新浪财经-财务分析(财务指标)-指定股票、开始年份",
                 "param_mapping": {"symbol": "symbol", "start_year": "start_year"}
             },
+            # 同行比较接口
+            "stock_zh_growth_comparison_em": {
+                "fn": ak.stock_zh_growth_comparison_em,
+                "requires_date": False,
+                "requires_symbol": True,
+                "requires_indicator": False,
+                "requires_start_year": False,
+                "timeout": 600,
+                "description": "东方财富网-同行比较-成长性比较-指定股票",
+                "param_mapping": {"symbol": "symbol"}
+            },
+            "stock_zh_valuation_comparison_em": {
+                "fn": ak.stock_zh_valuation_comparison_em,
+                "requires_date": False,
+                "requires_symbol": True,
+                "requires_indicator": False,
+                "requires_start_year": False,
+                "timeout": 600,
+                "description": "东方财富网-同行比较-估值比较-指定股票",
+                "param_mapping": {"symbol": "symbol"}
+            },
+            "stock_zh_dupont_comparison_em": {
+                "fn": ak.stock_zh_dupont_comparison_em,
+                "requires_date": False,
+                "requires_symbol": True,
+                "requires_indicator": False,
+                "requires_start_year": False,
+                "timeout": 600,
+                "description": "东方财富网-同行比较-杜邦分析比较-指定股票",
+                "param_mapping": {"symbol": "symbol"}
+            },
+            "stock_zh_scale_comparison_em": {
+                "fn": ak.stock_zh_scale_comparison_em,
+                "requires_date": False,
+                "requires_symbol": True,
+                "requires_indicator": False,
+                "requires_start_year": False,
+                "timeout": 600,
+                "description": "东方财富网-同行比较-公司规模-指定股票",
+                "param_mapping": {"symbol": "symbol"}
+            },
             
         }
         
@@ -345,10 +386,10 @@ class StockFinancialAnalysisTool(Tool):
                 yield self.create_json_message({"error": f"report_type_sina required for {interface}"})
                 return
             
-            # 验证股票代码格式
+            # 智能验证股票代码格式和接口兼容性
             if config["requires_symbol"] and symbol:
                 validation_result = None
-                for result in validate_stock_symbol(symbol, self):
+                for result in validate_stock_symbol_smart(symbol, interface, self):
                     if isinstance(result, bool):
                         validation_result = result
                     else:
@@ -418,22 +459,27 @@ class StockFinancialAnalysisTool(Tool):
             if param_mapping:
                 # 清空之前的参数，使用映射系统
                 call_params = {}
+                # 获取注册文件配置（在循环外部）
+                registry_config = get_interface_config(interface)
                 for ak_param, tool_param in param_mapping.items():
                     if tool_param == "symbol" and symbol:
                         # 使用注册文件中的预处理逻辑
-                        registry_config = get_interface_config(interface)
-                        symbol_preprocess = registry_config.get("params", {}).get("required", {}).get("symbol", {}).get("preprocess")
-                        if symbol_preprocess:
-                            # 应用预处理
-                            if symbol_preprocess == "normalize_symbol_with_uppercase_prefix":
-                                call_params[ak_param] = self._normalize_symbol_with_uppercase_prefix(symbol)
-                            elif symbol_preprocess == "normalize_symbol":
-                                call_params[ak_param] = self._normalize_symbol(symbol)
-                            elif symbol_preprocess == "normalize_symbol_with_dot":
-                                call_params[ak_param] = self._normalize_symbol_with_dot(symbol)
+                        if registry_config:
+                            symbol_preprocess = registry_config.get("params", {}).get("required", {}).get("symbol", {}).get("preprocess")
+                            if symbol_preprocess:
+                                # 应用预处理
+                                if symbol_preprocess == "normalize_symbol_with_uppercase_prefix":
+                                    call_params[ak_param] = self._normalize_symbol_with_uppercase_prefix(symbol)
+                                elif symbol_preprocess == "normalize_symbol":
+                                    call_params[ak_param] = self._normalize_symbol(symbol)
+                                elif symbol_preprocess == "normalize_symbol_with_dot":
+                                    call_params[ak_param] = self._normalize_symbol_with_dot(symbol)
+                                else:
+                                    call_params[ak_param] = symbol
                             else:
                                 call_params[ak_param] = symbol
                         else:
+                            # 如果注册文件中没有配置，使用默认处理
                             call_params[ak_param] = symbol
                     elif tool_param == "report_type" and report_type:
                         call_params[ak_param] = report_type
@@ -491,9 +537,17 @@ class StockFinancialAnalysisTool(Tool):
         except Exception as e:
             logging.error(f"Error in AKShare call: {e}")
             
-            # 检查是否是网络连接错误
+            # 检查是否是数据结构错误（特别是估值比较接口）
             error_str = str(e).lower()
-            if any(keyword in error_str for keyword in ["ssl", "timeout", "read timed out", "connection", "max retries exceeded", "chunkedencoding", "response ended prematurely"]):
+            if "not in index" in error_str and interface == "stock_zh_valuation_comparison_em":
+                yield self.create_text_message(f"该股票暂无估值比较数据\n\n错误详情: {e}\n\n建议：\n1. 尝试其他股票代码（如600519、000002等）\n2. 该股票可能缺少某些估值指标数据\n3. 请选择其他股票进行估值比较分析")
+                yield self.create_json_message({
+                    "error": "data_structure_error",
+                    "message": "该股票暂无估值比较数据",
+                    "details": str(e),
+                    "suggestion": "请尝试其他股票代码进行估值比较分析"
+                })
+            elif any(keyword in error_str for keyword in ["ssl", "timeout", "read timed out", "connection", "max retries exceeded", "chunkedencoding", "response ended prematurely"]):
                 yield self.create_text_message(f"网络连接中断，请稍后重试\n\n错误详情: {e}")
                 yield self.create_json_message({
                     "error": "network_error",

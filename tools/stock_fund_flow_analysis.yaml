@@ -41,8 +41,8 @@ parameters:
           zh_Hans: 同花顺--资金流向-大单追踪
         value: stock_fund_flow_big_deal
       - label:
-          en_US: East Money - Individual Stock Fund Flow - Specified Stock, Stock Exchange
-          zh_Hans: 东方财富网-个股资金流向-指定股票、证交所
+          en_US: East Money - Individual Stock Fund Flow - Specified Stock
+          zh_Hans: 东方财富网-个股资金流向-指定股票
         value: stock_individual_fund_flow
       - label:
           en_US: East Money - Fund Flow Rankings - Specified Statistical Period
@@ -86,8 +86,7 @@ parameters:
     required: false
     form: llm
     default: 即时
-    description: 排行类别
-    llm_description: 同花顺资金流接口的排行类别参数，用于个股资金流、概念资金流、行业资金流接口
+    description: 同花顺资金流接口的排行类别参数，用于个股资金流、概念资金流、行业资金流接口
     human_description:
       en_US: "Ranking category. Required for: Flush - Individual Stock Fund Flow, Flush - Concept Fund Flow, Flush - Industry Fund Flow. Options: Real-time (即时), 3-day ranking (3日排行), 5-day ranking (5日排行), 10-day ranking (10日排行), 20-day ranking (20日排行)."
       zh_Hans: "排行类别。需要此参数的接口：同花顺-个股资金流、同花顺-概念资金流、同花顺-行业资金流。选项：即时、3日排行、5日排行、10日排行、20日排行。"
@@ -129,33 +128,6 @@ parameters:
     label:
       en_US: Stock Code
       zh_Hans: 股票代码
-
-  - name: market
-    type: select
-    required: false
-    form: llm
-    default: sh
-    description: 证交所
-    llm_description: 个股资金流向接口的证交所参数，用于指定股票所属证交所
-    human_description:
-      en_US: "Stock Exchange. Required for: East Money - Individual Stock Fund Flow. Options: Shanghai Stock Exchange (sh), Shenzhen Stock Exchange (sz), Beijing Stock Exchange (bj)."
-      zh_Hans: "证交所。需要此参数的接口：东方财富网-个股资金流向。选项：上海证券交易所(sh)、深圳证券交易所(sz)、北京证券交易所(bj)。"
-    label:
-      en_US: Stock Exchange
-      zh_Hans: 证交所
-    options:
-      - label:
-          en_US: Shanghai Stock Exchange
-          zh_Hans: 上海证券交易所
-        value: sh
-      - label:
-          en_US: Shenzhen Stock Exchange
-          zh_Hans: 深圳证券交易所
-        value: sz
-      - label:
-          en_US: Beijing Stock Exchange
-          zh_Hans: 北京证券交易所
-        value: bj
 
   - name: indicator
     type: select

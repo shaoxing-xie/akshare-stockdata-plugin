@@ -4,13 +4,13 @@
 [![Python 3.12+](https://img.shields.io/badge/python-3.12+-blue.svg)](https://www.python.org/downloads/)
 [![Dify Plugin](https://img.shields.io/badge/Dify-Plugin-green.svg)](https://dify.ai/)
 [![AKShare](https://img.shields.io/badge/AKShare-Latest-blue.svg)](https://github.com/akfamily/akshare)
-[![Download Plugin](https://img.shields.io/badge/Download-Plugin%20Package-blue)](https://github.com/shaoxing-xie/akshare-stockdata-plugin/blob/main/releases/AKShare-Stockdata-plugin-v0.5.1.difypkg)
-[![接口数量](https://img.shields.io/badge/接口数量-139-blue.svg)](https://github.com/shaoxing-xie/akshare-stockdata-plugin/blob/main/AKShare%20股票数据插件详细功能文档.md)
+[![Download Plugin](https://img.shields.io/badge/Download-Plugin%20Package-blue)](https://github.com/shaoxing-xie/akshare-stockdata-plugin/blob/main/releases/AKShare-Stockdata-plugin-v0.6.0.difypkg)
+[![接口数量](https://img.shields.io/badge/接口数量-170-blue.svg)](https://github.com/shaoxing-xie/akshare-stockdata-plugin/blob/main/AKShare%20股票数据插件详细功能文档.md)
 [![详细文档](https://img.shields.io/badge/详细文档-查看-green.svg)](https://github.com/shaoxing-xie/akshare-stockdata-plugin/blob/main/AKShare%20股票数据插件详细功能文档.md)
 
 ## 📥 快速下载
 
-[![Download Plugin](https://img.shields.io/badge/Download-Plugin%20Package-blue)](https://github.com/shaoxing-xie/akshare-stockdata-plugin/blob/main/releases/AKShare-Stockdata-plugin-v0.5.1.difypkg)
+[![Download Plugin](https://img.shields.io/badge/Download-Plugin%20Package-blue)](https://github.com/shaoxing-xie/akshare-stockdata-plugin/blob/main/releases/AKShare-Stockdata-plugin-v0.6.0.difypkg)
 
 **直接下载最新版本插件包** | [查看所有版本](https://github.com/shaoxing-xie/akshare-stockdata-plugin/releases)
 
@@ -24,7 +24,7 @@
 ## 📋 概述
 
 **AKShare 股票数据插件** 是一个专为 Dify 平台开发的综合性股票数据工具，基于知名的 [AKShare](https://github.com/akfamily/akshare) Python 库构建。本插件为用户提供了一站式的股票市场数据访问解决方案，涵盖实时行情、历史数据、财务分析、资金流向、技术分析、沪深港通等多个维度的专业股票信息。
-> **功能亮点**: 提供139个数据接口，覆盖全球股票市场。查看 [完整功能文档](https://github.com/shaoxing-xie/akshare-stockdata-plugin/blob/main/AKShare%20股票数据插件详细功能文档.md) 获取所有接口详情、参数指南和技术参考。
+> **功能亮点**: 提供170个数据接口，覆盖全球股票市场。查看 [完整功能文档](https://github.com/shaoxing-xie/akshare-stockdata-plugin/blob/main/AKShare%20股票数据插件详细功能文档.md) 获取所有接口详情、参数指南和技术参考。
 
 > **重要声明**: 本插件是 AKShare 库的 Dify 平台集成工具，AKShare 是一个专为学术研究目的设计的开源金融数据接口库。我们对 AKShare 项目团队的卓越工作表示诚挚感谢。
 
@@ -64,7 +64,7 @@
 - 🎯 **11个专业工具**: 覆盖股票数据分析的各个方面
   - **10个原始接口工具**: 基于AKShare的原始数据接口
   - **1个扩展指标工具**: 专业的技术指标计算和分析
-- 🌍 **139个数据接口**: 广泛覆盖全球主要股票市场
+- 🌍 **170个数据接口**: 广泛覆盖全球主要股票市场
 - 📊 **多市场支持**: A股、B股、港股、美股、科创板、北交所
 - 🔄 **实时+历史**: 既有实时行情，也有历史数据分析
 - 📋 **双重输出**: Markdown表格 + JSON格式，便于阅读和处理
@@ -105,7 +105,7 @@
 
 ### 方式二：从releases目录下载
 1. 访问 [releases目录](https://github.com/shaoxing-xie/akshare-stockdata-plugin/tree/main/releases)
-2. 下载 **"AKShare-Stockdata-plugin-v0.5.1.difypkg"** 文件
+2. 下载 **"AKShare-Stockdata-plugin-v0.6.0.difypkg"** 文件
 3. 按照方式一的步骤在Dify中安装
 
 ### 方式三：通过GitHub Releases
@@ -135,7 +135,7 @@
 
 ### 快速上手三步骤
 1. **选择工具**: 从11个专业工具中选择适合的工具
-2. **选择接口**: 从113个数据接口中选择具体的数据源
+2. **选择接口**: 从170个数据接口中选择具体的数据源
 3. **设置参数**: 配置股票代码、日期范围等参数
 
 ### 使用示例
@@ -175,47 +175,47 @@
 ## 🛠️ 工具详情
 
 ### 🏠 **工具一：股票市场总貌**
-- **接口数量**: 20个
+- **接口数量**: 25个
 - **功能**: 获取整体市场概况和统计数据，包括上交所、深交所市场总貌、股权质押、商誉数据、股票账户统计、千股千评、新股申购收益率、停复牌提醒、分红派息等
 - **适用场景**: 市场分析、宏观研究、风险监控
 
 ### 📊 **工具二：股票实时行情**  
-- **接口数量**: 11个
+- **接口数量**: 15个
 - **功能**: 获取各市场实时股票行情数据，包括沪深京A股实时行情，新股数据，AH股比价，AB股比价，次新股数据，两网及退市股票等
 - **适用场景**: 实时监控、交易决策、跨市场比较
 
 ### 📈 **工具三：股票历史行情**
-- **接口数量**: 5个  
+- **接口数量**: 8个  
 - **功能**: 获取历史价格数据，包括A股日线和分时数据，科创板历史数据，盘前数据等
 - **适用场景**: 技术分析、回测研究、量化建模
 
 ### 🏢 **工具四：个股信息总貌**
-- **接口数量**: 32个
+- **接口数量**: 25个
 - **功能**: 获取个股基本信息、财务数据、研究报告，包括A股的股票信息、行情报价、主营业务、新闻资讯、分红配股、资产负债表、股东持股分析等
 - **适用场景**: 基本面分析、投资研究、价值评估、股东结构分析
 
 ### 💰 **工具五：股票财务数据分析**
-- **接口数量**: 10个
+- **接口数量**: 27个
 - **功能**: 获取财务报表和业绩数据，包括A股业绩快报（利润表、现金流量表、资产负债表）、同花顺财务指标、新浪财经财务指标等
 - **适用场景**: 财务分析、价值投资、跨市场比较
 
 ### 🌊 **工具六：资金流向分析**
-- **接口数量**: 11个
+- **接口数量**: 14个
 - **功能**: 分析资金流向和市场情绪，包括个股资金流向、板块资金流向排行、主力资金流向、行业和概念历史资金流向、筹码分布等
 - **适用场景**: 资金面分析、市场情绪判断、主力动向追踪
 
 ### 📊 **工具七：股票技术分析**
-- **接口数量**: 18个
+- **接口数量**: 14个
 - **功能**: 技术指标和创新高低数据，包括创新高低、连续上涨下跌、持续放量缩量、均线突破、量价分析、ESG评级、个股指标、股息率等
 - **适用场景**: 技术分析、趋势判断、ESG投资、股息投资
 
 ### 🌉 **工具八：沪深港通持股**
-- **接口数量**: 8个
+- **接口数量**: 12个
 - **功能**: 北向资金持股和流向数据，包括港股通成份股、沪深港通分时数据、板块排行、个股排行、实时行情、历史数据、具体股票持股、沪深港通资金流向等
 - **适用场景**: 外资动向分析、市场情绪、北向资金追踪
 
 ### 🇭🇰 **工具九：港股数据** ⭐ **独立工具**
-- **接口数量**: 11个
+- **接口数量**: 15个
 - **功能**: 港股相关的数据接口，包括港股实时行情、历史数据、财务分析、公司资料、分红派息等
 - **适用场景**: 港股投资分析、跨市场比较
 
@@ -300,27 +300,27 @@
 
 ## 📚 详细功能文档
 
-插件提供11个专业工具共139个数据接口的完整功能。为了保持README的简洁性，详细的接口文档已独立为专门的技术文档：
+插件提供11个专业工具共170个数据接口的完整功能。为了保持README的简洁性，详细的接口文档已独立为专门的技术文档：
 
 ### 📖 **完整技术文档**
 👉 **[AKShare 股票数据插件详细功能文档.md](https://github.com/shaoxing-xie/akshare-stockdata-plugin/blob/main/AKShare%20股票数据插件详细功能文档.md)** - 您的接口宝典！
 
 该文档包含：
-- ✅ **113个接口的完整说明** - 每个接口的功能、参数、AKShare引用信息
+- ✅ **170个接口的完整说明** - 每个接口的功能、参数、AKShare引用信息
 - ✅ **11个工具的详细分类** - 按工具分类的完整接口列表  
 - ✅ **参数使用指南** - 详细的参数输入说明和格式要求
 - ✅ **技术参考信息** - 完整的AKShare接口引用和目标地址
 
 ### 🎯 **快速导航**
-- [工具1：股票市场总貌 (20个接口)](AKShare%20股票数据插件详细功能文档.md#工具1股票市场总貌-stock-market-summary)
-- [工具2：股票实时行情 (11个接口)](AKShare%20股票数据插件详细功能文档.md#工具2股票实时行情-stock-spot-quotations)  
-- [工具3：股票历史行情 (5个接口)](AKShare%20股票数据插件详细功能文档.md#工具3股票历史行情-stock-historical-quotations)
-- [工具4：个股信息总貌 (32个接口)](AKShare%20股票数据插件详细功能文档.md#工具4个股信息总貌-individual-stock-info-summary)
-- [工具5：股票财务数据分析 (10个接口)](AKShare%20股票数据插件详细功能文档.md#工具5股票财务数据分析-stock-financial-data-analysis)
-- [工具6：资金流向分析 (11个接口)](AKShare%20股票数据插件详细功能文档.md#工具6资金流向分析-capital-flow-analysis)
-- [工具7：股票技术分析 (18个接口)](AKShare%20股票数据插件详细功能文档.md#工具7股票技术分析-stock-technical-analysis)
-- [工具8：沪深港通持股 (8个接口)](AKShare%20股票数据插件详细功能文档.md#工具8沪深港通持股-hsgt-holdings)
-- [工具9：港股数据 (11个接口)](AKShare%20股票数据插件详细功能文档.md#工具9港股数据-stock-hk-data) ⭐ **独立工具**
+- [工具1：股票市场总貌 (25个接口)](AKShare%20股票数据插件详细功能文档.md#工具1股票市场总貌-stock-market-summary)
+- [工具2：股票实时行情 (15个接口)](AKShare%20股票数据插件详细功能文档.md#工具2股票实时行情-stock-spot-quotations)  
+- [工具3：股票历史行情 (8个接口)](AKShare%20股票数据插件详细功能文档.md#工具3股票历史行情-stock-historical-quotations)
+- [工具4：个股信息总貌 (25个接口)](AKShare%20股票数据插件详细功能文档.md#工具4个股信息总貌-individual-stock-info-summary)
+- [工具5：股票财务数据分析 (27个接口)](AKShare%20股票数据插件详细功能文档.md#工具5股票财务数据分析-stock-financial-data-analysis)
+- [工具6：资金流向分析 (14个接口)](AKShare%20股票数据插件详细功能文档.md#工具6资金流向分析-capital-flow-analysis)
+- [工具7：股票技术分析 (14个接口)](AKShare%20股票数据插件详细功能文档.md#工具7股票技术分析-stock-technical-analysis)
+- [工具8：沪深港通持股 (12个接口)](AKShare%20股票数据插件详细功能文档.md#工具8沪深港通持股-hsgt-holdings)
+- [工具9：港股数据 (15个接口)](AKShare%20股票数据插件详细功能文档.md#工具9港股数据-stock-hk-data) ⭐ **独立工具**
 - [工具10：美股数据 (8个接口)](AKShare%20股票数据插件详细功能文档.md#工具10美股数据-stock-us-data) ⭐ **独立工具**
 - [工具11：个股综合技术指标 (5个接口)](AKShare%20股票数据插件详细功能文档.md#工具11个股综合技术指标-stock-comprehensive-technical-indicators) ⭐ **扩展指标工具**
 
@@ -479,6 +479,6 @@ python compatibility_check.py
 ---
 
 **最后更新**: 2025-01-15  
-**版本**: 0.5.1  
+**版本**: 0.6.0  
 **作者**: AKShare 股票数据插件团队  
 **许可证**: MIT License

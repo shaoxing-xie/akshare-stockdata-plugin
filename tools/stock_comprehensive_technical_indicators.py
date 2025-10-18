@@ -1660,10 +1660,27 @@ class StockComprehensiveTechnicalIndicatorsTool(Tool):
             timeout = float(tool_parameters.get("timeout", 600))
             
             # 参数验证
-            if not symbol:
+            if not symbol or not symbol.strip():
                 raise DataValidationError(
                     message="股票代码不能为空",
                     validation_type="required_field",
+                    details={'field': 'symbol', 'value': symbol}
+                )
+            
+            # 检查股票代码格式（A股格式）
+            symbol = symbol.strip().upper()
+            if not symbol.replace('SH', '').replace('SZ', '').replace('-', '').replace('.', '').isalnum():
+                raise DataValidationError(
+                    message="股票代码包含非法字符",
+                    validation_type="invalid_format",
+                    details={'field': 'symbol', 'value': symbol}
+                )
+            
+            # 检查长度是否合理
+            if len(symbol) < 2 or len(symbol) > 10:
+                raise DataValidationError(
+                    message="股票代码长度不合理",
+                    validation_type="invalid_length",
                     details={'field': 'symbol', 'value': symbol}
                 )
             

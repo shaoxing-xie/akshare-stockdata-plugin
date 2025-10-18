@@ -7,6 +7,7 @@ import pandas as pd
 from typing import Any, Generator
 from dify_plugin.entities.tool import ToolInvokeMessage
 
+from provider.akshare_worker import get_market_identifier
 
 def clean_nan_values(obj: Any) -> Any:
     """
@@ -365,9 +366,322 @@ def validate_date_format(date: str, expected_format: str, tool_instance) -> Gene
     return True
 
 
+def validate_stock_symbol_by_market(symbol: str, market_type: str, tool_instance) -> Generator[ToolInvokeMessage, None, None]:
+    """
+    根据市场类型验证股票代码格式
+    
+    Args:
+        symbol: 股票代码
+        market_type: 市场类型 (KCB-科创板, CYB-创业板, HUA-沪市主板, SHENA-深市主板, BJ-北交所)
+        tool_instance: 工具实例
+        
+    Yields:
+        ToolInvokeMessage: 错误消息（如果格式不正确）或验证结果
+        
+    Returns:
+        bool: 是否验证通过
+    """
+    if not symbol or not symbol.strip():
+        error_msg = "股票代码不能为空。"
+        yield tool_instance.create_text_message(error_msg)
+        yield tool_instance.create_json_message({"error": "empty_symbol", "message": "Stock symbol cannot be empty"})
+        yield False
+        return
+    
+    symbol = symbol.strip().upper()
+    
+    # 检查是否包含非法字符
+    if not symbol.replace('SH', '').replace('SZ', '').replace('-', '').replace('.', '').isalnum():
+        error_msg = f"股票代码包含非法字符。支持的格式：\n- A股：600519、000001、SH600519、SZ000001"
+        yield tool_instance.create_text_message(error_msg)
+        yield tool_instance.create_json_message({"error": "invalid_symbol_format", "message": "Stock symbol contains invalid characters"})
+        yield False
+        return
+    
+    # 检查长度是否合理
+    if len(symbol) < 2 or len(symbol) > 10:
+        error_msg = f"股票代码长度不合理。支持的格式：\n- A股：600519、000001、SH600519、SZ000001"
+        yield tool_instance.create_text_message(error_msg)
+        yield tool_instance.create_json_message({"error": "invalid_symbol_length", "message": "Stock symbol length is invalid"})
+        yield False
+        return
+    
+    # 提取纯数字代码（去除市场前缀）
+    pure_code = symbol
+    if symbol.startswith('SH') or symbol.startswith('SZ'):
+        pure_code = symbol[2:]
+    
+    # 根据市场类型验证代码格式
+    if market_type == "KCB":  # 科创板
+        if not pure_code.isdigit() or len(pure_code) != 6:
+            error_msg = f"科创板股票代码格式错误。科创板代码应为6位数字，以68开头。\n示例：688001、688002"
+            yield tool_instance.create_text_message(error_msg)
+            yield tool_instance.create_json_message({"error": "invalid_kcb_symbol", "message": "KCB symbol format error"})
+            yield False
+            return
+        
+        if not pure_code.startswith('68'):
+            error_msg = f"该股票代码不是科创板股票。科创板代码必须以68开头。\n当前代码：{pure_code}\n示例：688001、688002"
+            yield tool_instance.create_text_message(error_msg)
+            yield tool_instance.create_json_message({"error": "not_kcb_symbol", "message": "Not a KCB symbol"})
+            yield False
+            return
+            
+    elif market_type == "CYB":  # 创业板
+        if not pure_code.isdigit() or len(pure_code) != 6:
+            error_msg = f"创业板股票代码格式错误。创业板代码应为6位数字，以30开头。\n示例：300001、300002"
+            yield tool_instance.create_text_message(error_msg)
+            yield tool_instance.create_json_message({"error": "invalid_cyb_symbol", "message": "CYB symbol format error"})
+            yield False
+            return
+        
+        if not pure_code.startswith('30'):
+            error_msg = f"该股票代码不是创业板股票。创业板代码必须以30开头。\n当前代码：{pure_code}\n示例：300001、300002"
+            yield tool_instance.create_text_message(error_msg)
+            yield tool_instance.create_json_message({"error": "not_cyb_symbol", "message": "Not a CYB symbol"})
+            yield False
+            return
+            
+    elif market_type == "HUA":  # 沪市主板
+        if not pure_code.isdigit() or len(pure_code) != 6:
+            error_msg = f"沪市主板股票代码格式错误。沪市主板代码应为6位数字，以60开头。\n示例：600000、600519"
+            yield tool_instance.create_text_message(error_msg)
+            yield tool_instance.create_json_message({"error": "invalid_hua_symbol", "message": "HUA symbol format error"})
+            yield False
+            return
+        
+        if not pure_code.startswith('60'):
+            error_msg = f"该股票代码不是沪市主板股票。沪市主板代码必须以60开头。\n当前代码：{pure_code}\n示例：600000、600519"
+            yield tool_instance.create_text_message(error_msg)
+            yield tool_instance.create_json_message({"error": "not_hua_symbol", "message": "Not a HUA symbol"})
+            yield False
+            return
+            
+    elif market_type == "SHENA":  # 深市主板
+        if not pure_code.isdigit() or len(pure_code) != 6:
+            error_msg = f"深市主板股票代码格式错误。深市主板代码应为6位数字，以00开头。\n示例：000001、000002"
+            yield tool_instance.create_text_message(error_msg)
+            yield tool_instance.create_json_message({"error": "invalid_shena_symbol", "message": "SHENA symbol format error"})
+            yield False
+            return
+        
+        if not pure_code.startswith('00'):
+            error_msg = f"该股票代码不是深市主板股票。深市主板代码必须以00开头。\n当前代码：{pure_code}\n示例：000001、000002"
+            yield tool_instance.create_text_message(error_msg)
+            yield tool_instance.create_json_message({"error": "not_shena_symbol", "message": "Not a SHENA symbol"})
+            yield False
+            return
+            
+    elif market_type == "BJ":  # 北交所
+        if not pure_code.isdigit() or len(pure_code) != 6:
+            error_msg = f"北交所股票代码格式错误。北交所代码应为6位数字，以43或83开头。\n示例：430001、830001"
+            yield tool_instance.create_text_message(error_msg)
+            yield tool_instance.create_json_message({"error": "invalid_bj_symbol", "message": "BJ symbol format error"})
+            yield False
+            return
+        
+        if not (pure_code.startswith('43') or pure_code.startswith('83')):
+            error_msg = f"该股票代码不是北交所股票。北交所代码必须以43或83开头。\n当前代码：{pure_code}\n示例：430001、830001"
+            yield tool_instance.create_text_message(error_msg)
+            yield tool_instance.create_json_message({"error": "not_bj_symbol", "message": "Not a BJ symbol"})
+            yield False
+            return
+    
+    yield True
+
+
+def detect_stock_code_type(symbol: str) -> str:
+    """
+    自动检测股票代码类型
+    
+    Args:
+        symbol: 股票代码
+        
+    Returns:
+        str: 代码类型 ('A股', '港股', '美股', '未知')
+    """
+    if not symbol or not symbol.strip():
+        return '未知'
+    
+    symbol = symbol.strip().upper()
+    
+    # 去除市场前缀
+    pure_code = symbol
+    if symbol.startswith('SH') or symbol.startswith('SZ'):
+        pure_code = symbol[2:]
+    elif symbol.startswith('HK'):
+        pure_code = symbol[2:]
+    elif symbol.startswith('US.'):
+        pure_code = symbol[3:]
+    
+    # 美股检测（字母代码，如AAPL, MSFT）
+    if pure_code.isalpha() and 1 <= len(pure_code) <= 6:
+        return '美股'
+    
+    # 港股检测（5位数字，如00700）
+    if pure_code.isdigit() and len(pure_code) == 5:
+        return '港股'
+    
+    # A股检测（6位数字）
+    if pure_code.isdigit() and len(pure_code) == 6:
+        if pure_code.startswith('68'):  # 科创板
+            return 'A股'
+        elif pure_code.startswith('30'):  # 创业板
+            return 'A股'
+        elif pure_code.startswith('60'):  # 沪市主板
+            return 'A股'
+        elif pure_code.startswith('00'):  # 深市主板
+            return 'A股'
+        elif pure_code.startswith(('43', '83')):  # 北交所
+            return 'A股'
+    
+    return '未知'
+
+
+def validate_stock_symbol_smart(symbol: str, interface: str, tool_instance) -> Generator[ToolInvokeMessage, None, None]:
+    """
+    智能验证股票代码格式和接口兼容性
+    
+    Args:
+        symbol: 股票代码
+        interface: 接口名称
+        tool_instance: 工具实例
+        
+    Yields:
+        ToolInvokeMessage: 错误消息（如果格式不正确）或验证结果
+        
+    Returns:
+        bool: 是否验证通过
+    """
+    if not symbol or not symbol.strip():
+        error_msg = "股票代码不能为空。"
+        yield tool_instance.create_text_message(error_msg)
+        yield tool_instance.create_json_message({"error": "empty_symbol", "message": "Stock symbol cannot be empty"})
+        yield False
+        return
+    
+    symbol = symbol.strip().upper()
+    
+    # 基本格式验证
+    if not symbol.replace('SH', '').replace('SZ', '').replace('HK', '').replace('US.', '').replace('-', '').replace('.', '').isalnum():
+        error_msg = f"股票代码包含非法字符。支持的格式：\n- A股：600519、000001、SH600519、SZ000001\n- 港股：00700、HK00700\n- 美股：AAPL、US.AAPL"
+        yield tool_instance.create_text_message(error_msg)
+        yield tool_instance.create_json_message({"error": "invalid_symbol_format", "message": "Stock symbol contains invalid characters"})
+        yield False
+        return
+    
+    # 检测代码类型
+    code_type = detect_stock_code_type(symbol)
+    
+    # 接口与支持的市场类型映射
+    interface_market_support = {
+        # A股相关接口
+        'stock_individual_info_em': ['A股'],
+        'stock_zyjs_ths': ['A股'],
+        'stock_zygc_em': ['A股'],
+        'stock_news_em': ['A股'],
+        'stock_profile_cninfo': ['A股'],
+        'stock_ipo_summary_cninfo': ['A股'],
+        'stock_share_change_cninfo': ['A股'],
+        'stock_fhps_detail_em': ['A股'],
+        'stock_fhps_detail_ths': ['A股'],
+        'stock_dividend_cninfo': ['A股'],
+        'stock_research_report_em': ['A股'],
+        'stock_gdfx_free_top_10_em': ['A股'],
+        'stock_gdfx_top_10_em': ['A股'],
+        'stock_fund_stock_holder': ['A股'],
+        'stock_main_stock_holder': ['A股'],
+        'stock_institute_hold_detail': ['A股'],
+        'stock_institute_recommend_detail': ['A股'],
+        'stock_value_em': ['A股'],
+        'stock_management_change_ths': ['A股'],
+        'stock_shareholder_change_ths': ['A股'],
+        'stock_ipo_info': ['A股'],
+        'stock_add_stock': ['A股'],
+        'stock_restricted_release_queue_sina': ['A股'],
+        
+        # 港股相关接口
+        'stock_hk_security_profile_em': ['港股'],
+        'stock_hk_company_profile_em': ['港股'],
+        'stock_hk_fhpx_detail_ths': ['港股'],
+        
+        # 财务分析接口（A股）
+        'stock_yjbb_em': ['A股'],
+        'stock_yjkb_em': ['A股'],
+        'stock_yjyg_em': ['A股'],
+        'stock_lrb_em': ['A股'],
+        'stock_xjll_em': ['A股'],
+        'stock_zcfz_em': ['A股'],
+        'stock_zcfz_bj_em': ['A股'],
+        'stock_financial_report_sina': ['A股'],
+        'stock_balance_sheet_by_report_em': ['A股'],
+        'stock_balance_sheet_by_yearly_em': ['A股'],
+        'stock_profit_sheet_by_report_em': ['A股'],
+        'stock_profit_sheet_by_yearly_em': ['A股'],
+        'stock_cash_flow_sheet_by_report_em': ['A股'],
+        'stock_cash_flow_sheet_by_yearly_em': ['A股'],
+        'stock_financial_abstract_ths': ['A股'],
+        'stock_financial_analysis_indicator_em': ['A股'],
+        'stock_financial_analysis_indicator_ths': ['A股'],
+        'stock_financial_analysis_indicator_sina': ['A股'],
+        
+        # 资金流向接口（A股）
+        'stock_fund_flow_individual': ['A股'],
+        'stock_fund_flow_individual_em': ['A股'],
+        'stock_fund_flow_market': ['A股'],
+        'stock_fund_flow_sector': ['A股'],
+        'stock_fund_flow_industry': ['A股'],
+        'stock_fund_flow_concept': ['A股'],
+        'stock_fund_flow_big_deal': ['A股'],
+        'stock_fund_flow_hsgt': ['A股'],
+        'stock_fund_flow_chip_distribution': ['A股'],
+        'stock_fund_flow_flush': ['A股'],
+        
+        # 综合技术指标接口（A股）
+        'stock_comprehensive_technical_indicators_trend_momentum_oscillator': ['A股'],
+        'stock_comprehensive_technical_indicators_trend_momentum_oscillator_minute': ['A股'],
+        'stock_comprehensive_technical_indicators_dynamic_valuation_indicators': ['A股'],
+        'stock_comprehensive_technical_indicators_historical_valuation_indicators': ['A股'],
+        'stock_comprehensive_technical_indicators_stock_basic_info_summary': ['A股'],
+    }
+    
+    # 检查接口是否支持该代码类型
+    supported_markets = interface_market_support.get(interface, [])
+    
+    if not supported_markets:
+        # 如果接口不在映射表中，只进行基本格式验证
+        yield True
+        return
+    
+    if code_type not in supported_markets:
+        # 生成友好的错误提示
+        if code_type == '未知':
+            error_msg = f"无法识别股票代码格式：{symbol}\n\n支持的格式：\n- A股：600519、000001、SH600519、SZ000001\n- 港股：00700、HK00700\n- 美股：AAPL、US.AAPL"
+        else:
+            market_names = {
+                'A股': 'A股（包括沪市主板、深市主板、创业板、科创板、北交所）',
+                '港股': '港股',
+                '美股': '美股'
+            }
+            supported_names = [market_names.get(m, m) for m in supported_markets]
+            error_msg = f"接口 '{interface}' 不支持 {market_names.get(code_type, code_type)} 股票代码。\n\n当前代码：{symbol}\n支持的代码类型：{', '.join(supported_names)}\n\n请使用正确的股票代码类型。"
+        
+        yield tool_instance.create_text_message(error_msg)
+        yield tool_instance.create_json_message({
+            "error": "incompatible_symbol_type", 
+            "message": f"Interface {interface} does not support {code_type} stock code",
+            "detected_type": code_type,
+            "supported_types": supported_markets
+        })
+        yield False
+        return
+    
+    yield True
+
+
 def validate_stock_symbol(symbol: str, tool_instance) -> Generator[ToolInvokeMessage, None, None]:
     """
-    验证股票代码格式
+    验证股票代码格式（通用验证，不指定市场）
     
     Args:
         symbol: 股票代码
@@ -670,10 +984,8 @@ def process_symbol_format(symbol: str, interface: str) -> str:
     if interface in prefix_required_interfaces and not any(symbol.upper().startswith(prefix) for prefix in ['SH', 'SZ']):
         # 根据代码判断市场
         if symbol.isdigit() and len(symbol) == 6:
-            if symbol.startswith(('60', '68')):
-                return f"SH{symbol}"
-            elif symbol.startswith(('00', '30')):
-                return f"SZ{symbol}"
+            market = get_market_identifier(symbol, 'upper')
+            return f"{market}{symbol}"
     
     return symbol
 
