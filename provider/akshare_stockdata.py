@@ -180,6 +180,14 @@ def safe_ak_call(
     - timeout parameter controls subprocess execution time, not AKShare interface timeout
     - Re-raise the last exception for the caller to handle.
     """
+    # 检查是否在开发环境中（本地运行）
+    use_subprocess = os.environ.get('AKSHARE_USE_SUBPROCESS', 'true').lower() == 'true'
+    
+    if not use_subprocess:
+        # 直接调用模式（用于本地开发调试）
+        logging.info(f"Direct call mode for {fn.__name__}")
+        return fn(**kwargs)
+    
     attempt = 0
     last_exc: Exception | None = None
     
