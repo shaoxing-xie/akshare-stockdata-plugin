@@ -160,20 +160,43 @@ Thumbs.db
 # 开发工具文件
 fix_*.py
 compatibility_check.py
+
+# 文档文件
 UPGRADE_GUIDE.md
 CHANGELOG.md
 CONTRIBUTING.md
 IMPLEMENTATION_SUMMARY.md
 DOCKER_CONFIG_GUIDE.md
+RELEASE_NOTES_v0.6.0.md
+README_EN.md
+README_ZH_TW.md
+README_PT_BR.md
 应用示例/
-releases/
+doc/
+AKShare 股票数据插件详细功能文档.md
+AKShare-股票数据.md
+AKShare 指数数据.md
+Dify插件开发实践：构建基于AKShare的股票数据工具.md
 
-# 文档文件（保留必要的）
-*.md
+# 图片文件（保留图标）
+result.png
+workflow.png
+!icon.png
+
+# 其他大文件
+dify_plugin.prompt.md
+
+# 保留必要的文档
 !README.md
 !PRIVACY.md
+!PRIVACY_EN.md
+!PRIVACY_PT_BR.md
+!PRIVACY_ZH_TW.md
 !LEGAL.md
-doc/
+!LEGAL_EN.md
+!LEGAL_PT_BR.md
+!LEGAL_ZH_TW.md
+!LICENSE
 .github/
 
 # 临时文件
@@ -301,21 +324,10 @@ temp_extract/
 **/performance/**
 **/perf/**
 
-# 排除文档和配置文件
+# 排除文档和配置文件（已在上面单独排除）
 **/docs/**
 **/doc/**
 **/documentation/**
-**/README.md
-**/CHANGELOG.md
-**/LICENSE
-**/LICENCE
-**/COPYING
-**/AUTHORS
-**/CONTRIBUTORS
-**/HISTORY
-**/NEWS
-**/TODO
-**/FIXME
 
 # 排除构建和打包文件
 **/build/**
