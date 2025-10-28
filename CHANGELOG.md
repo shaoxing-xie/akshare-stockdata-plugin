@@ -5,15 +5,16 @@ All notable changes to the AKShare Stock Data Plugin will be documented in this 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [0.6.0] - 2025-01-16
+## [0.6.0] - 2025-10-28
 
 ### Release Summary
-- 🎉 **稳定版本发布**: v0.6.0 正式版，完成10个原始接口工具的开发和测试
+- 🎉 **稳定版本发布**: v0.6.0 正式版，完成11个专业工具的开发和测试
 - 📦 **Marketplace就绪**: 准备发布到Dify Marketplace
 - 🧹 **代码清理**: 清除所有临时文件、缓存和日志，保留核心代码和文档
+- 🎨 **图标升级**: 设计并替换新插件图标，提升视觉专业性
 
 ### Added
-- 完成10个原始接口工具的完整实现
+- 完成11个专业工具的完整实现
   - stock_market_summary（股票市场总貌）
   - stock_individual_info_summary（个股信息总貌）
   - stock_spot_quotations（实时行情数据）
@@ -25,6 +26,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - stock_hk_data（港股数据）
   - stock_us_data（美股数据）
   - stock_hsgt_holdings（沪深港通持股）
+  - stock_index_data（股票指数数据）
 
 ### Changed
 - 项目结构清理和优化
