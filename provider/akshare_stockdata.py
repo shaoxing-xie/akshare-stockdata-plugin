@@ -90,11 +90,22 @@ INTERFACE_TIMEOUT_CONFIG = {
     # 财务分析接口 - 新增财务数据分析TOOL相关接口
     'financial_analysis': {
         'interfaces': [
+            # 业绩相关接口 - 需要更长时间处理大量数据
+            'stock_yjbb_em', 'stock_yjkb_em', 'stock_yjyg_em',
             'stock_lrb_em', 'stock_xjll_em', 'stock_zcfz_em', 'stock_zcfz_bj_em',
+            # 财务报表接口
+            'stock_financial_report_sina', 'stock_balance_sheet_by_report_em', 
+            'stock_balance_sheet_by_yearly_em', 'stock_balance_sheet_by_quarterly_em',
+            'stock_profit_sheet_by_report_em', 'stock_profit_sheet_by_yearly_em', 
+            'stock_profit_sheet_by_quarterly_em', 'stock_cash_flow_sheet_by_report_em', 
+            'stock_cash_flow_sheet_by_yearly_em', 'stock_cash_flow_sheet_by_quarterly_em',
+            # 同花顺财务接口
             'stock_financial_debt_ths', 'stock_financial_benefit_ths', 'stock_financial_cash_ths',
-            'stock_financial_abstract_ths', 'stock_financial_analysis_indicator'
+            'stock_financial_abstract_ths', 'stock_financial_analysis_indicator_em',
+            # 新浪财务接口
+            'stock_financial_abstract', 'stock_financial_analysis_indicator'
         ],
-        'timeout': 300.0  # 5分钟
+        'timeout': 600.0  # 10分钟 - 增加超时时间以处理大量财务数据
     },
     # 数据密集型接口 - 大量历史数据，需要5分钟
     'data_intensive': {
@@ -291,6 +302,13 @@ def safe_ak_call(
             if result_data.get("type") == "dataframe":
                 import pandas as pd  # 延迟导入
                 df = pd.DataFrame(result_data["data"])
+                return df
+            elif result_data.get("type") == "dataframe_json":
+                import pandas as pd  # 延迟导入
+                import json as json_lib
+                # 解析JSON字符串
+                json_data = json_lib.loads(result_data["data"])
+                df = pd.DataFrame(json_data)
                 return df
             else:
                 return result_data.get("data", "")

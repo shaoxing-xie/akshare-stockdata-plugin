@@ -304,22 +304,41 @@ def call_akshare_function(function_name, **kwargs):
         
         # 处理结果
         if isinstance(result, pd.DataFrame):
-            # 将DataFrame转换为JSON可序列化的格式
-            # 处理日期和其他不可序列化的类型
-            df_clean = result.copy()
-            for col in df_clean.columns:
-                # 将所有列转换为字符串，处理NaT、NaN等特殊值
-                df_clean[col] = df_clean[col].astype(str)
-                # 将NaN、NaT等特殊值替换为空字符串
-                df_clean[col] = df_clean[col].replace(['nan', 'NaT', 'None'], '')
+            # 检查数据量，如果太大则截断
+            max_rows = 10000  # 限制最大行数
+            if len(result) > max_rows:
+                print(f"WARNING: DataFrame has {len(result)} rows, truncating to {max_rows} rows", file=sys.stderr)
+                result = result.head(max_rows)
             
-            return {
-                "success": True,
-                "type": "dataframe",
-                "data": df_clean.to_dict('records'),
-                "columns": list(result.columns),
-                "shape": result.shape
-            }
+            # 将DataFrame转换为JSON可序列化的格式
+            # 使用更高效的方法处理数据类型
+            try:
+                # 尝试直接使用pandas的to_json方法，这比逐列转换更高效
+                json_str = result.to_json(orient='records', date_format='iso', force_ascii=False)
+                return {
+                    "success": True,
+                    "type": "dataframe_json",
+                    "data": json_str,
+                    "shape": result.shape,
+                    "columns": result.columns.tolist()
+                }
+            except Exception as json_error:
+                print(f"WARNING: to_json failed ({json_error}), falling back to manual conversion", file=sys.stderr)
+                # 回退到原来的方法
+                df_clean = result.copy()
+                for col in df_clean.columns:
+                    # 将所有列转换为字符串，处理NaT、NaN等特殊值
+                    df_clean[col] = df_clean[col].astype(str)
+                    # 将NaN、NaT等特殊值替换为空字符串
+                    df_clean[col] = df_clean[col].replace(['nan', 'NaT', 'None'], '')
+                
+                return {
+                    "success": True,
+                    "type": "dataframe",
+                    "data": df_clean.to_dict('records'),
+                    "columns": list(result.columns),
+                    "shape": result.shape
+                }
         else:
             # 其他类型的结果
             return {
