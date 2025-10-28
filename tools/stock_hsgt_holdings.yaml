@@ -14,7 +14,7 @@ parameters:
     type: select
     required: true
     form: llm
-    default: stock_hk_ggt_components_em
+    default: stock_hsgt_fund_flow_summary_em
     description: 接口名称
     llm_description: 选择沪深港通持股相关接口。分类包括：实时行情、市场概括、持股排行、资金流向分析、汇率数据、结算数据。大部分接口需要特定参数如资金类别、排行类别、统计周期或股票代码。
     human_description:

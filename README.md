@@ -170,7 +170,19 @@
 
 更多示例见 [详细功能文档](https://github.com/shaoxing-xie/akshare-stockdata-plugin/blob/main/AKShare%20股票数据插件详细功能文档.md)。
 
-<img src="_assets/demo-result.png" alt="结果展示" width="600"/>
+## 🎨 应用示例展示
+
+### 📊 个股诊断报告示例
+
+我们基于插件构建了一个完整的个股诊断工作流，可以自动生成专业的个股诊断报告：
+
+<img src="_assets/result.png" alt="个股诊断报告示例" width="800"/>
+
+### 🔄 工作流配置
+
+以下是个股诊断助手的工作流配置，展示了如何组合使用多个工具来实现复杂的股票分析：
+
+<img src="_assets/workflow.png" alt="个股诊断助手工作流" width="800"/>
 
 ## 🛠️ 工具详情
 

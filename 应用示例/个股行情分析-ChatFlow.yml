@@ -10,15 +10,14 @@ dependencies:
   type: marketplace
   value:
     marketplace_plugin_unique_identifier: langgenius/deepseek:0.0.6@dd589dc093c8084925858034ab5ec1fdf0d33819f43226c2f8c4a749a9acbbb2
+    version: null
 - current_identifier: null
-  type: github
+  type: package
   value:
-    github_plugin_unique_identifier: shaoxing-xie/akshare_stockdata:0.5.0@18aa8d5222895dae9b49f1438ed1adbcb9373a692424aaed549ec624d7ebb81e
-    package: AKShare-Stockdata-plugin.difypkg
-    repo: shaoxing-xie/akshare-stockdata-plugin
-    version: v0.5.0
+    plugin_unique_identifier: shaoxing-xie/akshare_stockdata:0.6.0@87da1f9ccd279cad7ef73522ec35f8928dee65add90505774fd572552007517c
+    version: null
 kind: app
-version: 0.3.1
+version: 0.4.0
 workflow:
   conversation_variables: []
   environment_variables: []
@@ -39,7 +38,7 @@ workflow:
       enabled: false
       fileUploadConfig:
         audio_file_size_limit: 50
-        batch_count_limit: 10
+        batch_count_limit: 5
         file_size_limit: 50
         image_file_size_limit: 10
         video_file_size_limit: 100
@@ -216,7 +215,7 @@ workflow:
         title: 开始
         type: start
         variables: []
-      height: 53
+      height: 52
       id: '1758335478551'
       position:
         x: -190.78018302734583
@@ -224,11 +223,11 @@ workflow:
       positionAbsolute:
         x: -190.78018302734583
         y: 124.6530601800543
-      selected: false
+      selected: true
       sourcePosition: right
       targetPosition: left
       type: custom
-      width: 244
+      width: 242
     - data:
         answer: '{{#1758336719191.text#}}'
         desc: ''
@@ -236,7 +235,7 @@ workflow:
         title: 分析输出
         type: answer
         variables: []
-      height: 104
+      height: 103
       id: answer
       position:
         x: 1172.8096219526506
@@ -248,7 +247,7 @@ workflow:
       sourcePosition: right
       targetPosition: left
       type: custom
-      width: 244
+      width: 242
     - data:
         context:
           enabled: false
@@ -283,7 +282,7 @@ workflow:
         variables: []
         vision:
           enabled: false
-      height: 89
+      height: 88
       id: '1758335745350'
       position:
         x: 176.613965482063
@@ -295,7 +294,7 @@ workflow:
       sourcePosition: right
       targetPosition: left
       type: custom
-      width: 244
+      width: 242
     - data:
         cases:
         - case_id: 'true'
@@ -313,7 +312,7 @@ workflow:
         selected: false
         title: 股票代码验证
         type: if-else
-      height: 153
+      height: 152
       id: '1758335955184'
       position:
         x: 176.613965482063
@@ -325,7 +324,7 @@ workflow:
       sourcePosition: right
       targetPosition: left
       type: custom
-      width: 244
+      width: 242
     - data:
         desc: ''
         is_team_authorization: true
@@ -689,7 +688,7 @@ workflow:
             type: constant
             value: 600
         type: tool
-      height: 53
+      height: 52
       id: '1758336201198'
       position:
         x: 544.5126176722628
@@ -701,7 +700,7 @@ workflow:
       sourcePosition: right
       targetPosition: left
       type: custom
-      width: 244
+      width: 242
     - data:
         desc: ''
         is_team_authorization: true
@@ -1008,7 +1007,7 @@ workflow:
             type: constant
             value: 600
         type: tool
-      height: 53
+      height: 52
       id: '1758336425699'
       position:
         x: 544.5126176722628
@@ -1020,7 +1019,7 @@ workflow:
       sourcePosition: right
       targetPosition: left
       type: custom
-      width: 244
+      width: 242
     - data:
         desc: ''
         is_team_authorization: true
@@ -1585,7 +1584,7 @@ workflow:
             type: constant
             value: 600
         type: tool
-      height: 53
+      height: 52
       id: '1758336563200'
       position:
         x: 544.5126176722628
@@ -1597,7 +1596,7 @@ workflow:
       sourcePosition: right
       targetPosition: left
       type: custom
-      width: 244
+      width: 242
     - data:
         context:
           enabled: false
@@ -1630,7 +1629,7 @@ workflow:
             type: constant
             value: 600
         type: tool
-      height: 53
+      height: 52
       id: '1758336900001'
       position:
         x: 544.5126176722628
@@ -1642,7 +1641,7 @@ workflow:
       sourcePosition: right
       targetPosition: left
       type: custom
-      width: 244
+      width: 242
     - data:
         context:
           enabled: false
@@ -1672,7 +1671,7 @@ workflow:
         variables: []
         vision:
           enabled: false
-      height: 89
+      height: 88
       id: '1758336719191'
       position:
         x: 827.8561379198269
@@ -1680,11 +1679,11 @@ workflow:
       positionAbsolute:
         x: 827.8561379198269
         y: 242.58080464363826
-      selected: true
+      selected: false
       sourcePosition: right
       targetPosition: left
       type: custom
-      width: 244
+      width: 242
     - data:
         context:
           enabled: false
@@ -1723,7 +1722,7 @@ workflow:
         variables: []
         vision:
           enabled: false
-      height: 89
+      height: 88
       id: '1758337010582'
       position:
         x: 534.9297847878272
@@ -1735,7 +1734,7 @@ workflow:
       sourcePosition: right
       targetPosition: left
       type: custom
-      width: 244
+      width: 242
     - data:
         answer: '{{#1758337010582.text#}}'
         desc: ''
@@ -1743,7 +1742,7 @@ workflow:
         title: 错误提示输出
         type: answer
         variables: []
-      height: 104
+      height: 103
       id: '1758337149858'
       position:
         x: 900.9496123557328
@@ -1755,7 +1754,7 @@ workflow:
       sourcePosition: right
       targetPosition: left
       type: custom
-      width: 244
+      width: 242
     - data:
         code: "import json\nimport re\nfrom datetime import datetime, timedelta\n\n\
           def main(llm_output: str) -> dict:\n    \"\"\"\n    解析股票代码提取节点的JSON输出，提取股票代码和A股市场信息\n\
@@ -1813,7 +1812,7 @@ workflow:
           - '1758335745350'
           - text
           variable: llm_output
-      height: 97
+      height: 96
       id: '1758347882989'
       position:
         x: 182.24755086909096
@@ -1825,8 +1824,9 @@ workflow:
       sourcePosition: right
       targetPosition: left
       type: custom
-      width: 244
+      width: 242
     viewport:
-      x: 72.39236977346957
-      y: 142.38123813220392
-      zoom: 0.30202237347597916
+      x: 8.207752197115383
+      y: 70.21022582174481
+      zoom: 0.5671562765899256
+  rag_pipeline_variables: []

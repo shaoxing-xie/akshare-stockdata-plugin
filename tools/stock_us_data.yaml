@@ -15,7 +15,7 @@ parameters:
     type: select
     required: true
     form: llm
-    default: stock_us_spot_em
+    default: stock_us_hist
     description: 接口名称
     llm_description: 选择美股数据相关接口。分类包括：实时行情、股票代码信息、历史数据、分时数据、财务分析、财务报表。大部分接口需要特定参数如美股代码、周期、日期范围或指标类型。
     human_description:

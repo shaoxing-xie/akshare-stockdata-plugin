@@ -14,7 +14,7 @@ parameters:
     type: select
     required: true
     form: llm
-    default: stock_hk_spot_em
+    default: stock_hk_hist
     description: 接口名称
     llm_description: 选择港股数据相关接口。分类包括：实时行情、历史数据、分时数据、证券资料、公司资料、分红派息、财务分析、财务报表、资金流向。大部分接口需要特定参数如港股代码、周期、日期范围或指标类型。
     human_description:

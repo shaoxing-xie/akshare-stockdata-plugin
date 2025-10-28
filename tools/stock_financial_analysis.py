@@ -382,7 +382,7 @@ class StockFinancialAnalysisTool(Tool):
             
             # 根据接口需求添加参数
             if config["requires_symbol"]:
-                call_params["symbol"] = symbol
+                    call_params["symbol"] = symbol
                 
             if config["requires_date"]:
                 call_params["date"] = date
@@ -433,7 +433,7 @@ class StockFinancialAnalysisTool(Tool):
                                 call_params[ak_param] = self._normalize_symbol_with_dot(symbol)
                             else:
                                 call_params[ak_param] = symbol
-                        else:
+                    else:
                             call_params[ak_param] = symbol
                     elif tool_param == "report_type" and report_type:
                         call_params[ak_param] = report_type

@@ -29,6 +29,8 @@ tools:
   # 0.5.1新增的工具
   - tools/stock_hk_data.yaml
   - tools/stock_us_data.yaml
+  # 0.6.0新增的工具
+  - tools/stock_index_data.yaml
 extra:
   python:
     source: provider/akshare_stockdata.py
