@@ -34,8 +34,8 @@
 - 🔗 **APIs Públicas**: Interfaces de dados oficiais das bolsas de valores
 
 ### 🛠️ **Matriz de Funcionalidades Poderosas**
-- 🎯 **8 Ferramentas Profissionais**: Cobrindo todos os aspectos da análise de dados de ações
-- 🌍 **113 Interfaces de Dados**: Cobertura ampla dos principais mercados de ações globais
+- 🎯 **12 Ferramentas Profissionais**: Cobrindo todos os aspectos da análise de dados de ações
+- 🌍 **175 Interfaces de Dados**: Cobertura ampla dos principais mercados de ações globais
 - 📊 **Suporte Multi-Mercado**: A-shares, B-shares, Hong Kong, EUA, STAR Market, BSE
 - 🔄 **Tempo Real + Histórico**: Tanto cotações em tempo real quanto análise de dados históricos
 - 📋 **Saída Dupla**: Tabelas Markdown + formato JSON, fácil de ler e processar
@@ -242,7 +242,7 @@ Fornecemos dois arquivos de demonstração de workflow Dify completos que mostra
 #### 🔧 **Arquivo de Demonstração 1: Demonstração de Funcionalidade do Plugin**
 **Arquivo**: `应用示例/AKShare 股票数据插件 CHATFLOW-DEMO.yml`
 
-**Descrição**: Demonstra o uso de todas as ferramentas do plugin e suas interfaces, mostrando a funcionalidade completa de 8 ferramentas profissionais
+**Descrição**: Demonstra o uso de todas as ferramentas do plugin e suas interfaces, mostrando a funcionalidade completa de 12 ferramentas profissionais
 
 **Conteúdo da Demonstração**:
 - **Resumo do Mercado de Ações** - Aquisição de dados de visão geral do mercado
@@ -257,7 +257,7 @@ Fornecemos dois arquivos de demonstração de workflow Dify completos que mostra
 **Recursos da Demonstração**:
 - **Ramificação Condicional Inteligente** - Seleciona automaticamente interfaces de dados apropriadas com base na entrada do usuário
 - **Conversão de Formato de Dados** - Converte automaticamente tabelas Markdown para arquivos Excel
-- **Exibição Multi-dimensional** - Cobre cenários de uso para todas as 8 ferramentas profissionais
+- **Exibição Multi-dimensional** - Cobre cenários de uso para todas as 12 ferramentas profissionais
 - **Workflow Completo** - Processo completo da aquisição de dados à exibição de resultados
 
 #### 🤖 **Arquivo de Demonstração 2: Aplicação de Análise Profunda de Ações Individuais**

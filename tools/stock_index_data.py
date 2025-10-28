@@ -22,8 +22,8 @@ from .stock_comprehensive_technical_indicators import (
 class StockIndexDataTool(Tool):
     def _invoke(self, tool_parameters: dict[str, Any]) -> Generator[ToolInvokeMessage]:
         import logging
-            logging.info(f"StockIndexDataTool received parameters: {tool_parameters}")
-            
+        logging.info(f"StockIndexDataTool received parameters: {tool_parameters}")
+        
         try:
             # 提取参数
             interface = tool_parameters.get("interface", "")
@@ -57,7 +57,7 @@ class StockIndexDataTool(Tool):
                 if not index_category:
                     yield self.create_text_message("请选择指数类别")
                     yield self.create_json_message({"error": "index_category required for stock_zh_index_spot_em"})
-            return
+                    return
                 result = safe_ak_call(ak.stock_zh_index_spot_em, symbol=index_category, retries=retries, timeout=timeout)
                 
             elif interface == "stock_zh_index_daily":
@@ -83,15 +83,15 @@ class StockIndexDataTool(Tool):
                 if not (symbol.lower().startswith('sh') or symbol.lower().startswith('sz')):
                     yield self.create_text_message(f"指数代码格式错误，腾讯接口需要带市场标识（如sh000001、sz399552）")
                     yield self.create_json_message({"error": "Invalid symbol format for Tencent interface"})
-            return
+                    return
                 result = safe_ak_call(ak.stock_zh_index_daily_tx, symbol=symbol.lower(), retries=retries, timeout=timeout)
         
             elif interface == "stock_zh_index_daily_em":
                 # 东方财富历史数据，需要指数代码（带市场标识）、日期范围
-            if not symbol:
-                yield self.create_text_message("请提供指数代码")
-                yield self.create_json_message({"error": "symbol required", "received_params": tool_parameters})
-                return
+                if not symbol:
+                    yield self.create_text_message("请提供指数代码")
+                    yield self.create_json_message({"error": "symbol required", "received_params": tool_parameters})
+                    return
                 # 东方财富接口需要带市场前缀的格式
                 if not (symbol.lower().startswith('sh') or symbol.lower().startswith('sz')):
                     yield self.create_text_message(f"指数代码格式错误，东方财富接口需要带市场标识（如sh000001、sz399552）")
@@ -147,11 +147,11 @@ class StockIndexDataTool(Tool):
                 if not symbol_digits or len(symbol_digits) != 6:
                     yield self.create_text_message(f"指数代码格式错误，分钟数据接口需要6位纯数字格式（如000001、399006）")
                     yield self.create_json_message({"error": "Invalid symbol format for minute data interface"})
-                return
+                    return
                 if not start_datetime or not end_datetime:
                     yield self.create_text_message("请提供日期时间范围（开始时间和结束时间）")
                     yield self.create_json_message({"error": "datetime range required"})
-                return
+                    return
                 result = safe_ak_call(
                     ak.index_zh_a_hist_min_em,
                     symbol=symbol_digits,
@@ -172,11 +172,11 @@ class StockIndexDataTool(Tool):
                 if not (symbol.lower().startswith('sh') or symbol.lower().startswith('sz')):
                     yield self.create_text_message(f"指数代码格式错误，需要带市场标识（如sh000001、sz399552）")
                     yield self.create_json_message({"error": "Invalid symbol format"})
-                return
+                    return
                 if not start_date or not end_date:
                     yield self.create_text_message("请提供日期范围（开始日期和结束日期）")
                     yield self.create_json_message({"error": "date range required"})
-                return
+                    return
         
                 # 获取基础数据
                 result = safe_ak_call(
@@ -220,13 +220,13 @@ class StockIndexDataTool(Tool):
                     return
                 
                 # 获取基础数据
-            result = safe_ak_call(
+                result = safe_ak_call(
                     ak.index_zh_a_hist_min_em,
                     symbol=symbol_digits,
                     period=period_minute,
                     start_date=start_datetime,
                     end_date=end_datetime,
-                retries=retries,
+                    retries=retries,
                     timeout=timeout
                 )
                 
@@ -259,8 +259,8 @@ class StockIndexDataTool(Tool):
             
             # 检查是否为空
             if hasattr(result, 'empty') and result.empty:
-                    yield from handle_empty_result(self)
-                    return
+                yield from handle_empty_result(self)
+                return
             
             # 输出处理
             if isinstance(result, pd.DataFrame):
@@ -271,8 +271,8 @@ class StockIndexDataTool(Tool):
         except Exception as e:
             import logging
             logging.error(f"StockIndexDataTool error: {e}")
-                text, payload = build_error_payload(e)
-                yield self.create_text_message(text)
-                yield self.create_json_message(payload)
+            text, payload = build_error_payload(e)
+            yield self.create_text_message(text)
+            yield self.create_json_message(payload)
             return
     

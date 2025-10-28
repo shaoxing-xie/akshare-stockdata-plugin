@@ -75,13 +75,13 @@ class StockSpotQuotationsTool(Tool):
                 "fn": ak.stock_zh_ab_comparison_em,
                 "description": "东方财富网-沪深京A股-全量AB股比价"
             },
-            "stock_zh_a_new": {
-                "fn": ak.stock_zh_a_new,
-                "description": "新浪财经-沪深股市-次新股-实时行情"
-            },
             "stock_zh_a_new_em": {
                 "fn": ak.stock_zh_a_new_em,
                 "description": "东方财富网-沪深个股-新股板块实时行情"
+            },
+            "stock_zh_a_new": {
+                "fn": ak.stock_zh_a_new,
+                "description": "新浪财经-沪深股市-次新股-实时行情"
             },
             "stock_zh_a_stop_em": {
                 "fn": ak.stock_zh_a_stop_em,

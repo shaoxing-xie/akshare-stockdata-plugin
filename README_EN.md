@@ -34,8 +34,8 @@
 - 🔗 **Public APIs**: Official stock exchange data interfaces
 
 ### 🛠️ **Powerful Feature Matrix**
-- 🎯 **8 Professional Tools**: Covering all aspects of stock data analysis
-- 🌍 **113 Data Interfaces**: Extensive coverage of major global stock markets
+- 🎯 **12 Professional Tools**: Covering all aspects of stock data analysis
+- 🌍 **175 Data Interfaces**: Extensive coverage of major global stock markets
 - 📊 **Multi-Market Support**: A-shares, B-shares, Hong Kong stocks, US stocks, STAR Market, Beijing Stock Exchange
 - 🔄 **Real-time + Historical**: Both real-time quotes and historical data analysis
 - 📋 **Dual Output**: Markdown tables + JSON format for easy reading and processing
@@ -95,8 +95,8 @@
 ## 🎯 How to Use
 
 ### Quick Start in Three Steps
-1. **Select Tool**: Choose from 8 professional tools
-2. **Select Interface**: Choose from 113 data interfaces for specific data sources
+1. **Select Tool**: Choose from 12 professional tools
+2. **Select Interface**: Choose from 175 data interfaces for specific data sources
 3. **Set Parameters**: Configure stock codes, date ranges, and other parameters
 
 ### Usage Examples
@@ -651,7 +651,7 @@ We provide two complete Dify workflow demo files that showcase how to use variou
 #### 🔧 **Demo File 1: Plugin Functionality Demo**
 **File**: `应用示例/AKShare 股票数据插件 CHATFLOW-DEMO.yml`
 
-**Description**: Demonstrates the usage of all plugin tools and their interfaces, showcasing the complete functionality of 8 professional tools
+**Description**: Demonstrates the usage of all plugin tools and their interfaces, showcasing the complete functionality of 12 professional tools
 
 **Demo Content**:
 - **Stock Market Summary** - Market overview data acquisition
@@ -666,7 +666,7 @@ We provide two complete Dify workflow demo files that showcase how to use variou
 **Demo Features**:
 - **Smart Conditional Branching** - Automatically selects appropriate data interfaces based on user input
 - **Data Format Conversion** - Automatically converts Markdown tables to Excel files
-- **Multi-dimensional Display** - Covers usage scenarios for all 8 professional tools
+- **Multi-dimensional Display** - Covers usage scenarios for all 12 professional tools
 - **Complete Workflow** - Complete process from data acquisition to result display
 
 #### 🤖 **Demo File 2: Individual Stock Deep Analysis Application**

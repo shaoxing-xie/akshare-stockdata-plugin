@@ -433,7 +433,7 @@ class StockFinancialAnalysisTool(Tool):
                                 call_params[ak_param] = self._normalize_symbol_with_dot(symbol)
                             else:
                                 call_params[ak_param] = symbol
-                    else:
+                        else:
                             call_params[ak_param] = symbol
                     elif tool_param == "report_type" and report_type:
                         call_params[ak_param] = report_type

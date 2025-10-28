@@ -180,19 +180,6 @@ class StockIndividualInfoSummaryTool(Tool):
             "stock_restricted_release_queue_sina": {
                 "fn": ak.stock_restricted_release_queue_sina,
                 "description": "新浪财经-限售解禁-指定股票"
-            },
-            # 港股相关接口
-            "stock_hk_security_profile_em": {
-                "fn": ak.stock_hk_security_profile_em,
-                "description": "港股-个股-证券概况"
-            },
-            "stock_hk_company_profile_em": {
-                "fn": ak.stock_hk_company_profile_em,
-                "description": "港股-个股-公司概况"
-            },
-            "stock_hk_fhpx_detail_ths": {
-                "fn": ak.stock_hk_fhpx_detail_ths,
-                "description": "港股-个股-分红信息"
             }
         }
         
@@ -381,11 +368,7 @@ class StockIndividualInfoSummaryTool(Tool):
             "stock_shareholder_change_ths": "A股",
             "stock_ipo_info": "A股",
             "stock_add_stock": "A股",
-            "stock_restricted_release_queue_sina": "A股",
-            # 港股相关接口
-            "stock_hk_security_profile_em": "港股",
-            "stock_hk_company_profile_em": "港股",
-            "stock_hk_fhpx_detail_ths": "港股"
+            "stock_restricted_release_queue_sina": "A股"
         }
         
         expected_market = interface_market_map.get(interface, "未知")
@@ -450,22 +433,6 @@ class StockIndividualInfoSummaryTool(Tool):
             "stock_gdfx_free_top_10_em",  # 东方财富十大流通股东，需要sh/sz前缀
             "stock_gdfx_top_10_em"  # 东方财富十大股东，需要sh/sz前缀
         ]
-        
-        # 港股接口需要特殊格式处理
-        hk_interfaces = [
-            "stock_hk_fhpx_detail_ths",  # 港股分红信息
-            # 注意：stock_hk_security_profile_em 和 stock_hk_company_profile_em 需要保持原始格式
-        ]
-        
-        # 处理港股接口的代码格式
-        if interface in hk_interfaces:
-            # 移除HK前缀（如果有）
-            if symbol.upper().startswith('HK'):
-                symbol = symbol[2:]
-            
-            # 港股代码格式转换：00700 -> 0700
-            if symbol.isdigit() and len(symbol) == 5 and symbol.startswith('0'):
-                return symbol[1:]  # 移除开头的0
         
         # 处理需要市场后缀的接口
         if interface in suffix_required_interfaces and not any(symbol.upper().endswith(suffix) for suffix in ['.SZ', '.SH', '.HK']):
