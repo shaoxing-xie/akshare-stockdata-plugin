@@ -14,7 +14,7 @@ parameters:
     type: select
     required: true
     form: llm
-    default: stock_yjbb_em
+    default: stock_yjkb_em
     description: 接口名称
     llm_description: 选择A股财务分析相关接口。分类包括：业绩快报、财务指标、财务报表、财务分析。大部分接口需要特定参数如股票代码、日期、指标或报表类型。
     human_description:

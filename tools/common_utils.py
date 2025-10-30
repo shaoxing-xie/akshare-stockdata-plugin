@@ -73,18 +73,70 @@ def clean_nan_values(obj: Any) -> Any:
         return obj
 
 
-def process_dataframe_output(result: pd.DataFrame, tool_instance) -> Generator[ToolInvokeMessage, None, None]:
+def process_dataframe_output(result: pd.DataFrame, tool_instance, max_rows_for_single_output=500) -> Generator[ToolInvokeMessage, None, None]:
     """
     处理DataFrame输出，生成TEXT和JSON消息
     JSON保持AKShare原始数据不变，TEXT使用Markdown格式
     
+    如果数据量过大（超过max_rows_for_single_output）或JSON大小超过50KB，自动分块处理以避免缓冲区溢出
+    
     Args:
         result: pandas DataFrame
         tool_instance: 工具实例，用于调用create_text_message和create_json_message
+        max_rows_for_single_output: 单次输出的最大行数，超过此值将自动分块（默认500行）
         
     Yields:
         ToolInvokeMessage: TEXT和JSON消息
     """
+    if result.empty:
+        yield tool_instance.create_text_message("暂无数据")
+        yield tool_instance.create_json_message({"data": []})
+        return
+    
+    # 先快速估算JSON大小，如果可能超过限制，直接分块处理
+    import json
+    MAX_SAFE_JSON_SIZE = 50 * 1024  # 50KB，留出安全余量
+    
+    # 快速估算：每行JSON大小 ≈ (列数 * 平均列名长度 + 数据长度) * 2 (JSON格式开销)
+    # 更准确的估算：先用前几行数据试序列化
+    try:
+        # 取前10行快速估算平均每行大小
+        sample_size = min(10, len(result))
+        sample_df = result.iloc[:sample_size].reset_index(drop=True)
+        
+        # 处理样本数据
+        sample_clean = sample_df.copy()
+        for col in sample_clean.columns:
+            if sample_clean[col].dtype == 'object':
+                sample_clean[col] = sample_clean[col].astype(str)
+            elif np.issubdtype(sample_clean[col].dtype, np.integer):
+                sample_clean[col] = sample_clean[col].astype('int64')
+            elif np.issubdtype(sample_clean[col].dtype, np.floating):
+                sample_clean[col] = sample_clean[col].fillna('')
+        
+        sample_json_data = sample_clean.to_dict(orient="records")
+        sample_json_data = clean_nan_values(sample_json_data)
+        sample_json_str = json.dumps({"data": sample_json_data}, ensure_ascii=False)
+        sample_json_size = len(sample_json_str.encode('utf-8'))
+        
+        # 估算总大小
+        if sample_size > 0:
+            estimated_size_per_row = sample_json_size / sample_size
+            estimated_total_size = estimated_size_per_row * len(result)
+            
+            # 如果估算超过限制或行数过多，直接分块
+            if estimated_total_size > MAX_SAFE_JSON_SIZE or len(result) > max_rows_for_single_output:
+                logging.info(f"DataFrame has {len(result)} rows, estimated JSON size {estimated_total_size:.0f} bytes, using chunked processing")
+                yield from process_large_dataframe_output(result, tool_instance, chunk_size=50)
+                return
+    except Exception as e:
+        # 如果估算失败，按行数判断
+        logging.warning(f"Failed to estimate JSON size: {e}, using row count only")
+        if len(result) > max_rows_for_single_output:
+            logging.info(f"DataFrame has {len(result)} rows, exceeding {max_rows_for_single_output}, using chunked processing")
+            yield from process_large_dataframe_output(result, tool_instance, chunk_size=50)
+            return
+    
     # 对于键值对格式的数据（如买卖盘口），使用Markdown表格格式
     if len(result.columns) == 2 and 'item' in result.columns and 'value' in result.columns:
         text_output = "## 股票实时数据\n\n"
@@ -174,7 +226,7 @@ def process_dataframe_output(result: pd.DataFrame, tool_instance) -> Generator[T
         try:
             # 测试JSON序列化
             json_str = json.dumps(output_data, ensure_ascii=False)
-            # 如果成功，创建JSON消息，保持原始数据完整性
+            # 直接发送（大小已经在函数开头检查过了）
             yield tool_instance.create_json_message(output_data)
         except (TypeError, ValueError) as json_error:
             logging.warning(f"JSON serialization failed: {json_error}")
@@ -678,17 +730,20 @@ def process_symbol_format(symbol: str, interface: str) -> str:
     return symbol
 
 
-def process_large_dataframe_output(df: pd.DataFrame, tool_instance, chunk_size=1000) -> Generator[ToolInvokeMessage, None, None]:
+def process_large_dataframe_output(df: pd.DataFrame, tool_instance, chunk_size=50) -> Generator[ToolInvokeMessage, None, None]:
     """
-    处理大数据量DataFrame输出，分块发送以避免Dify工作流卡住
+    处理大数据量DataFrame输出，分块发送以避免缓冲区溢出
+    
+    关键：在打包模式下，所有输出通过stdio传输，bufio.Scanner有64KB限制
+    使用保守的小块大小（50行）确保JSON消息不超过限制，避免动态检测的性能问题
     
     Args:
         df: 要处理的DataFrame
         tool_instance: 工具实例
-        chunk_size: 每块的行数，默认1000行
+        chunk_size: 每块的行数，默认50行（保守值，确保JSON < 60KB）
         
     Yields:
-        ToolInvokeMessage: 分块的数据消息
+        ToolInvokeMessage: 分块的数据消息，每块独立发送（不包含进度提示）
     """
     if df.empty:
         yield tool_instance.create_text_message("暂无数据")
@@ -697,24 +752,51 @@ def process_large_dataframe_output(df: pd.DataFrame, tool_instance, chunk_size=1
     
     total_rows = len(df)
     if total_rows <= chunk_size:
-        # 数据量不大，直接处理
-        yield from process_dataframe_output(df, tool_instance)
+        # 数据量不大，直接处理（使用无限大的max_rows_for_single_output以避免递归）
+        yield from process_dataframe_output(df, tool_instance, max_rows_for_single_output=999999)
         return
     
-    # 数据量大，分块处理
-    yield tool_instance.create_text_message(f"数据量较大（{total_rows} 行），正在分块处理...")
-    
+    # 数据量大，分块处理并逐块发送（避免一次性输出过大）
+    # 注意：不输出分块处理的提示信息，每块只包含数据
     for i in range(0, total_rows, chunk_size):
         chunk = df.iloc[i:i+chunk_size]
-        chunk_num = i // chunk_size + 1
-        total_chunks = (total_rows + chunk_size - 1) // chunk_size
         
-        # 发送进度信息
-        yield tool_instance.create_text_message(f"数据块 {chunk_num}/{total_chunks} ({len(chunk)} 行)")
+        # 处理当前块的JSON数据
+        chunk_reset = chunk.reset_index(drop=True)
+        chunk_clean = chunk_reset.copy()
+        for col in chunk_clean.columns:
+            if chunk_clean[col].dtype == 'object':
+                chunk_clean[col] = chunk_clean[col].astype(str)
+                chunk_clean[col] = chunk_clean[col].replace(['nan', 'NaT', 'None', 'null'], '')
+            elif np.issubdtype(chunk_clean[col].dtype, np.integer):
+                chunk_clean[col] = chunk_clean[col].astype('int64')
+            elif np.issubdtype(chunk_clean[col].dtype, np.floating):
+                chunk_clean[col] = chunk_clean[col].replace([np.inf, -np.inf], np.nan)
+                chunk_clean[col] = chunk_clean[col].fillna('')
         
-        # 处理当前块
-        chunk_json = chunk.to_json(orient="records", force_ascii=False)
-        yield tool_instance.create_json_message(chunk_json)
-    
-    # 发送完成信息
-    yield tool_instance.create_text_message(f"数据处理完成，共 {total_rows} 行")
+        chunk_json_data = chunk_clean.to_dict(orient="records")
+        chunk_json_data = clean_nan_values(chunk_json_data)
+        
+        # 处理TEXT格式
+        try:
+            chunk_clean_text = chunk.copy()
+            for col in chunk_clean_text.columns:
+                chunk_clean_text[col] = chunk_clean_text[col].astype(str)
+            chunk_text = chunk_clean_text.to_markdown(index=True, tablefmt='pipe')
+        except Exception:
+            chunk_text = str(chunk)
+        
+        # 发送消息
+        if i == 0:
+            # 第一个块：包含完整的表格（带表头）
+            yield tool_instance.create_text_message(chunk_text)
+        else:
+            # 后续块：只包含数据行（去掉表头行）
+            lines = chunk_text.split('\n')
+            if len(lines) > 2:
+                data_lines = '\n'.join(lines[2:])
+                if data_lines.strip():
+                    yield tool_instance.create_text_message(data_lines)
+        
+        # 发送JSON数据
+        yield tool_instance.create_json_message({"data": chunk_json_data})

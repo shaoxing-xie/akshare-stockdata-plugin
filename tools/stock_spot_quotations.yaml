@@ -14,7 +14,7 @@ parameters:
     type: select
     required: true
     form: llm
-    default: stock_zh_a_spot_em
+    default: stock_zh_a_spot
     description: 接口名称
     llm_description: 通过AKShare数据接口获取A股市场的实时行情数据，包括沪市、深市、京市、创业板、科创板等各板块的实时价格、涨跌幅、成交量、换手率等信息
     human_description:
