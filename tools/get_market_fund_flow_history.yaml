@@ -1,0 +1,98 @@
+identity:
+  author: shaoxing-xie
+  name: get_market_fund_flow_history
+  label:
+    zh_Hans: 获取市场资金流向历史数据
+    en_US: Get Market Fund Flow History Data
+description:
+  human:
+    zh_Hans: 获取市场资金流向历史数据，包括大盘总体、行业和概念板块的历史数据，帮助分析资金流向的历史趋势和变化规律。
+    en_US: Get market fund flow history data, including overall market, industry and concept sector historical data, helping to analyze historical trends and patterns of fund flows.
+  llm: 获取市场资金流向历史数据，包括大盘总体、行业和概念板块的历史数据。包括：东方财富网-资金流向-大盘-历史数据（无需参数，返回大盘总体的历史资金流向数据）、东方财富网-行业历史资金流（需要行业名称，返回指定行业的历史资金流向数据）、东方财富网-概念历史资金流（需要概念名称，返回指定概念板块的历史资金流向数据）。根据不同接口提供相应参数。
+parameters:
+  - name: interface
+    type: select
+    required: true
+    form: llm
+    default: stock_market_fund_flow
+    description: 接口名称
+    llm_description: 选择资金流向历史数据接口。包括：东方财富网-资金流向-大盘-历史数据（无需参数，返回大盘总体的历史资金流向数据）、东方财富网-行业历史资金流（需要行业名称，返回指定行业的历史资金流向数据）、东方财富网-概念历史资金流（需要概念名称，返回指定概念板块的历史资金流向数据）。根据不同接口提供相应参数。
+    human_description:
+      en_US: "Select fund flow history data interface. Options: East Money - Market Fund Flow History Data (no parameters required, returns overall market historical fund flow data), East Money - Industry Historical Fund Flow (requires industry name, returns specified industry historical fund flow data), East Money - Concept Historical Fund Flow (requires concept name, returns specified concept sector historical fund flow data). Provide corresponding parameters according to different interfaces."
+      zh_Hans: "选择资金流向历史数据接口。选项包括：东方财富网-资金流向-大盘-历史数据（无需参数，返回大盘总体的历史资金流向数据）、东方财富网-行业历史资金流（需要行业名称，返回指定行业的历史资金流向数据）、东方财富网-概念历史资金流（需要概念名称，返回指定概念板块的历史资金流向数据）。根据不同接口提供相应参数。"
+    label:
+      en_US: Interface
+      zh_Hans: 接口名称
+    options:
+      - label:
+          en_US: East Money - Market Fund Flow History Data
+          zh_Hans: 东方财富网-资金流向-大盘-历史数据
+        value: stock_market_fund_flow
+      - label:
+          en_US: East Money - Industry Historical Fund Flow - Specified Industry Name
+          zh_Hans: 东方财富网-行业历史资金流-指定行业名称
+        value: stock_sector_fund_flow_hist
+      - label:
+          en_US: East Money - Concept Historical Fund Flow - Specified Concept Name
+          zh_Hans: 东方财富网-概念历史资金流-指定概念名称
+        value: stock_concept_fund_flow_hist
+  - name: industry_name
+    type: string
+    required: false
+    form: llm
+    default: 汽车服务
+    description: 行业名称
+    llm_description: 行业名称参数，用于行业历史资金流接口。示例：汽车服务、电源设备、软件开发等。参照东方财富网行业分类。
+    human_description:
+      en_US: "Industry name. Required for industry historical fund flow interface. Examples: Automobile Services, Power Equipment, Software Development, etc. Reference: East Money industry classification."
+      zh_Hans: "行业名称。用于行业历史资金流接口。示例：汽车服务、电源设备、软件开发等。参照东方财富网行业分类。"
+    label:
+      en_US: Industry Name
+      zh_Hans: 行业名称
+  - name: concept_name
+    type: string
+    required: false
+    form: llm
+    default: 数据要素
+    description: 概念名称
+    llm_description: 概念名称参数，用于概念历史资金流接口。示例：数据要素、租售同权、人工智能等。参照东方财富网概念分类。
+    human_description:
+      en_US: "Concept name. Required for concept historical fund flow interface. Examples: Data Elements, Equal Rights for Rent and Purchase, Artificial Intelligence, etc. Reference: East Money concept classification."
+      zh_Hans: "概念名称。用于概念历史资金流接口。示例：数据要素、租售同权、人工智能等。参照东方财富网概念分类。"
+    label:
+      en_US: Concept Name
+      zh_Hans: 概念名称
+  - name: retries
+    type: number
+    required: false
+    form: llm
+    default: 5
+    description: 重试次数
+    llm_description: 网络请求重试次数，范围1-10，默认5次。
+    human_description:
+      en_US: "Number of retries for network requests. Range: 1-10. Default: 5."
+      zh_Hans: "网络请求重试次数。范围：1-10。默认：5。"
+    label:
+      en_US: Retries
+      zh_Hans: 重试次数
+    min: 1
+    max: 10
+  - name: timeout
+    type: number
+    required: false
+    form: llm
+    default: 600
+    description: 子进程超时时间
+    llm_description: 子进程执行超时时间（秒），范围5-3600，默认600秒（10分钟）。历史数据接口数据量可能较大，建议设置较长的超时时间。
+    human_description:
+      en_US: "Subprocess execution timeout in seconds. Range: 5-3600. Default: 600 (10 minutes). Historical data interfaces may have large data volumes, suggest longer timeout."
+      zh_Hans: "子进程执行超时时间（秒）。范围：5-3600。默认：600（10分钟）。历史数据接口数据量可能较大，建议设置较长的超时时间。"
+    label:
+      en_US: Subprocess Timeout
+      zh_Hans: 子进程超时时间
+    min: 5
+    max: 3600
+extra:
+  python:
+    source: tools/get_market_fund_flow_history.py
+

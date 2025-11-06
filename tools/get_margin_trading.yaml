@@ -1,0 +1,127 @@
+identity:
+  author: shaoxing-xie
+  name: get_margin_trading
+  label:
+    zh_Hans: 获取A股市场融资融券数据
+    en_US: Get A-share Market Margin Trading Data
+description:
+  human:
+    zh_Hans: 获取A股市场融资融券数据。包括标的证券名单、保证金比例、两融账户信息、上证所和深交所的融资融券汇总和明细数据、标的证券信息等。帮助了解融资融券交易情况、资金流向和市场风险。适用于融资融券分析、风险监控和投资决策。
+    en_US: Get A-share market margin trading data. Includes underlying securities list, margin ratios, margin account information, Shanghai and Shenzhen stock exchange margin trading summaries and details, and underlying securities information. Helps understand margin trading situations, fund flows, and market risks. Suitable for margin trading analysis, risk monitoring, and investment decisions.
+  llm: 获取A股市场融资融券数据。包括：融资融券-标的证券名单及保证金比例查询-指定日期（需要日期，格式YYYYMMDD）、东方财富-融资融券-两融账户信息（无需参数，返回所有历史数据）、上海证券交易所-融资融券汇总数据-指定日期范围（需要日期范围，格式YYYYMMDD）、上海证券交易所-融资融券明细数据-指定日期（需要日期，格式YYYYMMDD）、深圳证券交易所-融资融券汇总数据-指定日期（需要日期，格式YYYYMMDD）、深圳证券交易所-融资融券明细数据-指定日期（需要日期，格式YYYYMMDD）、深圳证券交易所-标的证券信息-指定日期（需要日期，格式YYYYMMDD）。
+parameters:
+  - name: interface
+    type: select
+    required: true
+    form: llm
+    default: stock_margin_account_info
+    description: 接口名称
+    llm_description: 选择融资融券数据接口。包括：融资融券-标的证券名单及保证金比例查询-指定日期（需要日期）、东方财富-融资融券-两融账户信息（无需参数）、上海证券交易所-融资融券汇总数据-指定日期范围（需要日期范围）、上海证券交易所-融资融券明细数据-指定日期（需要日期）、深圳证券交易所-融资融券汇总数据-指定日期（需要日期）、深圳证券交易所-融资融券明细数据-指定日期（需要日期）、深圳证券交易所-标的证券信息-指定日期（需要日期）。
+    human_description:
+      en_US: "Select margin trading data interface. Options: Underlying Securities List and Margin Ratios (requires date), Margin Account Information (no parameters required), SSE Margin Trading Summary (requires date range), SSE Margin Trading Details (requires date), SZSE Margin Trading Summary (requires date), SZSE Margin Trading Details (requires date), SZSE Underlying Securities Information (requires date)."
+      zh_Hans: "选择融资融券数据接口。选项包括：融资融券-标的证券名单及保证金比例查询-指定日期（需要日期）、东方财富-融资融券-两融账户信息（无需参数）、上海证券交易所-融资融券汇总数据-指定日期范围（需要日期范围）、上海证券交易所-融资融券明细数据-指定日期（需要日期）、深圳证券交易所-融资融券汇总数据-指定日期（需要日期）、深圳证券交易所-融资融券明细数据-指定日期（需要日期）、深圳证券交易所-标的证券信息-指定日期（需要日期）。"
+    label:
+      en_US: Interface
+      zh_Hans: 接口名称
+    options:
+      - label:
+          en_US: Ping An - Underlying Securities List and Margin Ratios - Date
+          zh_Hans: 融资融券-标的证券名单及保证金比例查询-指定日期
+        value: stock_margin_ratio_pa
+      - label:
+          en_US: Eastmoney - Margin Account Information - All
+          zh_Hans: 东方财富-融资融券-两融账户信息
+        value: stock_margin_account_info
+      - label:
+          en_US: SSE - Margin Trading Summary - Date Range
+          zh_Hans: 上海证券交易所-融资融券汇总数据-指定日期范围
+        value: stock_margin_sse
+      - label:
+          en_US: SSE - Margin Trading Details - Date
+          zh_Hans: 上海证券交易所-融资融券明细数据-指定日期
+        value: stock_margin_detail_sse
+      - label:
+          en_US: SZSE - Margin Trading Summary - Date
+          zh_Hans: 深圳证券交易所-融资融券汇总数据-指定日期
+        value: stock_margin_szse
+      - label:
+          en_US: SZSE - Margin Trading Details - Date
+          zh_Hans: 深圳证券交易所-融资融券明细数据-指定日期
+        value: stock_margin_detail_szse
+      - label:
+          en_US: SZSE - Underlying Securities Information - Date
+          zh_Hans: 深圳证券交易所-标的证券信息-指定日期
+        value: stock_margin_underlying_info_szse
+  - name: date
+    type: string
+    required: false
+    form: llm
+    default: "20251013"
+    description: 交易日期
+    llm_description: 交易日期，格式为YYYYMMDD（如20231013）。"标的证券名单及保证金比例"、"上证所融资融券明细"、"深交所融资融券汇总"、"深交所融资融券明细"、"深交所标的证券信息"接口需要此参数。
+    human_description:
+      en_US: "Trading date in YYYYMMDD format (e.g., 20231013). Required for 'Underlying Securities List and Margin Ratios', 'SSE Margin Trading Details', 'SZSE Margin Trading Summary', 'SZSE Margin Trading Details', and 'SZSE Underlying Securities Information' interfaces."
+      zh_Hans: "交易日期，格式为YYYYMMDD（如20231013）。标的证券名单及保证金比例、上证所融资融券明细、深交所融资融券汇总、深交所融资融券明细、深交所标的证券信息接口需要此参数。"
+    label:
+      en_US: Trading Date
+      zh_Hans: 交易日期
+  - name: start_date
+    type: string
+    required: false
+    form: llm
+    default: "20010106"
+    description: 开始日期
+    llm_description: 开始日期，格式为YYYYMMDD（如20010106）。仅"上证所融资融券汇总"接口需要此参数。
+    human_description:
+      en_US: "Start date in YYYYMMDD format (e.g., 20010106). Required only for 'SSE Margin Trading Summary' interface."
+      zh_Hans: "开始日期，格式为YYYYMMDD（如20010106）。仅上证所融资融券汇总接口需要此参数。"
+    label:
+      en_US: Start Date
+      zh_Hans: 开始日期
+  - name: end_date
+    type: string
+    required: false
+    form: llm
+    default: "20251231"
+    description: 结束日期
+    llm_description: 结束日期，格式为YYYYMMDD（如20210208）。仅"上证所融资融券汇总"接口需要此参数。
+    human_description:
+      en_US: "End date in YYYYMMDD format (e.g., 20210208). Required only for 'SSE Margin Trading Summary' interface."
+      zh_Hans: "结束日期，格式为YYYYMMDD（如20210208）。仅上证所融资融券汇总接口需要此参数。"
+    label:
+      en_US: End Date
+      zh_Hans: 结束日期
+  - name: retries
+    type: number
+    required: false
+    form: llm
+    default: 5
+    description: 重试次数
+    llm_description: 网络请求重试次数，范围1-10，默认5次。
+    human_description:
+      en_US: "Number of retries for network requests. Range: 1-10. Default: 5."
+      zh_Hans: "网络请求重试次数。范围：1-10。默认：5。"
+    label:
+      en_US: Retries
+      zh_Hans: 重试次数
+    min: 1
+    max: 10
+  - name: timeout
+    type: number
+    required: false
+    form: llm
+    default: 240
+    description: 子进程超时时间
+    llm_description: 子进程执行超时时间（秒），范围5-3600，默认240秒。
+    human_description:
+      en_US: "Subprocess execution timeout in seconds. Range: 5-3600. Default: 240."
+      zh_Hans: "子进程执行超时时间（秒）。范围：5-3600。默认：240。"
+    label:
+      en_US: Subprocess Timeout
+      zh_Hans: 子进程超时时间
+    min: 5
+    max: 3600
+extra:
+  python:
+    source: tools/get_margin_trading.py
+

@@ -1,0 +1,89 @@
+identity:
+  author: shaoxing-xie
+  name: get_goodwill_data
+  label:
+    zh_Hans: 获取市场商誉数据
+    en_US: Get Market Goodwill Data
+description:
+  human:
+    zh_Hans: 获取A股商誉市场概况、个股商誉明细、减值明细、行业商誉等数据。商誉是企业在并购中产生的无形资产，是重要的财务风险指标。
+    en_US: Get A-share goodwill market overview, individual stock goodwill details, impairment details, and industry goodwill data. Goodwill is an intangible asset generated in mergers and acquisitions, and is an important financial risk indicator.
+  llm: 获取A股商誉市场概况、个股商誉明细、减值明细、行业商誉等数据。包括A股商誉市场概况（所有历史，无需日期）、个股商誉减值明细（需要指定日期，建议季末日期）、个股商誉明细（需要指定日期，建议季末日期）、行业商誉（需要指定日期，建议季末日期）等。日期参数格式为YYYYMMDD，建议使用季末日期（如20241231、20240331等）。
+parameters:
+  - name: interface
+    type: select
+    required: true
+    form: llm
+    default: stock_sy_profile_em
+    description: 接口名称
+    llm_description: 选择商誉数据接口。包括：A股商誉市场概况（所有历史，无需日期）、个股商誉减值明细（需要指定日期，建议季末）、个股商誉明细（需要指定日期，建议季末）、行业商誉（需要指定日期，建议季末）。
+    human_description:
+      en_US: "Select goodwill data interface. Options: A-share Goodwill Market Overview (all history, no date), Individual Stock Goodwill Impairment Details (requires date, recommend quarter end), Individual Stock Goodwill Details (requires date, recommend quarter end), Industry Goodwill (requires date, recommend quarter end)."
+      zh_Hans: "选择商誉数据接口。选项包括：A股商誉市场概况（所有历史，无需日期）、个股商誉减值明细（需指定日期，建议季末）、个股商誉明细（需指定日期，建议季末）、行业商誉（需指定日期，建议季末）。"
+    label:
+      en_US: Interface
+      zh_Hans: 接口名称
+    options:
+      - label:
+          en_US: Eastmoney - A-Share Goodwill Market Overview - All History
+          zh_Hans: 东方财富网-A股商誉市场概况-所有历史
+        value: stock_sy_profile_em
+      - label:
+          en_US: Eastmoney - Individual Stock Goodwill Impairment Details - Specified Date (Quarter End)
+          zh_Hans: 东方财富网-个股商誉减值明细-指定日期(季末)
+        value: stock_sy_jz_em
+      - label:
+          en_US: Eastmoney - Individual Stock Goodwill Details - Specified Date (Quarter End)
+          zh_Hans: 东方财富网-个股商誉明细-指定日期(季末)
+        value: stock_sy_em
+      - label:
+          en_US: Eastmoney - Industry Goodwill - Specified Date (Quarter End)
+          zh_Hans: 东方财富网-行业商誉-指定日期(季末)
+        value: stock_sy_hy_em
+  - name: date
+    type: string
+    required: false
+    form: llm
+    default: "20250630"
+    description: 交易日期
+    llm_description: 交易日期，格式为YYYYMMDD（如20241231）。仅"A股商誉市场概况"接口不需要此参数，其他接口都需要。建议使用季末日期（如20241231、20240331、20230630、20230331等）。
+    human_description:
+      en_US: "Trading date in YYYYMMDD format (e.g., 20241231). Not required for 'A-share Goodwill Market Overview' interface, but required for others. Recommend using quarter end dates (e.g., 20241231, 20240331, 20230630, 20230331)."
+      zh_Hans: "交易日期，格式为YYYYMMDD（如20241231）。仅A股商誉市场概况接口不需要此参数，其他接口都需要。建议使用季末日期（如20241231、20240331、20230630、20230331等）。"
+    label:
+      en_US: Trading Date
+      zh_Hans: 交易日期
+  - name: retries
+    type: number
+    required: false
+    form: llm
+    default: 5
+    description: 重试次数
+    llm_description: 网络请求重试次数，范围1-10，默认5次。
+    human_description:
+      en_US: "Number of retries for network requests. Range: 1-10. Default: 5."
+      zh_Hans: "网络请求重试次数。范围：1-10。默认：5。"
+    label:
+      en_US: Retries
+      zh_Hans: 重试次数
+    min: 1
+    max: 10
+  - name: timeout
+    type: number
+    required: false
+    form: llm
+    default: 300
+    description: 子进程超时时间
+    llm_description: 子进程执行超时时间（秒），范围5-3600，默认300秒（商誉市场概况数据量较大）。
+    human_description:
+      en_US: "Subprocess execution timeout in seconds. Range: 5-3600. Default: 300 (goodwill market overview data is large)."
+      zh_Hans: "子进程执行超时时间（秒）。范围：5-3600。默认：300（商誉市场概况数据量较大）。"
+    label:
+      en_US: Subprocess Timeout
+      zh_Hans: 子进程超时时间
+    min: 5
+    max: 3600
+extra:
+  python:
+    source: tools/get_goodwill_data.py
+

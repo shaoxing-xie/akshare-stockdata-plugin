@@ -1,0 +1,137 @@
+identity:
+  author: shaoxing-xie
+  name: get_index_trend_momentum_minute
+  label:
+    zh_Hans: 获取指数趋势动量震荡指标(分钟)
+    en_US: Get Index Trend Momentum Oscillator (Minute)
+description:
+  human:
+    zh_Hans: 获取指数趋势动量震荡指标(分钟)。基于分钟级历史行情数据自动计算多种技术分析指标，包括移动平均线（MA5/MA10/MA20/MA30/MA60）、RSI相对强弱指标（RSI6/RSI12/RSI24）、MACD指标、KDJ随机指标、布林带指标、成交量均线（VMA5/VMA10/VMA20）等。支持1分钟、5分钟、15分钟、30分钟、60分钟周期，适用于指数日内走势分析、分时图技术分析和盘中交易决策。可帮助投资者捕捉指数的短期价格波动、识别日内买卖时机和监控盘中资金流向。
+    en_US: Get index trend momentum oscillator (minute). Automatically calculates multiple technical analysis indicators based on minute-level historical quotes data, including moving averages (MA5/MA10/MA20/MA30/MA60), RSI relative strength indicators (RSI6/RSI12/RSI24), MACD indicators, KDJ stochastic indicators, Bollinger Bands, and volume moving averages (VMA5/VMA10/VMA20). Supports 1-minute, 5-minute, 15-minute, 30-minute, and 60-minute periods. Suitable for index intraday trend analysis, minute-chart technical analysis, and intraday trading decisions. Helps investors capture short-term price fluctuations of indices, identify intraday trading opportunities, and monitor intraday fund flows.
+  llm: 获取指数趋势动量震荡指标(分钟)。基于分钟级历史行情数据计算技术指标，包括移动平均线（MA5、MA10、MA20、MA30、MA60）、RSI相对强弱指标（RSI6、RSI12、RSI24）、MACD指标、KDJ随机指标、布林带指标、成交量均线（VMA5、VMA10、VMA20）等。需要提供指数代码（纯数字格式，如000001、399006等）、分钟周期（1、5、15、30、60分钟）、开始日期时间和结束日期时间（格式：YYYY-MM-DD HH:MM:SS）。
+parameters:
+  - name: interface
+    type: select
+    required: true
+    form: llm
+    default: index_trend_momentum_oscillator_minute
+    description: 接口名称
+    llm_description: 选择指数趋势动量震荡指标(分钟)接口
+    human_description:
+      en_US: "Select the index trend momentum oscillator (minute) interface."
+      zh_Hans: "选择指数趋势动量震荡指标(分钟)接口。"
+    label:
+      en_US: Interface
+      zh_Hans: 接口名称
+    options:
+      - label:
+          en_US: Index Trend Momentum Oscillator (Minute) - Specific Index, Minute Period, Datetime Range
+          zh_Hans: 指数趋势动量震荡指标(分钟)-指定指数、周期(分钟)、日期时间范围
+        value: index_trend_momentum_oscillator_minute
+  - name: symbol
+    type: string
+    required: true
+    form: llm
+    default: "000001"
+    description: 指数代码
+    llm_description: 指数代码，需要纯数字格式，如000001、399006等
+    human_description:
+      en_US: "Index code. Format: pure number format (000001, 399006, etc.)."
+      zh_Hans: "指数代码。格式：纯数字格式（000001、399006等）。"
+    label:
+      en_US: Index Code
+      zh_Hans: 指数代码
+  - name: period_minute
+    type: select
+    required: false
+    form: llm
+    default: "15"
+    description: 分钟周期
+    llm_description: 分时数据周期，用于分钟级趋势动量震荡指标
+    human_description:
+      en_US: "Minute period. Options: 1 (1分钟), 5 (5分钟), 15 (15分钟), 30 (30分钟), 60 (60分钟)."
+      zh_Hans: "分钟周期。选项：1(1分钟)、5(5分钟)、15(15分钟)、30(30分钟)、60(60分钟)。"
+    label:
+      en_US: Minute Period
+      zh_Hans: 分钟周期
+    options:
+      - label:
+          en_US: 1 Minute
+          zh_Hans: 1分钟
+        value: "1"
+      - label:
+          en_US: 5 Minutes
+          zh_Hans: 5分钟
+        value: "5"
+      - label:
+          en_US: 15 Minutes
+          zh_Hans: 15分钟
+        value: "15"
+      - label:
+          en_US: 30 Minutes
+          zh_Hans: 30分钟
+        value: "30"
+      - label:
+          en_US: 60 Minutes
+          zh_Hans: 60分钟
+        value: "60"
+  - name: start_datetime
+    type: string
+    required: false
+    form: llm
+    default: "2025-10-08 09:15:00"
+    description: 开始日期时间
+    llm_description: 开始日期时间，用于分钟级趋势动量震荡指标，格式：YYYY-MM-DD HH:MM:SS
+    human_description:
+      en_US: "Start datetime. Format: YYYY-MM-DD HH:MM:SS (2025-10-08 09:15:00)."
+      zh_Hans: "开始日期时间。格式：YYYY-MM-DD HH:MM:SS(2025-10-08 09:15:00)。"
+    label:
+      en_US: Start Datetime
+      zh_Hans: 开始日期时间
+  - name: end_datetime
+    type: string
+    required: false
+    form: llm
+    default: "2025-10-30 15:00:00"
+    description: 结束日期时间
+    llm_description: 结束日期时间，用于分钟级趋势动量震荡指标，格式：YYYY-MM-DD HH:MM:SS
+    human_description:
+      en_US: "End datetime. Format: YYYY-MM-DD HH:MM:SS (2025-10-30 15:00:00)."
+      zh_Hans: "结束日期时间。格式：YYYY-MM-DD HH:MM:SS(2025-10-30 15:00:00)。"
+    label:
+      en_US: End Datetime
+      zh_Hans: 结束日期时间
+  - name: retries
+    type: number
+    required: false
+    form: llm
+    default: 5
+    description: 重试次数
+    llm_description: 网络请求重试次数，默认5次
+    human_description:
+      en_US: "Number of retries for network requests. Range: 1-10. Default: 5."
+      zh_Hans: "网络请求重试次数。范围：1-10。默认：5。"
+    label:
+      en_US: Retries
+      zh_Hans: 重试次数
+    min: 1
+    max: 10
+  - name: timeout
+    type: number
+    required: false
+    form: llm
+    default: 900
+    description: 超时时间
+    llm_description: 接口调用的超时时间（秒），默认900秒
+    human_description:
+      en_US: "Timeout for interface calls in seconds. Range: 5-3600. Default: 900."
+      zh_Hans: "接口调用的超时时间（秒）。范围：5-3600。默认：900。"
+    label:
+      en_US: Timeout
+      zh_Hans: 超时时间
+    min: 5
+    max: 3600
+extra:
+  python:
+    source: tools/get_index_trend_momentum_minute.py
+

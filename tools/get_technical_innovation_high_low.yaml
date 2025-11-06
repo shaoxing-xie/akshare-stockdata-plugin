@@ -1,0 +1,128 @@
+identity:
+  author: shaoxing-xie
+  name: get_technical_innovation_high_low
+  label:
+    zh_Hans: 获取技术选股-创新高/低数据
+    en_US: Get Technical Stock Selection - Innovation High/Low Data
+description:
+  human:
+    zh_Hans: 获取股票创新高/创新低的技术选股数据，包括创月新高、半年新高、一年新高、历史新高、创月新低、半年新低、一年新低、历史新低等。
+    en_US: Get technical stock selection data for innovation high/low stocks, including monthly high, 6M high, 1Y high, historical high, monthly low, 6M low, 1Y low, historical low, etc.
+  llm: 获取股票创新高/创新低的技术选股数据。包括：同花顺-技术选股-创新高（需要新高类别参数，返回指定新高类别的所有股票数据）、同花顺-技术选股-创新低（需要新低类别参数，返回指定新低类别的所有股票数据）。根据不同接口提供相应参数。
+parameters:
+  - name: interface
+    type: select
+    required: true
+    form: llm
+    default: stock_rank_cxg_ths
+    description: 接口名称
+    llm_description: 选择创新高/低数据接口。包括：同花顺-技术选股-创新高（需要新高类别参数）、同花顺-技术选股-创新低（需要新低类别参数）。根据不同接口提供相应参数。
+    human_description:
+      en_US: "Select innovation high/low data interface. Options: Innovation High (requires high category), Innovation Low (requires low category)."
+      zh_Hans: "选择创新高/低数据接口。选项包括：同花顺-技术选股-创新高（需要新高类别参数）、同花顺-技术选股-创新低（需要新低类别参数）。"
+    label:
+      en_US: Interface
+      zh_Hans: 接口名称
+    options:
+      - label:
+          en_US: Innovation High - Specify High Category
+          zh_Hans: 同花顺-技术选股-创新高-指定新高类别
+        value: stock_rank_cxg_ths
+      - label:
+          en_US: Innovation Low - Specify Low Category
+          zh_Hans: 同花顺-技术选股-创新低-指定新低类别
+        value: stock_rank_cxd_ths
+  - name: high_category
+    type: select
+    required: false
+    form: llm
+    default: 创月新高
+    description: 新高类别
+    llm_description: 用于创新高接口的新高类别选择
+    human_description:
+      en_US: "High category. Required for Innovation High interface. Options: Monthly High, 6M High, 1Y High, Historical High."
+      zh_Hans: "新高类别。需要此参数的接口：同花顺-技术选股-创新高。选项：创月新高、半年新高、一年新高、历史新高。"
+    label:
+      en_US: Innovation High Category
+      zh_Hans: 新高类别
+    options:
+      - label:
+          en_US: Monthly High
+          zh_Hans: 创月新高
+        value: 创月新高
+      - label:
+          en_US: 6M High
+          zh_Hans: 半年新高
+        value: 半年新高
+      - label:
+          en_US: 1Y High
+          zh_Hans: 一年新高
+        value: 一年新高
+      - label:
+          en_US: Historical High
+          zh_Hans: 历史新高
+        value: 历史新高
+  - name: low_category
+    type: select
+    required: false
+    form: llm
+    default: 创月新低
+    description: 新低类别
+    llm_description: 用于创新低接口的新低类别选择
+    human_description:
+      en_US: "Low category. Required for Innovation Low interface. Options: Monthly Low, 6M Low, 1Y Low, Historical Low."
+      zh_Hans: "新低类别。需要此参数的接口：同花顺-技术选股-创新低。选项：创月新低、半年新低、一年新低、历史新低。"
+    label:
+      en_US: Innovation Low Category
+      zh_Hans: 新低类别
+    options:
+      - label:
+          en_US: Monthly Low
+          zh_Hans: 创月新低
+        value: 创月新低
+      - label:
+          en_US: 6M Low
+          zh_Hans: 半年新低
+        value: 半年新低
+      - label:
+          en_US: 1Y Low
+          zh_Hans: 一年新低
+        value: 一年新低
+      - label:
+          en_US: Historical Low
+          zh_Hans: 历史新低
+        value: 历史新低
+  - name: retries
+    type: number
+    required: false
+    form: llm
+    default: 5
+    description: 重试次数
+    llm_description: 接口调用失败时的重试次数，默认为5次
+    human_description:
+      en_US: "Number of retries when interface call fails, default is 5"
+      zh_Hans: "接口调用失败时的重试次数，默认为5次"
+    label:
+      en_US: Retries
+      zh_Hans: 重试次数
+    min: 1
+    max: 10
+  - name: timeout
+    type: number
+    required: false
+    form: llm
+    default: 120
+    description: 超时时间
+    llm_description: 接口调用的超时时间（秒），默认为120秒
+    human_description:
+      en_US: "Timeout for interface calls in seconds, default is 120"
+      zh_Hans: "接口调用的超时时间（秒），默认为120秒"
+    label:
+      en_US: Timeout
+      zh_Hans: 超时时间
+    min: 5
+    max: 1800
+extra:
+  python:
+    source: tools/get_technical_innovation_high_low.py
+

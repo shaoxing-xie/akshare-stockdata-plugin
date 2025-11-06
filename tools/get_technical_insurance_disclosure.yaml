@@ -1,0 +1,64 @@
+identity:
+  author: shaoxing-xie
+  name: get_technical_insurance_disclosure
+  label:
+    zh_Hans: 获取技术选股-险资举牌数据
+    en_US: Get Technical Stock Selection - Insurance Capital Disclosure Data
+description:
+  human:
+    zh_Hans: 获取险资举牌的技术选股数据，包括举牌公告日、举牌方、增持数量、交易均价、持股比例等信息。
+    en_US: Get technical stock selection data for insurance capital disclosures, including disclosure date, disclosing party, increased holdings, average transaction price, shareholding ratio, etc.
+  llm: 获取险资举牌的技术选股数据。包括：同花顺-技术选股-险资举牌（无需参数，返回所有险资举牌的股票数据）。
+parameters:
+  - name: interface
+    type: select
+    required: true
+    form: llm
+    default: stock_rank_xzjp_ths
+    description: 接口名称
+    llm_description: 选择险资举牌数据接口。包括：同花顺-技术选股-险资举牌。该接口无需参数。
+    human_description:
+      en_US: "Select insurance capital disclosure data interface. Options: Insurance Capital Disclosure. This interface requires no parameters."
+      zh_Hans: "选择险资举牌数据接口。选项包括：同花顺-技术选股-险资举牌。该接口无需参数。"
+    label:
+      en_US: Interface
+      zh_Hans: 接口名称
+    options:
+      - label:
+          en_US: Insurance Capital Disclosure
+          zh_Hans: 同花顺-技术选股-险资举牌
+        value: stock_rank_xzjp_ths
+  - name: retries
+    type: number
+    required: false
+    form: llm
+    default: 5
+    description: 重试次数
+    llm_description: 接口调用失败时的重试次数，默认为5次
+    human_description:
+      en_US: "Number of retries when interface call fails, default is 5"
+      zh_Hans: "接口调用失败时的重试次数，默认为5次"
+    label:
+      en_US: Retries
+      zh_Hans: 重试次数
+    min: 1
+    max: 10
+  - name: timeout
+    type: number
+    required: false
+    form: llm
+    default: 120
+    description: 超时时间
+    llm_description: 接口调用的超时时间（秒），默认为120秒
+    human_description:
+      en_US: "Timeout for interface calls in seconds, default is 120"
+      zh_Hans: "接口调用的超时时间（秒），默认为120秒"
+    label:
+      en_US: Timeout
+      zh_Hans: 超时时间
+    min: 5
+    max: 1800
+extra:
+  python:
+    source: tools/get_technical_insurance_disclosure.py
+

@@ -1,0 +1,110 @@
+identity:
+  author: shaoxing-xie
+  name: get_ipo_subscription_data
+  label:
+    zh_Hans: 获取市场新股与打新数据
+    en_US: Get Market IPO Subscription Data
+description:
+  human:
+    zh_Hans: 获取新股申购、中签率、打新收益率等相关数据。包括打新收益率历史数据和指定市场的新股申购与中签数据。
+    en_US: Get IPO subscription, lottery rate, and new stock yield data. Includes historical data on new stock yields and IPO subscription and lottery data for specified markets.
+  llm: 获取新股申购、中签率、打新收益率、新股上市等相关数据。包括打新收益率（所有历史数据，无需参数）、新股申购与中签（需要指定市场选择，如全部股票、沪市主板、科创板、深市主板、创业板、北交所等）、新股上市首日（无需参数，返回所有新股上市首日数据）。打新收益率和新股上市首日接口无需任何参数，新股申购与中签接口需要选择市场参数。
+parameters:
+  - name: interface
+    type: select
+    required: true
+    form: llm
+    default: stock_dxsyl_em
+    description: 接口名称
+    llm_description: 选择新股与打新数据接口。包括：打新收益率（所有历史数据，无需参数）、新股申购与中签（需要指定市场选择）、新股上市首日（无需参数，返回所有新股上市首日数据）。打新收益率和新股上市首日接口无需任何参数，新股申购与中签接口需要选择市场参数。
+    human_description:
+      en_US: "Select IPO subscription data interface. Options: New Stock Yield (all history, no parameters), IPO Subscription & Lottery (requires market selection), New Stock Listing First Day (requires no parameters, returns all new stock first-day listing data)."
+      zh_Hans: "选择新股与打新数据接口。选项包括：打新收益率（所有历史数据，无需参数）、新股申购与中签（需要指定市场选择）、新股上市首日（无需参数，返回所有新股上市首日数据）。"
+    label:
+      en_US: Interface
+      zh_Hans: 接口名称
+    options:
+      - label:
+          en_US: Eastmoney - Lottery Yield - All Data
+          zh_Hans: 东方财富网-打新收益率-所有数据
+        value: stock_dxsyl_em
+      - label:
+          en_US: Eastmoney - IPO Subscription & Lottery - Specified Market
+          zh_Hans: 东方财富网-新股申购与中签-指定市场
+        value: stock_xgsglb_em
+      - label:
+          en_US: THS - New Stock Listing - New Stock First Day
+          zh_Hans: 同花顺-新股上市-新股上市首日
+        value: stock_xgsr_ths
+  - name: symbol
+    type: select
+    required: false
+    form: llm
+    default: "全部股票"
+    description: 市场选择
+    llm_description: 市场选择，用于新股申购与中签查询接口。选项包括：全部股票、沪市主板、科创板、深市主板、创业板、北交所。仅"新股申购与中签"接口需要此参数，其他接口无需此参数。
+    human_description:
+      en_US: "Market selection for IPO subscription and lottery query interface. Options: All Stocks, Shanghai Main Board, STAR Market, Shenzhen Main Board, ChiNext, Beijing Stock Exchange."
+      zh_Hans: "市场选择，用于新股申购与中签查询接口。选项包括：全部股票、沪市主板、科创板、深市主板、创业板、北交所。"
+    label:
+      en_US: Market Selection
+      zh_Hans: 市场选择
+    options:
+      - label:
+          en_US: All Stocks
+          zh_Hans: 全部股票
+        value: "全部股票"
+      - label:
+          en_US: Shanghai Main Board
+          zh_Hans: 沪市主板
+        value: "沪市主板"
+      - label:
+          en_US: STAR Market
+          zh_Hans: 科创板
+        value: "科创板"
+      - label:
+          en_US: Shenzhen Main Board
+          zh_Hans: 深市主板
+        value: "深市主板"
+      - label:
+          en_US: ChiNext
+          zh_Hans: 创业板
+        value: "创业板"
+      - label:
+          en_US: Beijing Stock Exchange
+          zh_Hans: 北交所
+        value: "北交所"
+  - name: retries
+    type: number
+    required: false
+    form: llm
+    default: 5
+    description: 重试次数
+    llm_description: 网络请求重试次数，范围1-10，默认5次。
+    human_description:
+      en_US: "Number of retries for network requests. Range: 1-10. Default: 5."
+      zh_Hans: "网络请求重试次数。范围：1-10。默认：5。"
+    label:
+      en_US: Retries
+      zh_Hans: 重试次数
+    min: 1
+    max: 10
+  - name: timeout
+    type: number
+    required: false
+    form: llm
+    default: 300
+    description: 子进程超时时间
+    llm_description: 子进程执行超时时间（秒），范围5-3600，默认300秒（打新收益率数据量较大）。
+    human_description:
+      en_US: "Subprocess execution timeout in seconds. Range: 5-3600. Default: 300 (new stock yield data is large)."
+      zh_Hans: "子进程执行超时时间（秒）。范围：5-3600。默认：300（打新收益率数据量较大）。"
+    label:
+      en_US: Subprocess Timeout
+      zh_Hans: 子进程超时时间
+    min: 5
+    max: 3600
+extra:
+  python:
+    source: tools/get_ipo_subscription_data.py
+

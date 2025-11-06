@@ -1,0 +1,144 @@
+identity:
+  author: shaoxing-xie
+  name: get_shareholder_holding_changes
+  label:
+    zh_Hans: 获取个股股东持股变动信息
+    en_US: Get Shareholder Holding Changes
+description:
+  human:
+    zh_Hans: 获取股票的股东持股变动信息和股本结构数据，包括基金持股、主要股东、高管持股变动、股东持股变动、公司股本变动、股本结构、十大股东等数据。帮助了解股票的股东变化情况和股本结构变化。适用于股东分析、股本研究和投资决策。
+    en_US: Get shareholder holding change information and share capital structure data for stocks, including fund holdings, major shareholders, management holding changes, shareholder holding changes, share capital changes, share capital structure, top 10 shareholders, etc. Helps understand the shareholder change situation and share capital structure changes of stocks. Suitable for shareholder analysis, share capital research, and investment decisions.
+  llm: 获取股票的股东持股变动信息和股本结构数据。包括：基金持股（返回基金持股信息）、主要股东（返回主要股东持股信息）、高管持股变动（返回高管持股变动记录）、股东持股变动（返回股东持股变动记录）、公司股本变动（返回指定日期范围内的股本变动历史数据，需要股票代码+开始日期+结束日期）、股本结构（返回所有历史的股本结构数据，包括总股本、流通受限股份、已流通股份、已上市流通A股、变动原因等，需要股票代码参数）、十大流通股东（返回流通股东排名、持股数量、持股比例等信息，需要股票代码+日期参数）、十大股东（返回股东排名、持股数量、持股比例等信息，需要股票代码+日期参数）。除"公司股本变动"接口需要股票代码和日期范围参数，"十大股东"和"十大流通股东"接口需要股票代码和日期参数外，其他接口仅需股票代码参数，格式如"600519"（沪市）或"000001"（深市）。注意："股本结构"接口需要带市场后缀的格式如"603392.SH"或"000001.SZ"。
+parameters:
+  - name: interface
+    type: select
+    required: true
+    form: llm
+    default: stock_fund_stock_holder
+    description: 接口名称
+    llm_description: 选择股东持股变动信息和股本结构接口。包括：基金持股（返回基金持股信息）、主要股东（返回主要股东持股信息）、高管持股变动（返回高管持股变动记录）、股东持股变动（返回股东持股变动记录）、公司股本变动（需要日期范围，返回指定日期范围内的股本变动历史记录）、股本结构（返回所有历史的股本结构数据，包括总股本、流通受限股份、已流通股份、已上市流通A股、变动原因等）、十大流通股东（需要日期参数，返回流通股东排名、持股数量、持股比例等信息）、十大股东（需要日期参数，返回股东排名、持股数量、持股比例等信息）。除"公司股本变动"接口需要股票代码和日期范围参数，"十大股东"和"十大流通股东"接口需要股票代码和日期参数外，其他接口仅需股票代码参数。
+    human_description:
+      en_US: "Select shareholder holding changes and share capital structure interface. Options: Fund Holdings (returns fund holding information), Major Shareholders (returns major shareholder holding information), Management Holding Changes (returns management holding change records), Shareholder Holding Changes (returns shareholder holding change records), Share Capital Change (requires date range, returns historical share capital changes), Share Capital Structure (returns all historical share capital structure data including total share capital, restricted shares, circulating shares, listed A-shares, change reasons), Top 10 Circulating Shareholders (requires date parameter, returns ranking, shareholding, proportion), Top 10 Shareholders (requires date parameter, returns ranking, shareholding, proportion)."
+      zh_Hans: "选择股东持股变动信息和股本结构接口。选项包括：基金持股（返回基金持股信息）、主要股东（返回主要股东持股信息）、高管持股变动（返回高管持股变动记录）、股东持股变动（返回股东持股变动记录）、公司股本变动（需要日期范围，返回指定日期范围内的股本变动历史记录）、股本结构（返回所有历史的股本结构数据，包括总股本、流通受限股份、已流通股份、已上市流通A股、变动原因等）、十大流通股东（需要日期参数，返回流通股东排名、持股数量、持股比例等信息）、十大股东（需要日期参数，返回股东排名、持股数量、持股比例等信息）。"
+    label:
+      en_US: Interface
+      zh_Hans: 接口名称
+    options:
+      - label:
+          en_US: Eastmoney - Share Capital Structure - Specific Stock
+          zh_Hans: 东方财富网-A股数据-股本结构-指定股票
+        value: stock_zh_a_gbjg_em
+      - label:
+          en_US: Sina Finance - Fund Holdings - Specific Stock
+          zh_Hans: 新浪财经-基金持股-指定股票
+        value: stock_fund_stock_holder
+      - label:
+          en_US: Sina Finance - Major Shareholders - Specific Stock
+          zh_Hans: 新浪财经-主要股东-指定股票
+        value: stock_main_stock_holder
+      - label:
+          en_US: THS - Management Holding Changes - Specific Stock
+          zh_Hans: 同花顺-公司高管持股变动-指定股票
+        value: stock_management_change_ths
+      - label:
+          en_US: THS - Shareholder Holding Changes - Specific Stock
+          zh_Hans: 同花顺-公司股东持股变动-指定股票
+        value: stock_shareholder_change_ths
+      - label:
+          en_US: CNInfo - Share Capital Change - Specific Stock and Date Range
+          zh_Hans: 巨潮资讯-数据-公司股本变动-指定股票、时间范围
+        value: stock_share_change_cninfo
+      - label:
+          en_US: Eastmoney - Top 10 Circulating Shareholders - Specific Stock and Date
+          zh_Hans: 东方财富网-个股-十大流通股东-指定股票、日期(季末)
+        value: stock_gdfx_free_top_10_em
+      - label:
+          en_US: Eastmoney - Top 10 Shareholders - Specific Stock and Date
+          zh_Hans: 东方财富网-个股-十大股东-指定股票、日期(季末)
+        value: stock_gdfx_top_10_em
+  - name: symbol
+    type: string
+    required: true
+    form: llm
+    default: "600519"
+    description: 股票代码
+    llm_description: 股票代码，格式如"600519"（沪市）或"000001"（深市）。支持带市场前缀的格式如"SH600519"或"SZ000001"。注意："股本结构"接口需要带市场后缀的格式如"603392.SH"或"000001.SZ"。
+    human_description:
+      en_US: "Stock code in format like '600519' (Shanghai) or '000001' (Shenzhen). Also supports market prefix format like 'SH600519' or 'SZ000001'. Note: Share Capital Structure interface requires market suffix format like '603392.SH' or '000001.SZ'."
+      zh_Hans: "股票代码，格式如'600519'（沪市）或'000001'（深市）。支持带市场前缀的格式如'SH600519'或'SZ000001'。注意：股本结构接口需要带市场后缀的格式如'603392.SH'或'000001.SZ'。"
+    label:
+      en_US: Stock Code
+      zh_Hans: 股票代码
+  - name: start_date
+    type: string
+    required: false
+    form: llm
+    default: "20200101"
+    description: 开始日期
+    llm_description: 开始日期，可选参数，格式：YYYYMMDD（8位数字，年月日）。示例："20200101"（2020年1月1日）、"20231231"（2023年12月31日）。仅当选择"公司股本变动"接口(stock_share_change_cninfo)时必需此参数，用于指定查询股本变动历史数据的起始日期。需与end_date配合使用，start_date应早于或等于end_date。示例用法：查询2020年到2024年的股本变动，start_date="20200101"，end_date="20241231"。如果选择其他接口，此参数可忽略。
+    human_description:
+      en_US: "Start date in YYYYMMDD format, e.g., 20200101. Required only for Share Capital Change interface to specify the start date of the query."
+      zh_Hans: "开始日期，格式：YYYYMMDD，如20200101。仅公司股本变动接口需要此参数，用于指定查询的开始日期。"
+    label:
+      en_US: Start Date
+      zh_Hans: 开始日期
+  - name: end_date
+    type: string
+    required: false
+    form: llm
+    default: "20241231"
+    description: 结束日期
+    llm_description: 结束日期，可选参数，格式：YYYYMMDD（8位数字，年月日）。示例："20241231"（2024年12月31日）、"20231231"（2023年12月31日）。仅当选择"公司股本变动"接口(stock_share_change_cninfo)时必需此参数，用于指定查询股本变动历史数据的截止日期。需与start_date配合使用，end_date应晚于或等于start_date。示例用法：查询2020年到2024年的股本变动，start_date="20200101"，end_date="20241231"；查询最近一年的变动，可用start_date="20240101"，end_date="20241231"。如果选择其他接口，此参数可忽略。
+    human_description:
+      en_US: "End date in YYYYMMDD format, e.g., 20241231. Required only for Share Capital Change interface, used together with start_date to specify the end date of the query."
+      zh_Hans: "结束日期，格式：YYYYMMDD，如20241231。仅公司股本变动接口需要此参数，与开始日期配合使用，用于指定查询的结束日期。"
+    label:
+      en_US: End Date
+      zh_Hans: 结束日期
+  - name: date
+    type: string
+    required: false
+    form: llm
+    default: "20250630"
+    description: 财报发布季度最后日
+    llm_description: 财报发布季度最后日，格式：YYYYMMDD，如20240930。用于股东持股相关接口，通常为季末日期(3月31日、6月30日、9月30日、12月31日)。仅"十大股东"和"十大流通股东"接口需要此参数。如果选择其他接口，此参数可忽略。
+    human_description:
+      en_US: "Quarter end date in YYYYMMDD format, e.g., 20240930. Used for shareholder holding related interfaces, typically quarter-end dates (Mar 31, Jun 30, Sep 30, Dec 31). Required only for Top 10 Shareholders interfaces."
+      zh_Hans: "财报发布季度最后日，格式：YYYYMMDD，如20240930。用于股东持股相关接口，通常为季末日期(3月31日、6月30日、9月30日、12月31日)。仅十大股东接口需要此参数。"
+    label:
+      en_US: Quarter End Date
+      zh_Hans: 财报发布季度最后日
+  - name: retries
+    type: number
+    required: false
+    form: llm
+    default: 5
+    description: 重试次数
+    llm_description: 网络请求重试次数，范围1-10，默认5次。
+    human_description:
+      en_US: "Number of retries for network requests. Range: 1-10. Default: 5."
+      zh_Hans: "网络请求重试次数。范围：1-10。默认：5。"
+    label:
+      en_US: Retries
+      zh_Hans: 重试次数
+    min: 1
+    max: 10
+  - name: timeout
+    type: number
+    required: false
+    form: llm
+    default: 240
+    description: 子进程超时时间
+    llm_description: 子进程执行超时时间（秒），范围5-3600，默认240秒。股东分析接口（十大股东、十大流通股东）数据量较大，建议使用较长的超时时间（默认900秒）。
+    human_description:
+      en_US: "Subprocess execution timeout in seconds. Range: 5-3600. Default: 240. Shareholder analysis interfaces (Top 10 Shareholders) handle large data volumes, so longer timeout is recommended (default 900 seconds)."
+      zh_Hans: "子进程执行超时时间（秒）。范围：5-3600。默认：240。股东分析接口（十大股东、十大流通股东）数据量较大，建议使用较长的超时时间（默认900秒）。"
+    label:
+      en_US: Subprocess Timeout
+      zh_Hans: 子进程超时时间
+    min: 5
+    max: 3600
+extra:
+  python:
+    source: tools/get_shareholder_holding_changes.py
+

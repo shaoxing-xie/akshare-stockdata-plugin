@@ -1,0 +1,64 @@
+identity:
+  author: shaoxing-xie
+  name: get_us_spot_quotes
+  label:
+    zh_Hans: 获取美股市场实时行情
+    en_US: Get US Stock Market Real-time Quotes
+description:
+  human:
+    zh_Hans: 获取美股市场实时行情数据，包括新浪的美股实时行情接口。
+    en_US: Get US stock market real-time quotes data, including Sina US stock real-time quotes interface.
+  llm: 获取美股市场实时行情数据。包括：新浪-美股-实时行情(延15分钟)。该接口不需要额外参数。
+parameters:
+  - name: interface
+    type: select
+    required: true
+    form: llm
+    default: stock_us_spot
+    description: 接口名称
+    llm_description: 选择美股实时行情接口
+    human_description:
+      en_US: "Select the US stock real-time quotes interface."
+      zh_Hans: "选择美股实时行情接口。"
+    label:
+      en_US: Interface
+      zh_Hans: 接口名称
+    options:
+      - label:
+          en_US: Sina - US Stock - Real-time Quotes (15min delay)
+          zh_Hans: 新浪-美股-实时行情(延15分钟)
+        value: stock_us_spot
+  - name: retries
+    type: number
+    required: false
+    form: llm
+    default: 5
+    description: 重试次数
+    llm_description: 网络请求重试次数，默认5次
+    human_description:
+      en_US: "Number of retries for network requests. Range: 1-10. Default: 5."
+      zh_Hans: "网络请求重试次数。范围：1-10。默认：5。"
+    label:
+      en_US: Retries
+      zh_Hans: 重试次数
+    min: 1
+    max: 10
+  - name: timeout
+    type: number
+    required: false
+    form: llm
+    default: 600
+    description: 子进程超时时间
+    llm_description: 子进程执行超时时间（秒），默认600秒
+    human_description:
+      en_US: "Subprocess execution timeout in seconds. Range: 5-3600. Default: 600."
+      zh_Hans: "子进程执行超时时间（秒）。范围：5-3600。默认：600。"
+    label:
+      en_US: Subprocess Timeout
+      zh_Hans: 子进程超时时间
+    min: 5
+    max: 3600
+extra:
+  python:
+    source: tools/get_us_spot_quotes.py
+

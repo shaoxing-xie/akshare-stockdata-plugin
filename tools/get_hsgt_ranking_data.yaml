@@ -1,0 +1,162 @@
+identity:
+  author: shaoxing-xie
+  name: get_hsgt_ranking_data
+  label:
+    zh_Hans: 获取沪深港通排行数据
+    en_US: Get HSGT Ranking Data
+description:
+  human:
+    zh_Hans: 获取沪深港通相关的排行数据，包括板块排行、个股排行等。帮助了解沪深港通中不同板块和个股的持股情况排行。
+    en_US: Get HSGT (Hong Kong-Shanghai-Shenzhen Stock Connect) related ranking data, including board rankings, stock rankings, etc. Helps understand HSGT holdings rankings for different boards and stocks.
+  llm: 获取沪深港通相关的排行数据，包括板块排行、个股排行等。包括：东方财富网-沪深港通持股-板块排行（需要排行类别和统计周期，返回板块的沪深港通持股排行数据）、东方财富网-沪深港通持股-个股排行（需要沪深港通类别和统计周期，返回个股的沪深港通持股排行数据）。返回排行数据，包括持股比例、持股数量、增持比例等信息。
+parameters:
+  - name: interface
+    type: select
+    required: true
+    form: llm
+    default: stock_hsgt_board_rank_em
+    description: 接口名称
+    llm_description: 选择沪深港通排行数据接口。包括：板块排行（需要排行类别和统计周期，返回板块的沪深港通持股排行数据，排行类别包括：北向资金增持行业板块排行、北向资金增持概念板块排行、北向资金增持地域板块排行）、个股排行（需要沪深港通类别和统计周期，返回个股的沪深港通持股排行数据，沪深港通类别包括：北向、沪股通、深股通）。
+    human_description:
+      en_US: "Select HSGT ranking data interface. Options: Board Rankings (requires ranking category and statistical period, returns HSGT holdings ranking data for boards, ranking categories include: Northbound Industry Board Ranking, Northbound Concept Board Ranking, Northbound Regional Board Ranking), Stock Rankings (requires HSGT category and statistical period, returns HSGT holdings ranking data for stocks, HSGT categories include: Northbound, Shanghai-HK Connect, Shenzhen-HK Connect)."
+      zh_Hans: "选择沪深港通排行数据接口。选项包括：板块排行（需要排行类别和统计周期，返回板块的沪深港通持股排行数据，排行类别包括：北向资金增持行业板块排行、北向资金增持概念板块排行、北向资金增持地域板块排行）、个股排行（需要沪深港通类别和统计周期，返回个股的沪深港通持股排行数据，沪深港通类别包括：北向、沪股通、深股通）。"
+    label:
+      en_US: Interface
+      zh_Hans: 接口名称
+    options:
+      - label:
+          en_US: East Money - HSGT Holdings Board Rankings - Specify Ranking Category and Statistical Period
+          zh_Hans: 东方财富网-沪深港通持股-板块排行-指定排行类别和统计周期
+        value: stock_hsgt_board_rank_em
+      - label:
+          en_US: East Money - HSGT Holdings Stock Rankings - Specify HSGT Category and Statistical Period
+          zh_Hans: 东方财富网-沪深港通持股-个股排行-指定沪深港通类别和统计周期
+        value: stock_hsgt_hold_stock_em
+  - name: symbol
+    type: select
+    required: false
+    form: llm
+    default: 北向资金增持行业板块排行
+    description: 排行类别
+    llm_description: 板块排行接口的排行类别参数。选项：北向资金增持行业板块排行（返回行业板块的沪深港通持股排行数据）、北向资金增持概念板块排行（返回概念板块的沪深港通持股排行数据）、北向资金增持地域板块排行（返回地域板块的沪深港通持股排行数据）。仅板块排行接口需要此参数。
+    human_description:
+      en_US: "Ranking category for board ranking interface. Options: Northbound Industry Board Ranking (returns HSGT holdings ranking data for industry boards), Northbound Concept Board Ranking (returns HSGT holdings ranking data for concept boards), Northbound Regional Board Ranking (returns HSGT holdings ranking data for regional boards). Only required for board ranking interface."
+      zh_Hans: "排行类别。板块排行接口的排行类别参数。选项：北向资金增持行业板块排行（返回行业板块的沪深港通持股排行数据）、北向资金增持概念板块排行（返回概念板块的沪深港通持股排行数据）、北向资金增持地域板块排行（返回地域板块的沪深港通持股排行数据）。仅板块排行接口需要此参数。"
+    label:
+      en_US: Ranking Category
+      zh_Hans: 排行类别
+    options:
+      - label:
+          en_US: Northbound Industry Board Ranking
+          zh_Hans: 北向资金增持行业板块排行
+        value: 北向资金增持行业板块排行
+      - label:
+          en_US: Northbound Concept Board Ranking
+          zh_Hans: 北向资金增持概念板块排行
+        value: 北向资金增持概念板块排行
+      - label:
+          en_US: Northbound Regional Board Ranking
+          zh_Hans: 北向资金增持地域板块排行
+        value: 北向资金增持地域板块排行
+  - name: market
+    type: select
+    required: false
+    form: llm
+    default: 北向
+    description: 沪深港通类别
+    llm_description: 个股排行接口的沪深港通类别参数。选项：北向（返回北向资金的个股持股排行数据）、沪股通（返回沪股通的个股持股排行数据）、深股通（返回深股通的个股持股排行数据）。仅个股排行接口需要此参数。
+    human_description:
+      en_US: "HSGT category for stock ranking interface. Options: Northbound (returns stock holdings ranking data for northbound funds), Shanghai-HK Connect (returns stock holdings ranking data for Shanghai-HK Connect), Shenzhen-HK Connect (returns stock holdings ranking data for Shenzhen-HK Connect). Only required for stock ranking interface."
+      zh_Hans: "沪深港通类别。个股排行接口的沪深港通类别参数。选项：北向（返回北向资金的个股持股排行数据）、沪股通（返回沪股通的个股持股排行数据）、深股通（返回深股通的个股持股排行数据）。仅个股排行接口需要此参数。"
+    label:
+      en_US: HSGT Category
+      zh_Hans: 沪深港通类别
+    options:
+      - label:
+          en_US: Northbound
+          zh_Hans: 北向
+        value: 北向
+      - label:
+          en_US: Shanghai-HK Connect
+          zh_Hans: 沪股通
+        value: 沪股通
+      - label:
+          en_US: Shenzhen-HK Connect
+          zh_Hans: 深股通
+        value: 深股通
+  - name: indicator
+    type: select
+    required: false
+    form: llm
+    default: 今日
+    description: 统计周期
+    llm_description: 排行数据接口的统计周期参数。选项：今日（今日排行）、3日（3日排行）、5日（5日排行）、10日（10日排行）、1月（月排行）、1季（季排行）、1年（年排行）。所有排行接口都需要此参数。
+    human_description:
+      en_US: "Statistical period for ranking data interfaces. Options: Today (today's ranking), 3 Days (3-day ranking), 5 Days (5-day ranking), 10 Days (10-day ranking), 1 Month (monthly ranking), 1 Quarter (quarterly ranking), 1 Year (yearly ranking). All ranking interfaces require this parameter."
+      zh_Hans: "统计周期。排行数据接口的统计周期参数。选项：今日（今日排行）、3日（3日排行）、5日（5日排行）、10日（10日排行）、1月（月排行）、1季（季排行）、1年（年排行）。所有排行接口都需要此参数。"
+    label:
+      en_US: Statistical Period
+      zh_Hans: 统计周期
+    options:
+      - label:
+          en_US: Today
+          zh_Hans: 今日
+        value: 今日
+      - label:
+          en_US: 3 Days
+          zh_Hans: 3日
+        value: 3日
+      - label:
+          en_US: 5 Days
+          zh_Hans: 5日
+        value: 5日
+      - label:
+          en_US: 10 Days
+          zh_Hans: 10日
+        value: 10日
+      - label:
+          en_US: 1 Month
+          zh_Hans: 1月
+        value: 1月
+      - label:
+          en_US: 1 Quarter
+          zh_Hans: 1季
+        value: 1季
+      - label:
+          en_US: 1 Year
+          zh_Hans: 1年
+        value: 1年
+  - name: retries
+    type: number
+    required: false
+    form: llm
+    default: 5
+    description: 重试次数
+    llm_description: 网络请求重试次数，范围1-10，默认5次。
+    human_description:
+      en_US: "Number of retries for network requests. Range: 1-10. Default: 5."
+      zh_Hans: "网络请求重试次数。范围：1-10。默认：5。"
+    label:
+      en_US: Retries
+      zh_Hans: 重试次数
+    min: 1
+    max: 10
+  - name: timeout
+    type: number
+    required: false
+    form: llm
+    default: 600
+    description: 子进程超时时间
+    llm_description: 子进程执行超时时间（秒），范围5-3600，默认600秒（10分钟）。
+    human_description:
+      en_US: "Subprocess execution timeout in seconds. Range: 5-3600. Default: 600 (10 minutes)."
+      zh_Hans: "子进程执行超时时间（秒）。范围：5-3600。默认：600（10分钟）。"
+    label:
+      en_US: Subprocess Timeout
+      zh_Hans: 子进程超时时间
+    min: 5
+    max: 3600
+extra:
+  python:
+    source: tools/get_hsgt_ranking_data.py
+

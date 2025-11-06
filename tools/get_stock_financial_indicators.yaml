@@ -1,0 +1,107 @@
+identity:
+  author: shaoxing-xie
+  name: get_stock_financial_indicators
+  label:
+    zh_Hans: 获取个股财务指标数据
+    en_US: Get Individual Stock Financial Indicators Data
+description:
+  human:
+    zh_Hans: 获取指定股票的关键财务指标和主要指标数据，包括每股收益、净资产收益率、毛利率、净利率等核心财务指标数据。
+    en_US: Get key financial indicators and main indicators data for specified stocks, including earnings per share, return on equity, gross profit margin, net profit margin and other core financial indicator data.
+  llm: 获取指定股票的关键财务指标和主要指标数据，包括每股收益、净资产收益率、毛利率、净利率等核心财务指标数据。包括：新浪财经-财务报表-关键指标（需要股票代码，返回指定股票所有历史关键指标数据）、同花顺-财务指标-主要指标（需要股票代码和指标类型，返回指定股票指定指标类型的主要指标所有历史数据）。根据不同接口提供相应参数。
+parameters:
+  - name: interface
+    type: select
+    required: true
+    form: llm
+    default: stock_financial_abstract
+    description: 接口名称
+    llm_description: 选择财务指标数据接口。包括：新浪财经-财务报表-关键指标（需要股票代码，返回指定股票所有历史关键指标数据）、同花顺-财务指标-主要指标（需要股票代码和指标类型，返回指定股票指定指标类型的主要指标所有历史数据）。根据不同接口提供相应参数。
+    human_description:
+      en_US: "Select financial indicators data interface. Options: Sina Finance Key Indicators, Flush Main Indicators."
+      zh_Hans: "选择财务指标数据接口。选项包括：新浪财经-财务报表-关键指标、同花顺-财务指标-主要指标。"
+    label:
+      en_US: Interface
+      zh_Hans: 接口名称
+    options:
+      - label:
+          en_US: Sina Finance - Financial Report - Key Indicators - Specified Stock
+          zh_Hans: 新浪财经-财务报表-关键指标-指定股票
+        value: stock_financial_abstract
+      - label:
+          en_US: Flush - Financial Indicators - Main Indicators - Specified Stock, Indicator Type
+          zh_Hans: 同花顺-财务指标-主要指标-指定股票、指标类型
+        value: stock_financial_abstract_ths
+  - name: stock_code
+    type: string
+    required: true
+    form: llm
+    default: "000001"
+    description: 股票代码
+    llm_description: 股票代码，支持A股格式，如600519（沪市）、000001（深市）、430xxx（北交所）等。
+    human_description:
+      en_US: "Stock code. Supports A-share formats, e.g., 600519 (Shanghai), 000001 (Shenzhen), 430xxx (Beijing Stock Exchange), etc."
+      zh_Hans: "股票代码。支持A股格式，如600519（沪市）、000001（深市）、430xxx（北交所）等。"
+    label:
+      en_US: Stock Code
+      zh_Hans: 股票代码
+  - name: indicator_ths
+    type: select
+    required: false
+    form: llm
+    default: 按报告期
+    description: 指标类型
+    llm_description: 指标类型参数，用于同花顺财务指标接口。选项：按报告期、按年度、按单季度。
+    human_description:
+      en_US: "Indicator type. Required for Flush financial indicators interface. Options: By Report Period (按报告期), By Year (按年度), By Single Quarter (按单季度)."
+      zh_Hans: "指标类型。用于同花顺财务指标接口。选项：按报告期、按年度、按单季度。"
+    label:
+      en_US: Indicator Type
+      zh_Hans: 指标类型
+    options:
+      - label:
+          en_US: By Report Period
+          zh_Hans: 按报告期
+        value: 按报告期
+      - label:
+          en_US: By Year
+          zh_Hans: 按年度
+        value: 按年度
+      - label:
+          en_US: By Single Quarter
+          zh_Hans: 按单季度
+        value: 按单季度
+  - name: retries
+    type: number
+    required: false
+    form: llm
+    default: 5
+    description: 重试次数
+    llm_description: 网络请求重试次数，范围1-10，默认5次。
+    human_description:
+      en_US: "Number of retries for network requests. Range: 1-10. Default: 5."
+      zh_Hans: "网络请求重试次数。范围：1-10。默认：5。"
+    label:
+      en_US: Retries
+      zh_Hans: 重试次数
+    min: 1
+    max: 10
+  - name: timeout
+    type: number
+    required: false
+    form: llm
+    default: 600
+    description: 子进程超时时间
+    llm_description: 子进程执行超时时间（秒），范围5-3600，默认600秒（10分钟）。财务指标数据量可能较大，建议设置较长的超时时间。
+    human_description:
+      en_US: "Subprocess execution timeout in seconds. Range: 5-3600. Default: 600 (10 minutes). Financial indicator data may be large, suggest longer timeout."
+      zh_Hans: "子进程执行超时时间（秒）。范围：5-3600。默认：600（10分钟）。财务指标数据量可能较大，建议设置较长的超时时间。"
+    label:
+      en_US: Subprocess Timeout
+      zh_Hans: 子进程超时时间
+    min: 5
+    max: 3600
+extra:
+  python:
+    source: tools/get_stock_financial_indicators.py
+

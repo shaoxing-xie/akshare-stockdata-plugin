@@ -1,0 +1,101 @@
+identity:
+  author: shaoxing-xie
+  name: get_stock_performance_reports
+  label:
+    zh_Hans: 获取A股业绩快报数据
+    en_US: Get A-share Performance Report Data
+description:
+  human:
+    zh_Hans: 获取A股上市公司的业绩快报数据，包括业绩报表、业绩快报、业绩预告以及三大财务报表（利润表、现金流量表、资产负债表）的业绩快报数据。
+    en_US: Get A-share listed companies' performance report data, including performance reports, performance briefings, performance forecasts, and performance briefings of the three major financial statements (income statement, cash flow statement, balance sheet).
+  llm: 获取A股上市公司的业绩快报数据，包括业绩报表、业绩快报、业绩预告以及三大财务报表（利润表、现金流量表、资产负债表）的业绩快报数据。包括：东方财富网-业绩报表（需要报告日期，返回指定报告期的业绩报表数据）、东方财富网-业绩快报（需要报告日期，返回指定报告期的业绩快报数据）、东方财富网-业绩预告（需要报告日期，返回指定报告期的业绩预告数据）、东方财富网-业绩快报-利润表（需要报告日期，返回指定报告期的利润表数据）、东方财富网-业绩快报-现金流量表（需要报告日期，返回指定报告期的现金流量表数据）、东方财富网-业绩快报-资产负债表（需要报告日期，返回指定报告期的资产负债表数据）、东方财富网-北交所-业绩快报-资产负债表（需要报告日期，返回北交所指定报告期的资产负债表数据）。所有接口都需要报告日期参数。
+parameters:
+  - name: interface
+    type: select
+    required: true
+    form: llm
+    default: stock_yjkb_em
+    description: 接口名称
+    llm_description: 选择A股业绩快报数据接口。包括：东方财富网-业绩报表（需要报告日期，返回指定报告期的业绩报表数据）、东方财富网-业绩快报（需要报告日期，返回指定报告期的业绩快报数据）、东方财富网-业绩预告（需要报告日期，返回指定报告期的业绩预告数据）、东方财富网-业绩快报-利润表（需要报告日期，返回指定报告期的利润表数据）、东方财富网-业绩快报-现金流量表（需要报告日期，返回指定报告期的现金流量表数据）、东方财富网-业绩快报-资产负债表（需要报告日期，返回指定报告期的资产负债表数据）、东方财富网-北交所-业绩快报-资产负债表（需要报告日期，返回北交所指定报告期的资产负债表数据）。所有接口都需要报告日期参数。
+    human_description:
+      en_US: "Select A-share performance report data interface. Options: Performance Report, Performance Briefing, Performance Forecast, Income Statement, Cash Flow Statement, Balance Sheet. All interfaces require report date parameter."
+      zh_Hans: "选择A股业绩快报数据接口。选项包括：业绩报表、业绩快报、业绩预告、利润表、现金流量表、资产负债表、北交所资产负债表。所有接口都需要报告日期参数。"
+    label:
+      en_US: Interface
+      zh_Hans: 接口名称
+    options:
+      - label:
+          en_US: East Money - Performance Report - Specified Report Date
+          zh_Hans: 东方财富网-业绩报表-指定报告日期
+        value: stock_yjbb_em
+      - label:
+          en_US: East Money - Performance Briefing - Specified Report Date
+          zh_Hans: 东方财富网-业绩快报-指定报告日期
+        value: stock_yjkb_em
+      - label:
+          en_US: East Money - Performance Forecast - Specified Report Date
+          zh_Hans: 东方财富网-业绩预告-指定报告日期
+        value: stock_yjyg_em
+      - label:
+          en_US: East Money - Performance Briefing - Income Statement - Specified Report Date
+          zh_Hans: 东方财富网-业绩快报-利润表-指定报告日期
+        value: stock_lrb_em
+      - label:
+          en_US: East Money - Performance Briefing - Cash Flow Statement - Specified Report Date
+          zh_Hans: 东方财富网-业绩快报-现金流量表-指定报告日期
+        value: stock_xjll_em
+      - label:
+          en_US: East Money - Performance Briefing - Balance Sheet - Specified Report Date
+          zh_Hans: 东方财富网-业绩快报-资产负债表-指定报告日期
+        value: stock_zcfz_em
+      - label:
+          en_US: East Money - Beijing Stock Exchange - Performance Briefing - Balance Sheet - Specified Report Date
+          zh_Hans: 东方财富网-北交所-业绩快报-资产负债表-指定报告日期
+        value: stock_zcfz_bj_em
+  - name: date
+    type: string
+    required: true
+    form: llm
+    default: "20250630"
+    description: 报告日期
+    llm_description: 报告日期，格式为YYYYMMDD，如20250630表示2025年6月30日。格式为'XXXX0331', 'XXXX0630', 'XXXX0930', 'XXXX1231'，从20100331开始（业绩报表、业绩快报、业绩预告从20100331开始，业绩快报三大报表从20120331开始）。
+    human_description:
+      en_US: "Report date. Format: YYYYMMDD, e.g., 20250630. Format: 'XXXX0331', 'XXXX0630', 'XXXX0930', 'XXXX1231', starting from 20100331."
+      zh_Hans: "报告日期。格式为YYYYMMDD，如20250630。格式为'XXXX0331', 'XXXX0630', 'XXXX0930', 'XXXX1231'，从20100331开始。"
+    label:
+      en_US: Report Date
+      zh_Hans: 报告日期
+  - name: retries
+    type: number
+    required: false
+    form: llm
+    default: 5
+    description: 重试次数
+    llm_description: 网络请求重试次数，范围1-10，默认5次。
+    human_description:
+      en_US: "Number of retries for network requests. Range: 1-10. Default: 5."
+      zh_Hans: "网络请求重试次数。范围：1-10。默认：5。"
+    label:
+      en_US: Retries
+      zh_Hans: 重试次数
+    min: 1
+    max: 10
+  - name: timeout
+    type: number
+    required: false
+    form: llm
+    default: 600
+    description: 子进程超时时间
+    llm_description: 子进程执行超时时间（秒），范围5-3600，默认600秒（10分钟）。业绩快报数据量可能较大，建议设置较长的超时时间。
+    human_description:
+      en_US: "Subprocess execution timeout in seconds. Range: 5-3600. Default: 600."
+      zh_Hans: "子进程执行超时时间（秒）。范围：5-3600。默认：600（10分钟）。"
+    label:
+      en_US: Subprocess Timeout
+      zh_Hans: 子进程超时时间
+    min: 5
+    max: 3600
+extra:
+  python:
+    source: tools/get_stock_performance_reports.py
+

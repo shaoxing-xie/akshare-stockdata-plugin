@@ -751,13 +751,61 @@ def process_large_dataframe_output(df: pd.DataFrame, tool_instance, chunk_size=5
         return
     
     total_rows = len(df)
-    if total_rows <= chunk_size:
-        # 数据量不大，直接处理（使用无限大的max_rows_for_single_output以避免递归）
+    # 对于宽表（列数>200），即使行数不多，也使用分块处理逻辑以避免clean_nan_values的递归深度问题
+    is_wide_table = len(df.columns) > 200
+    
+    # 如果数据行数不多（<50行），即使是宽表也输出完整表格，以确保markdown转换节点能正确识别
+    # 这样可以避免分块导致的表格不完整问题
+    if total_rows <= chunk_size and not is_wide_table:
+        # 数据量不大且不是宽表，直接处理（使用无限大的max_rows_for_single_output以避免递归）
         yield from process_dataframe_output(df, tool_instance, max_rows_for_single_output=999999)
         return
     
-    # 数据量大，分块处理并逐块发送（避免一次性输出过大）
+    # 对于宽表且行数不多的情况（<50行），直接输出完整表格，不分块
+    # 这样可以确保markdown转换节点能识别完整表格，同时避免递归深度问题
+    if is_wide_table and total_rows <= 50:
+        # 预处理DataFrame，确保所有列都是字符串类型
+        df_clean = df.copy()
+        for col in df_clean.columns:
+            df_clean[col] = df_clean[col].astype(str)
+            df_clean[col] = df_clean[col].replace(['nan', 'NaT', 'None', 'null'], '')
+        
+        # 生成完整的markdown表格（不分块）
+        try:
+            text_output = df_clean.to_markdown(index=True, tablefmt='pipe')
+        except Exception as e:
+            logging.warning(f"to_markdown failed for wide table: {e}, using manual markdown generation")
+            # 手动构建Markdown表格
+            columns = df_clean.columns.tolist()
+            text_output = "| " + " | ".join(columns) + " |\n"
+            text_output += "| " + " | ".join(["---"] * len(columns)) + " |\n"
+            for idx, row in df_clean.iterrows():
+                row_data = [str(row[col]) for col in columns]
+                text_output += "| " + " | ".join(row_data) + " |\n"
+        
+        yield tool_instance.create_text_message(text_output)
+        
+        # 处理JSON数据（跳过clean_nan_values以避免递归深度问题）
+        df_reset = df.reset_index(drop=True)
+        df_json_clean = df_reset.copy()
+        for col in df_json_clean.columns:
+            if df_json_clean[col].dtype == 'object':
+                df_json_clean[col] = df_json_clean[col].astype(str)
+                df_json_clean[col] = df_json_clean[col].replace(['nan', 'NaT', 'None', 'null'], '')
+            elif np.issubdtype(df_json_clean[col].dtype, np.integer):
+                df_json_clean[col] = df_json_clean[col].astype('int64')
+            elif np.issubdtype(df_json_clean[col].dtype, np.floating):
+                df_json_clean[col] = df_json_clean[col].replace([np.inf, -np.inf], np.nan)
+                df_json_clean[col] = df_json_clean[col].fillna('')
+        
+        json_data = df_json_clean.to_dict(orient="records")
+        yield tool_instance.create_json_message({"data": json_data})
+        return
+    
+    # 数据量大或宽表，分块处理并逐块发送（避免一次性输出过大）
     # 注意：不输出分块处理的提示信息，每块只包含数据
+    # 对于宽表（列数>200），跳过clean_nan_values以避免递归深度问题，因为数据已经预处理过了
+    
     for i in range(0, total_rows, chunk_size):
         chunk = df.iloc[i:i+chunk_size]
         
@@ -775,28 +823,66 @@ def process_large_dataframe_output(df: pd.DataFrame, tool_instance, chunk_size=5
                 chunk_clean[col] = chunk_clean[col].fillna('')
         
         chunk_json_data = chunk_clean.to_dict(orient="records")
-        chunk_json_data = clean_nan_values(chunk_json_data)
+        # 对于宽表，跳过clean_nan_values以避免递归深度问题，数据已经通过fillna('')处理过了
+        if not is_wide_table:
+            chunk_json_data = clean_nan_values(chunk_json_data)
         
         # 处理TEXT格式
         try:
             chunk_clean_text = chunk.copy()
             for col in chunk_clean_text.columns:
+                # 先转换为字符串，避免to_markdown时的类型转换错误
                 chunk_clean_text[col] = chunk_clean_text[col].astype(str)
+                # 清理特殊值
+                chunk_clean_text[col] = chunk_clean_text[col].replace(['nan', 'NaT', 'None', 'null', '<NA>'], '')
+                # 处理布尔值的字符串表示
+                chunk_clean_text[col] = chunk_clean_text[col].replace(['True', 'False'], ['true', 'false'])
+            # 确保索引也是字符串类型，避免to_markdown时的类型转换错误
+            chunk_clean_text.index = chunk_clean_text.index.astype(str)
             chunk_text = chunk_clean_text.to_markdown(index=True, tablefmt='pipe')
-        except Exception:
-            chunk_text = str(chunk)
+        except Exception as e:
+            # 如果to_markdown失败，手动构建Markdown表格，而不是使用str(chunk)
+            logging.warning(f"to_markdown failed for chunk: {e}, using manual markdown generation")
+            try:
+                # 手动构建Markdown表格
+                chunk_clean_text = chunk.copy()
+                for col in chunk_clean_text.columns:
+                    chunk_clean_text[col] = chunk_clean_text[col].astype(str)
+                    chunk_clean_text[col] = chunk_clean_text[col].replace(['nan', 'NaT', 'None', 'null'], '')
+                
+                columns = chunk_clean_text.columns.tolist()
+                # 如果有索引，添加索引列
+                has_index = chunk_clean_text.index.name is not None or not chunk_clean_text.index.equals(pd.RangeIndex(len(chunk_clean_text)))
+                
+                # 构建表头
+                if has_index:
+                    chunk_text = "| " + "index" + " | " + " | ".join(columns) + " |\n"
+                    chunk_text += "| " + "---" + " | " + " | ".join(["---"] * len(columns)) + " |\n"
+                else:
+                    chunk_text = "| " + " | ".join(columns) + " |\n"
+                    chunk_text += "| " + " | ".join(["---"] * len(columns)) + " |\n"
+                
+                # 构建数据行
+                for idx, row in chunk_clean_text.iterrows():
+                    row_data = []
+                    if has_index:
+                        row_data.append(str(idx))
+                    for col in columns:
+                        value = str(row[col]) if pd.notna(row[col]) else ""
+                        # 转义markdown特殊字符
+                        value = value.replace('|', '\\|').replace('\n', ' ').replace('\r', ' ')
+                        row_data.append(value)
+                    chunk_text += "| " + " | ".join(row_data) + " |\n"
+            except Exception as e2:
+                logging.warning(f"Manual markdown generation failed: {e2}, using simple format")
+                # 如果都失败，使用简单的格式
+                chunk_text = str(chunk)
         
         # 发送消息
-        if i == 0:
-            # 第一个块：包含完整的表格（带表头）
-            yield tool_instance.create_text_message(chunk_text)
-        else:
-            # 后续块：只包含数据行（去掉表头行）
-            lines = chunk_text.split('\n')
-            if len(lines) > 2:
-                data_lines = '\n'.join(lines[2:])
-                if data_lines.strip():
-                    yield tool_instance.create_text_message(data_lines)
+        # 对于大数据量的表格（宽表或非宽表），每个块都包含完整的表格（带表头），以确保markdown转换节点能正确识别表格
+        # 这样即使数据被分块，每个块仍然是有效的markdown表格，后台转换节点可以识别每个chunk
+        # 注意：虽然会有重复的表头，但这比让转换节点无法识别表格要好
+        yield tool_instance.create_text_message(chunk_text)
         
         # 发送JSON数据
         yield tool_instance.create_json_message({"data": chunk_json_data})

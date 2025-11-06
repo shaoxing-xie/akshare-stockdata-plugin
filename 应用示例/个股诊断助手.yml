@@ -19,7 +19,7 @@ dependencies:
 - current_identifier: null
   type: package
   value:
-    plugin_unique_identifier: shaoxing-xie/akshare_stockdata:0.6.0@87da1f9ccd279cad7ef73522ec35f8928dee65add90505774fd572552007517c
+    plugin_unique_identifier: shaoxing-xie/akshare_stockdata:0.7.0@87da1f9ccd279cad7ef73522ec35f8928dee65add90505774fd572552007517c
     version: null
 kind: app
 version: 0.4.0

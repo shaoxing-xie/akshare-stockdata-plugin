@@ -1,0 +1,132 @@
+identity:
+  author: shaoxing-xie
+  name: get_hsgt_fund_flow_data
+  label:
+    zh_Hans: 获取沪深港通资金流向数据
+    en_US: Get HSGT Fund Flow Data
+description:
+  human:
+    zh_Hans: 获取沪深港通相关的资金流向数据，包括分时数据、资金流向汇总、历史数据等。帮助了解沪深港通的资金流向情况。
+    en_US: Get HSGT (Hong Kong-Shanghai-Shenzhen Stock Connect) related fund flow data, including minute data, fund flow summary, historical data, etc. Helps understand HSGT fund flow situations.
+  llm: 获取沪深港通相关的资金流向数据，包括分时数据、资金流向汇总、历史数据等。包括：东方财富网-沪深港通-市场概括-分时数据（需要资金类别：北向资金/南向资金）、东方财富网-沪深港通资金流向（无需参数，返回沪深港通资金流向汇总数据）、东方财富网-沪深港通资金流向-历史数据（需要历史数据类别：北向资金/沪股通/深股通/南向资金/港股通沪/港股通深）。返回资金流向、成交额、净流入等数据。
+parameters:
+  - name: interface
+    type: select
+    required: true
+    form: llm
+    default: stock_hsgt_fund_flow_summary_em
+    description: 接口名称
+    llm_description: 选择沪深港通资金流向数据接口。包括：沪深港通分时数据（需要资金类别：北向资金/南向资金，返回沪深港通分时资金流向数据）、沪深港通资金流向（无需参数，返回沪深港通资金流向汇总数据）、沪深港通历史数据（需要历史数据类别：北向资金/沪股通/深股通/南向资金/港股通沪/港股通深，返回沪深港通历史资金流向数据）。
+    human_description:
+      en_US: "Select HSGT fund flow data interface. Options: HSGT Minute Data (requires fund category: Northbound/Southbound Funds, returns HSGT minute fund flow data), HSGT Fund Flow Summary (requires no parameters, returns HSGT fund flow summary data), HSGT Historical Data (requires historical data category: Northbound/Shanghai-HK Connect/Shenzhen-HK Connect/Southbound/HK Connect Shanghai/HK Connect Shenzhen, returns HSGT historical fund flow data)."
+      zh_Hans: "选择沪深港通资金流向数据接口。选项包括：沪深港通分时数据（需要资金类别：北向资金/南向资金，返回沪深港通分时资金流向数据）、沪深港通资金流向（无需参数，返回沪深港通资金流向汇总数据）、沪深港通历史数据（需要历史数据类别：北向资金/沪股通/深股通/南向资金/港股通沪/港股通深，返回沪深港通历史资金流向数据）。"
+    label:
+      en_US: Interface
+      zh_Hans: 接口名称
+    options:
+      - label:
+          en_US: East Money - HSGT Fund Flow Summary
+          zh_Hans: 东方财富网-沪深港通资金流向
+        value: stock_hsgt_fund_flow_summary_em
+      - label:
+          en_US: East Money - HSGT Market Overview Minute Data - Specify Fund Category
+          zh_Hans: 东方财富网-沪深港通-市场概括-分时数据-指定资金类别
+        value: stock_hsgt_fund_min_em
+      - label:
+          en_US: East Money - HSGT Fund Flow Historical Data - Specify Historical Data Category
+          zh_Hans: 东方财富网-沪深港通资金流向-历史数据-指定历史数据类别
+        value: stock_hsgt_hist_em
+  - name: fund_category
+    type: select
+    required: false
+    form: llm
+    default: 南向资金
+    description: 资金类别
+    llm_description: 分时数据接口的资金类别参数。仅沪深港通分时数据接口需要此参数。选项：北向资金（返回北向资金的沪深港通分时数据）、南向资金（返回南向资金的沪深港通分时数据）。
+    human_description:
+      en_US: "Fund category for minute data interface. Only required for HSGT Minute Data interface. Options: Northbound Funds (returns northbound funds HSGT minute data), Southbound Funds (returns southbound funds HSGT minute data)."
+      zh_Hans: "资金类别。分时数据接口的资金类别参数。仅沪深港通分时数据接口需要此参数。选项：北向资金（返回北向资金的沪深港通分时数据）、南向资金（返回南向资金的沪深港通分时数据）。"
+    label:
+      en_US: Fund Category
+      zh_Hans: 资金类别
+    options:
+      - label:
+          en_US: Southbound Funds
+          zh_Hans: 南向资金
+        value: 南向资金
+      - label:
+          en_US: Northbound Funds
+          zh_Hans: 北向资金
+        value: 北向资金
+  - name: historical_data_category
+    type: select
+    required: false
+    form: llm
+    default: 南向资金
+    description: 历史数据类别
+    llm_description: 历史数据接口的历史数据类别参数。仅沪深港通历史数据接口需要此参数。选项：北向资金、沪股通、深股通、南向资金、港股通沪、港股通深。
+    human_description:
+      en_US: "Historical data category for historical data interface. Only required for HSGT Historical Data interface. Options: Northbound Funds, Shanghai-HK Connect, Shenzhen-HK Connect, Southbound Funds, HK Connect Shanghai, HK Connect Shenzhen."
+      zh_Hans: "历史数据类别。历史数据接口的历史数据类别参数。仅沪深港通历史数据接口需要此参数。选项：北向资金、沪股通、深股通、南向资金、港股通沪、港股通深。"
+    label:
+      en_US: Historical Data Category
+      zh_Hans: 历史数据类别
+    options:
+      - label:
+          en_US: Southbound Funds
+          zh_Hans: 南向资金
+        value: 南向资金
+      - label:
+          en_US: HK Connect Shanghai
+          zh_Hans: 港股通沪
+        value: 港股通沪
+      - label:
+          en_US: HK Connect Shenzhen
+          zh_Hans: 港股通深
+        value: 港股通深
+      - label:
+          en_US: Northbound Funds
+          zh_Hans: 北向资金
+        value: 北向资金
+      - label:
+          en_US: Shanghai-HK Connect
+          zh_Hans: 沪股通
+        value: 沪股通
+      - label:
+          en_US: Shenzhen-HK Connect
+          zh_Hans: 深股通
+        value: 深股通
+  - name: retries
+    type: number
+    required: false
+    form: llm
+    default: 5
+    description: 重试次数
+    llm_description: 网络请求重试次数，范围1-10，默认5次。
+    human_description:
+      en_US: "Number of retries for network requests. Range: 1-10. Default: 5."
+      zh_Hans: "网络请求重试次数。范围：1-10。默认：5。"
+    label:
+      en_US: Retries
+      zh_Hans: 重试次数
+    min: 1
+    max: 10
+  - name: timeout
+    type: number
+    required: false
+    form: llm
+    default: 600
+    description: 子进程超时时间
+    llm_description: 子进程执行超时时间（秒），范围5-3600，默认600秒（10分钟）。历史数据接口数据量可能较大，建议设置较长的超时时间。
+    human_description:
+      en_US: "Subprocess execution timeout in seconds. Range: 5-3600. Default: 600 (10 minutes). Historical data interfaces may have large data volumes, suggest longer timeout."
+      zh_Hans: "子进程执行超时时间（秒）。范围：5-3600。默认：600（10分钟）。历史数据接口数据量可能较大，建议设置较长的超时时间。"
+    label:
+      en_US: Subprocess Timeout
+      zh_Hans: 子进程超时时间
+    min: 5
+    max: 3600
+extra:
+  python:
+    source: tools/get_hsgt_fund_flow_data.py
+

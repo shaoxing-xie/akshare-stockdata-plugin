@@ -1,0 +1,98 @@
+identity:
+  author: shaoxing-xie
+  name: get_stock_rating_valuation
+  label:
+    zh_Hans: 获取个股评级记录与估值分析
+    en_US: Get Stock Rating and Valuation
+description:
+  human:
+    zh_Hans: 获取股票的机构评级记录和估值分析数据。包括个股级别的评级记录和估值分析，以及市场级别的投资评级数据。帮助了解股票的机构评级情况和估值水平，以及市场整体的投资评级情况。适用于股票评级分析、估值研究和投资决策。
+    en_US: Get institutional rating records and valuation analysis data for stocks. Includes stock-level rating records and valuation analysis, as well as market-level investment rating data. Helps understand the stock's institutional rating situation and valuation level, as well as overall market investment rating situation. Suitable for stock rating analysis, valuation research, and investment decisions.
+  llm: 获取股票的机构评级记录和估值分析数据。包括：新浪财经-机构推荐池-股票评级记录-指定股票（需要股票代码，返回指定股票的机构评级记录，包括评级机构、评级日期、投资评级、目标价等信息）、东方财富-估值分析-指定股票（需要股票代码，返回指定股票的估值分析数据，包括市盈率、市净率、市销率等估值指标，以及与行业对比情况）、巨潮资讯-投资评级-指定日期（需要交易日期，格式YYYYMMDD，返回指定交易日的所有股票投资评级数据，包括证券代码、证券简称、研究机构、研究员、投资评级、评级变化、目标价格等）。股票代码格式如"600519"（沪市）或"000001"（深市）。
+parameters:
+  - name: interface
+    type: select
+    required: true
+    form: llm
+    default: stock_institute_recommend_detail
+    description: 接口名称
+    llm_description: 选择股票评级记录与估值分析接口。包括：新浪财经-机构推荐池-股票评级记录-指定股票（需要股票代码，返回指定股票的机构评级记录，包括评级机构、评级日期、投资评级、目标价等信息）、东方财富-估值分析-指定股票（需要股票代码，返回指定股票的估值分析数据，包括市盈率、市净率、市销率等估值指标，以及与行业对比情况）、巨潮资讯-投资评级-指定日期（需要交易日期，格式YYYYMMDD，返回指定交易日的所有股票投资评级数据，包括证券代码、证券简称、研究机构、研究员、投资评级、评级变化、目标价格等）。
+    human_description:
+      en_US: "Select stock rating and valuation interface. Options: Rating Records (requires stock code, returns institutional rating records for specified stock including rating agency, date, investment rating, target price), Valuation Analysis (requires stock code, returns valuation analysis data for specified stock including P/E ratio, P/B ratio, P/S ratio, and industry comparison), Investment Rating (requires trading date in YYYYMMDD format, returns all stocks' investment rating data for specified date including stock code, stock name, research institution, researcher, investment rating, rating change, target price)."
+      zh_Hans: "选择股票评级记录与估值分析接口。选项包括：新浪财经-机构推荐池-股票评级记录-指定股票（需要股票代码，返回指定股票的机构评级记录，包括评级机构、评级日期、投资评级、目标价等信息）、东方财富-估值分析-指定股票（需要股票代码，返回指定股票的估值分析数据，包括市盈率、市净率、市销率等估值指标，以及与行业对比情况）、巨潮资讯-投资评级-指定日期（需要交易日期，格式YYYYMMDD，返回指定交易日的所有股票投资评级数据，包括证券代码、证券简称、研究机构、研究员、投资评级、评级变化、目标价格等）。"
+    label:
+      en_US: Interface
+      zh_Hans: 接口名称
+    options:
+      - label:
+          en_US: Sina Finance - Rating Records - Specific Stock
+          zh_Hans: 新浪财经-机构推荐池-股票评级记录-指定股票
+        value: stock_institute_recommend_detail
+      - label:
+          en_US: Eastmoney - Valuation Analysis - Specific Stock
+          zh_Hans: 东方财富-估值分析-指定股票
+        value: stock_value_em
+      - label:
+          en_US: Cninfo - Investment Rating - Specific Date
+          zh_Hans: 巨潮资讯-投资评级-指定日期
+        value: stock_rank_forecast_cninfo
+  - name: symbol
+    type: string
+    required: false
+    form: llm
+    default: "600519"
+    description: 股票代码
+    llm_description: 股票代码，格式如"600519"（沪市）或"000001"（深市）。支持带市场前缀的格式如"SH600519"或"SZ000001"。仅"股票评级记录"和"估值分析"接口需要此参数。
+    human_description:
+      en_US: "Stock code in format like '600519' (Shanghai) or '000001' (Shenzhen). Also supports market prefix format like 'SH600519' or 'SZ000001'. Required only for 'Rating Records' and 'Valuation Analysis' interfaces."
+      zh_Hans: "股票代码，格式如'600519'（沪市）或'000001'（深市）。支持带市场前缀的格式如'SH600519'或'SZ000001'。仅股票评级记录和估值分析接口需要此参数。"
+    label:
+      en_US: Stock Code
+      zh_Hans: 股票代码
+  - name: date
+    type: string
+    required: false
+    form: llm
+    default: "20250630"
+    description: 交易日期
+    llm_description: 交易日期，格式为YYYYMMDD（如20210910）。仅"投资评级"接口需要此参数。
+    human_description:
+      en_US: "Trading date in YYYYMMDD format (e.g., 20210910). Required only for 'Investment Rating' interface."
+      zh_Hans: "交易日期，格式为YYYYMMDD（如20210910）。仅投资评级接口需要此参数。"
+    label:
+      en_US: Trading Date
+      zh_Hans: 交易日期
+  - name: retries
+    type: number
+    required: false
+    form: llm
+    default: 5
+    description: 重试次数
+    llm_description: 网络请求重试次数，范围1-10，默认5次。
+    human_description:
+      en_US: "Number of retries for network requests. Range: 1-10. Default: 5."
+      zh_Hans: "网络请求重试次数。范围：1-10。默认：5。"
+    label:
+      en_US: Retries
+      zh_Hans: 重试次数
+    min: 1
+    max: 10
+  - name: timeout
+    type: number
+    required: false
+    form: llm
+    default: 240
+    description: 子进程超时时间
+    llm_description: 子进程执行超时时间（秒），范围5-3600，默认240秒。
+    human_description:
+      en_US: "Subprocess execution timeout in seconds. Range: 5-3600. Default: 240."
+      zh_Hans: "子进程执行超时时间（秒）。范围：5-3600。默认：240。"
+    label:
+      en_US: Subprocess Timeout
+      zh_Hans: 子进程超时时间
+    min: 5
+    max: 3600
+extra:
+  python:
+    source: tools/get_stock_rating_valuation.py
+

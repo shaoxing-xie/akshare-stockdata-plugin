@@ -1,0 +1,201 @@
+identity:
+  author: shaoxing-xie
+  name: get_stock_intraday_quotes
+  label:
+    zh_Hans: 获取个股日内行情
+    en_US: Get Stock Intraday Quotes
+description:
+  human:
+    zh_Hans: 获取指定股票的日内行情数据，包括分时行情、日内分时数据、分钟数据（包括盘前）、分笔行情数据等。帮助了解股票的日内交易情况。
+    en_US: Get intraday market data for specified stocks, including minute quotes, intraday minute data, minute data (including pre-market), tick data, etc. Helps understand intraday trading situations of stocks.
+  llm: 获取指定股票的日内行情数据，包括分时行情、日内分时数据、分钟数据（包括盘前）、分笔行情数据等。包括：东方财富网-沪深京A股-每日分时行情（需要股票代码、分时周期、日期范围、复权方式）、东方财富网-最近一个交易日-日内分时数据(包括盘前)（需要股票代码）、东方财富网-最近一个交易日-分钟数据(包括盘前)（需要股票代码、时间区间）、腾讯财经-最近交易日-历史分笔行情数据（需要股票代码）。返回日内交易价格、成交量、成交额等信息。
+parameters:
+  - name: interface
+    type: select
+    required: true
+    form: llm
+    default: stock_intraday_em
+    description: 接口名称
+    llm_description: 选择日内行情数据接口。包括：东方财富网-沪深京A股-每日分时行情（需要分时周期、日期范围、复权方式）、东方财富网-最近一个交易日-日内分时数据(包括盘前)（无需额外参数）、东方财富网-最近一个交易日-分钟数据(包括盘前)（需要时间区间）、腾讯财经-最近交易日-历史分笔行情数据（无需额外参数）。所有接口都需要股票代码参数。
+    human_description:
+      en_US: "Select intraday market data interface. Options: Eastmoney - A-share - Daily Minute Data (requires minute period, date range, adjustment), Eastmoney - Recent Trading Day - Intraday Data (no additional params), Eastmoney - Recent Trading Day - Pre-market Minute Data (requires time range), Tencent Finance - Recent Trading Day - Historical Tick Data (no additional params). All interfaces require stock symbol."
+      zh_Hans: "选择日内行情数据接口。选项包括：东方财富网-沪深京A股-每日分时行情（需要分时周期、日期范围、复权方式）、东方财富网-最近一个交易日-日内分时数据(包括盘前)（无需额外参数）、东方财富网-最近一个交易日-分钟数据(包括盘前)（需要时间区间）、腾讯财经-最近交易日-历史分笔行情数据（无需额外参数）。所有接口都需要股票代码参数。"
+    label:
+      en_US: Interface
+      zh_Hans: 接口名称
+    options:
+      - label:
+          en_US: Eastmoney - A-share - Daily Minute Data - Specified Stock, Minute Period, Adjustment and Date Range
+          zh_Hans: 东方财富网-沪深京A股-每日分时行情-指定股票、分时周期、复权方式和日期区间
+        value: stock_zh_a_hist_min_em
+      - label:
+          en_US: Eastmoney - Recent Trading Day - Intraday Data (Including Pre-market) - Specified Stock
+          zh_Hans: 东方财富网-最近一个交易日-日内分时数据(包括盘前)-指定股票
+        value: stock_intraday_em
+      - label:
+          en_US: Eastmoney - Recent Trading Day - Minute Data (Including Pre-market) - Specified Stock and Time Range
+          zh_Hans: 东方财富网-最近一个交易日-分钟数据(包括盘前)-指定股票、时间区间
+        value: stock_zh_a_hist_pre_min_em
+      - label:
+          en_US: Tencent Finance - Recent Trading Day - Historical Tick Data - Specified Stock
+          zh_Hans: 腾讯财经-最近交易日-历史分笔行情数据-指定股票
+        value: stock_zh_a_tick_tx
+  - name: symbol
+    type: string
+    required: true
+    form: llm
+    default: "000001"
+    description: 股票代码
+    llm_description: 股票代码，支持A股格式，如600519（沪市）、000001（深市）。
+    human_description:
+      en_US: "Stock symbol. Format: A-shares: 600519 (Shanghai), 000001 (Shenzhen)."
+      zh_Hans: "股票代码。格式：A股：600519（沪市）、000001（深市）。"
+    label:
+      en_US: Stock Symbol
+      zh_Hans: 股票代码
+  - name: period2
+    type: select
+    required: false
+    form: llm
+    default: 5
+    description: 周期（分时行情类）
+    llm_description: 分时行情接口的周期参数，仅东方财富网-沪深京A股-每日分时行情接口需要此参数。选项：1(1分钟)、5(5分钟)、15(15分钟)、30(30分钟)、60(60分钟)。
+    human_description:
+      en_US: "Period parameter for minute market data interface. Only required for Eastmoney - A-share - Daily Minute Data interface. Options: 1 (1 minute), 5 (5 minutes), 15 (15 minutes), 30 (30 minutes), 60 (60 minutes)."
+      zh_Hans: "周期（分时行情类）。仅东方财富网-沪深京A股-每日分时行情接口需要此参数。选项：1(1分钟)、5(5分钟)、15(15分钟)、30(30分钟)、60(60分钟)。"
+    label:
+      en_US: Period (Minute Data)
+      zh_Hans: 周期（分时行情类）
+    options:
+      - label:
+          en_US: 1 Minute
+          zh_Hans: 1分钟
+        value: "1"
+      - label:
+          en_US: 5 Minutes
+          zh_Hans: 5分钟
+        value: "5"
+      - label:
+          en_US: 15 Minutes
+          zh_Hans: 15分钟
+        value: "15"
+      - label:
+          en_US: 30 Minutes
+          zh_Hans: 30分钟
+        value: "30"
+      - label:
+          en_US: 60 Minutes
+          zh_Hans: 60分钟
+        value: "60"
+  - name: start_date
+    type: string
+    required: false
+    form: llm
+    default: "20250801"
+    description: 开始日期
+    llm_description: 历史数据的开始日期，格式为YYYYMMDD。仅东方财富网-沪深京A股-每日分时行情接口需要此参数。
+    human_description:
+      en_US: "Start date for historical data. Format: YYYYMMDD (20240101). Only required for Eastmoney - A-share - Daily Minute Data interface."
+      zh_Hans: "开始日期。历史数据的开始日期，格式为YYYYMMDD（20240101）。仅东方财富网-沪深京A股-每日分时行情接口需要此参数。"
+    label:
+      en_US: Start Date
+      zh_Hans: 开始日期
+  - name: end_date
+    type: string
+    required: false
+    form: llm
+    default: "20250915"
+    description: 结束日期
+    llm_description: 历史数据的结束日期，格式为YYYYMMDD。仅东方财富网-沪深京A股-每日分时行情接口需要此参数。
+    human_description:
+      en_US: "End date for historical data. Format: YYYYMMDD (20241231). Only required for Eastmoney - A-share - Daily Minute Data interface."
+      zh_Hans: "结束日期。历史数据的结束日期，格式为YYYYMMDD（20241231）。仅东方财富网-沪深京A股-每日分时行情接口需要此参数。"
+    label:
+      en_US: End Date
+      zh_Hans: 结束日期
+  - name: start_time
+    type: string
+    required: false
+    form: llm
+    default: "09:00:00"
+    description: 开始时间
+    llm_description: 盘前数据的开始时间，格式为HH:MM:SS。仅东方财富网-最近一个交易日-分钟数据(包括盘前)接口需要此参数。
+    human_description:
+      en_US: "Start time for pre-market data. Format: HH:MM:SS (09:00:00). Only required for Eastmoney - Recent Trading Day - Pre-market Minute Data interface."
+      zh_Hans: "开始时间。盘前数据的开始时间，格式为HH:MM:SS（09:00:00）。仅东方财富网-最近一个交易日-分钟数据(包括盘前)接口需要此参数。"
+    label:
+      en_US: Start Time
+      zh_Hans: 开始时间
+  - name: end_time
+    type: string
+    required: false
+    form: llm
+    default: "15:00:00"
+    description: 结束时间
+    llm_description: 盘前数据的结束时间，格式为HH:MM:SS。仅东方财富网-最近一个交易日-分钟数据(包括盘前)接口需要此参数。
+    human_description:
+      en_US: "End time for pre-market data. Format: HH:MM:SS (15:40:00). Only required for Eastmoney - Recent Trading Day - Pre-market Minute Data interface."
+      zh_Hans: "结束时间。盘前数据的结束时间，格式为HH:MM:SS（15:40:00）。仅东方财富网-最近一个交易日-分钟数据(包括盘前)接口需要此参数。"
+    label:
+      en_US: End Time
+      zh_Hans: 结束时间
+  - name: adjust
+    type: select
+    required: false
+    form: llm
+    default: "qfq"
+    description: 复权方式
+    llm_description: 价格复权方式，支持前复权、后复权、不复权。仅东方财富网-沪深京A股-每日分时行情接口需要此参数。注意：1分钟数据不支持复权。
+    human_description:
+      en_US: "Adjustment method. Options: qfq (forward adjustment), hfq (backward adjustment), none (no adjustment). Only required for Eastmoney - A-share - Daily Minute Data interface. Note: 1-minute data does not support adjustment."
+      zh_Hans: "复权方式。选项：qfq(前复权)、hfq(后复权)、none(不复权)。仅东方财富网-沪深京A股-每日分时行情接口需要此参数。注意：1分钟数据不支持复权。"
+    label:
+      en_US: Adjustment
+      zh_Hans: 复权方式
+    options:
+      - label:
+          en_US: No Adjustment
+          zh_Hans: 不复权
+        value: "none"
+      - label:
+          en_US: Forward Adjustment
+          zh_Hans: 前复权
+        value: "qfq"
+      - label:
+          en_US: Backward Adjustment
+          zh_Hans: 后复权
+        value: "hfq"
+  - name: retries
+    type: number
+    required: false
+    form: llm
+    default: 5
+    description: 重试次数
+    llm_description: 网络请求重试次数，范围1-10，默认5次。
+    human_description:
+      en_US: "Number of retries for network requests. Range: 1-10. Default: 5."
+      zh_Hans: "网络请求重试次数。范围：1-10。默认：5。"
+    label:
+      en_US: Retries
+      zh_Hans: 重试次数
+    min: 1
+    max: 10
+  - name: timeout
+    type: number
+    required: false
+    form: llm
+    default: 600
+    description: 子进程超时时间
+    llm_description: 子进程执行超时时间（秒），范围5-3600，默认600秒（10分钟）。日内行情接口数据量可能较大，建议设置较长的超时时间。
+    human_description:
+      en_US: "Subprocess execution timeout in seconds. Range: 5-3600. Default: 600 (10 minutes). Intraday market data interfaces may have large data volumes, suggest longer timeout."
+      zh_Hans: "子进程执行超时时间（秒）。范围：5-3600。默认：600（10分钟）。日内行情接口数据量可能较大，建议设置较长的超时时间。"
+    label:
+      en_US: Subprocess Timeout
+      zh_Hans: 子进程超时时间
+    min: 5
+    max: 3600
+extra:
+  python:
+    source: tools/get_stock_intraday_quotes.py
+

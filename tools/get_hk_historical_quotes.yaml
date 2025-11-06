@@ -1,0 +1,167 @@
+identity:
+  author: shaoxing-xie
+  name: get_hk_historical_quotes
+  label:
+    zh_Hans: 获取港股个股历史行情
+    en_US: Get Hong Kong Stock Individual Historical Quotes
+description:
+  human:
+    zh_Hans: 获取港股个股历史行情数据，包括历史K线数据，支持指定股票代码、周期、日期范围和复权方式。
+    en_US: Get Hong Kong stock individual historical quotes data, including historical K-line data, supporting specifying stock code, period, date range and adjustment method.
+  llm: 获取港股个股历史行情数据。包括：东方财富网-港股-历史行情数据-指定股票代码、周期、日期范围、复权方式、新浪-港股-历史行情数据-指定股票代码、复权方式。需要提供港股代码、周期（如适用）、日期范围（如适用）和复权方式（如适用）。
+parameters:
+  - name: interface
+    type: select
+    required: true
+    form: llm
+    default: stock_hk_hist
+    description: 接口名称
+    llm_description: 选择港股历史行情接口
+    human_description:
+      en_US: "Select the Hong Kong stock historical quotes interface."
+      zh_Hans: "选择港股历史行情接口。"
+    label:
+      en_US: Interface
+      zh_Hans: 接口名称
+    options:
+      - label:
+          en_US: East Money - HK Stock - Historical Data - Specify Stock Code, Period, Date Range, Adjustment Method
+          zh_Hans: 东方财富网-港股-历史行情数据-指定股票代码、周期、日期范围、复权方式
+        value: stock_hk_hist
+      - label:
+          en_US: Sina - HK Stock - Historical Data - Specify Stock Code, Adjustment Method
+          zh_Hans: 新浪-港股-历史行情数据-指定股票代码、复权方式
+        value: stock_hk_daily
+  - name: stock_code
+    type: string
+    required: false
+    form: llm
+    default: "00700"
+    description: 港股代码
+    llm_description: 港股代码，格式：00700、03900、HK00700；港股：5位数字代码(00700)或市场前缀(HK00700)
+    human_description:
+      en_US: "Hong Kong stock code. Format: 00700, 03900, HK00700."
+      zh_Hans: "港股代码。格式：00700、03900、HK00700；港股：5位数字代码(00700)或市场前缀(HK00700)。"
+    label:
+      en_US: HK Stock Code
+      zh_Hans: 港股代码
+  - name: period
+    type: select
+    required: false
+    form: llm
+    default: daily
+    description: 周期（历史行情类）
+    llm_description: 历史行情接口的周期参数，用于港股历史数据接口
+    human_description:
+      en_US: "Period. Required for: HK Stock - Historical Data. Options: daily (日线), weekly (周线), monthly (月线)."
+      zh_Hans: "周期（历史行情类）。需要此参数的接口：港股-历史行情数据。选项：daily(日线)、weekly(周线)、monthly(月线)。"
+    label:
+      en_US: Period (Historical Data)
+      zh_Hans: 周期（历史行情类）
+    options:
+      - label:
+          en_US: Daily
+          zh_Hans: 日线
+        value: "daily"
+      - label:
+          en_US: Weekly
+          zh_Hans: 周线
+        value: "weekly"
+      - label:
+          en_US: Monthly
+          zh_Hans: 月线
+        value: "monthly"
+  - name: start_date
+    type: string
+    required: false
+    form: llm
+    default: "20250101"
+    description: 开始日期
+    llm_description: 历史数据的开始日期，格式为YYYYMMDD
+    human_description:
+      en_US: "Start date. Required for: HK Stock - Historical Data. Format: YYYYMMDD (20240101)."
+      zh_Hans: "开始日期。需要此参数的接口：港股-历史行情数据。格式：YYYYMMDD(20240101)。"
+    label:
+      en_US: Start Date
+      zh_Hans: 开始日期
+  - name: end_date
+    type: string
+    required: false
+    form: llm
+    default: "20250915"
+    description: 结束日期
+    llm_description: 历史数据的结束日期，格式为YYYYMMDD
+    human_description:
+      en_US: "End date. Required for: HK Stock - Historical Data. Format: YYYYMMDD (20240101)."
+      zh_Hans: "结束日期。需要此参数的接口：港股-历史行情数据。格式：YYYYMMDD(20240101)。"
+    label:
+      en_US: End Date
+      zh_Hans: 结束日期
+  - name: adjust
+    type: select
+    required: false
+    form: llm
+    default: "none"
+    description: 复权方式
+    llm_description: 价格复权方式，支持前复权、后复权、不复权。新浪接口(stock_hk_daily)支持qfq(前复权)、hfq(后复权)、空字符串(不复权)，以及qfq-factor(前复权因子)、hfq-factor(后复权因子)
+    human_description:
+      en_US: "Adjustment method. Required for: HK Stock - Historical Data, HK Stock - Historical Daily Data (Sina). Options: qfq (前复权), hfq (后复权), none (不复权), qfq-factor (前复权因子), hfq-factor (后复权因子). Note: stock_hk_daily (Sina) supports all options including factor modes."
+      zh_Hans: "复权方式。需要此参数的接口：港股-历史行情数据、港股-历史行情数据(新浪)。选项：qfq(前复权)、hfq(后复权)、none(不复权)、qfq-factor(前复权因子)、hfq-factor(后复权因子)。注意：stock_hk_daily(新浪)支持所有选项包括因子模式。"
+    label:
+      en_US: Adjustment
+      zh_Hans: 复权方式
+    options:
+      - label:
+          en_US: No Adjustment
+          zh_Hans: 不复权
+        value: "none"
+      - label:
+          en_US: Forward Adjustment
+          zh_Hans: 前复权
+        value: "qfq"
+      - label:
+          en_US: Backward Adjustment
+          zh_Hans: 后复权
+        value: "hfq"
+      - label:
+          en_US: Forward Adjustment Factor (Sina interfaces only)
+          zh_Hans: 前复权因子 (仅新浪接口)
+        value: "qfq-factor"
+      - label:
+          en_US: Backward Adjustment Factor (Sina interfaces only)
+          zh_Hans: 后复权因子 (仅新浪接口)
+        value: "hfq-factor"
+  - name: retries
+    type: number
+    required: false
+    form: llm
+    default: 5
+    description: 重试次数
+    llm_description: 网络请求重试次数，默认5次
+    human_description:
+      en_US: "Number of retries for network requests. Range: 1-10. Default: 5."
+      zh_Hans: "网络请求重试次数。范围：1-10。默认：5。"
+    label:
+      en_US: Retries
+      zh_Hans: 重试次数
+    min: 1
+    max: 10
+  - name: timeout
+    type: number
+    required: false
+    form: llm
+    default: 600
+    description: 子进程超时时间
+    llm_description: 子进程执行超时时间（秒），默认600秒
+    human_description:
+      en_US: "Subprocess execution timeout in seconds. Range: 5-3600. Default: 600."
+      zh_Hans: "子进程执行超时时间（秒）。范围：5-3600。默认：600。"
+    label:
+      en_US: Subprocess Timeout
+      zh_Hans: 子进程超时时间
+    min: 5
+    max: 3600
+extra:
+  python:
+    source: tools/get_hk_historical_quotes.py
+

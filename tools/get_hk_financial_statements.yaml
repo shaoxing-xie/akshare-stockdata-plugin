@@ -1,0 +1,125 @@
+identity:
+  author: shaoxing-xie
+  name: get_hk_financial_statements
+  label:
+    zh_Hans: 获取港股财务分析三大报表
+    en_US: Get Hong Kong Stock Financial Analysis Three Major Statements
+description:
+  human:
+    zh_Hans: 获取港股财务分析三大报表数据，包括资产负债表、利润表和现金流量表，支持指定股票代码、报表类型和指标类型。
+    en_US: Get Hong Kong stock financial analysis three major statements data, including balance sheet, profit statement and cash flow statement, supporting specifying stock code, report type and indicator type.
+  llm: 获取港股财务分析三大报表数据。包括：东方财富网-港股-财务报表-三大报表-指定股票代码、报表类型、指标类型。需要提供港股代码、报表类型和指标类型。
+parameters:
+  - name: interface
+    type: select
+    required: true
+    form: llm
+    default: stock_financial_hk_report_em
+    description: 接口名称
+    llm_description: 选择港股财务分析三大报表接口
+    human_description:
+      en_US: "Select the Hong Kong stock financial analysis three major statements interface."
+      zh_Hans: "选择港股财务分析三大报表接口。"
+    label:
+      en_US: Interface
+      zh_Hans: 接口名称
+    options:
+      - label:
+          en_US: East Money - HK - Financial Statements - Three Major Reports - Specify Stock Code, Report Type, Indicator Type
+          zh_Hans: 东方财富网-港股-财务报表-三大报表-指定股票代码、报表类型、指标类型
+        value: stock_financial_hk_report_em
+  - name: stock_code
+    type: string
+    required: false
+    form: llm
+    default: "00700"
+    description: 港股代码
+    llm_description: 港股代码，格式：00700、03900、HK00700；港股：5位数字代码(00700)或市场前缀(HK00700)
+    human_description:
+      en_US: "Hong Kong stock code. Format: 00700, 03900, HK00700."
+      zh_Hans: "港股代码。格式：00700、03900、HK00700；港股：5位数字代码(00700)或市场前缀(HK00700)。"
+    label:
+      en_US: HK Stock Code
+      zh_Hans: 港股代码
+  - name: indicator_hk
+    type: select
+    required: false
+    form: llm
+    default: 年度
+    description: 港股指标类型
+    llm_description: 港股财务指标接口的指标类型参数
+    human_description:
+      en_US: "HK indicator type. Required for: HK - Financial Statements - Three Major Reports. Options: 年度 (Annual), 报告期 (Report Period)."
+      zh_Hans: "港股指标类型。需要此参数的接口：港股-财务报表-三大报表。选项：年度、报告期。"
+    label:
+      en_US: HK Indicator Type
+      zh_Hans: 港股指标类型
+    options:
+      - label:
+          en_US: Annual
+          zh_Hans: 年度
+        value: "年度"
+      - label:
+          en_US: Report Period
+          zh_Hans: 报告期
+        value: "报告期"
+  - name: report_type
+    type: select
+    required: false
+    form: llm
+    default: 资产负债表
+    description: 报表类型
+    llm_description: 港股三大报表接口的报表类型参数
+    human_description:
+      en_US: "Report type. Required for: HK - Financial Statements - Three Major Reports. Options: 资产负债表 (Balance Sheet), 利润表 (Profit Statement), 现金流量表 (Cash Flow Statement)."
+      zh_Hans: "报表类型。需要此参数的接口：港股-财务报表-三大报表。选项：资产负债表、利润表、现金流量表。"
+    label:
+      en_US: Report Type
+      zh_Hans: 报表类型
+    options:
+      - label:
+          en_US: Balance Sheet
+          zh_Hans: 资产负债表
+        value: "资产负债表"
+      - label:
+          en_US: Profit Statement
+          zh_Hans: 利润表
+        value: "利润表"
+      - label:
+          en_US: Cash Flow Statement
+          zh_Hans: 现金流量表
+        value: "现金流量表"
+  - name: retries
+    type: number
+    required: false
+    form: llm
+    default: 5
+    description: 重试次数
+    llm_description: 网络请求重试次数，默认5次
+    human_description:
+      en_US: "Number of retries for network requests. Range: 1-10. Default: 5."
+      zh_Hans: "网络请求重试次数。范围：1-10。默认：5。"
+    label:
+      en_US: Retries
+      zh_Hans: 重试次数
+    min: 1
+    max: 10
+  - name: timeout
+    type: number
+    required: false
+    form: llm
+    default: 600
+    description: 子进程超时时间
+    llm_description: 子进程执行超时时间（秒），默认600秒
+    human_description:
+      en_US: "Subprocess execution timeout in seconds. Range: 5-3600. Default: 600."
+      zh_Hans: "子进程执行超时时间（秒）。范围：5-3600。默认：600。"
+    label:
+      en_US: Subprocess Timeout
+      zh_Hans: 子进程超时时间
+    min: 5
+    max: 3600
+extra:
+  python:
+    source: tools/get_hk_financial_statements.py
+

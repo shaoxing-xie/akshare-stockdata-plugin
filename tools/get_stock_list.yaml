@@ -1,0 +1,97 @@
+identity:
+  author: shaoxing-xie
+  name: get_stock_list
+  label:
+    zh_Hans: 获取股票列表数据
+    en_US: Get Stock List Data
+description:
+  human:
+    zh_Hans: 获取股票列表数据。包括A股、上证、深证、北证股票列表，以及终止/暂停上市股票等数据。帮助了解股票代码和简称信息，以及上市状态。适用于股票代码查询、股票列表管理和市场分析。
+    en_US: Get stock list data. Includes A-share, Shanghai, Shenzhen, and Beijing stock exchange stock lists, as well as delisted/suspended stocks. Helps understand stock codes, names, and listing status. Suitable for stock code queries, stock list management, and market analysis.
+  llm: 获取股票列表数据。包括：沪深京A股股票代码和股票简称数据（无需参数，返回所有A股股票代码和简称）、上海证券交易所股票代码和简称数据-指定板块类型（需要板块类型，返回指定板块的股票代码、简称、公司全称、上市日期）、深证证券交易所股票代码和股票简称数据-指定板块类型（需要板块类型，返回指定板块的股票代码、简称、上市日期、股本等信息）、北京证券交易所股票代码和简称数据（无需参数，返回所有北证股票代码和简称）、深证证券交易所终止/暂停上市股票-指定类型（需要类型，返回终止或暂停上市股票信息）、上海证券交易所暂停/终止上市股票-指定类型（需要类型，返回暂停或终止上市股票信息）。
+parameters:
+  - name: interface
+    type: select
+    required: true
+    form: llm
+    default: stock_info_a_code_name
+    description: 接口名称
+    llm_description: 选择股票列表接口。包括：沪深京A股股票代码和股票简称数据（无需参数）、上海证券交易所股票代码和简称数据-指定板块类型（需要板块类型）、深证证券交易所股票代码和股票简称数据-指定板块类型（需要板块类型）、北京证券交易所股票代码和简称数据（无需参数）、深证证券交易所终止/暂停上市股票-指定类型（需要类型）、上海证券交易所暂停/终止上市股票-指定类型（需要类型）。
+    human_description:
+      en_US: "Select stock list interface. Options: A-share Stock List (no parameters required), Shanghai Stock List (requires board type), Shenzhen Stock List (requires board type), Beijing Stock List (no parameters required), Shenzhen Delisted/Suspended Stocks (requires type), Shanghai Delisted/Suspended Stocks (requires type)."
+      zh_Hans: "选择股票列表接口。选项包括：沪深京A股股票代码和股票简称数据（无需参数）、上海证券交易所股票代码和简称数据-指定板块类型（需要板块类型）、深证证券交易所股票代码和股票简称数据-指定板块类型（需要板块类型）、北京证券交易所股票代码和简称数据（无需参数）、深证证券交易所终止/暂停上市股票-指定类型（需要类型）、上海证券交易所暂停/终止上市股票-指定类型（需要类型）。"
+    label:
+      en_US: Interface
+      zh_Hans: 接口名称
+    options:
+      - label:
+          en_US: A-share Stock List - All
+          zh_Hans: 沪深京A股股票代码和股票简称数据
+        value: stock_info_a_code_name
+      - label:
+          en_US: Shanghai Stock Exchange Stock List - By Board Type
+          zh_Hans: 上海证券交易所股票代码和简称数据-指定板块类型
+        value: stock_info_sh_name_code
+      - label:
+          en_US: Shenzhen Stock Exchange Stock List - By Board Type
+          zh_Hans: 深证证券交易所股票代码和股票简称数据-指定板块类型
+        value: stock_info_sz_name_code
+      - label:
+          en_US: Beijing Stock Exchange Stock List - All
+          zh_Hans: 北京证券交易所股票代码和简称数据
+        value: stock_info_bj_name_code
+      - label:
+          en_US: Shenzhen Delisted/Suspended Stocks - By Type
+          zh_Hans: 深证证券交易所终止/暂停上市股票-指定类型
+        value: stock_info_sz_delist
+      - label:
+          en_US: Shanghai Delisted/Suspended Stocks - By Type
+          zh_Hans: 上海证券交易所暂停/终止上市股票-指定类型
+        value: stock_info_sh_delist
+  - name: symbol
+    type: string
+    required: false
+    form: llm
+    default: "主板A股"
+    description: 板块类型
+    llm_description: 板块类型，选择板块类别。仅"上证股票列表"、"深证股票列表"、"深证终止/暂停上市"、"上证暂停/终止上市"接口需要此参数。"上证股票列表"选项：主板A股、主板B股、科创板；"深证股票列表"选项：A股列表、B股列表、CDR列表、AB股列表；"深证终止/暂停上市"选项：暂停上市公司、终止上市公司；"上证暂停/终止上市"选项：全部、沪市、科创板。
+    human_description:
+      en_US: "Board type. Required only for Shanghai Stock List, Shenzhen Stock List, Shenzhen Delisted/Suspended Stocks, and Shanghai Delisted/Suspended Stocks interfaces. Options: For Shanghai Stock List: 主板A股 (Main Board A-share), 主板B股 (Main Board B-share), 科创板 (Science and Technology Innovation Board); For Shenzhen Stock List: A股列表 (A-share List), B股列表 (B-share List), CDR列表 (CDR List), AB股列表 (AB-share List); For Shenzhen Delisted/Suspended: 暂停上市公司 (Suspended Listed Companies), 终止上市公司 (Delisted Companies); For Shanghai Delisted/Suspended: 全部 (All), 沪市 (Shanghai Market), 科创板 (Science and Technology Innovation Board)."
+      zh_Hans: "板块类型。仅上证股票列表、深证股票列表、深证终止/暂停上市、上证暂停/终止上市接口需要此参数。上证股票列表选项：主板A股、主板B股、科创板；深证股票列表选项：A股列表、B股列表、CDR列表、AB股列表；深证终止/暂停上市选项：暂停上市公司、终止上市公司；上证暂停/终止上市选项：全部、沪市、科创板。"
+    label:
+      en_US: Board Type
+      zh_Hans: 板块类型
+  - name: retries
+    type: number
+    required: false
+    form: llm
+    default: 5
+    description: 重试次数
+    llm_description: 网络请求重试次数，范围1-10，默认5次。
+    human_description:
+      en_US: "Number of retries for network requests. Range: 1-10. Default: 5."
+      zh_Hans: "网络请求重试次数。范围：1-10。默认：5。"
+    label:
+      en_US: Retries
+      zh_Hans: 重试次数
+    min: 1
+    max: 10
+  - name: timeout
+    type: number
+    required: false
+    form: llm
+    default: 240
+    description: 子进程超时时间
+    llm_description: 子进程执行超时时间（秒），范围5-3600，默认240秒。
+    human_description:
+      en_US: "Subprocess execution timeout in seconds. Range: 5-3600. Default: 240."
+      zh_Hans: "子进程执行超时时间（秒）。范围：5-3600。默认：240。"
+    label:
+      en_US: Subprocess Timeout
+      zh_Hans: 子进程超时时间
+    min: 5
+    max: 3600
+extra:
+  python:
+    source: tools/get_stock_list.py
+

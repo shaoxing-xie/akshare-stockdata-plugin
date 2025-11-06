@@ -1,0 +1,103 @@
+identity:
+  author: shaoxing-xie
+  name: get_stock_chip_distribution
+  label:
+    zh_Hans: 获取个股筹码分布数据
+    en_US: Get Individual Stock Chip Distribution Data
+description:
+  human:
+    zh_Hans: 获取指定股票的筹码分布数据，分析不同价位的持股成本分布，用于技术分析和主力成本分析。
+    en_US: Get chip distribution data for specified stocks, analyze shareholding cost distribution at different price levels, used for technical analysis and main force cost analysis.
+  llm: 获取指定股票的筹码分布数据，分析不同价位的持股成本分布。包括：东方财富网-日K-筹码分布（需要股票代码和复权方式，返回指定股票近90个交易日的筹码分布数据，包括获利比例、平均成本、90成本区间、70成本区间、集中度等）。需要提供股票代码和复权方式参数。
+parameters:
+  - name: interface
+    type: select
+    required: true
+    form: llm
+    default: stock_cyq_em
+    description: 接口名称
+    llm_description: 选择个股筹码分布数据接口。包括：东方财富网-日K-筹码分布（需要股票代码和复权方式，返回指定股票近90个交易日的筹码分布数据，包括获利比例、平均成本、90成本区间、70成本区间、集中度等）。需要提供股票代码和复权方式参数。
+    human_description:
+      en_US: "Select individual stock chip distribution data interface. Options: East Money - Daily K Chip Distribution (requires stock code and adjustment method, returns chip distribution data for the specified stock for nearly 90 trading days, including profit ratio, average cost, 90 cost range, 70 cost range, concentration, etc.). Requires stock code and adjustment method parameters."
+      zh_Hans: "选择个股筹码分布数据接口。选项包括：东方财富网-日K-筹码分布（需要股票代码和复权方式，返回指定股票近90个交易日的筹码分布数据，包括获利比例、平均成本、90成本区间、70成本区间、集中度等）。需要提供股票代码和复权方式参数。"
+    label:
+      en_US: Interface
+      zh_Hans: 接口名称
+    options:
+      - label:
+          en_US: East Money - Daily K Chip Distribution - Specified Stock, Adjustment Method
+          zh_Hans: 东方财富网-日K-筹码分布-指定股票、复权方式
+        value: stock_cyq_em
+  - name: stock_code
+    type: string
+    required: true
+    form: llm
+    default: "600519"
+    description: 股票代码
+    llm_description: 股票代码，支持A股格式，如600519（沪市）、000001（深市）、430xxx（北交所）等。
+    human_description:
+      en_US: "Stock code. Supports A-share formats, e.g., 600519 (Shanghai), 000001 (Shenzhen), 430xxx (Beijing Stock Exchange), etc."
+      zh_Hans: "股票代码。支持A股格式，如600519（沪市）、000001（深市）、430xxx（北交所）等。"
+    label:
+      en_US: Stock Code
+      zh_Hans: 股票代码
+  - name: adjust
+    type: select
+    required: true
+    form: llm
+    default: qfq
+    description: 复权方式
+    llm_description: 复权方式参数。选项：前复权(qfq)、后复权(hfq)、不复权(none)。
+    human_description:
+      en_US: "Adjustment method. Options: Forward Adjustment (qfq), Backward Adjustment (hfq), No Adjustment (none)."
+      zh_Hans: "复权方式。选项：前复权(qfq)、后复权(hfq)、不复权(none)。"
+    label:
+      en_US: Adjustment Method
+      zh_Hans: 复权方式
+    options:
+      - label:
+          en_US: Forward Adjustment
+          zh_Hans: 前复权
+        value: qfq
+      - label:
+          en_US: Backward Adjustment
+          zh_Hans: 后复权
+        value: hfq
+      - label:
+          en_US: No Adjustment
+          zh_Hans: 不复权
+        value: "none"
+  - name: retries
+    type: number
+    required: false
+    form: llm
+    default: 5
+    description: 重试次数
+    llm_description: 网络请求重试次数，范围1-10，默认5次。
+    human_description:
+      en_US: "Number of retries for network requests. Range: 1-10. Default: 5."
+      zh_Hans: "网络请求重试次数。范围：1-10。默认：5。"
+    label:
+      en_US: Retries
+      zh_Hans: 重试次数
+    min: 1
+    max: 10
+  - name: timeout
+    type: number
+    required: false
+    form: llm
+    default: 600
+    description: 子进程超时时间
+    llm_description: 子进程执行超时时间（秒），范围5-3600，默认600秒（10分钟）。
+    human_description:
+      en_US: "Subprocess execution timeout in seconds. Range: 5-3600. Default: 600 (10 minutes)."
+      zh_Hans: "子进程执行超时时间（秒）。范围：5-3600。默认：600（10分钟）。"
+    label:
+      en_US: Subprocess Timeout
+      zh_Hans: 子进程超时时间
+    min: 5
+    max: 3600
+extra:
+  python:
+    source: tools/get_stock_chip_distribution.py
+

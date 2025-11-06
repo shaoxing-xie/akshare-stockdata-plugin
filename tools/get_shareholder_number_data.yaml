@@ -1,0 +1,77 @@
+identity:
+  author: shaoxing-xie
+  name: get_shareholder_number_data
+  label:
+    zh_Hans: 获取A股市场股东户数数据
+    en_US: Get A-Share Market Shareholder Number Data
+description:
+  human:
+    zh_Hans: 获取A股市场股东户数数据。基于东方财富网的股东户数数据接口，获取指定日期的所有股票股东户数数据，包括股东户数、户均持股数、持股集中度等指标。适用于市场股东结构分析、股东集中度研究和投资决策。可帮助投资者了解市场整体股东分布情况，判断市场股东集中度趋势。
+    en_US: Get A-share market shareholder number data. Based on East Money shareholder number data interface, retrieves all stocks' shareholder number data for specified date, including shareholder number, average shares per shareholder, shareholding concentration and other indicators. Suitable for market shareholder structure analysis, shareholding concentration research, and investment decisions. Helps investors understand overall market shareholder distribution and judge market shareholding concentration trends.
+  llm: 获取A股市场股东户数数据。包括：东方财富网-股东户数数据-指定日期。需要提供日期参数（格式："最新" 或 YYYYMMDD，如"20230930"），返回指定日期的所有股票股东户数数据，包括股东户数、户均持股数、持股集中度等指标。
+parameters:
+  - name: interface
+    type: select
+    required: true
+    form: llm
+    default: stock_zh_a_gdhs
+    description: 接口名称
+    llm_description: 选择股东户数数据接口。包括：股东户数数据（需要日期参数，返回指定日期的所有股票股东户数数据）。
+    human_description:
+      en_US: "Select shareholder number data interface. Options: Shareholder Number Data (requires date parameter, returns all stocks' shareholder number data for specified date)."
+      zh_Hans: "选择股东户数数据接口。选项包括：股东户数数据（需要日期参数，返回指定日期的所有股票股东户数数据）。"
+    label:
+      en_US: Interface
+      zh_Hans: 接口名称
+    options:
+      - label:
+          en_US: Eastmoney - Shareholder Number Data - Specific Date
+          zh_Hans: 东方财富网-股东户数数据-指定日期
+        value: stock_zh_a_gdhs
+  - name: gdhs_date
+    type: string
+    required: false
+    form: llm
+    default: "最新"
+    description: 股东户数统计日期
+    llm_description: 股东户数统计日期，格式："最新" 或 YYYYMMDD（季度末日期，如20230930）
+    human_description:
+      en_US: "Shareholder number statistics date. Format: 最新 (latest) or YYYYMMDD (quarter-end date, e.g., 20230930)."
+      zh_Hans: "股东户数统计日期。格式：最新 或 YYYYMMDD（季度末日期，如20230930）。"
+    label:
+      en_US: Shareholder Number Date
+      zh_Hans: 股东户数日期
+  - name: retries
+    type: number
+    required: false
+    form: llm
+    default: 5
+    description: 重试次数
+    llm_description: 网络请求重试次数，范围1-10，默认5次。
+    human_description:
+      en_US: "Number of retries for network requests. Range: 1-10. Default: 5."
+      zh_Hans: "网络请求重试次数。范围：1-10。默认：5。"
+    label:
+      en_US: Retries
+      zh_Hans: 重试次数
+    min: 1
+    max: 10
+  - name: timeout
+    type: number
+    required: false
+    form: llm
+    default: 240
+    description: 子进程超时时间
+    llm_description: 子进程执行超时时间（秒），范围5-3600，默认240秒。
+    human_description:
+      en_US: "Subprocess execution timeout in seconds. Range: 5-3600. Default: 240."
+      zh_Hans: "子进程执行超时时间（秒）。范围：5-3600。默认：240。"
+    label:
+      en_US: Subprocess Timeout
+      zh_Hans: 子进程超时时间
+    min: 5
+    max: 3600
+extra:
+  python:
+    source: tools/get_shareholder_number_data.py
+

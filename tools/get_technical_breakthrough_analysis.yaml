@@ -1,0 +1,114 @@
+identity:
+  author: shaoxing-xie
+  name: get_technical_breakthrough_analysis
+  label:
+    zh_Hans: 获取技术选股-突破分析数据
+    en_US: Get Technical Stock Selection - Breakthrough Analysis Data
+description:
+  human:
+    zh_Hans: 获取股票向上突破/向下突破均线的技术选股数据，包括突破不同均线类型（5日、10日、20日、30日、60日、120日、250日、500日均线）的股票信息。
+    en_US: Get technical stock selection data for stocks breaking through moving averages upward/downward, including stocks breaking through different MA types (5-day, 10-day, 20-day, 30-day, 60-day, 120-day, 250-day, 500-day MA).
+  llm: 获取股票向上突破/向下突破均线的技术选股数据。包括：同花顺-技术选股-向上突破（需要均线类型参数，返回向上突破指定均线类型的所有股票数据）、同花顺-技术选股-向下突破（需要均线类型参数，返回向下突破指定均线类型的所有股票数据）。根据不同接口提供相应参数。
+parameters:
+  - name: interface
+    type: select
+    required: true
+    form: llm
+    default: stock_rank_xstp_ths
+    description: 接口名称
+    llm_description: 选择突破分析数据接口。包括：同花顺-技术选股-向上突破（需要均线类型参数）、同花顺-技术选股-向下突破（需要均线类型参数）。根据不同接口提供相应参数。
+    human_description:
+      en_US: "Select breakthrough analysis data interface. Options: Upward Breakthrough (requires MA type), Downward Breakthrough (requires MA type)."
+      zh_Hans: "选择突破分析数据接口。选项包括：同花顺-技术选股-向上突破（需要均线类型参数）、同花顺-技术选股-向下突破（需要均线类型参数）。"
+    label:
+      en_US: Interface
+      zh_Hans: 接口名称
+    options:
+      - label:
+          en_US: Upward Breakthrough - Specify MA Type
+          zh_Hans: 同花顺-技术选股-向上突破-指定均线类型
+        value: stock_rank_xstp_ths
+      - label:
+          en_US: Downward Breakthrough - Specify MA Type
+          zh_Hans: 同花顺-技术选股-向下突破-指定均线类型
+        value: stock_rank_xxtp_ths
+  - name: ma_type
+    type: select
+    required: false
+    form: llm
+    default: 5日均线
+    description: 均线类型
+    llm_description: 用于向上/向下突破接口的均线类型选择
+    human_description:
+      en_US: "MA type. Required for Upward/Downward Breakthrough interfaces. Options: 5 Day MA, 10 Day MA, 20 Day MA, 30 Day MA, 60 Day MA, 90 Day MA, 250 Day MA, 500 Day MA."
+      zh_Hans: "均线类型。需要此参数的接口：同花顺-技术选股-向上突破、同花顺-技术选股-向下突破。选项：5日均线、10日均线、20日均线、30日均线、60日均线、90日均线、250日均线、500日均线。"
+    label:
+      en_US: MA Type
+      zh_Hans: 均线类型
+    options:
+      - label:
+          en_US: 5 Day MA
+          zh_Hans: 5日均线
+        value: 5日均线
+      - label:
+          en_US: 10 Day MA
+          zh_Hans: 10日均线
+        value: 10日均线
+      - label:
+          en_US: 20 Day MA
+          zh_Hans: 20日均线
+        value: 20日均线
+      - label:
+          en_US: 30 Day MA
+          zh_Hans: 30日均线
+        value: 30日均线
+      - label:
+          en_US: 60 Day MA
+          zh_Hans: 60日均线
+        value: 60日均线
+      - label:
+          en_US: 90 Day MA
+          zh_Hans: 90日均线
+        value: 90日均线
+      - label:
+          en_US: 250 Day MA
+          zh_Hans: 250日均线
+        value: 250日均线
+      - label:
+          en_US: 500 Day MA
+          zh_Hans: 500日均线
+        value: 500日均线
+  - name: retries
+    type: number
+    required: false
+    form: llm
+    default: 5
+    description: 重试次数
+    llm_description: 接口调用失败时的重试次数，默认为5次
+    human_description:
+      en_US: "Number of retries when interface call fails, default is 5"
+      zh_Hans: "接口调用失败时的重试次数，默认为5次"
+    label:
+      en_US: Retries
+      zh_Hans: 重试次数
+    min: 1
+    max: 10
+  - name: timeout
+    type: number
+    required: false
+    form: llm
+    default: 120
+    description: 超时时间
+    llm_description: 接口调用的超时时间（秒），默认为120秒
+    human_description:
+      en_US: "Timeout for interface calls in seconds, default is 120"
+      zh_Hans: "接口调用的超时时间（秒），默认为120秒"
+    label:
+      en_US: Timeout
+      zh_Hans: 超时时间
+    min: 5
+    max: 1800
+extra:
+  python:
+    source: tools/get_technical_breakthrough_analysis.py
+

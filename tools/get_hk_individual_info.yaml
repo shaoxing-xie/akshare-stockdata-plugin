@@ -1,0 +1,81 @@
+identity:
+  author: shaoxing-xie
+  name: get_hk_individual_info
+  label:
+    zh_Hans: 获取港股个股基本信息
+    en_US: Get Hong Kong Stock Individual Basic Info
+description:
+  human:
+    zh_Hans: 获取港股个股基本信息，包括证券资料和公司资料。
+    en_US: Get Hong Kong stock individual basic information, including security profile and company profile.
+  llm: 获取港股个股基本信息。包括：东方财富网-港股-个股-证券资料-指定股票代码、东方财富网-港股-个股-公司资料-指定股票代码。所有接口都需要提供港股代码。
+parameters:
+  - name: interface
+    type: select
+    required: true
+    form: llm
+    default: stock_hk_security_profile_em
+    description: 接口名称
+    llm_description: 选择港股个股信息接口
+    human_description:
+      en_US: "Select the Hong Kong stock individual info interface."
+      zh_Hans: "选择港股个股信息接口。"
+    label:
+      en_US: Interface
+      zh_Hans: 接口名称
+    options:
+      - label:
+          en_US: East Money - HK Stock - Individual Stock - Security Profile - Specify Stock Code
+          zh_Hans: 东方财富网-港股-个股-证券资料-指定股票代码
+        value: stock_hk_security_profile_em
+      - label:
+          en_US: East Money - HK Stock - Individual Stock - Company Profile - Specify Stock Code
+          zh_Hans: 东方财富网-港股-个股-公司资料-指定股票代码
+        value: stock_hk_company_profile_em
+  - name: stock_code
+    type: string
+    required: false
+    form: llm
+    default: "00700"
+    description: 港股代码
+    llm_description: 港股代码，格式：00700、03900、HK00700；港股：5位数字代码(00700)或市场前缀(HK00700)
+    human_description:
+      en_US: "Hong Kong stock code. Format: 00700, 03900, HK00700."
+      zh_Hans: "港股代码。格式：00700、03900、HK00700；港股：5位数字代码(00700)或市场前缀(HK00700)。"
+    label:
+      en_US: HK Stock Code
+      zh_Hans: 港股代码
+  - name: retries
+    type: number
+    required: false
+    form: llm
+    default: 5
+    description: 重试次数
+    llm_description: 网络请求重试次数，默认5次
+    human_description:
+      en_US: "Number of retries for network requests. Range: 1-10. Default: 5."
+      zh_Hans: "网络请求重试次数。范围：1-10。默认：5。"
+    label:
+      en_US: Retries
+      zh_Hans: 重试次数
+    min: 1
+    max: 10
+  - name: timeout
+    type: number
+    required: false
+    form: llm
+    default: 600
+    description: 子进程超时时间
+    llm_description: 子进程执行超时时间（秒），默认600秒
+    human_description:
+      en_US: "Subprocess execution timeout in seconds. Range: 5-3600. Default: 600."
+      zh_Hans: "子进程执行超时时间（秒）。范围：5-3600。默认：600。"
+    label:
+      en_US: Subprocess Timeout
+      zh_Hans: 子进程超时时间
+    min: 5
+    max: 3600
+extra:
+  python:
+    source: tools/get_hk_individual_info.py
+

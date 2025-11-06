@@ -1,0 +1,137 @@
+identity:
+  author: shaoxing-xie
+  name: get_stock_historical_valuation
+  label:
+    zh_Hans: 获取个股历史估值指标
+    en_US: Get Stock Historical Valuation Indicators
+description:
+  human:
+    zh_Hans: 获取个股历史估值指标。基于历史行情数据和历史财务数据计算历史估值指标，包括PE历史、PB历史、PCF历史、PE加权历史、PE扣非历史、PB调整后历史、每股资本公积金比率历史、每股未分配利润比率历史、PEG历史、市净率×ROE历史等，按交易日显示历史估值变化趋势。支持日线、周线、月线周期，适用于估值趋势分析、历史估值对比和投资时机判断。可帮助投资者了解股票估值的历史变化规律，识别估值波动周期，辅助判断最佳买入或卖出时机。
+    en_US: Get stock historical valuation indicators. Calculates historical valuation metrics based on historical quotes data and historical financial data, including PE history, PB history, PCF history, PE weighted history, PE excluding non-recurring items history, PB adjusted history, capital reserve per share ratio history, undistributed profit per share ratio history, PEG history, PB×ROE history, etc., showing historical valuation change trends by trading day. Supports daily, weekly, and monthly periods. Suitable for valuation trend analysis, historical valuation comparison, and investment timing decisions. Helps investors understand the historical patterns of stock valuation changes, identify valuation fluctuation cycles, and assist in determining optimal buy or sell timing.
+  llm: 获取个股历史估值指标。基于历史行情数据和历史财务数据计算历史估值指标，包括PE历史、PB历史、PCF历史、PE加权历史、PE扣非历史、PB调整后历史、每股资本公积金比率历史、每股未分配利润比率历史、PEG历史、市净率×ROE历史等，按交易日显示历史估值变化。需要提供股票代码、周期（daily日线、weekly周线、monthly月线）、开始日期、结束日期和复权方式。
+parameters:
+  - name: symbol
+    type: string
+    required: true
+    form: llm
+    default: "000001"
+    description: 股票代码
+    llm_description: 股票代码，格式：000001、600519、688356等
+    human_description:
+      en_US: "Stock code. Format: 000001, 600519, 688356, etc."
+      zh_Hans: "股票代码。格式：000001、600519、688356等。"
+    label:
+      en_US: Stock Code
+      zh_Hans: 股票代码
+  - name: period
+    type: select
+    required: false
+    form: llm
+    default: daily
+    description: 周期
+    llm_description: 数据周期类型，用于历史估值指标
+    human_description:
+      en_US: "Period. Options: daily (日线), weekly (周线), monthly (月线)."
+      zh_Hans: "周期。选项：daily(日线)、weekly(周线)、monthly(月线)。"
+    label:
+      en_US: Period
+      zh_Hans: 周期
+    options:
+      - label:
+          en_US: Daily
+          zh_Hans: 日线
+        value: daily
+      - label:
+          en_US: Weekly
+          zh_Hans: 周线
+        value: weekly
+      - label:
+          en_US: Monthly
+          zh_Hans: 月线
+        value: monthly
+  - name: start_date
+    type: string
+    required: false
+    form: llm
+    default: "20250101"
+    description: 开始日期
+    llm_description: 历史数据的开始日期，格式为YYYYMMDD
+    human_description:
+      en_US: "Start date. Format: YYYYMMDD (20250101) or YYYY-MM-DD (2025-01-01)."
+      zh_Hans: "开始日期。格式：YYYYMMDD(20250101)或YYYY-MM-DD(2025-01-01)。"
+    label:
+      en_US: Start Date
+      zh_Hans: 开始日期
+  - name: end_date
+    type: string
+    required: false
+    form: llm
+    default: ""
+    description: 结束日期
+    llm_description: 历史数据的结束日期，格式为YYYYMMDD，默认为当前日期
+    human_description:
+      en_US: "End date. Format: YYYYMMDD (20250915) or YYYY-MM-DD (2025-09-15). Default: current date."
+      zh_Hans: "结束日期。格式：YYYYMMDD(20250915)或YYYY-MM-DD(2025-09-15)。默认：当前日期。"
+    label:
+      en_US: End Date
+      zh_Hans: 结束日期
+  - name: adjust
+    type: select
+    required: false
+    form: llm
+    default: qfq
+    description: 复权方式
+    llm_description: 价格复权方式，支持前复权、后复权、不复权
+    human_description:
+      en_US: "Adjustment method. Options: qfq (前复权), hfq (后复权), none (不复权)."
+      zh_Hans: "复权方式。选项：qfq(前复权)、hfq(后复权)、none(不复权)。"
+    label:
+      en_US: Adjustment Method
+      zh_Hans: 复权方式
+    options:
+      - label:
+          en_US: Forward Adjustment
+          zh_Hans: 前复权
+        value: qfq
+      - label:
+          en_US: Backward Adjustment
+          zh_Hans: 后复权
+        value: hfq
+      - label:
+          en_US: No Adjustment
+          zh_Hans: 不复权
+        value: "none"
+  - name: retries
+    type: number
+    required: false
+    form: llm
+    default: 5
+    description: 重试次数
+    llm_description: 网络请求重试次数，默认5次
+    human_description:
+      en_US: "Number of retries for network requests. Range: 1-10. Default: 5."
+      zh_Hans: "网络请求重试次数。范围：1-10。默认：5。"
+    label:
+      en_US: Retries
+      zh_Hans: 重试次数
+    min: 1
+    max: 10
+  - name: timeout
+    type: number
+    required: false
+    form: llm
+    default: 600
+    description: 超时时间
+    llm_description: 接口调用的超时时间（秒），默认600秒
+    human_description:
+      en_US: "Timeout for interface calls in seconds. Range: 5-3000. Default: 600."
+      zh_Hans: "接口调用的超时时间（秒）。范围：5-3000。默认：600。"
+    label:
+      en_US: Timeout
+      zh_Hans: 超时时间
+    min: 5
+    max: 3000
+extra:
+  python:
+    source: tools/get_stock_historical_valuation.py
+

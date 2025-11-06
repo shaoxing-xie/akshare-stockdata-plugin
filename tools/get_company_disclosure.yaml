@@ -1,0 +1,280 @@
+identity:
+  author: shaoxing-xie
+  name: get_company_disclosure
+  label:
+    zh_Hans: 获取公司信息披露数据
+    en_US: Get Company Information Disclosure
+description:
+  human:
+    zh_Hans: 获取公司信息披露数据。包括信息披露公告和信息披露调研等数据。帮助了解公司的重要信息披露内容、公告详情和调研信息。适用于公司信息披露分析、公告跟踪和投资决策。
+    en_US: Get company information disclosure data. Includes information disclosure announcements and information disclosure research. Helps understand important company information disclosure content, announcement details, and research information. Suitable for company information disclosure analysis, announcement tracking, and investment decisions.
+  llm: 获取公司信息披露数据。包括：信息披露公告（需要股票代码、市场、类别、开始日期和结束日期，格式YYYYMMDD，返回指定股票的信息披露公告）、信息披露调研（需要股票代码、市场、开始日期和结束日期，格式YYYYMMDD，返回指定股票的信息披露调研数据）。股票代码格式如"600519"（沪市）或"000001"（深市）。
+parameters:
+  - name: interface
+    type: select
+    required: true
+    form: llm
+    default: stock_zh_a_disclosure_report_cninfo
+    description: 接口名称
+    llm_description: 选择公司信息披露接口。包括：信息披露公告（需要股票代码、市场、类别、日期范围）、信息披露调研（需要股票代码、市场、日期范围）。
+    human_description:
+      en_US: "Select company information disclosure interface. Options: Information Disclosure Announcements (requires stock code, market, category, date range), Information Disclosure Research (requires stock code, market, date range)."
+      zh_Hans: "选择公司信息披露接口。选项包括：信息披露公告（需要股票代码、市场、类别、日期范围）、信息披露调研（需要股票代码、市场、日期范围）。"
+    label:
+      en_US: Interface
+      zh_Hans: 接口名称
+    options:
+      - label:
+          en_US: Cninfo - Information Disclosure Announcements - Stock, Market, Category, Date Range
+          zh_Hans: 巨潮资讯-首页-公告查询-信息披露公告-沪深京
+        value: stock_zh_a_disclosure_report_cninfo
+      - label:
+          en_US: Cninfo - Information Disclosure Research - Stock, Market, Date Range
+          zh_Hans: 巨潮资讯-首页-公告查询-信息披露调研-沪深京
+        value: stock_zh_a_disclosure_relation_cninfo
+  - name: symbol
+    type: string
+    required: true
+    form: llm
+    default: "000001"
+    description: 股票代码
+    llm_description: 股票代码，格式如"600519"（沪市）或"000001"（深市）。支持带市场前缀的格式如"SH600519"或"SZ000001"。
+    human_description:
+      en_US: "Stock code in format like '600519' (Shanghai) or '000001' (Shenzhen). Also supports market prefix format like 'SH600519' or 'SZ000001'."
+      zh_Hans: "股票代码，格式如'600519'（沪市）或'000001'（深市）。支持带市场前缀的格式如'SH600519'或'SZ000001'。"
+    label:
+      en_US: Stock Code
+      zh_Hans: 股票代码
+  - name: start_date
+    type: string
+    required: true
+    form: llm
+    default: "20230618"
+    description: 开始日期
+    llm_description: 开始日期，格式为YYYYMMDD（如20230618）。
+    human_description:
+      en_US: "Start date in YYYYMMDD format (e.g., 20230618)."
+      zh_Hans: "开始日期，格式为YYYYMMDD（如20230618）。"
+    label:
+      en_US: Start Date
+      zh_Hans: 开始日期
+  - name: end_date
+    type: string
+    required: true
+    form: llm
+    default: "20231219"
+    description: 结束日期
+    llm_description: 结束日期，格式为YYYYMMDD（如20231219）。
+    human_description:
+      en_US: "End date in YYYYMMDD format (e.g., 20231219)."
+      zh_Hans: "结束日期，格式为YYYYMMDD（如20231219）。"
+    label:
+      en_US: End Date
+      zh_Hans: 结束日期
+  - name: market
+    type: select
+    required: true
+    form: llm
+    default: "沪深京"
+    description: 市场
+    llm_description: 市场，选择市场类型。选项包括：沪深京、港股、三板、基金、债券、监管、预披露。
+    human_description:
+      en_US: "Market type. Options: 沪深京 (Shanghai, Shenzhen, Beijing), 港股 (Hong Kong Stocks), 三板 (Third Board), 基金 (Funds), 债券 (Bonds), 监管 (Regulatory), 预披露 (Pre-disclosure)."
+      zh_Hans: "市场类型。选项包括：沪深京、港股、三板、基金、债券、监管、预披露。"
+    label:
+      en_US: Market
+      zh_Hans: 市场
+    options:
+      - label:
+          en_US: Shanghai, Shenzhen, Beijing
+          zh_Hans: 沪深京
+        value: "沪深京"
+      - label:
+          en_US: Hong Kong Stocks
+          zh_Hans: 港股
+        value: "港股"
+      - label:
+          en_US: Third Board
+          zh_Hans: 三板
+        value: "三板"
+      - label:
+          en_US: Funds
+          zh_Hans: 基金
+        value: "基金"
+      - label:
+          en_US: Bonds
+          zh_Hans: 债券
+        value: "债券"
+      - label:
+          en_US: Regulatory
+          zh_Hans: 监管
+        value: "监管"
+      - label:
+          en_US: Pre-disclosure
+          zh_Hans: 预披露
+        value: "预披露"
+  - name: category
+    type: select
+    required: false
+    form: llm
+    default: "公司治理"
+    description: 公告类别
+    llm_description: 公告类别，选择公告类别。仅"信息披露公告"接口需要此参数。选项包括：年报、半年报、一季报、三季报、业绩预告、权益分派、董事会、监事会、股东大会、日常经营、公司治理、中介报告、首发、增发、股权激励、配股、解禁、公司债、可转债、其他融资、股权变动、补充更正、澄清致歉、风险提示、特别处理和退市、退市整理期。
+    human_description:
+      en_US: "Announcement category. Required only for 'Information Disclosure Announcements' interface. Options include: 年报 (Annual Report), 半年报 (Semi-annual Report), 一季报 (Q1 Report), 三季报 (Q3 Report), 业绩预告 (Performance Forecast), 权益分派 (Equity Distribution), 董事会 (Board of Directors), 监事会 (Board of Supervisors), 股东大会 (Shareholders' Meeting), 日常经营 (Daily Operations), 公司治理 (Corporate Governance), 中介报告 (Intermediary Report), 首发 (IPO), 增发 (Secondary Offering), 股权激励 (Equity Incentive), 配股 (Rights Issue), 解禁 (Lift Ban), 公司债 (Corporate Bonds), 可转债 (Convertible Bonds), 其他融资 (Other Financing), 股权变动 (Equity Changes), 补充更正 (Supplement and Correction), 澄清致歉 (Clarification and Apology), 风险提示 (Risk Warning), 特别处理和退市 (Special Treatment and Delisting), 退市整理期 (Delisting Period)."
+      zh_Hans: "公告类别。仅信息披露公告接口需要此参数。选项包括：年报、半年报、一季报、三季报、业绩预告、权益分派、董事会、监事会、股东大会、日常经营、公司治理、中介报告、首发、增发、股权激励、配股、解禁、公司债、可转债、其他融资、股权变动、补充更正、澄清致歉、风险提示、特别处理和退市、退市整理期。"
+    label:
+      en_US: Announcement Category
+      zh_Hans: 公告类别
+    options:
+      - label:
+          en_US: Annual Report
+          zh_Hans: 年报
+        value: "年报"
+      - label:
+          en_US: Semi-annual Report
+          zh_Hans: 半年报
+        value: "半年报"
+      - label:
+          en_US: Q1 Report
+          zh_Hans: 一季报
+        value: "一季报"
+      - label:
+          en_US: Q3 Report
+          zh_Hans: 三季报
+        value: "三季报"
+      - label:
+          en_US: Performance Forecast
+          zh_Hans: 业绩预告
+        value: "业绩预告"
+      - label:
+          en_US: Equity Distribution
+          zh_Hans: 权益分派
+        value: "权益分派"
+      - label:
+          en_US: Board of Directors
+          zh_Hans: 董事会
+        value: "董事会"
+      - label:
+          en_US: Board of Supervisors
+          zh_Hans: 监事会
+        value: "监事会"
+      - label:
+          en_US: Shareholders' Meeting
+          zh_Hans: 股东大会
+        value: "股东大会"
+      - label:
+          en_US: Daily Operations
+          zh_Hans: 日常经营
+        value: "日常经营"
+      - label:
+          en_US: Corporate Governance
+          zh_Hans: 公司治理
+        value: "公司治理"
+      - label:
+          en_US: Intermediary Report
+          zh_Hans: 中介报告
+        value: "中介报告"
+      - label:
+          en_US: IPO
+          zh_Hans: 首发
+        value: "首发"
+      - label:
+          en_US: Secondary Offering
+          zh_Hans: 增发
+        value: "增发"
+      - label:
+          en_US: Equity Incentive
+          zh_Hans: 股权激励
+        value: "股权激励"
+      - label:
+          en_US: Rights Issue
+          zh_Hans: 配股
+        value: "配股"
+      - label:
+          en_US: Lift Ban
+          zh_Hans: 解禁
+        value: "解禁"
+      - label:
+          en_US: Corporate Bonds
+          zh_Hans: 公司债
+        value: "公司债"
+      - label:
+          en_US: Convertible Bonds
+          zh_Hans: 可转债
+        value: "可转债"
+      - label:
+          en_US: Other Financing
+          zh_Hans: 其他融资
+        value: "其他融资"
+      - label:
+          en_US: Equity Changes
+          zh_Hans: 股权变动
+        value: "股权变动"
+      - label:
+          en_US: Supplement and Correction
+          zh_Hans: 补充更正
+        value: "补充更正"
+      - label:
+          en_US: Clarification and Apology
+          zh_Hans: 澄清致歉
+        value: "澄清致歉"
+      - label:
+          en_US: Risk Warning
+          zh_Hans: 风险提示
+        value: "风险提示"
+      - label:
+          en_US: Special Treatment and Delisting
+          zh_Hans: 特别处理和退市
+        value: "特别处理和退市"
+      - label:
+          en_US: Delisting Period
+          zh_Hans: 退市整理期
+        value: "退市整理期"
+  - name: keyword
+    type: string
+    required: false
+    form: llm
+    default: ""
+    description: 关键词
+    llm_description: 关键词，用于搜索。仅"信息披露公告"接口需要此参数，可选。
+    human_description:
+      en_US: "Keyword for searching. Required only for 'Information Disclosure Announcements' interface, optional."
+      zh_Hans: "关键词，用于搜索。仅信息披露公告接口需要此参数，可选。"
+    label:
+      en_US: Keyword
+      zh_Hans: 关键词
+  - name: retries
+    type: number
+    required: false
+    form: llm
+    default: 5
+    description: 重试次数
+    llm_description: 网络请求重试次数，范围1-10，默认5次。
+    human_description:
+      en_US: "Number of retries for network requests. Range: 1-10. Default: 5."
+      zh_Hans: "网络请求重试次数。范围：1-10。默认：5。"
+    label:
+      en_US: Retries
+      zh_Hans: 重试次数
+    min: 1
+    max: 10
+  - name: timeout
+    type: number
+    required: false
+    form: llm
+    default: 240
+    description: 子进程超时时间
+    llm_description: 子进程执行超时时间（秒），范围5-3600，默认240秒。
+    human_description:
+      en_US: "Subprocess execution timeout in seconds. Range: 5-3600. Default: 240."
+      zh_Hans: "子进程执行超时时间（秒）。范围：5-3600。默认：240。"
+    label:
+      en_US: Subprocess Timeout
+      zh_Hans: 子进程超时时间
+    min: 5
+    max: 3600
+extra:
+  python:
+    source: tools/get_company_disclosure.py
+

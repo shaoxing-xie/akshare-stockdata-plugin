@@ -1,0 +1,217 @@
+identity:
+  author: shaoxing-xie
+  name: get_concept_board
+  label:
+    zh_Hans: 获取A股市场概念板块数据
+    en_US: Get A-share Market Concept Board Data
+description:
+  human:
+    zh_Hans: 获取A股市场概念板块数据。包括同花顺和东方财富的概念板块指数、板块简介、板块列表、实时行情、成份股、历史行情和分时数据等。帮助了解概念板块的行情走势、成份股信息和资金流向。适用于概念板块分析、主题投资和行业研究。
+    en_US: Get A-share market concept board data. Includes Flush and East Money concept board indices, board profiles, board lists, real-time quotes, constituent stocks, historical quotes, and minute data. Helps understand concept board quote trends, constituent stock information, and fund flows. Suitable for concept board analysis, thematic investment, and industry research.
+  llm: 获取A股市场概念板块数据。包括：同花顺-概念板块名列表（无需参数，返回所有同花顺概念板块名称）、同花顺-概念板块-指数日频率数据-指定概念板块、日期范围（需要概念名称和日期范围，格式YYYYMMDD，返回指定概念板块的日频指数数据）、同花顺-概念板块-板块简介-指定概念板块（需要概念名称，返回指定概念板块的简介信息）、东方财富-概念板块（无需参数，返回所有概念板块的实时行情数据）、东方财富-概念板块-实时行情-指定概念板块（需要概念名称，返回指定概念板块的实时行情）、东方财富-概念板块-板块成份-指定概念板块或板块代码（需要概念名称或板块代码，返回指定概念板块的成份股数据）、东方财富-概念板块-历史行情数据-指定概念板块、周期、日期范围和复权方式（需要概念名称、周期、日期范围和复权方式，返回指定概念板块的历史行情数据）、东方财富-概念板块-分时历史行情数据-指定概念板块和分时周期（需要概念名称和分时周期，返回指定概念板块的分时数据）。
+parameters:
+  - name: interface
+    type: select
+    required: true
+    form: llm
+    default: stock_board_concept_name_em
+    description: 接口名称
+    llm_description: 选择概念板块数据接口。包括：同花顺-概念板块名列表（无需参数）、同花顺-概念板块-指数日频率数据-指定概念板块、日期范围（需要概念名称和日期范围）、同花顺-概念板块-板块简介-指定概念板块（需要概念名称）、东方财富-概念板块（无需参数）、东方财富-概念板块-实时行情-指定概念板块（需要概念名称）、东方财富-概念板块-板块成份-指定概念板块或板块代码（需要概念名称或板块代码）、东方财富-概念板块-历史行情数据-指定概念板块、周期、日期范围和复权方式（需要概念名称、周期、日期范围和复权方式）、东方财富-概念板块-分时历史行情数据-指定概念板块和分时周期（需要概念名称和分时周期）。
+    human_description:
+      en_US: "Select concept board data interface. Options: Flush - Concept Board Name List (no parameters required), Flush - Concept Board Index (requires concept name and date range), Flush - Concept Board Profile (requires concept name), East Money - Concept Board List (no parameters required), East Money - Concept Board Real-time Quotes (requires concept name), East Money - Constituent Stocks (requires concept name or board code), East Money - Index Historical Quotes (requires concept name, period, date range, and adjustment method), East Money - Index Minute Data (requires concept name and minute period)."
+      zh_Hans: "选择概念板块数据接口。选项包括：同花顺-概念板块名列表（无需参数）、同花顺-概念板块-指数日频率数据-指定概念板块、日期范围（需要概念名称和日期范围）、同花顺-概念板块-板块简介-指定概念板块（需要概念名称）、东方财富-概念板块（无需参数）、东方财富-概念板块-实时行情-指定概念板块（需要概念名称）、东方财富-概念板块-板块成份-指定概念板块或板块代码（需要概念名称或板块代码）、东方财富-概念板块-历史行情数据-指定概念板块、周期、日期范围和复权方式（需要概念名称、周期、日期范围和复权方式）、东方财富-概念板块-分时历史行情数据-指定概念板块和分时周期（需要概念名称和分时周期）。"
+    label:
+      en_US: Interface
+      zh_Hans: 接口名称
+    options:
+      - label:
+          en_US: Flush - Concept Board Name List - All
+          zh_Hans: 同花顺-概念板块名列表
+        value: stock_board_concept_name_ths
+      - label:
+          en_US: Flush - Concept Board Index - Concept Name and Date Range
+          zh_Hans: 同花顺-概念板块-指数日频率数据-指定概念板块、日期范围
+        value: stock_board_concept_index_ths
+      - label:
+          en_US: Flush - Concept Board Profile - Concept Name
+          zh_Hans: 同花顺-概念板块-板块简介-指定概念板块
+        value: stock_board_concept_info_ths
+      - label:
+          en_US: East Money - Concept Board List - All
+          zh_Hans: 东方财富-概念板块
+        value: stock_board_concept_name_em
+      - label:
+          en_US: East Money - Concept Board Real-time Quotes - Concept Name
+          zh_Hans: 东方财富-概念板块-实时行情-指定概念板块
+        value: stock_board_concept_spot_em
+      - label:
+          en_US: East Money - Constituent Stocks - Concept Name or Board Code
+          zh_Hans: 东方财富-概念板块-板块成份-指定概念板块或板块代码
+        value: stock_board_concept_cons_em
+      - label:
+          en_US: East Money - Index Historical Quotes - Concept Name, Period, Date Range, Adjustment
+          zh_Hans: 东方财富-概念板块-历史行情数据-指定概念板块、周期、日期范围和复权方式
+        value: stock_board_concept_hist_em
+      - label:
+          en_US: East Money - Index Minute Data - Concept Name and Minute Period
+          zh_Hans: 东方财富-概念板块-分时历史行情数据-指定概念板块和分时周期
+        value: stock_board_concept_hist_min_em
+  - name: symbol
+    type: string
+    required: false
+    form: llm
+    default: "阿里巴巴概念"
+    description: 概念名称
+    llm_description: 概念名称，指定要查询的概念板块名称。同花顺接口需要同花顺概念名称（如"阿里巴巴概念"），东方财富接口需要东方财富概念名称（如"融资融券"、"绿色电力"）或板块代码（如"BK0655"）。"同花顺-概念板块指数"、"同花顺-概念板块简介"、"东方财富-概念板块-实时行情"、"东方财富-成份股"、"东方财富-指数历史行情"、"东方财富-指数-分时"接口需要此参数。
+    human_description:
+      en_US: "Concept name. Required for most interfaces. For Flush interfaces, use Flush concept names (e.g., '阿里巴巴概念'). For East Money interfaces, use East Money concept names (e.g., '融资融券', '绿色电力') or board codes (e.g., 'BK0655'). Required for: Flush - Concept Board Index, Flush - Concept Board Profile, East Money - Concept Board Real-time Quotes, East Money - Constituent Stocks, East Money - Index Historical Quotes, East Money - Index Minute Data."
+      zh_Hans: "概念名称。大部分接口需要此参数。同花顺接口使用同花顺概念名称（如'阿里巴巴概念'），东方财富接口使用东方财富概念名称（如'融资融券'、'绿色电力'）或板块代码（如'BK0655'）。同花顺-概念板块指数、同花顺-概念板块简介、东方财富-概念板块-实时行情、东方财富-成份股、东方财富-指数历史行情、东方财富-指数-分时接口需要此参数。"
+    label:
+      en_US: Concept Name
+      zh_Hans: 概念名称
+  - name: start_date
+    type: string
+    required: false
+    form: llm
+    default: "20200101"
+    description: 开始日期
+    llm_description: 开始日期，格式为YYYYMMDD（如20200101）。"同花顺-概念板块指数"和"东方财富-指数历史行情"接口需要此参数。
+    human_description:
+      en_US: "Start date in YYYYMMDD format (e.g., 20200101). Required for 'Flush - Concept Board Index' and 'East Money - Index Historical Quotes' interfaces."
+      zh_Hans: "开始日期，格式为YYYYMMDD（如20200101）。同花顺-概念板块指数和东方财富-指数历史行情接口需要此参数。"
+    label:
+      en_US: Start Date
+      zh_Hans: 开始日期
+  - name: end_date
+    type: string
+    required: false
+    form: llm
+    default: "20250321"
+    description: 结束日期
+    llm_description: 结束日期，格式为YYYYMMDD（如20250321）。"同花顺-概念板块指数"和"东方财富-指数历史行情"接口需要此参数。
+    human_description:
+      en_US: "End date in YYYYMMDD format (e.g., 20250321). Required for 'Flush - Concept Board Index' and 'East Money - Index Historical Quotes' interfaces."
+      zh_Hans: "结束日期，格式为YYYYMMDD（如20250321）。同花顺-概念板块指数和东方财富-指数历史行情接口需要此参数。"
+    label:
+      en_US: End Date
+      zh_Hans: 结束日期
+  - name: period
+    type: select
+    required: false
+    form: llm
+    default: "daily"
+    description: 周期
+    llm_description: 周期，选择数据周期。仅"东方财富-指数历史行情"接口需要此参数。选项包括：daily（日线）、weekly（周线）、monthly（月线）。
+    human_description:
+      en_US: "Period. Required only for 'East Money - Index Historical Quotes' interface. Options: daily (Daily), weekly (Weekly), monthly (Monthly)."
+      zh_Hans: "周期。仅东方财富-指数历史行情接口需要此参数。选项包括：daily（日线）、weekly（周线）、monthly（月线）。"
+    label:
+      en_US: Period
+      zh_Hans: 周期
+    options:
+      - label:
+          en_US: Daily
+          zh_Hans: 日线
+        value: "daily"
+      - label:
+          en_US: Weekly
+          zh_Hans: 周线
+        value: "weekly"
+      - label:
+          en_US: Monthly
+          zh_Hans: 月线
+        value: "monthly"
+  - name: adjust
+    type: select
+    required: false
+    form: llm
+    default: "none"
+    description: 复权方式
+    llm_description: 复权方式，选择复权类型。仅"东方财富-指数历史行情"接口需要此参数。选项包括：空字符串（不复权）、qfq（前复权）、hfq（后复权）。
+    human_description:
+      en_US: "Adjustment method. Required only for 'East Money - Index Historical Quotes' interface. Options: Empty string (No Adjustment), qfq (Forward Adjustment), hfq (Backward Adjustment)."
+      zh_Hans: "复权方式。仅东方财富-指数历史行情接口需要此参数。选项包括：空字符串（不复权）、qfq（前复权）、hfq（后复权）。"
+    label:
+      en_US: Adjustment Method
+      zh_Hans: 复权方式
+    options:
+      - label:
+          en_US: No Adjustment
+          zh_Hans: 不复权
+        value: "none"
+      - label:
+          en_US: Forward Adjustment
+          zh_Hans: 前复权
+        value: "qfq"
+      - label:
+          en_US: Backward Adjustment
+          zh_Hans: 后复权
+        value: "hfq"
+  - name: minute_period
+    type: select
+    required: false
+    form: llm
+    default: "1"
+    description: 分时周期
+    llm_description: 分时周期，选择分时数据周期。仅"东方财富-指数-分时"接口需要此参数。选项包括：1（1分钟）、5（5分钟）、15（15分钟）、30（30分钟）、60（60分钟）。
+    human_description:
+      en_US: "Minute period. Required only for 'East Money - Index Minute Data' interface. Options: 1 (1 minute), 5 (5 minutes), 15 (15 minutes), 30 (30 minutes), 60 (60 minutes)."
+      zh_Hans: "分时周期。仅东方财富-指数-分时接口需要此参数。选项包括：1（1分钟）、5（5分钟）、15（15分钟）、30（30分钟）、60（60分钟）。"
+    label:
+      en_US: Minute Period
+      zh_Hans: 分时周期
+    options:
+      - label:
+          en_US: 1 Minute
+          zh_Hans: 1分钟
+        value: "1"
+      - label:
+          en_US: 5 Minutes
+          zh_Hans: 5分钟
+        value: "5"
+      - label:
+          en_US: 15 Minutes
+          zh_Hans: 15分钟
+        value: "15"
+      - label:
+          en_US: 30 Minutes
+          zh_Hans: 30分钟
+        value: "30"
+      - label:
+          en_US: 60 Minutes
+          zh_Hans: 60分钟
+        value: "60"
+  - name: retries
+    type: number
+    required: false
+    form: llm
+    default: 5
+    description: 重试次数
+    llm_description: 网络请求重试次数，范围1-10，默认5次。
+    human_description:
+      en_US: "Number of retries for network requests. Range: 1-10. Default: 5."
+      zh_Hans: "网络请求重试次数。范围：1-10。默认：5。"
+    label:
+      en_US: Retries
+      zh_Hans: 重试次数
+    min: 1
+    max: 10
+  - name: timeout
+    type: number
+    required: false
+    form: llm
+    default: 240
+    description: 子进程超时时间
+    llm_description: 子进程执行超时时间（秒），范围5-3600，默认240秒。
+    human_description:
+      en_US: "Subprocess execution timeout in seconds. Range: 5-3600. Default: 240."
+      zh_Hans: "子进程执行超时时间（秒）。范围：5-3600。默认：240。"
+    label:
+      en_US: Subprocess Timeout
+      zh_Hans: 子进程超时时间
+    min: 5
+    max: 3600
+extra:
+  python:
+    source: tools/get_concept_board.py
+

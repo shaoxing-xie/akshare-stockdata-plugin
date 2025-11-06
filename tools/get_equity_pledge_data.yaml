@@ -1,0 +1,93 @@
+identity:
+  author: shaoxing-xie
+  name: get_equity_pledge_data
+  label:
+    zh_Hans: 获取市场股权质押数据
+    en_US: Get Market Equity Pledge Data
+description:
+  human:
+    zh_Hans: 获取股权质押相关的市场概况、个股质押比例、行业数据、机构分布等数据。包括股权质押市场概况、上市公司质押比例、行业质押数据、质押机构分布统计等。
+    en_US: Get equity pledge-related data including market overview, individual stock pledge ratios, industry data, and institution distribution. Includes equity pledge market overview, listed company pledge ratios, industry pledge data, and pledge institution distribution statistics.
+  llm: 获取股权质押相关的市场概况、个股质押比例、行业数据、机构分布等数据。包括股权质押市场概况（所有历史）、上市公司质押比例（指定交易日）、行业质押数据、质押机构分布统计（证券公司、银行）等。部分接口需要指定交易日期参数，格式为YYYYMMDD。
+parameters:
+  - name: interface
+    type: select
+    required: true
+    form: llm
+    default: stock_gpzy_profile_em
+    description: 接口名称
+    llm_description: 选择股权质押数据接口。包括：股权质押市场概况（所有历史，无需日期）、上市公司质押比例（需要指定交易日期）、行业质押数据（无需日期）、质押机构分布统计-证券公司（无需日期）、质押机构分布统计-银行（无需日期）。
+    human_description:
+      en_US: "Select equity pledge data interface. Options: Equity Pledge Market Overview (all history, no date), Listed Company Pledge Ratio (requires trading date), Industry Pledge Data (no date), Pledge Institution Distribution - Securities Companies (no date), Pledge Institution Distribution - Banks (no date)."
+      zh_Hans: "选择股权质押数据接口。选项包括：股权质押市场概况（所有历史，无需日期）、上市公司质押比例（需指定日期）、行业质押数据（无需日期）、质押机构分布统计-证券公司（无需日期）、质押机构分布统计-银行（无需日期）。"
+    label:
+      en_US: Interface
+      zh_Hans: 接口名称
+    options:
+      - label:
+          en_US: Eastmoney - Equity Pledge Market Overview - All History
+          zh_Hans: 东方财富网-股权质押市场概况-所有历史
+        value: stock_gpzy_profile_em
+      - label:
+          en_US: Eastmoney - Listed Company Pledge Ratio - Specified Trading Day
+          zh_Hans: 东方财富网-上市公司质押比例-指定交易日
+        value: stock_gpzy_pledge_ratio_em
+      - label:
+          en_US: Eastmoney - Industry Pledge Ratio Data
+          zh_Hans: 东方财富网-上市公司质押比例-行业数据
+        value: stock_gpzy_industry_data_em
+      - label:
+          en_US: Eastmoney - Pledge Institution Distribution - Securities Companies
+          zh_Hans: 东方财富网-质押机构分布统计-证券公司
+        value: stock_gpzy_distribute_statistics_company_em
+      - label:
+          en_US: Eastmoney - Pledge Institution Distribution - Banks
+          zh_Hans: 东方财富网-质押机构分布统计-银行
+        value: stock_gpzy_distribute_statistics_bank_em
+  - name: date
+    type: string
+    required: false
+    form: llm
+    default: "20241220"
+    description: 交易日期
+    llm_description: 交易日期，格式为YYYYMMDD（如20241220）。仅"上市公司质押比例-指定交易日"接口需要此参数。其他接口不需要此参数。请访问 http://data.eastmoney.com/gpzy/pledgeRatio.aspx 查询具体交易日。
+    human_description:
+      en_US: "Trading date in YYYYMMDD format (e.g., 20240630). Required only for 'Listed Company Pledge Ratio - Specified Trading Day' interface. Other interfaces do not require this parameter. Please visit http://data.eastmoney.com/gpzy/pledgeRatio.aspx to check specific trading days."
+      zh_Hans: "交易日期，格式为YYYYMMDD（如20241220）。仅上市公司质押比例-指定交易日接口需要此参数。其他接口不需要此参数。请访问 http://data.eastmoney.com/gpzy/pledgeRatio.aspx 查询具体交易日。"
+    label:
+      en_US: Trading Date
+      zh_Hans: 交易日期
+  - name: retries
+    type: number
+    required: false
+    form: llm
+    default: 5
+    description: 重试次数
+    llm_description: 网络请求重试次数，范围1-10，默认5次。
+    human_description:
+      en_US: "Number of retries for network requests. Range: 1-10. Default: 5."
+      zh_Hans: "网络请求重试次数。范围：1-10。默认：5。"
+    label:
+      en_US: Retries
+      zh_Hans: 重试次数
+    min: 1
+    max: 10
+  - name: timeout
+    type: number
+    required: false
+    form: llm
+    default: 300
+    description: 子进程超时时间
+    llm_description: 子进程执行超时时间（秒），范围5-3600，默认300秒（股权质押市场概况数据量较大）。
+    human_description:
+      en_US: "Subprocess execution timeout in seconds. Range: 5-3600. Default: 300 (equity pledge market overview data is large)."
+      zh_Hans: "子进程执行超时时间（秒）。范围：5-3600。默认：300（股权质押市场概况数据量较大）。"
+    label:
+      en_US: Subprocess Timeout
+      zh_Hans: 子进程超时时间
+    min: 5
+    max: 3600
+extra:
+  python:
+    source: tools/get_equity_pledge_data.py
+

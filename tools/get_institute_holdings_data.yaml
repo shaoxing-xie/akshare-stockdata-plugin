@@ -1,0 +1,94 @@
+identity:
+  author: shaoxing-xie
+  name: get_institute_holdings_data
+  label:
+    zh_Hans: 获取市场机构持股数据
+    en_US: Get Market Institute Holdings Data
+description:
+  human:
+    zh_Hans: 获取机构持股相关数据，包括机构持股一览表和机构持股详情。帮助了解机构投资者对股票的持仓情况。适用于机构持股分析、投资决策和股票研究。
+    en_US: Get institutional holdings related data, including institutional holdings overview and institutional holdings details. Helps understand institutional investors' holdings for stocks. Suitable for institutional holdings analysis, investment decisions, and stock research.
+  llm: 获取机构持股相关数据，包括机构持股一览表和机构持股详情。包括：机构持股一览表（需指定报告期，格式YYYY[1-4]）、机构持股详情（需指定股票代码和报告期）。不同接口需要不同的参数，包括报告期、股票代码等。
+parameters:
+  - name: interface
+    type: select
+    required: true
+    form: llm
+    default: stock_institute_hold
+    description: 接口名称
+    llm_description: 选择机构持股数据接口。包括：机构持股一览表（需指定报告期）、机构持股详情（需指定股票代码和报告期）。
+    human_description:
+      en_US: "Select institutional holdings data interface. Options: Institutional Holdings Overview (requires reporting period), Institutional Holdings Details (requires stock code and reporting period)."
+      zh_Hans: "选择机构持股数据接口。选项包括：机构持股一览表（需指定报告期）、机构持股详情（需指定股票代码和报告期）。"
+    label:
+      en_US: Interface
+      zh_Hans: 接口名称
+    options:
+      - label:
+          en_US: Sina Finance - Institutional Holdings Overview
+          zh_Hans: 新浪财经-机构持股-机构持股一览表-指定报告期
+        value: stock_institute_hold
+      - label:
+          en_US: Sina Finance - Institutional Holdings Details
+          zh_Hans: 新浪财经-机构持股-机构持股详情-指定股票和报告期
+        value: stock_institute_hold_detail
+  - name: quarter
+    type: string
+    required: false
+    form: llm
+    default: "20244"
+    description: 报告期
+    llm_description: 报告期，格式为YYYY[1-4]（如20241表示2024年一季报）。从2005年开始，一季报用1、中报用2、三季报用3、年报用4，如20193表示2019年三季报。仅"机构持股一览表"和"机构持股详情"接口需要此参数。
+    human_description:
+      en_US: "Reporting period in YYYY[1-4] format (e.g., 20241 for Q1 2024). Starting from 2005, Q1 uses 1, mid-year report uses 2, Q3 uses 3, annual report uses 4. For example, 20193 means Q3 2019. Required only for 'Institutional Holdings Overview' and 'Institutional Holdings Details' interfaces."
+      zh_Hans: "报告期，格式为YYYY[1-4]（如20241表示2024年一季报）。从2005年开始，一季报用1、中报用2、三季报用3、年报用4，如20193表示2019年三季报。仅机构持股一览表和机构持股详情接口需要此参数。"
+    label:
+      en_US: Reporting Period (Quarter)
+      zh_Hans: 报告期
+  - name: stock
+    type: string
+    required: false
+    form: llm
+    default: "600519"
+    description: 股票代码
+    llm_description: 股票代码，格式如"300003"（深市）或"600519"（沪市）。仅"机构持股详情"接口需要此参数。
+    human_description:
+      en_US: "Stock code in format like '300003' (Shenzhen) or '600519' (Shanghai). Required only for 'Institutional Holdings Details' interface."
+      zh_Hans: "股票代码，格式如'300003'（深市）或'600519'（沪市）。仅机构持股详情接口需要此参数。"
+    label:
+      en_US: Stock Code
+      zh_Hans: 股票代码
+  - name: retries
+    type: number
+    required: false
+    form: llm
+    default: 5
+    description: 重试次数
+    llm_description: 网络请求重试次数，范围1-10，默认5次。
+    human_description:
+      en_US: "Number of retries for network requests. Range: 1-10. Default: 5."
+      zh_Hans: "网络请求重试次数。范围：1-10。默认：5。"
+    label:
+      en_US: Retries
+      zh_Hans: 重试次数
+    min: 1
+    max: 10
+  - name: timeout
+    type: number
+    required: false
+    form: llm
+    default: 300
+    description: 子进程超时时间
+    llm_description: 子进程执行超时时间（秒），范围5-3600，默认300秒（机构持股数据量较大）。
+    human_description:
+      en_US: "Subprocess execution timeout in seconds. Range: 5-3600. Default: 300 (institutional holdings data is large)."
+      zh_Hans: "子进程执行超时时间（秒）。范围：5-3600。默认：300（机构持股数据量较大）。"
+    label:
+      en_US: Subprocess Timeout
+      zh_Hans: 子进程超时时间
+    min: 5
+    max: 3600
+extra:
+  python:
+    source: tools/get_institute_holdings_data.py
+

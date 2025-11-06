@@ -1,0 +1,85 @@
+identity:
+  author: shaoxing-xie
+  name: get_stock_issuance_release
+  label:
+    zh_Hans: 获取个股发行与限售解禁信息
+    en_US: Get Stock Issuance and Release Info
+description:
+  human:
+    zh_Hans: 获取股票的新股发行、增发和限售解禁数据。帮助了解股票的发行情况和限售股解禁计划。
+    en_US: Get stock IPO information, additional issuance, and restricted share release data. Helps understand the stock's issuance situation and restricted share release plans.
+  llm: 获取股票的新股发行、增发和限售解禁数据。包括：新股发行（返回新股发行信息，包括发行价格、发行数量、募集资金等）、股票增发（返回股票增发信息，包括增发价格、增发数量、募集资金等）、限售解禁（返回限售解禁信息，包括解禁日期、解禁数量、解禁类型等）。所有接口都需要提供股票代码参数，格式如"600519"（沪市）或"000001"（深市）。
+parameters:
+  - name: interface
+    type: select
+    required: true
+    form: llm
+    default: stock_ipo_info
+    description: 接口名称
+    llm_description: 选择股票发行与限售解禁信息接口。包括：新股发行（返回新股发行信息，包括发行价格、发行数量、募集资金等）、股票增发（返回股票增发信息，包括增发价格、增发数量、募集资金等）、限售解禁（返回限售解禁信息，包括解禁日期、解禁数量、解禁类型等）。
+    human_description:
+      en_US: "Select stock issuance and release info interface. Options: IPO Info (returns IPO information including issue price, quantity, funds raised), Additional Issuance (returns additional issuance information including price, quantity, funds raised), Restricted Release (returns restricted share release information including release date, quantity, type)."
+      zh_Hans: "选择股票发行与限售解禁信息接口。选项包括：新股发行（返回新股发行信息，包括发行价格、发行数量、募集资金等）、股票增发（返回股票增发信息，包括增发价格、增发数量、募集资金等）、限售解禁（返回限售解禁信息，包括解禁日期、解禁数量、解禁类型等）。"
+    label:
+      en_US: Interface
+      zh_Hans: 接口名称
+    options:
+      - label:
+          en_US: Sina Finance - IPO Info - Specific Stock
+          zh_Hans: 新浪财经-新股发行-指定股票
+        value: stock_ipo_info
+      - label:
+          en_US: Sina Finance - Additional Issuance - Specific Stock
+          zh_Hans: 新浪财经-股票增发-指定股票
+        value: stock_add_stock
+      - label:
+          en_US: Sina Finance - Restricted Release - Specific Stock
+          zh_Hans: 新浪财经-限售解禁-指定股票
+        value: stock_restricted_release_queue_sina
+  - name: symbol
+    type: string
+    required: true
+    form: llm
+    default: "600004"
+    description: 股票代码
+    llm_description: 股票代码，格式如"600004"（沪市）或"000001"（深市）。支持带市场前缀的格式如"SH600519"或"SZ000001"。
+    human_description:
+      en_US: "Stock code in format like '600004' (Shanghai) or '000001' (Shenzhen). Also supports market prefix format like 'SH600519' or 'SZ000001'."
+      zh_Hans: "股票代码，格式如'600519'（沪市）或'000001'（深市）。支持带市场前缀的格式如'SH600519'或'SZ000001'。"
+    label:
+      en_US: Stock Code
+      zh_Hans: 股票代码
+  - name: retries
+    type: number
+    required: false
+    form: llm
+    default: 5
+    description: 重试次数
+    llm_description: 网络请求重试次数，范围1-10，默认5次。
+    human_description:
+      en_US: "Number of retries for network requests. Range: 1-10. Default: 5."
+      zh_Hans: "网络请求重试次数。范围：1-10。默认：5。"
+    label:
+      en_US: Retries
+      zh_Hans: 重试次数
+    min: 1
+    max: 10
+  - name: timeout
+    type: number
+    required: false
+    form: llm
+    default: 240
+    description: 子进程超时时间
+    llm_description: 子进程执行超时时间（秒），范围5-3600，默认240秒。
+    human_description:
+      en_US: "Subprocess execution timeout in seconds. Range: 5-3600. Default: 240."
+      zh_Hans: "子进程执行超时时间（秒）。范围：5-3600。默认：240。"
+    label:
+      en_US: Subprocess Timeout
+      zh_Hans: 子进程超时时间
+    min: 5
+    max: 3600
+extra:
+  python:
+    source: tools/get_stock_issuance_release.py
+

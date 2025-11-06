@@ -1,0 +1,115 @@
+identity:
+  author: shaoxing-xie
+  name: get_stock_cash_flow_sheet
+  label:
+    zh_Hans: 获取个股财务报表-现金流量表
+    en_US: Get Individual Stock Financial Statements - Cash Flow Statement
+description:
+  human:
+    zh_Hans: 获取指定股票的现金流量表数据，包括经营活动、投资活动、筹资活动的现金流量信息，支持东方财富网、同花顺等多个数据源。
+    en_US: Get cash flow statement data for specified stocks, including operating activities, investing activities, financing activities cash flow information, supporting multiple data sources including East Money and Flush.
+  llm: 获取指定股票的现金流量表数据，包括经营活动、投资活动、筹资活动的现金流量信息。包括：东方财富网-现金流量表(按报告期)（需要股票代码，返回指定股票所有报告期的现金流量表数据）、东方财富网-现金流量表(按年度)（需要股票代码，返回指定股票所有年度的现金流量表数据）、东方财富网-现金流量表(按单季度)（需要股票代码，返回指定股票所有季度的现金流量表数据）、同花顺-现金流量表（需要股票代码和报告类型，返回指定股票指定报告类型的现金流量表所有历史数据）。根据不同接口提供相应参数。
+parameters:
+  - name: interface
+    type: select
+    required: true
+    form: llm
+    default: stock_cash_flow_sheet_by_report_em
+    description: 接口名称
+    llm_description: 选择现金流量表数据接口。包括：东方财富网-现金流量表(按报告期)（需要股票代码，返回指定股票所有报告期的现金流量表数据）、东方财富网-现金流量表(按年度)（需要股票代码，返回指定股票所有年度的现金流量表数据）、东方财富网-现金流量表(按单季度)（需要股票代码，返回指定股票所有季度的现金流量表数据）、同花顺-现金流量表（需要股票代码和报告类型，返回指定股票指定报告类型的现金流量表所有历史数据）。根据不同接口提供相应参数。
+    human_description:
+      en_US: "Select cash flow statement data interface. Options: East Money Cash Flow Statement (by Report Period/Year/Quarter), Flush Cash Flow Statement."
+      zh_Hans: "选择现金流量表数据接口。选项包括：东方财富网-现金流量表(按报告期/年度/单季度)、同花顺-现金流量表。"
+    label:
+      en_US: Interface
+      zh_Hans: 接口名称
+    options:
+      - label:
+          en_US: East Money - Cash Flow Statement (by Report Period) - Specified Stock
+          zh_Hans: 东方财富网-现金流量表(按报告期)-指定股票
+        value: stock_cash_flow_sheet_by_report_em
+      - label:
+          en_US: East Money - Cash Flow Statement (by Year) - Specified Stock
+          zh_Hans: 东方财富网-现金流量表(按年度)-指定股票
+        value: stock_cash_flow_sheet_by_yearly_em
+      - label:
+          en_US: East Money - Cash Flow Statement (by Single Quarter) - Specified Stock
+          zh_Hans: 东方财富网-现金流量表(按单季度)-指定股票
+        value: stock_cash_flow_sheet_by_quarterly_em
+      - label:
+          en_US: Flush - Cash Flow Statement - Specified Stock, Report Type
+          zh_Hans: 同花顺-现金流量表-指定股票、报告类型
+        value: stock_financial_cash_ths
+  - name: stock_code
+    type: string
+    required: true
+    form: llm
+    default: "000001"
+    description: 股票代码
+    llm_description: 股票代码，支持A股格式，如600519（沪市）、000001（深市）、430xxx（北交所）等。
+    human_description:
+      en_US: "Stock code. Supports A-share formats, e.g., 600519 (Shanghai), 000001 (Shenzhen), 430xxx (Beijing Stock Exchange), etc."
+      zh_Hans: "股票代码。支持A股格式，如600519（沪市）、000001（深市）、430xxx（北交所）等。"
+    label:
+      en_US: Stock Code
+      zh_Hans: 股票代码
+  - name: report_type
+    type: select
+    required: false
+    form: llm
+    default: 按年度
+    description: 报告类型
+    llm_description: 报告类型参数，用于同花顺现金流量表接口。选项：按年度（返回年度数据）、按报告期（返回报告期数据）、按单季度（返回季度数据）。
+    human_description:
+      en_US: "Report type. Required for Flush cash flow statement interface. Options: By Year (按年度), By Report Period (按报告期), By Single Quarter (按单季度)."
+      zh_Hans: "报告类型。用于同花顺现金流量表接口。选项：按年度、按报告期、按单季度。"
+    label:
+      en_US: Report Type
+      zh_Hans: 报告类型
+    options:
+      - label:
+          en_US: By Year
+          zh_Hans: 按年度
+        value: 按年度
+      - label:
+          en_US: By Report Period
+          zh_Hans: 按报告期
+        value: 按报告期
+      - label:
+          en_US: By Single Quarter
+          zh_Hans: 按单季度
+        value: 按单季度
+  - name: retries
+    type: number
+    required: false
+    form: llm
+    default: 5
+    description: 重试次数
+    llm_description: 网络请求重试次数，范围1-10，默认5次。
+    human_description:
+      en_US: "Number of retries for network requests. Range: 1-10. Default: 5."
+      zh_Hans: "网络请求重试次数。范围：1-10。默认：5。"
+    label:
+      en_US: Retries
+      zh_Hans: 重试次数
+    min: 1
+    max: 10
+  - name: timeout
+    type: number
+    required: false
+    form: llm
+    default: 600
+    description: 子进程超时时间
+    llm_description: 子进程执行超时时间（秒），范围5-3600，默认600秒（10分钟）。财务报表数据量可能较大，建议设置较长的超时时间。
+    human_description:
+      en_US: "Subprocess execution timeout in seconds. Range: 5-3600. Default: 600 (10 minutes). Financial statement data may be large, suggest longer timeout."
+      zh_Hans: "子进程执行超时时间（秒）。范围：5-3600。默认：600（10分钟）。财务报表数据量可能较大，建议设置较长的超时时间。"
+    label:
+      en_US: Subprocess Timeout
+      zh_Hans: 子进程超时时间
+    min: 5
+    max: 3600
+extra:
+  python:
+    source: tools/get_stock_cash_flow_sheet.py
+

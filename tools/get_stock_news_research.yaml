@@ -1,0 +1,81 @@
+identity:
+  author: shaoxing-xie
+  name: get_stock_news_research
+  label:
+    zh_Hans: 获取个股新闻与研报
+    en_US: Get Stock News and Research
+description:
+  human:
+    zh_Hans: 获取股票的新闻资讯和研究报告数据。帮助投资者了解股票的最新动态和机构分析。
+    en_US: Get stock news and research reports. Helps investors understand the latest developments and institutional analysis of stocks.
+  llm: 获取股票的新闻资讯和研究报告数据。包括：新闻资讯（返回股票相关的新闻标题、发布时间、链接等信息）、个股研报（返回券商研究报告、评级、目标价等信息）。所有接口都需要提供股票代码参数，格式如"600519"（沪市）或"000001"（深市）。
+parameters:
+  - name: interface
+    type: select
+    required: true
+    form: llm
+    default: stock_news_em
+    description: 接口名称
+    llm_description: 选择股票新闻与研报接口。包括：新闻资讯（返回股票相关的新闻标题、发布时间、链接等信息）、个股研报（返回券商研究报告、评级、目标价等信息）。
+    human_description:
+      en_US: "Select stock news and research interface. Options: News (returns news headlines, publish time, links), Research Reports (returns broker research reports, ratings, target prices)."
+      zh_Hans: "选择股票新闻与研报接口。选项包括：新闻资讯（返回股票相关的新闻标题、发布时间、链接等信息）、个股研报（返回券商研究报告、评级、目标价等信息）。"
+    label:
+      en_US: Interface
+      zh_Hans: 接口名称
+    options:
+      - label:
+          en_US: Eastmoney - News - Specific Stock
+          zh_Hans: 东方财富网-新闻资讯数据-指定股票
+        value: stock_news_em
+      - label:
+          en_US: Eastmoney - Research Reports - Specific Stock
+          zh_Hans: 东方财富网-数据中心-研究报告-个股研报
+        value: stock_research_report_em
+  - name: symbol
+    type: string
+    required: true
+    form: llm
+    default: "600519"
+    description: 股票代码
+    llm_description: 股票代码，格式如"600519"（沪市）或"000001"（深市）。支持带市场前缀的格式如"SH600519"或"SZ000001"。
+    human_description:
+      en_US: "Stock code in format like '600519' (Shanghai) or '000001' (Shenzhen). Also supports market prefix format like 'SH600519' or 'SZ000001'."
+      zh_Hans: "股票代码，格式如'600519'（沪市）或'000001'（深市）。支持带市场前缀的格式如'SH600519'或'SZ000001'。"
+    label:
+      en_US: Stock Code
+      zh_Hans: 股票代码
+  - name: retries
+    type: number
+    required: false
+    form: llm
+    default: 5
+    description: 重试次数
+    llm_description: 网络请求重试次数，范围1-10，默认5次。
+    human_description:
+      en_US: "Number of retries for network requests. Range: 1-10. Default: 5."
+      zh_Hans: "网络请求重试次数。范围：1-10。默认：5。"
+    label:
+      en_US: Retries
+      zh_Hans: 重试次数
+    min: 1
+    max: 10
+  - name: timeout
+    type: number
+    required: false
+    form: llm
+    default: 240
+    description: 子进程超时时间
+    llm_description: 子进程执行超时时间（秒），范围5-3600，默认240秒。
+    human_description:
+      en_US: "Subprocess execution timeout in seconds. Range: 5-3600. Default: 240."
+      zh_Hans: "子进程执行超时时间（秒）。范围：5-3600。默认：240。"
+    label:
+      en_US: Subprocess Timeout
+      zh_Hans: 子进程超时时间
+    min: 5
+    max: 3600
+extra:
+  python:
+    source: tools/get_stock_news_research.py
+

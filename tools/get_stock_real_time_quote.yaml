@@ -1,0 +1,77 @@
+identity:
+  author: shaoxing-xie
+  name: get_stock_real_time_quote
+  label:
+    zh_Hans: 获取个股实时报价
+    en_US: Get Stock Real-Time Quote
+description:
+  human:
+    zh_Hans: 获取指定股票的实时报价数据，包括买盘卖盘挂单信息。帮助了解股票的实时买卖盘情况。
+    en_US: Get real-time quote data for a specific stock, including buy and sell order information. Helps understand the real-time buy and sell order situation of stocks.
+  llm: 获取指定股票的实时报价数据，包括买盘卖盘挂单信息。返回数据包括买盘价格、买盘数量、卖盘价格、卖盘数量等详细信息。需要提供股票代码参数，格式如"600519"（沪市）或"000001"（深市），支持带市场前缀的格式如"SH600519"或"SZ000001"。
+parameters:
+  - name: interface
+    type: select
+    required: true
+    form: llm
+    default: stock_bid_ask_em
+    description: 接口名称
+    llm_description: 选择个股实时报价接口。包括：行情报价（返回指定股票的实时买盘卖盘挂单信息，包括买盘价格、买盘数量、卖盘价格、卖盘数量等）。
+    human_description:
+      en_US: "Select stock real-time quote interface. Options: Stock Quote (returns real-time buy and sell order information for specified stock, including buy prices, buy quantities, sell prices, sell quantities)."
+      zh_Hans: "选择个股实时报价接口。选项包括：行情报价（返回指定股票的实时买盘卖盘挂单信息，包括买盘价格、买盘数量、卖盘价格、卖盘数量等）。"
+    label:
+      en_US: Interface
+      zh_Hans: 接口名称
+    options:
+      - label:
+          en_US: Eastmoney - Stock Quote - Specific Stock
+          zh_Hans: 东方财富网-行情报价-指定股票
+        value: stock_bid_ask_em
+  - name: symbol
+    type: string
+    required: true
+    form: llm
+    default: "600519"
+    description: 股票代码
+    llm_description: 股票代码，格式如"600519"（沪市）或"000001"（深市）。支持带市场前缀的格式如"SH600519"或"SZ000001"。
+    human_description:
+      en_US: "Stock code in format like '600519' (Shanghai) or '000001' (Shenzhen). Also supports market prefix format like 'SH600519' or 'SZ000001'."
+      zh_Hans: "股票代码，格式如'600519'（沪市）或'000001'（深市）。支持带市场前缀的格式如'SH600519'或'SZ000001'。"
+    label:
+      en_US: Stock Code
+      zh_Hans: 股票代码
+  - name: retries
+    type: number
+    required: false
+    form: llm
+    default: 5
+    description: 重试次数
+    llm_description: 网络请求重试次数，范围1-10，默认5次。
+    human_description:
+      en_US: "Number of retries for network requests. Range: 1-10. Default: 5."
+      zh_Hans: "网络请求重试次数。范围：1-10。默认：5。"
+    label:
+      en_US: Retries
+      zh_Hans: 重试次数
+    min: 1
+    max: 10
+  - name: timeout
+    type: number
+    required: false
+    form: llm
+    default: 240
+    description: 子进程超时时间
+    llm_description: 子进程执行超时时间（秒），范围5-3600，默认240秒。
+    human_description:
+      en_US: "Subprocess execution timeout in seconds. Range: 5-3600. Default: 240."
+      zh_Hans: "子进程执行超时时间（秒）。范围：5-3600。默认：240。"
+    label:
+      en_US: Subprocess Timeout
+      zh_Hans: 子进程超时时间
+    min: 5
+    max: 3600
+extra:
+  python:
+    source: tools/get_stock_real_time_quote.py
+

@@ -16,7 +16,21 @@
 
 **AKShare Stock Data Plugin** is a comprehensive stock data tool developed specifically for the Dify platform, built on the renowned [AKShare](https://github.com/akfamily/akshare) Python library. This plugin provides users with a one-stop stock market data access solution, covering multiple dimensions of professional stock information including real-time quotes, historical data, financial analysis, capital flow, technical analysis, and Shanghai-Shenzhen-Hong Kong Stock Connect.
 
+> **Feature Highlights**: Provides 78 professional tools and 190+ data interfaces, covering global stock markets. View the [Complete Function Documentation](https://github.com/shaoxing-xie/akshare-stockdata-plugin/blob/main/AKShare%20股票数据插件详细功能文档.md) for all interface details, parameter guides, and technical references.
+
 > **Important Notice**: This plugin is a Dify platform integration tool based on the AKShare library. AKShare is an open-source financial data interface library designed for academic research purposes. We express our sincere gratitude to the AKShare project team for their excellent work.
+
+> **⚠️ Interface Update Notice**: Due to network transmission stability issues, the following 8 shareholder analysis interfaces have been removed:
+> - `stock_gdfx_free_holding_analyse_em` - Shareholder Holding Analysis (Top 10 Circulating Shareholders)
+> - `stock_gdfx_holding_analyse_em` - Shareholder Holding Analysis (Top 10 Shareholders)
+> - `stock_gdfx_free_holding_detail_em` - Shareholder Holding Details (Top 10 Circulating Shareholders)
+> - `stock_gdfx_holding_detail_em` - Shareholder Holding Details (Top 10 Shareholders)
+> - `stock_gdfx_free_holding_statistics_em` - Shareholder Holding Statistics (Top 10 Shareholders)
+> - `stock_gdfx_holding_statistics_em` - Shareholder Holding Statistics (Top 10 Shareholders)
+> - `stock_gdfx_free_holding_change_em` - Shareholder Holding Change Statistics (Top 10 Circulating Shareholders)
+> - `stock_gdfx_holding_change_em` - Shareholder Holding Change Statistics (Top 10 Shareholders)
+> 
+> Other shareholder-related interfaces (Top 10 Shareholders, etc.) remain available.
 
 ## 🚀 Core Features
 
@@ -34,11 +48,14 @@
 - 🔗 **Public APIs**: Official stock exchange data interfaces
 
 ### 🛠️ **Powerful Feature Matrix**
-- 🎯 **12 Professional Tools**: Covering all aspects of stock data analysis
-- 🌍 **175 Data Interfaces**: Extensive coverage of major global stock markets
+- 🎯 **78 Professional Tools**: Covering all aspects of stock data analysis
+  - **Categorized by Functional Domain**: Market overview, individual stock info, quote data, financial data, capital flow, technical analysis, and 12 major functional domains
+  - **Fine-grained Design**: Each tool focuses on specific functionality for precise invocation
+- 🌍 **190+ Data Interfaces**: Extensive coverage of major global stock markets
 - 📊 **Multi-Market Support**: A-shares, B-shares, Hong Kong stocks, US stocks, STAR Market, Beijing Stock Exchange
 - 🔄 **Real-time + Historical**: Both real-time quotes and historical data analysis
 - 📋 **Dual Output**: Markdown tables + JSON format for easy reading and processing
+- 📈 **Technical Analysis**: Professional technical indicator calculation and analysis tools
 
 ### 🔧 **Technical Advantages**
 - 🛡️ **Smart Error Handling**: Automatic retry mechanism with graceful error recovery
@@ -58,25 +75,37 @@
 - Developing stock analysis and prediction models
 - Creating automated investment decision systems
 
+## 📥 Quick Download
+
+[![Download Plugin](https://img.shields.io/badge/Download-Plugin%20Package-blue)](https://github.com/shaoxing-xie/akshare-stockdata-plugin/releases/tag/v0.7.0)
+
+**Direct Download Latest Version Plugin Package** | [View All Versions](https://github.com/shaoxing-xie/akshare-stockdata-plugin/releases)
+
 ## 📦 How to Install
 
-### Method 1: Dify Plugin Marketplace Installation (Recommended)
-1. Open your Dify workspace
-2. Navigate to **Tools** → **Browse Marketplace**
-3. Search for **"AKShare Stock Data"** or **"AKShare 股票数据"**
-4. Click the **Install** button
-5. Wait for installation to complete and start using
+### Method 1: Direct Download Installation (Recommended)
 
-### Method 2: Install via GitHub
-1. Visit the plugin repository: [https://github.com/shaoxing-xie/akshare-stockdata-plugin](https://github.com/shaoxing-xie/akshare-stockdata-plugin)
-2. Download the latest version plugin package (.difypkg file)
-3. In your Dify workspace:
-   - Navigate to **Tools** → **Local Plugins**
-   - Click **Upload Plugin**
-   - Select the downloaded .difypkg file
-   - Confirm installation
+[![Download Plugin](https://img.shields.io/badge/Download-Plugin%20Package-blue)](https://github.com/shaoxing-xie/akshare-stockdata-plugin/releases/tag/v0.7.0)
 
-### Method 3: Manual Installation
+1. **Quick Download**: Click the button above to directly download the latest version plugin package
+2. **Install in Dify**:
+   - Open your Dify workspace
+   - Navigate to **Tools** → **Plugins** → **Install Plugin**
+   - Select **"Install from File"**
+   - Upload the downloaded `.difypkg` file
+   - Click the **Install** button
+
+### Method 2: Download from Releases Directory
+1. Visit the [releases directory](https://github.com/shaoxing-xie/akshare-stockdata-plugin/tree/main/releases)
+2. Download the **"AKShare-Stockdata-plugin-v0.7.0.difypkg"** file
+3. Follow the steps in Method 1 to install in Dify
+
+### Method 3: Via GitHub Releases
+1. Visit [GitHub Releases](https://github.com/shaoxing-xie/akshare-stockdata-plugin/releases)
+2. Download the latest version plugin package
+3. Follow the steps in Method 1 to install in Dify
+
+### Method 4: Manual Installation
 1. Clone this repository locally
    ```bash
    git clone https://github.com/shaoxing-xie/akshare-stockdata-plugin.git
@@ -92,11 +121,13 @@
    ```
 4. Upload the generated .difypkg file in Dify
 
+After installation, refer to the [Detailed Function Documentation](https://github.com/shaoxing-xie/akshare-stockdata-plugin/blob/main/AKShare%20股票数据插件详细功能文档.md) to quickly understand all interfaces.
+
 ## 🎯 How to Use
 
 ### Quick Start in Three Steps
-1. **Select Tool**: Choose from 12 professional tools
-2. **Select Interface**: Choose from 175 data interfaces for specific data sources
+1. **Select Tool**: Choose from 78 professional tools (categorized by functional domain)
+2. **Select Interface**: Choose from 190+ data interfaces for specific data sources
 3. **Set Parameters**: Configure stock codes, date ranges, and other parameters
 
 ### Usage Examples
@@ -131,45 +162,158 @@
 
 ## 🛠️ Tool Details
 
-### 🏠 **Tool 1: Stock Market Summary**
-- **Interface Count**: 13
-- **Function**: Get overall market overview and statistical data, including SSE and SZSE market summaries, equity pledge data, goodwill data, stock account statistics, stock comments, IPO subscription yields, suspension/resumption alerts, dividend distribution alerts, etc.
-- **Use Cases**: Market analysis, macroeconomic research, risk monitoring
+The plugin provides **78 professional tools**, categorized by functional domain as follows:
 
-### 📊 **Tool 2: Stock Real-time Quotes**  
-- **Interface Count**: 17
-- **Function**: Get real-time stock quote data from various markets, including Shanghai/Shenzhen/Beijing A-shares, Hong Kong stocks, US stocks real-time quotes, new stock data, AH stock comparison, famous stock real-time quotes, etc.
-- **Use Cases**: Real-time monitoring, trading decisions, cross-market comparison
+### 📊 **I. Market Overview Tools** (20 tools)
+Get overall market overview and statistical data, including exchange market overview, equity pledge data, goodwill data, stock account statistics, IPO subscription, trading event notifications, institutional holdings, rating valuation, company announcements, dragon tiger list, block trading, margin trading, board data, stock hot data, limit up/down data, etc.
 
-### 📈 **Tool 3: Stock Historical Quotes**
-- **Interface Count**: 9  
-- **Function**: Get historical price data, including A-shares, Hong Kong stocks, US stocks daily and minute data, STAR Market historical data, pre-market data, etc.
-- **Use Cases**: Technical analysis, backtesting research, quantitative modeling
+| Tool Name | Main Function | Use Cases |
+|-----------|---------------|-----------|
+| **Get Exchange Market Overview** | SSE and SZSE market overview data | Market analysis, macroeconomic research |
+| **Get Equity Pledge Data** | Equity pledge market overview, listed company pledge ratio | Risk monitoring, pledge analysis |
+| **Get Goodwill Data** | Goodwill market overview, individual stock goodwill details | Goodwill analysis, impairment monitoring |
+| **Get Stock Account Statistics** | Stock account monthly statistics | Market participation analysis |
+| **Get A-share Market Shareholder Number Data** | Shareholder number statistics | Shareholder structure analysis |
+| **Get Stock Comment Data** | Stock comment data | Market sentiment analysis |
+| **Get IPO Subscription Data** | IPO subscription and lottery data | IPO analysis, new stock strategy |
+| **Get Trading Event Notifications** | Suspension/resumption, dividend alerts | Trading alerts, event monitoring |
+| **Get Market Institutional Holdings Data** | Institutional holdings overview, recommendation pool | Institutional trend analysis |
+| **Get Stock Rating and Valuation** | Stock rating records, valuation analysis | Investment rating, valuation research |
+| **Get Company Announcements** | Company news, important announcements | Company event tracking |
+| **Get Company Disclosure** | Company disclosure data | Disclosure analysis |
+| **Get Stock List Data** | Shanghai-Shenzhen-Beijing A-share stock codes and names | Stock list query |
+| **Get Dragon Tiger List** | Dragon tiger list trading data | Capital flow analysis |
+| **Get Block Trading** | Block trading data | Large transaction analysis |
+| **Get A-share Market Margin Trading** | Margin trading data | Leverage capital analysis |
+| **Get Flush Board Data** | Flush concept and industry board data | Board analysis, thematic investment |
+| **Get East Money Board Data** | East Money concept and industry board data | Board analysis, industry research |
+| **Get A-share Market Stock Hot Data** | Stock hot rankings | Market hot analysis |
+| **Get A-share Market Limit Up/Down Data** | Limit up/down data | Limit up analysis, risk monitoring |
 
-### 🏢 **Tool 4: Individual Stock Information Summary**
-- **Interface Count**: 14
-- **Function**: Get individual stock basic information, financial data, research reports, including A-shares and Hong Kong stocks information, quotes, main business, news, dividend distribution, balance sheets, etc.
-- **Use Cases**: Fundamental analysis, investment research, value assessment
+### 🏢 **II. Individual Stock Information Tools** (6 tools)
+Get individual stock basic information, news research, dividend information, shareholder holding changes, shareholder numbers, stock issuance and listing data, etc.
 
-### 💰 **Tool 5: Stock Financial Data Analysis**
-- **Interface Count**: 14
-- **Function**: Get financial statements and performance data, including A-shares performance reports (profit statements, cash flow statements, balance sheets), TongHuaShun financial indicators, Hong Kong and US stock financial data, etc.
-- **Use Cases**: Financial analysis, value investing, cross-market comparison
+| Tool Name | Main Function | Use Cases |
+|-----------|---------------|-----------|
+| **Get Stock Basic Info** | Stock information, main business introduction, main business composition, company profile | Fundamental analysis, company research |
+| **Get Stock News Research** | News information, individual stock research reports | Information tracking, research analysis |
+| **Get Stock Dividend Info** | Dividend distribution details, historical dividends | Dividend analysis, dividend investment |
+| **Get Shareholder Holding Changes** | Top 10 shareholders, top 10 circulating shareholders, holding changes | Shareholder structure analysis |
+| **Get A-share Shareholder Number Detail** | Shareholder number detail data | Shareholder dispersion analysis |
+| **Get Stock Issuance and Release** | New stock issuance, stock additional issuance, restricted share release | Issuance and listing analysis |
 
-### 🌊 **Tool 6: Capital Flow Analysis**
-- **Interface Count**: 11
-- **Function**: Analyze capital flow and market sentiment, including individual stock fund flow, sector fund flow rankings, main fund flow, industry and concept historical fund flow, chip distribution, etc.
-- **Use Cases**: Capital flow analysis, market sentiment assessment, main force tracking
+### 📈 **III. Quote Data Tools** (8 tools)
+Get real-time quotes, historical quotes, intraday quotes, comparison data for various markets, etc.
 
-### 📊 **Tool 7: Stock Technical Analysis**
-- **Interface Count**: 18
-- **Function**: Technical indicators and new high/low data, including innovation highs/lows, continuous rise/fall, volume analysis, moving average breakthroughs, price-volume analysis, ESG ratings, individual stock indicators, dividend yields, etc.
-- **Use Cases**: Technical analysis, trend judgment, ESG investing, dividend investing
+| Tool Name | Main Function | Use Cases |
+|-----------|---------------|-----------|
+| **Get Stock Real-time Quote** | Individual stock real-time quote | Real-time monitoring, trading decisions |
+| **Get Stock Historical Quotes** | A-share daily and minute data | Technical analysis, backtesting research |
+| **Get Stock Intraday Quotes** | Intraday minute data, minute data | Intraday analysis, order book analysis |
+| **Get Stock Peer Comparison** | Growth, valuation, DuPont analysis, company size comparison | Industry comparison, valuation analysis |
+| **Get A-share Market Stock Quotes** | Shanghai-Shenzhen-Beijing A-share real-time quotes | Market quote monitoring |
+| **Get A-share Board Quotes** | New stocks, ChiNext, STAR Market real-time quotes | Board quote analysis |
+| **Get Stock Comparison Quotes** | AH share comparison, AB share comparison | Cross-market comparison |
+| **Get Special Stock Quotes** | Sub-new stocks, two networks and delisted stocks | Special stock analysis |
 
-### 🌉 **Tool 8: Shanghai-Shenzhen-Hong Kong Stock Connect Holdings**
-- **Interface Count**: 7
-- **Function**: Northbound capital holdings and flow data, including Hong Kong Stock Connect components, HSGT minute data, sector rankings, stock rankings, real-time quotes, historical data, specific stock holdings, etc.
-- **Use Cases**: Foreign capital trend analysis, market sentiment, northbound capital tracking
+### 💰 **IV. Financial Data Tools** (6 tools)
+Get financial statements and performance data, including performance reports, balance sheets, profit statements, cash flow statements, financial indicators, etc.
+
+| Tool Name | Main Function | Use Cases |
+|-----------|---------------|-----------|
+| **Get Stock Performance Reports** | Performance statements, performance reports, performance forecasts | Performance analysis, performance tracking |
+| **Get Stock Balance Sheet** | Balance sheet data | Financial analysis, solvency analysis |
+| **Get Stock Profit Sheet** | Profit statement data | Profitability analysis |
+| **Get Stock Cash Flow Sheet** | Cash flow statement data | Cash flow analysis |
+| **Get Stock Financial Indicators** | Financial indicator data | Financial indicator analysis |
+| **Get Stock Financial Analysis Indicators** | Financial analysis indicator data | Comprehensive financial analysis |
+
+### 🌊 **V. Capital Flow Tools** (6 tools)
+Analyze capital flow and market sentiment, including individual stock capital flow, board capital flow, main force capital flow, chip distribution, etc.
+
+| Tool Name | Main Function | Use Cases |
+|-----------|---------------|-----------|
+| **Get Stock Fund Flow** | Individual stock fund flow data | Capital flow analysis |
+| **Get Stock Chip Distribution** | Chip distribution data | Chip analysis |
+| **Get Market Stock Fund Flow Rank** | Fund flow ranking data | Fund flow analysis |
+| **Get Market Fund Flow History** | Fund flow historical data | Fund flow trend analysis |
+| **Get Sector Fund Flow Rank** | Sector fund flow rankings | Sector capital analysis |
+| **Get Big Deal Tracking** | Big deal tracking data | Main force trend tracking |
+
+### 📈 **VI. Technical Analysis Tools** (7 tools)
+Technical indicators and innovation high/low data, including innovation highs/lows, continuous rise/fall, volume analysis, breakthrough analysis, price-volume analysis, ESG ratings, etc.
+
+| Tool Name | Main Function | Use Cases |
+|-----------|---------------|-----------|
+| **Get Technical Innovation High Low** | Innovation high, innovation low stocks | Technical stock selection, trend analysis |
+| **Get Technical Continuous Rise Fall** | Continuous rise, continuous fall stocks | Trend analysis, reversal analysis |
+| **Get Technical Volume Analysis** | Continuous volume increase, continuous volume decrease stocks | Volume-price analysis |
+| **Get Technical Breakthrough Analysis** | Upward breakthrough, downward breakthrough stocks | Breakthrough analysis, trend judgment |
+| **Get Technical Price Volume Analysis** | Price-volume rise, price-volume fall stocks | Price-volume relationship analysis |
+| **Get Technical Insurance Disclosure** | Insurance capital placard raising data | Insurance capital trends |
+| **Get ESG Rating Data** | ESG rating data | ESG investment, social responsibility investment |
+
+### 📉 **VII. Technical Indicator Tools** (5 tools) ⭐ **Extended Indicator Tools**
+Comprehensive analysis tools based on individual stock historical data calculating various technical indicators.
+
+| Tool Name | Main Function | Use Cases |
+|-----------|---------------|-----------|
+| **Get Stock Trend Momentum Daily** | Daily technical indicator calculation | Technical analysis, quantitative research |
+| **Get Stock Trend Momentum Minute** | Minute-level technical indicator calculation | High-frequency analysis, intraday trading |
+| **Get Stock Dynamic Valuation** | Dynamic valuation indicators | Valuation analysis, investment decisions |
+| **Get Stock Historical Valuation** | Historical valuation indicators | Valuation trend analysis |
+| **Get Stock Basic Info Summary** | Individual stock basic information summary | Comprehensive information query |
+
+### 🔗 **VIII. HSGT Tools** (4 tools)
+Northbound capital holdings and flow data, including exchange rate data, capital flow, ranking data, individual stock holdings, etc.
+
+| Tool Name | Main Function | Use Cases |
+|-----------|---------------|-----------|
+| **Get HSGT Exchange Rate Data** | Hong Kong Stock Connect exchange rate data | Exchange rate analysis, cross-border capital analysis |
+| **Get HSGT Fund Flow Data** | Fund flow data | Foreign capital trend analysis |
+| **Get HSGT Ranking Data** | Sector rankings, stock rankings | Foreign capital holdings analysis |
+| **Get HSGT Individual Holdings** | Specific stock holdings data | Individual stock foreign capital holdings analysis |
+
+### 📊 **IX. Index Data Tools** (3 tools) ⭐ **Index Analysis Tools**
+A-share index-related data interfaces, including index real-time quotes, historical data, technical indicators, etc.
+
+| Tool Name | Main Function | Use Cases |
+|-----------|---------------|-----------|
+| **Get Index Spot Quotes** | Index real-time quote data | Index monitoring, market trends |
+| **Get Index Historical Quotes** | Index historical quote data | Index analysis, technical research |
+| **Get Index Trend Momentum Daily** | Index technical indicator calculation | Index technical analysis |
+
+### 🇭🇰 **X. Hong Kong Stock Data Tools** (8 tools) ⭐ **Independent Tools**
+Hong Kong stock-related data interfaces, including Hong Kong stock real-time quotes, historical data, financial analysis, company information, dividend information, etc.
+
+| Tool Name | Main Function | Use Cases |
+|-----------|---------------|-----------|
+| **Get HK Individual Info** | Hong Kong stock individual basic information | Hong Kong stock fundamental analysis |
+| **Get HK Historical Quotes** | Hong Kong stock historical quote data | Hong Kong stock technical analysis |
+| **Get HK Daily Minute Quotes** | Hong Kong stock minute quote data | Hong Kong stock intraday analysis |
+| **Get HK Dividend Payout** | Hong Kong stock dividend payout data | Hong Kong stock dividend analysis |
+| **Get HK Financial Indicators** | Hong Kong stock financial indicator data | Hong Kong stock financial analysis |
+| **Get HK Financial Statements** | Hong Kong stock financial statement data | Hong Kong stock financial statement analysis |
+| **Get HK Industry Comparison** | Hong Kong stock industry comparison data | Hong Kong stock industry comparison |
+| **Get HK Spot Quotes** | Hong Kong stock real-time quote data | Hong Kong stock real-time monitoring |
+
+### 🇺🇸 **XI. US Stock Data Tools** (5 tools) ⭐ **Independent Tools**
+US stock-related data interfaces, including US stock real-time quotes, historical data, financial analysis, etc.
+
+| Tool Name | Main Function | Use Cases |
+|-----------|---------------|-----------|
+| **Get US Spot Quotes** | US stock real-time quote data | US stock real-time monitoring |
+| **Get US Historical Quotes** | US stock historical quote data | US stock technical analysis |
+| **Get US Daily Minute Quotes** | US stock minute quote data | US stock intraday analysis |
+| **Get US Financial Indicators** | US stock financial indicator data | US stock financial analysis |
+| **Get US Financial Statements** | US stock financial statement data | US stock financial statement analysis |
+
+---
+
+**Tool Statistics**:
+- **Total**: 78 professional tools
+- **Data Interfaces**: 190+ data interfaces
+- **Functional Coverage**: Market overview, individual stock info, quote data, financial data, capital flow, technical analysis, technical indicators, HSGT, index data, Hong Kong stock data, US stock data, and 12 major functional domains
 
 ## 🔒 Privacy & Security
 
@@ -224,6 +368,16 @@ If you encounter problems or have suggestions:
 2. Create a new issue with detailed information
 3. Refer to AKShare official documentation
 
+## 🔄 Version Upgrade
+
+### Upgrading from 0.6.0 to 0.7.0
+- ✅ **Tool Split Optimization**: Split from 12 large tools into 78 fine-grained tools for more precise invocation
+- ✅ **Functional Domain Classification**: Displayed by functional domain for easier search and use
+- ✅ **Fully Backward Compatible**: All workflows based on version 0.6.0 can be used directly without modification
+- ✅ **Feature Enhancement**: More data interfaces and features
+
+👉 **[Detailed Upgrade Guide](UPGRADE_GUIDE.md)** - Complete version upgrade instructions
+
 ## 🔧 Troubleshooting
 
 ### ❌ **Common Issues and Solutions**
@@ -271,376 +425,31 @@ If you encounter problems or have suggestions:
   PLUGIN_PYTHON_ENV_INIT_TIMEOUT=600
   ```
 
-## 📚 Detailed Tool Function Documentation
-
-### Tool 1: Stock Market Summary
-
-#### SSE - Stock Data Summary
-**Function**: Retrieve comprehensive market overview data from Shanghai Stock Exchange, including circulating shares, total market value, average P/E ratio, number of listed companies and other key indicators for macroeconomic market analysis and investment decision reference.
-
-**Parameter Input**: This interface requires no input parameters. Call directly to get the latest trading day's market summary data.
-
-**Reference Information**:
-**Interface**: `stock_sse_summary`
-**Target URL**: http://www.sse.com.cn/market/stockdata/statistic/
-**Description**: Shanghai Stock Exchange - Stock Data Summary
-**Limit**: Returns stock data summary for the most recent trading day (current trading day data requires post-market statistics)
-
-**Input Parameters**
-| Name | Type | Description |
-|------|------|-------------|
-| -    | -    | -           |
-
-**Interface Example**
-```python
-import akshare as ak
-stock_sse_summary_df = ak.stock_sse_summary()
-print(stock_sse_summary_df)
-```
-
-#### SZSE - Market Overview - Securities Category Statistics
-**Function**: Retrieve market statistics data from Shenzhen Stock Exchange categorized by security types, including quantity, trading amount, total market value and circulating market value for stocks, funds, bonds and other securities.
-
-**Parameter Input**: Requires trading date parameter in YYYYMMDD format to query market overview data for the specified date. Current trading day data can only be obtained after exchange closing.
-
-**Reference Information**:
-**Interface**: `stock_szse_summary`
-**Target URL**: http://www.szse.cn/market/overview/index.html
-**Description**: Shenzhen Stock Exchange - Market Overview - Securities Category Statistics
-**Limit**: Returns market overview data for specified date - Securities Category Statistics (current trading day data requires post-market statistics)
-
-**Input Parameters**
-| Name | Type | Description |
-|------|------|-------------|
-| date | str  | date="20200619"; Current trading day data requires post-market statistics |
-
-**Interface Example**
-```python
-import akshare as ak
-stock_szse_summary_df = ak.stock_szse_summary(date="20200619")
-print(stock_szse_summary_df)
-```
-
-#### SSE - Daily Stock Situation
-**Function**: Retrieve detailed daily stock trading situation from Shanghai Stock Exchange, including number of listed stocks, market capitalization, circulating market value, trading amount, trading volume, average P/E ratio, turnover rate and other key trading indicators.
-
-**Parameter Input**: Requires trading date parameter in YYYYMMDD format. Note that only data from December 27, 2021 (inclusive) onwards is supported, and current trading day data needs to be obtained after closing.
-
-**Reference Information**:
-**Interface**: `stock_sse_deal_daily`
-**Target URL**: http://www.sse.com.cn/market/stockdata/overview/day/
-**Description**: Shanghai Stock Exchange - Data - Stock Data - Trading Overview - Stock Trading Overview - Daily Stock Situation
-**Limit**: Returns daily overview data for specified date, current trading day data needs to be obtained after closing; note that only data from 20211227 (inclusive) onwards is supported
-
-**Input Parameters**
-| Name | Type | Description |
-|------|------|-------------|
-| date | str  | date="20250221"; Current trading day data requires post-exchange statistics; note that only data from 20211227 (inclusive) onwards is supported |
-
-**Interface Example**
-```python
-import akshare as ak
-stock_sse_deal_daily_df = ak.stock_sse_deal_daily(date="20250221")
-print(stock_sse_deal_daily_df)
-```
-
-#### East Money - Shanghai-Shenzhen Individual Stocks - Risk Warning Board
-**Function**: Retrieve the list of individual stocks with risk warnings (ST, *ST, etc.) in Shanghai and Shenzhen markets along with their basic trading information, used to identify and monitor high-risk stocks and help investors avoid investment risks.
-
-**Parameter Input**: This interface requires no input parameters. Call directly to get real-time data of all current risk warning board stocks.
-
-**Reference Information**:
-**Interface**: `stock_zh_a_st_em`
-**Target URL**: https://quote.eastmoney.com/center/gridlist.html#st_board
-**Description**: East Money - Shanghai-Shenzhen Individual Stocks - Risk Warning Board
-**Limit**: Returns all Shanghai-Shenzhen individual stock risk warning board data
-
-**Input Parameters**
-| Name | Type | Description |
-|------|------|-------------|
-| -    | -    | -           |
-
-**Interface Example**
-```python
-import akshare as ak
-stock_zh_a_st_em_df = ak.stock_zh_a_st_em()
-print(stock_zh_a_st_em_df)
-```
-
-#### East Money - Stock Market Calendar - Company News
-**Function**: Retrieve important company news information for specified dates, including shareholder meetings, board meetings, earnings releases, dividend distributions and other significant corporate events, used to track major company matters and investment opportunities.
-
-**Parameter Input**: Requires query date parameter in YYYYMMDD format to get company news information for that date.
-
-**Reference Information**:
-**Interface**: `stock_gsrl_gsdt_em`
-**Target URL**: https://data.eastmoney.com/gsrl/gsdt.html
-**Description**: East Money - Data Center - Stock Market Calendar - Company News
-**Limit**: Returns company news data for specified date
-
-**Input Parameters**
-| Name | Type | Description |
-|------|------|-------------|
-| date | str  | date="20240401"; Date format |
-
-**Interface Example**
-```python
-import akshare as ak
-stock_gsrl_gsdt_em_df = ak.stock_gsrl_gsdt_em(date="20240401")
-print(stock_gsrl_gsdt_em_df)
-```
-
-#### East Money - Equity Pledge - Market Overview
-**Function**: Retrieve overall overview data of equity pledges in A-share market, including number of pledge companies, pledged shares quantity, pledge market value and other statistical information, used to analyze market equity pledge risk conditions.
-
-**Parameter Input**: This interface requires no input parameters. Call directly to get the latest equity pledge market overview data.
-
-**Reference Information**:
-**Interface**: `stock_gpzy_profile_em`
-**Target URL**: https://data.eastmoney.com/gpzy/
-**Description**: East Money - Data Center - Special Data - Equity Pledge - Equity Pledge Market Overview
-**Limit**: Returns equity pledge market overview data
-
-**Input Parameters**
-| Name | Type | Description |
-|------|------|-------------|
-| -    | -    | -           |
-
-**Interface Example**
-```python
-import akshare as ak
-stock_gpzy_profile_em_df = ak.stock_gpzy_profile_em()
-print(stock_gpzy_profile_em_df)
-```
-
-#### East Money - Equity Pledge - Listed Company Pledge Ratio - Industry Data
-**Function**: Retrieve statistical data of equity pledge ratios for listed companies by industry, including number of pledge companies, average pledge ratio, pledge market value and other industry-dimension pledge analysis data.
-
-**Parameter Input**: This interface requires no input parameters. Call directly to get the latest industry equity pledge data.
-
-**Reference Information**:
-**Interface**: `stock_gpzy_industry_data_em`
-**Target URL**: https://data.eastmoney.com/gpzy/
-**Description**: East Money - Data Center - Special Data - Equity Pledge - Listed Company Pledge Ratio - Industry Data
-**Limit**: Returns industry equity pledge data
-
-**Input Parameters**
-| Name | Type | Description |
-|------|------|-------------|
-| -    | -    | -           |
-
-**Interface Example**
-```python
-import akshare as ak
-stock_gpzy_industry_data_em_df = ak.stock_gpzy_industry_data_em()
-print(stock_gpzy_industry_data_em_df)
-```
-
-#### East Money - Goodwill - A-Share Goodwill Market Overview
-**Function**: Retrieve overall overview data of goodwill in A-share market, including total goodwill amount, goodwill ratio to net assets, goodwill impairment and other statistical information, used to analyze goodwill risks of listed companies.
-
-**Parameter Input**: This interface requires no input parameters. Call directly to get the latest A-share goodwill market overview data.
-
-**Reference Information**:
-**Interface**: `stock_sy_profile_em`
-**Target URL**: https://data.eastmoney.com/sy/
-**Description**: East Money - Data Center - Special Data - Goodwill - A-Share Goodwill Market Overview
-**Limit**: Returns A-share goodwill market overview data
-
-**Input Parameters**
-| Name | Type | Description |
-|------|------|-------------|
-| -    | -    | -           |
-
-**Interface Example**
-```python
-import akshare as ak
-stock_sy_profile_em_df = ak.stock_sy_profile_em()
-print(stock_sy_profile_em_df)
-```
-
-#### East Money - Special Data - Stock Account Statistics
-**Function**: Retrieve statistical data of investor accounts in A-share market, including new account openings, ending account numbers and other investor structure information, used to analyze market participation and investor sentiment.
-
-**Parameter Input**: This interface requires no input parameters. Call directly to get the latest stock account statistics data.
-
-**Reference Information**:
-**Interface**: `stock_account_statistics_em`
-**Target URL**: https://data.eastmoney.com/cjsj/gpkhsj.html
-**Description**: East Money - Data Center - Special Data - Stock Account Statistics
-**Limit**: Returns stock account statistics data
-
-**Input Parameters**
-| Name | Type | Description |
-|------|------|-------------|
-| -    | -    | -           |
-
-**Interface Example**
-```python
-import akshare as ak
-stock_account_statistics_em_df = ak.stock_account_statistics_em()
-print(stock_account_statistics_em_df)
-```
-
-#### East Money - Special Data - Stock Comments
-**Function**: Retrieve professional evaluations and technical analysis of A-share individual stocks, including main force cost, institutional attention, comprehensive evaluation and other multi-dimensional stock assessment information, providing reference for investment decisions.
-
-**Parameter Input**: This interface requires no input parameters. Call directly to get stock comments data for the entire market.
-
-**Reference Information**:
-**Interface**: `stock_comment_em`
-**Target URL**: https://data.eastmoney.com/stockcomment/
-**Description**: East Money - Data Center - Special Data - Stock Comments
-**Limit**: Returns stock comments data for entire market
-
-**Input Parameters**
-| Name | Type | Description |
-|------|------|-------------|
-| -    | -    | -           |
-
-**Interface Example**
-```python
-import akshare as ak
-stock_comment_em_df = ak.stock_comment_em()
-print(stock_comment_em_df)
-```
-
-#### East Money - IPO Subscription - Lottery Yield
-**Function**: Retrieve yield statistics data for IPO subscriptions, including winning yields, annualized returns and other new stock investment return analysis, helping investors evaluate the effectiveness of IPO subscription strategies.
-
-**Parameter Input**: This interface requires no input parameters. Call directly to get the latest IPO subscription yield data.
-
-**Reference Information**:
-**Interface**: `stock_dxsyl_em`
-**Target URL**: https://data.eastmoney.com/xg/xg/dxsyl.html
-**Description**: East Money - Data Center - IPO Subscription - Lottery Yield
-**Limit**: Returns lottery yield data
-
-**Input Parameters**
-| Name | Type | Description |
-|------|------|-------------|
-| -    | -    | -           |
-
-**Interface Example**
-```python
-import akshare as ak
-stock_dxsyl_em_df = ak.stock_dxsyl_em()
-print(stock_dxsyl_em_df)
-```
-
-#### Baidu Stock - Trading Alert - Suspension & Resumption
-**Function**: Retrieve alert information for stock suspension and resumption in A-share market, including suspension reasons, suspension time, expected resumption time, etc., helping investors stay informed about stock trading status changes.
-
-**Parameter Input**: Requires query date parameter in YYYYMMDD format to get suspension and resumption alert information for that date.
-
-**Reference Information**:
-**Interface**: `news_trade_notify_suspend_baidu`
-**Target URL**: https://gupiao.baidu.com/
-**Description**: Baidu Stock - Trading Alert - Suspension & Resumption
-**Limit**: Returns suspension and resumption alert data for specified date
-
-**Input Parameters**
-| Name | Type | Description |
-|------|------|-------------|
-| date | str  | date="20240401"; Date format |
-
-**Interface Example**
-```python
-import akshare as ak
-news_trade_notify_suspend_baidu_df = ak.news_trade_notify_suspend_baidu(date="20240401")
-print(news_trade_notify_suspend_baidu_df)
-```
-
-#### Baidu Stock - Trading Alert - Dividend Distribution
-**Function**: Retrieve alert information for stock dividend distributions in A-share market, including ex-dividend dates, dividend plans, dividend amounts and other important dividend information, helping investors seize dividend investment opportunities.
-
-**Parameter Input**: Requires query date parameter in YYYYMMDD format to get dividend distribution alert information for that date.
-
-**Reference Information**:
-**Interface**: `news_trade_notify_dividend_baidu`
-**Target URL**: https://gupiao.baidu.com/
-**Description**: Baidu Stock - Trading Alert - Dividend Distribution
-**Limit**: Returns dividend distribution alert data for specified date
-
-**Input Parameters**
-| Name | Type | Description |
-|------|------|-------------|
-| date | str  | date="20240401"; Date format |
-
-**Interface Example**
-```python
-import akshare as ak
-news_trade_notify_dividend_baidu_df = ak.news_trade_notify_dividend_baidu(date="20240401")
-print(news_trade_notify_dividend_baidu_df)
-```
-
-### Tool 2: Stock Real-time Quotes
-
-#### East Money - Shanghai A-Share - Real-time Market Data
-**Function**: Retrieve real-time market data for Shanghai Stock Exchange A-share market, including stock prices, price changes, trading volume, trading value, turnover rate and other key trading indicators for real-time monitoring of Shanghai A-share performance.
-
-**Parameter Input**: This interface requires no input parameters. Call directly to get real-time market data for all Shanghai A-shares.
-
-**Reference Information**:
-**Interface**: `stock_sh_a_spot_em`
-**Target URL**: https://quote.eastmoney.com/center/gridlist.html#sh_a_board
-**Description**: East Money - Shanghai A-Shares
-**Limit**: Returns real-time market data for all Shanghai A-shares
-
-**Input Parameters**
-| Name | Type | Description |
-|------|------|-------------|
-| -    | -    | -           |
-
-**Interface Example**
-```python
-import akshare as ak
-stock_sh_a_spot_em_df = ak.stock_sh_a_spot_em()
-print(stock_sh_a_spot_em_df)
-```
-
-### Tool 3: Stock Historical Quotes
-
-#### East Money - Shanghai-Shenzhen-Beijing A-Share - Daily Data
-**Function**: Retrieve daily historical market data for Shanghai-Shenzhen-Beijing A-share markets, including complete daily data such as opening price, closing price, highest price, lowest price, trading volume, trading value, with support for forward adjustment, backward adjustment and other adjustment methods.
-
-**Parameter Input**: Requires input of stock code, period (daily/weekly/monthly), start date, end date, adjustment method and other parameters to get historical market data for specified time period.
-
-**Reference Information**:
-**Interface**: `stock_zh_a_hist`
-**Target URL**: https://finance.sina.com.cn/
-**Description**: Sina Finance - A-Share Historical Market Data
-**Limit**: Returns historical market data for specific stock
-
-**Input Parameters**
-| Name | Type | Description |
-|------|------|-------------|
-| symbol | str | symbol="000001"; Stock code |
-| period | str | period="daily"; choice of {"daily", "weekly", "monthly"} |
-| start_date | str | start_date="20170301"; Start date |
-| end_date | str | end_date="20210907"; End date |
-| adjust | str | adjust=""; choice of {"qfq": "Forward adjusted", "hfq": "Backward adjusted", "": "Not adjusted"} |
-
-**Interface Example**
-```python
-import akshare as ak
-stock_zh_a_hist_df = ak.stock_zh_a_hist(symbol="000001", period="daily", start_date="20170301", end_date="20210907", adjust="")
-print(stock_zh_a_hist_df)
-```
-
-### 🔗 Other Tool Interface Documentation
-
-**Tool 4: Individual Stock Information Summary** - 14 interfaces, including East Money individual stock information, market quotes, TongHuaShun main business introduction, news information, company profile, IPO information, dividend distribution, research reports, balance sheets, financial summaries, Hong Kong stock security profiles, etc.
-
-**Tool 5: Stock Financial Data Analysis** - 14 interfaces, including East Money performance reports (profit statements, cash flow statements, balance sheets), Beijing Stock Exchange performance reports, TongHuaShun financial indicators, Sina Finance financial statements, Hong Kong and US stock financial analysis, etc.
-
-**Tool 6: Capital Flow Analysis** - 11 interfaces, including East Money individual stock fund flow, fund flow rankings, market fund flow, sector fund flow, main fund flow, industry fund flow, concept fund flow, TongHuaShun fund flow big deal tracking, HSGT fund flow, chip distribution, etc.
-
-**Tool 7: Stock Technical Analysis** - 18 interfaces, including TongHuaShun technical stock selection (innovation highs/lows, continuous rise/fall, continuous volume increase/decrease, moving average breakthroughs, price-volume analysis, insurance capital placard raising), Sina Finance ESG ratings, LeGuGu individual stock indicators, dividend yields, equity-bond spreads, Buffett indicators, etc.
-
-**Tool 8: Shanghai-Shenzhen-Hong Kong Stock Connect Holdings** - 7 interfaces, including East Money Hong Kong Stock Connect components, HSGT minute data, sector rankings, stock rankings, Hong Kong Stock Connect real-time quotes, HSGT historical data, specific stock holdings, etc.
-
-For detailed parameter descriptions, function explanations and interface examples, please refer to each tool's configuration files or interface prompts when using the plugin.
+## 📚 Detailed Function Documentation
+
+The plugin provides 78 professional tools with 190+ data interfaces. To keep the README concise, detailed interface documentation has been separated into a dedicated technical document:
+
+### 📖 **Complete Technical Documentation**
+👉 **[AKShare Stock Data Plugin Detailed Function Documentation.md](https://github.com/shaoxing-xie/akshare-stockdata-plugin/blob/main/AKShare%20股票数据插件详细功能文档.md)** - Your Interface Reference!
+
+This document contains:
+- ✅ **190+ interface complete descriptions** - Function, parameters, and AKShare reference information for each interface
+- ✅ **78 tools detailed classification** - Complete tool list categorized by functional domain  
+- ✅ **Parameter usage guide** - Detailed parameter input instructions and format requirements
+- ✅ **Technical reference information** - Complete AKShare interface references and target URLs
+
+### 🎯 **Quick Navigation (Categorized by Functional Domain)**
+- [I. Market Overview Tools (20 tools)](AKShare%20股票数据插件详细功能文档.md#一市场总貌类工具)
+- [II. Individual Stock Information Tools (6 tools)](AKShare%20股票数据插件详细功能文档.md#二个股信息类工具)
+- [III. Quote Data Tools (8 tools)](AKShare%20股票数据插件详细功能文档.md#三行情数据类工具)
+- [IV. Financial Data Tools (6 tools)](AKShare%20股票数据插件详细功能文档.md#四财务数据类工具)
+- [V. Capital Flow Tools (6 tools)](AKShare%20股票数据插件详细功能文档.md#五资金流向类工具)
+- [VI. Technical Analysis Tools (7 tools)](AKShare%20股票数据插件详细功能文档.md#六技术分析类工具)
+- [VII. Technical Indicator Tools (5 tools)](AKShare%20股票数据插件详细功能文档.md#七技术指标类工具) ⭐ **Extended Indicator Tools**
+- [VIII. HSGT Tools (4 tools)](AKShare%20股票数据插件详细功能文档.md#八沪深港通类工具)
+- [IX. Index Data Tools (3 tools)](AKShare%20股票数据插件详细功能文档.md#九指数数据类工具) ⭐ **Index Analysis Tools**
+- [X. Hong Kong Stock Data Tools (8 tools)](AKShare%20股票数据插件详细功能文档.md#十港股数据类工具) ⭐ **Independent Tools**
+- [XI. US Stock Data Tools (5 tools)](AKShare%20股票数据插件详细功能文档.md#十一美股数据类工具) ⭐ **Independent Tools**
 
 ## 🎯 Demo and Examples
 
@@ -651,7 +460,7 @@ We provide two complete Dify workflow demo files that showcase how to use variou
 #### 🔧 **Demo File 1: Plugin Functionality Demo**
 **File**: `应用示例/AKShare 股票数据插件 CHATFLOW-DEMO.yml`
 
-**Description**: Demonstrates the usage of all plugin tools and their interfaces, showcasing the complete functionality of 12 professional tools
+**Description**: Demonstrates the usage of all plugin tools and their interfaces, showcasing the complete functionality of 78 professional tools
 
 **Demo Content**:
 - **Stock Market Summary** - Market overview data acquisition
@@ -666,7 +475,7 @@ We provide two complete Dify workflow demo files that showcase how to use variou
 **Demo Features**:
 - **Smart Conditional Branching** - Automatically selects appropriate data interfaces based on user input
 - **Data Format Conversion** - Automatically converts Markdown tables to Excel files
-- **Multi-dimensional Display** - Covers usage scenarios for all 12 professional tools
+- **Multi-dimensional Display** - Covers usage scenarios for all 78 professional tools
 - **Complete Workflow** - Complete process from data acquisition to result display
 
 #### 🤖 **Demo File 2: Individual Stock Deep Analysis Application**
@@ -704,7 +513,7 @@ For detailed interface usage instructions, please refer to:
 
 ---
 
-**Last Updated**: 2025-09-17  
-**Version**: 0.5.0  
+**Last Updated**: 2025-11-06  
+**Version**: 0.7.0  
 **Author**: AKShare Stock Data Plugin Team  
 **License**: MIT License

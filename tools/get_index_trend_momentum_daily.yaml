@@ -1,0 +1,103 @@
+identity:
+  author: shaoxing-xie
+  name: get_index_trend_momentum_daily
+  label:
+    zh_Hans: 获取指数趋势动量震荡指标(日频)
+    en_US: Get Index Trend Momentum Oscillator (Daily)
+description:
+  human:
+    zh_Hans: 获取指数趋势动量震荡指标(日频)。基于历史行情数据自动计算多种技术分析指标，包括移动平均线（MA5/MA10/MA20/MA30/MA60）、RSI相对强弱指标（RSI6/RSI12/RSI24）、MACD指标、KDJ随机指标、布林带指标、成交量均线（VMA5/VMA10/VMA20）等。适用于指数技术分析、趋势判断和交易决策。可帮助投资者识别指数的趋势方向、买卖信号和超买超卖状态。
+    en_US: Get index trend momentum oscillator (daily). Automatically calculates multiple technical analysis indicators based on historical quotes data, including moving averages (MA5/MA10/MA20/MA30/MA60), RSI relative strength indicators (RSI6/RSI12/RSI24), MACD indicators, KDJ stochastic indicators, Bollinger Bands, and volume moving averages (VMA5/VMA10/VMA20). Suitable for index technical analysis, trend identification, and trading decisions. Helps investors identify index trend directions, trading signals, and overbought/oversold conditions.
+  llm: 获取指数趋势动量震荡指标(日频)。基于历史行情数据计算技术指标，包括移动平均线（MA5、MA10、MA20、MA30、MA60）、RSI相对强弱指标（RSI6、RSI12、RSI24）、MACD指标、KDJ随机指标、布林带指标、成交量均线（VMA5、VMA10、VMA20）等。需要提供指数代码（带市场标识格式，如sh000001、sz399552等）、开始日期和结束日期（格式：YYYYMMDD）。
+parameters:
+  - name: interface
+    type: select
+    required: true
+    form: llm
+    default: index_trend_momentum_oscillator
+    description: 接口名称
+    llm_description: 选择指数趋势动量震荡指标(日频)接口
+    human_description:
+      en_US: "Select the index trend momentum oscillator (daily) interface."
+      zh_Hans: "选择指数趋势动量震荡指标(日频)接口。"
+    label:
+      en_US: Interface
+      zh_Hans: 接口名称
+    options:
+      - label:
+          en_US: Index Trend Momentum Oscillator - Specific Index, Date Range
+          zh_Hans: 指数趋势动量震荡指标-指定指数、日期范围
+        value: index_trend_momentum_oscillator
+  - name: symbol
+    type: string
+    required: true
+    form: llm
+    default: "sh000001"
+    description: 指数代码
+    llm_description: 指数代码，需要带市场标识格式，如sh000001、sz399552等
+    human_description:
+      en_US: "Index code. Format: prefix format (sh000001, sz399552, etc.)."
+      zh_Hans: "指数代码。格式：带市场标识格式（sh000001、sz399552等）。"
+    label:
+      en_US: Index Code
+      zh_Hans: 指数代码
+  - name: start_date
+    type: string
+    required: false
+    form: llm
+    default: "20250101"
+    description: 开始日期
+    llm_description: 历史数据的开始日期，格式为YYYYMMDD
+    human_description:
+      en_US: "Start date. Format: YYYYMMDD (20250101) or YYYY-MM-DD (2025-01-01)."
+      zh_Hans: "开始日期。格式：YYYYMMDD(20250101)或YYYY-MM-DD(2025-01-01)。"
+    label:
+      en_US: Start Date
+      zh_Hans: 开始日期
+  - name: end_date
+    type: string
+    required: false
+    form: llm
+    default: "20251231"
+    description: 结束日期
+    llm_description: 历史数据的结束日期，格式为YYYYMMDD
+    human_description:
+      en_US: "End date. Format: YYYYMMDD (20251231) or YYYY-MM-DD (2025-12-31)."
+      zh_Hans: "结束日期。格式：YYYYMMDD(20251231)或YYYY-MM-DD(2025-12-31)。"
+    label:
+      en_US: End Date
+      zh_Hans: 结束日期
+  - name: retries
+    type: number
+    required: false
+    form: llm
+    default: 5
+    description: 重试次数
+    llm_description: 网络请求重试次数，默认5次
+    human_description:
+      en_US: "Number of retries for network requests. Range: 1-10. Default: 5."
+      zh_Hans: "网络请求重试次数。范围：1-10。默认：5。"
+    label:
+      en_US: Retries
+      zh_Hans: 重试次数
+    min: 1
+    max: 10
+  - name: timeout
+    type: number
+    required: false
+    form: llm
+    default: 900
+    description: 超时时间
+    llm_description: 接口调用的超时时间（秒），默认900秒
+    human_description:
+      en_US: "Timeout for interface calls in seconds. Range: 5-3600. Default: 900."
+      zh_Hans: "接口调用的超时时间（秒）。范围：5-3600。默认：900。"
+    label:
+      en_US: Timeout
+      zh_Hans: 超时时间
+    min: 5
+    max: 3600
+extra:
+  python:
+    source: tools/get_index_trend_momentum_daily.py
+

@@ -1,0 +1,59 @@
+identity:
+  author: shaoxing-xie
+  name: get_stock_basic_info_summary
+  label:
+    zh_Hans: 获取个股基本信息汇总
+    en_US: Get Stock Basic Info Summary
+description:
+  human:
+    zh_Hans: 获取个股基本信息汇总。整合多个数据接口，一次性获取个股的全面基本信息，包括证券资料（股票代码、股票简称、所属行业、最新价格、总市值、流通市值、总股本、流通股等）、公司概况（公司全称、所属市场、成立时间、上市时间、法人代表、注册地址、办公地址、官方网站、联系方式等）、主营业务（主营业务、经营范围、产品类型、产品名称等）、主营业务构成（业务构成详情）等。适用于股票研究、投资分析和公司基本面了解。可帮助投资者快速了解公司的基本情况、业务范围和行业地位，为投资决策提供基础信息支持。
+    en_US: Get stock basic info summary. Integrates multiple data interfaces to provide comprehensive basic information about individual stocks in one call, including security profile (stock code, stock name, industry, latest price, total market value, circulating market value, total share capital, circulating shares, etc.), company profile (company full name, market, establishment date, listing date, legal representative, registered address, office address, official website, contact information, etc.), main business (main business, business scope, product types, product names, etc.), and main business composition (business composition details). Suitable for stock research, investment analysis, and company fundamental understanding. Helps investors quickly understand a company's basic information, business scope, and industry position, providing fundamental information support for investment decisions.
+  llm: 获取个股基本信息汇总。整合多个接口提供个股的全面基本信息，包括证券资料（股票代码、股票简称、所属行业、最新价格、总市值、流通市值、总股本、流通股等）、公司概况（公司全称、所属市场、成立时间、上市时间、法人代表、注册地址、办公地址、官方网站、联系方式等）、主营业务（主营业务、经营范围、产品类型、产品名称等）、主营业务构成（业务构成详情）等。只需要提供股票代码。
+parameters:
+  - name: symbol
+    type: string
+    required: true
+    form: llm
+    default: "000001"
+    description: 股票代码
+    llm_description: 股票代码，格式：000001、600519、688356等
+    human_description:
+      en_US: "Stock code. Format: 000001, 600519, 688356, etc."
+      zh_Hans: "股票代码。格式：000001、600519、688356等。"
+    label:
+      en_US: Stock Code
+      zh_Hans: 股票代码
+  - name: retries
+    type: number
+    required: false
+    form: llm
+    default: 5
+    description: 重试次数
+    llm_description: 网络请求重试次数，默认5次
+    human_description:
+      en_US: "Number of retries for network requests. Range: 1-10. Default: 5."
+      zh_Hans: "网络请求重试次数。范围：1-10。默认：5。"
+    label:
+      en_US: Retries
+      zh_Hans: 重试次数
+    min: 1
+    max: 10
+  - name: timeout
+    type: number
+    required: false
+    form: llm
+    default: 600
+    description: 超时时间
+    llm_description: 接口调用的超时时间（秒），默认600秒
+    human_description:
+      en_US: "Timeout for interface calls in seconds. Range: 5-3000. Default: 600."
+      zh_Hans: "接口调用的超时时间（秒）。范围：5-3000。默认：600。"
+    label:
+      en_US: Timeout
+      zh_Hans: 超时时间
+    min: 5
+    max: 3000
+extra:
+  python:
+    source: tools/get_stock_basic_info_summary.py
+

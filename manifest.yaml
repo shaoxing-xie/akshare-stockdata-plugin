@@ -1,4 +1,4 @@
-version: 0.6.0
+version: 0.7.0
 type: plugin
 author: shaoxing-xie
 contact: sxxiefg@163.com
@@ -20,7 +20,7 @@ plugins:
   tools:
     - provider/akshare_stockdata.yaml
 meta:
-  version: 0.6.0
+  version: 0.7.0
   arch:
     - amd64
     - arm64

@@ -1,0 +1,116 @@
+identity:
+  author: shaoxing-xie
+  name: get_stock_financial_analysis_indicators
+  label:
+    zh_Hans: 获取个股财务分析指标
+    en_US: Get Individual Stock Financial Analysis Indicators
+description:
+  human:
+    zh_Hans: 获取指定股票的详细财务分析指标数据，包括140项详细的财务分析指标，提供全面的财务健康状况分析，支持多年度的财务指标对比分析。
+    en_US: Get detailed financial analysis indicators data for specified stocks, including 140 detailed financial analysis indicators, providing comprehensive financial health analysis, supporting multi-year financial indicators comparison analysis.
+  llm: 获取指定股票的详细财务分析指标数据，包括140项详细的财务分析指标，提供全面的财务健康状况分析。包括：东方财富网-A股财务分析-主要指标（需要股票代码和报告类型，返回指定股票指定报告类型的财务分析指标所有历史数据）、新浪财经-财务分析-财务指标（需要股票代码和起始年份，返回指定股票从起始年份开始的财务分析指标所有历史数据）。根据不同接口提供相应参数。
+parameters:
+  - name: interface
+    type: select
+    required: true
+    form: llm
+    default: stock_financial_analysis_indicator_em
+    description: 接口名称
+    llm_description: 选择财务分析指标数据接口。包括：东方财富网-A股财务分析-主要指标（需要股票代码和报告类型，返回指定股票指定报告类型的财务分析指标所有历史数据）、新浪财经-财务分析-财务指标（需要股票代码和起始年份，返回指定股票从起始年份开始的财务分析指标所有历史数据）。根据不同接口提供相应参数。
+    human_description:
+      en_US: "Select financial analysis indicators data interface. Options: East Money A-share Financial Analysis, Sina Finance Financial Analysis."
+      zh_Hans: "选择财务分析指标数据接口。选项包括：东方财富网-A股财务分析-主要指标、新浪财经-财务分析-财务指标。"
+    label:
+      en_US: Interface
+      zh_Hans: 接口名称
+    options:
+      - label:
+          en_US: East Money - A-share Financial Analysis - Main Indicators - Specified Stock, Report Type
+          zh_Hans: 东方财富网-A股财务分析-主要指标-指定股票、报告类型
+        value: stock_financial_analysis_indicator_em
+      - label:
+          en_US: Sina Finance - Financial Analysis - Financial Indicators - Specified Stock, Start Year
+          zh_Hans: 新浪财经-财务分析-财务指标-指定股票、起始年份
+        value: stock_financial_analysis_indicator
+  - name: stock_code
+    type: string
+    required: true
+    form: llm
+    default: "000001"
+    description: 股票代码
+    llm_description: 股票代码，支持A股格式，如600519（沪市）、000001（深市）、430xxx（北交所）等。
+    human_description:
+      en_US: "Stock code. Supports A-share formats, e.g., 600519 (Shanghai), 000001 (Shenzhen), 430xxx (Beijing Stock Exchange), etc."
+      zh_Hans: "股票代码。支持A股格式，如600519（沪市）、000001（深市）、430xxx（北交所）等。"
+    label:
+      en_US: Stock Code
+      zh_Hans: 股票代码
+  - name: indicator_ths
+    type: select
+    required: false
+    form: llm
+    default: 按报告期
+    description: 报告类型
+    llm_description: 报告类型参数，用于东方财富网财务分析指标接口。选项：按报告期、按单季度。
+    human_description:
+      en_US: "Report type. Required for East Money financial analysis indicators interface. Options: By Report Period (按报告期), By Single Quarter (按单季度)."
+      zh_Hans: "报告类型。用于东方财富网财务分析指标接口。选项：按报告期、按单季度。"
+    label:
+      en_US: Report Type
+      zh_Hans: 报告类型
+    options:
+      - label:
+          en_US: By Report Period
+          zh_Hans: 按报告期
+        value: 按报告期
+      - label:
+          en_US: By Single Quarter
+          zh_Hans: 按单季度
+        value: 按单季度
+  - name: start_year
+    type: string
+    required: false
+    form: llm
+    default: "2024"
+    description: 起始年份
+    llm_description: 起始年份参数，用于新浪财经财务分析指标接口。格式：YYYY，如2024表示从2024年开始获取财务指标数据。
+    human_description:
+      en_US: "Start year. Required for Sina Finance financial analysis indicators interface. Format: YYYY, e.g., 2024 means starting from 2024 to get financial indicator data."
+      zh_Hans: "起始年份。用于新浪财经财务分析指标接口。格式：YYYY，如2024表示从2024年开始获取财务指标数据。"
+    label:
+      en_US: Start Year
+      zh_Hans: 起始年份
+  - name: retries
+    type: number
+    required: false
+    form: llm
+    default: 5
+    description: 重试次数
+    llm_description: 网络请求重试次数，范围1-10，默认5次。
+    human_description:
+      en_US: "Number of retries for network requests. Range: 1-10. Default: 5."
+      zh_Hans: "网络请求重试次数。范围：1-10。默认：5。"
+    label:
+      en_US: Retries
+      zh_Hans: 重试次数
+    min: 1
+    max: 10
+  - name: timeout
+    type: number
+    required: false
+    form: llm
+    default: 600
+    description: 子进程超时时间
+    llm_description: 子进程执行超时时间（秒），范围5-3600，默认600秒（10分钟）。财务分析指标数据量可能较大，建议设置较长的超时时间。
+    human_description:
+      en_US: "Subprocess execution timeout in seconds. Range: 5-3600. Default: 600 (10 minutes). Financial analysis indicator data may be large, suggest longer timeout."
+      zh_Hans: "子进程执行超时时间（秒）。范围：5-3600。默认：600（10分钟）。财务分析指标数据量可能较大，建议设置较长的超时时间。"
+    label:
+      en_US: Subprocess Timeout
+      zh_Hans: 子进程超时时间
+    min: 5
+    max: 3600
+extra:
+  python:
+    source: tools/get_stock_financial_analysis_indicators.py
+

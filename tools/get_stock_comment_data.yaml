@@ -1,0 +1,93 @@
+identity:
+  author: shaoxing-xie
+  name: get_stock_comment_data
+  label:
+    zh_Hans: 获取市场千股千评数据
+    en_US: Get Market Stock Comment Data
+description:
+  human:
+    zh_Hans: 获取千股千评相关数据，包括千股千评总览、主力控盘机构参与度、综合评价历史评分、市场热度用户关注指数、日度市场参与意愿等数据。帮助了解股票的综合评价和市场关注度。
+    en_US: Get stock comment related data, including stock comment overview, institutional participation in main control, comprehensive evaluation historical scores, market heat user attention index, and daily market participation willingness. Helps understand stock comprehensive evaluation and market attention.
+  llm: 获取千股千评相关数据，包括千股千评总览、主力控盘机构参与度、综合评价历史评分、市场热度用户关注指数、日度市场参与意愿等数据。包括：千股千评（所有数据，无需参数）、机构参与度（需指定股票代码）、历史评分（需指定股票代码）、用户关注指数（需指定股票代码）、日度市场参与意愿（需指定股票代码）。股票代码格式如"600000"（沪市）或"000001"（深市）。
+parameters:
+  - name: interface
+    type: select
+    required: true
+    form: llm
+    default: stock_comment_em
+    description: 接口名称
+    llm_description: 选择千股千评数据接口。包括：千股千评（所有数据，无需参数）、机构参与度（需指定股票代码）、历史评分（需指定股票代码）、用户关注指数（需指定股票代码）、日度市场参与意愿（需指定股票代码）。
+    human_description:
+      en_US: "Select stock comment data interface. Options: Stock Comment (all data, no parameters), Institutional Participation (requires stock code), Historical Score (requires stock code), User Attention Index (requires stock code), Daily Market Participation Willingness (requires stock code)."
+      zh_Hans: "选择千股千评数据接口。选项包括：千股千评（所有数据，无需参数）、机构参与度（需指定股票代码）、历史评分（需指定股票代码）、用户关注指数（需指定股票代码）、日度市场参与意愿（需指定股票代码）。"
+    label:
+      en_US: Interface
+      zh_Hans: 接口名称
+    options:
+      - label:
+          en_US: Eastmoney - Stock Comment - All Data
+          zh_Hans: 东方财富网-千股千评-所有数据
+        value: stock_comment_em
+      - label:
+          en_US: Eastmoney - Stock Comment - Main Control - Institutional Participation
+          zh_Hans: 东方财富网-千股千评-主力控盘-机构参与度
+        value: stock_comment_detail_zlkp_jgcyd_em
+      - label:
+          en_US: Eastmoney - Stock Comment - Comprehensive Evaluation - Historical Score
+          zh_Hans: 东方财富网-千股千评-综合评价-历史评分
+        value: stock_comment_detail_zhpj_lspf_em
+      - label:
+          en_US: Eastmoney - Stock Comment - Market Heat - User Attention Index
+          zh_Hans: 东方财富网-千股千评-市场热度-用户关注指数
+        value: stock_comment_detail_scrd_focus_em
+      - label:
+          en_US: Eastmoney - Stock Comment - Market Heat - Daily Market Participation Willingness
+          zh_Hans: 东方财富网-千股千评-市场热度-日度市场参与意愿
+        value: stock_comment_detail_scrd_desire_daily_em
+  - name: symbol
+    type: string
+    required: false
+    form: llm
+    default: "600519"
+    description: 股票代码
+    llm_description: 股票代码，格式如"600000"（沪市）或"000001"（深市）。仅"千股千评"接口不需要此参数，其他接口都需要此参数。
+    human_description:
+      en_US: "Stock code in format like '600000' (Shanghai) or '000001' (Shenzhen). Not required for 'Stock Comment' interface, but required for others."
+      zh_Hans: "股票代码，格式如'600000'（沪市）或'000001'（深市）。仅千股千评接口不需要此参数，其他接口都需要此参数。"
+    label:
+      en_US: Stock Code
+      zh_Hans: 股票代码
+  - name: retries
+    type: number
+    required: false
+    form: llm
+    default: 5
+    description: 重试次数
+    llm_description: 网络请求重试次数，范围1-10，默认5次。
+    human_description:
+      en_US: "Number of retries for network requests. Range: 1-10. Default: 5."
+      zh_Hans: "网络请求重试次数。范围：1-10。默认：5。"
+    label:
+      en_US: Retries
+      zh_Hans: 重试次数
+    min: 1
+    max: 10
+  - name: timeout
+    type: number
+    required: false
+    form: llm
+    default: 300
+    description: 子进程超时时间
+    llm_description: 子进程执行超时时间（秒），范围5-3600，默认300秒（千股千评数据量较大）。
+    human_description:
+      en_US: "Subprocess execution timeout in seconds. Range: 5-3600. Default: 300 (stock comment data is large)."
+      zh_Hans: "子进程执行超时时间（秒）。范围：5-3600。默认：300（千股千评数据量较大）。"
+    label:
+      en_US: Subprocess Timeout
+      zh_Hans: 子进程超时时间
+    min: 5
+    max: 3600
+extra:
+  python:
+    source: tools/get_stock_comment_data.py
+

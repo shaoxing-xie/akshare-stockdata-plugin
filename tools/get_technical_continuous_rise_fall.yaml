@@ -1,0 +1,68 @@
+identity:
+  author: shaoxing-xie
+  name: get_technical_continuous_rise_fall
+  label:
+    zh_Hans: 获取技术选股-连续涨跌数据
+    en_US: Get Technical Stock Selection - Continuous Rise/Fall Data
+description:
+  human:
+    zh_Hans: 获取股票连续上涨/连续下跌的技术选股数据，包括连涨天数、连续涨跌幅、累计换手率等信息。
+    en_US: Get technical stock selection data for continuously rising/falling stocks, including consecutive days, cumulative price change, cumulative turnover rate, etc.
+  llm: 获取股票连续上涨/连续下跌的技术选股数据。包括：同花顺-技术选股-连续上涨（无需参数，返回所有连续上涨的股票数据）、同花顺-技术选股-连续下跌（无需参数，返回所有连续下跌的股票数据）。
+parameters:
+  - name: interface
+    type: select
+    required: true
+    form: llm
+    default: stock_rank_lxsz_ths
+    description: 接口名称
+    llm_description: 选择连续涨跌数据接口。包括：同花顺-技术选股-连续上涨、同花顺-技术选股-连续下跌。这两个接口均无需参数。
+    human_description:
+      en_US: "Select continuous rise/fall data interface. Options: Continuous Rise, Continuous Fall. Both interfaces require no parameters."
+      zh_Hans: "选择连续涨跌数据接口。选项包括：同花顺-技术选股-连续上涨、同花顺-技术选股-连续下跌。这两个接口均无需参数。"
+    label:
+      en_US: Interface
+      zh_Hans: 接口名称
+    options:
+      - label:
+          en_US: Continuous Rise
+          zh_Hans: 同花顺-技术选股-连续上涨
+        value: stock_rank_lxsz_ths
+      - label:
+          en_US: Continuous Fall
+          zh_Hans: 同花顺-技术选股-连续下跌
+        value: stock_rank_lxxd_ths
+  - name: retries
+    type: number
+    required: false
+    form: llm
+    default: 5
+    description: 重试次数
+    llm_description: 接口调用失败时的重试次数，默认为5次
+    human_description:
+      en_US: "Number of retries when interface call fails, default is 5"
+      zh_Hans: "接口调用失败时的重试次数，默认为5次"
+    label:
+      en_US: Retries
+      zh_Hans: 重试次数
+    min: 1
+    max: 10
+  - name: timeout
+    type: number
+    required: false
+    form: llm
+    default: 120
+    description: 超时时间
+    llm_description: 接口调用的超时时间（秒），默认为120秒
+    human_description:
+      en_US: "Timeout for interface calls in seconds, default is 120"
+      zh_Hans: "接口调用的超时时间（秒），默认为120秒"
+    label:
+      en_US: Timeout
+      zh_Hans: 超时时间
+    min: 5
+    max: 1800
+extra:
+  python:
+    source: tools/get_technical_continuous_rise_fall.py
+

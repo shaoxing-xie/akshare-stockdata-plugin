@@ -1,0 +1,64 @@
+identity:
+  author: shaoxing-xie
+  name: get_big_deal_tracking
+  label:
+    zh_Hans: 获取大单追踪数据
+    en_US: Get Big Deal Tracking Data
+description:
+  human:
+    zh_Hans: 获取大单交易的资金流向追踪数据，包括大单买入、卖出的详细信息，用于分析大资金的动向。
+    en_US: Get big deal fund flow tracking data, including detailed information on large buy and sell orders, used to analyze the movements of large capital.
+  llm: 获取大单交易的资金流向追踪数据，包括大单买入、卖出的详细信息。包括：同花顺-资金流向-大单追踪（无需参数，返回当前时点的所有大单追踪数据，包括成交时间、股票代码、股票简称、成交价格、成交量、成交额、大单性质、涨跌幅等）。无需提供参数。
+parameters:
+  - name: interface
+    type: select
+    required: true
+    form: llm
+    default: stock_fund_flow_big_deal
+    description: 接口名称
+    llm_description: 选择大单追踪数据接口。包括：同花顺-资金流向-大单追踪（无需参数，返回当前时点的所有大单追踪数据，包括成交时间、股票代码、股票简称、成交价格、成交量、成交额、大单性质、涨跌幅等）。无需提供参数。
+    human_description:
+      en_US: "Select big deal tracking data interface. Options: Flush - Fund Flow Big Deal Tracking (no parameters required, returns all big deal tracking data at current time point, including transaction time, stock code, stock name, transaction price, transaction volume, transaction amount, big deal nature, price change, etc.). No parameters required."
+      zh_Hans: "选择大单追踪数据接口。选项包括：同花顺-资金流向-大单追踪（无需参数，返回当前时点的所有大单追踪数据，包括成交时间、股票代码、股票简称、成交价格、成交量、成交额、大单性质、涨跌幅等）。无需提供参数。"
+    label:
+      en_US: Interface
+      zh_Hans: 接口名称
+    options:
+      - label:
+          en_US: Flush - Fund Flow Big Deal Tracking
+          zh_Hans: 同花顺-资金流向-大单追踪
+        value: stock_fund_flow_big_deal
+  - name: retries
+    type: number
+    required: false
+    form: llm
+    default: 5
+    description: 重试次数
+    llm_description: 网络请求重试次数，范围1-10，默认5次。
+    human_description:
+      en_US: "Number of retries for network requests. Range: 1-10. Default: 5."
+      zh_Hans: "网络请求重试次数。范围：1-10。默认：5。"
+    label:
+      en_US: Retries
+      zh_Hans: 重试次数
+    min: 1
+    max: 10
+  - name: timeout
+    type: number
+    required: false
+    form: llm
+    default: 600
+    description: 子进程超时时间
+    llm_description: 子进程执行超时时间（秒），范围5-3600，默认600秒（10分钟）。
+    human_description:
+      en_US: "Subprocess execution timeout in seconds. Range: 5-3600. Default: 600 (10 minutes)."
+      zh_Hans: "子进程执行超时时间（秒）。范围：5-3600。默认：600（10分钟）。"
+    label:
+      en_US: Subprocess Timeout
+      zh_Hans: 子进程超时时间
+    min: 5
+    max: 3600
+extra:
+  python:
+    source: tools/get_big_deal_tracking.py
+

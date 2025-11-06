@@ -1,0 +1,64 @@
+identity:
+  author: shaoxing-xie
+  name: get_stock_account_statistics
+  label:
+    zh_Hans: 获取市场股票账户统计
+    en_US: Get Market Stock Account Statistics
+description:
+  human:
+    zh_Hans: 获取股票账户统计月度数据，包括所有历史数据。帮助了解市场参与度和投资者账户变化情况。
+    en_US: Get stock account statistics monthly data, including all historical data. Helps understand market participation and investor account changes.
+  llm: 获取股票账户统计月度数据，包括所有历史数据。接口无需任何参数，直接调用即可获取全部历史数据。
+parameters:
+  - name: interface
+    type: select
+    required: true
+    form: llm
+    default: stock_account_statistics_em
+    description: 接口名称
+    llm_description: 选择股票账户统计接口。仅有一个接口选项：股票账户统计月度（所有历史，无需参数）。
+    human_description:
+      en_US: "Select stock account statistics interface. Only one option: Stock Account Statistics Monthly (all history, no parameters)."
+      zh_Hans: "选择股票账户统计接口。仅有一个选项：股票账户统计月度（所有历史，无需参数）。"
+    label:
+      en_US: Interface
+      zh_Hans: 接口名称
+    options:
+      - label:
+          en_US: Eastmoney - Stock Account Statistics Monthly - All History
+          zh_Hans: 东方财富网-股票账户统计月度-所有历史
+        value: stock_account_statistics_em
+  - name: retries
+    type: number
+    required: false
+    form: llm
+    default: 5
+    description: 重试次数
+    llm_description: 网络请求重试次数，范围1-10，默认5次。
+    human_description:
+      en_US: "Number of retries for network requests. Range: 1-10. Default: 5."
+      zh_Hans: "网络请求重试次数。范围：1-10。默认：5。"
+    label:
+      en_US: Retries
+      zh_Hans: 重试次数
+    min: 1
+    max: 10
+  - name: timeout
+    type: number
+    required: false
+    form: llm
+    default: 300
+    description: 子进程超时时间
+    llm_description: 子进程执行超时时间（秒），范围5-3600，默认300秒（股票账户统计数据量较大）。
+    human_description:
+      en_US: "Subprocess execution timeout in seconds. Range: 5-3600. Default: 300 (stock account statistics data is large)."
+      zh_Hans: "子进程执行超时时间（秒）。范围：5-3600。默认：300（股票账户统计数据量较大）。"
+    label:
+      en_US: Subprocess Timeout
+      zh_Hans: 子进程超时时间
+    min: 5
+    max: 3600
+extra:
+  python:
+    source: tools/get_stock_account_statistics.py
+

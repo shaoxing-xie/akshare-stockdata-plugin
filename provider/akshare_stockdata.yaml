@@ -17,20 +17,197 @@ identity:
 credentials_for_provider: {}
 tools:
   # 保持0.5.0版本的工具顺序，确保向后兼容
-  - tools/stock_market_summary.yaml
-  - tools/stock_individual_info_summary.yaml
-  - tools/stock_spot_quotations.yaml
-  - tools/stock_hist_quotations.yaml
-  - tools/stock_hsgt_holdings.yaml
-  - tools/stock_fund_flow_analysis.yaml
-  - tools/stock_financial_analysis.yaml
-  - tools/stock_technical_analysis.yaml
-  - tools/stock_comprehensive_technical_indicators.yaml
+  # 注意：以下原工具已拆分为细粒度工具，已移除
+  # - tools/stock_market_summary.yaml (已拆分为get_exchange_market_overview等)
+  # - tools/stock_individual_info_summary.yaml (已拆分为get_stock_basic_info等)
+  # - tools/stock_spot_quotations.yaml (已拆分为get_a_share_market_quotes等)
+  # - tools/stock_hist_quotations.yaml (已拆分为get_stock_historical_quotes等)
+  # - tools/stock_hsgt_holdings.yaml (已拆分为get_hsgt_exchange_rate_data等)
+  # - tools/stock_fund_flow_analysis.yaml (已拆分为get_stock_fund_flow等)
+  # - tools/stock_financial_analysis.yaml (已拆分为get_stock_performance_reports等)
+  # 0.7.0新增的细粒度工具（从stock_comprehensive_technical_indicators拆分）
+  # 获取个股趋势动量震荡指标(日频)
+  - tools/get_stock_trend_momentum_daily.yaml
+  # 获取个股趋势动量震荡指标(分钟)
+  - tools/get_stock_trend_momentum_minute.yaml
+  # 获取个股动态估值指标
+  - tools/get_stock_dynamic_valuation.yaml
+  # 获取个股历史估值指标
+  - tools/get_stock_historical_valuation.yaml
+  # 获取个股基本信息汇总
+  - tools/get_stock_basic_info_summary.yaml
+  # 0.7.0新增的细粒度工具（从stock_index_data拆分）
+  # 获取A股指数实时行情
+  - tools/get_index_spot_quotes.yaml
+  # 获取A股指数历史行情
+  - tools/get_index_historical_quotes.yaml
+  #- tools/get_index_minute_quotes.yaml
+  # 获取指数趋势动量震荡指标(日频)
+  - tools/get_index_trend_momentum_daily.yaml
+  #- tools/get_index_trend_momentum_minute.yaml
   # 0.5.1新增的工具
-  - tools/stock_hk_data.yaml
-  - tools/stock_us_data.yaml
+  # 注意：以下原工具已拆分为细粒度工具，已移除
+  # - tools/stock_hk_data.yaml (已拆分为get_hk_individual_info等)
+  # - tools/stock_us_data.yaml (已拆分为get_us_spot_quotes等)
   # 0.6.0新增的工具
-  - tools/stock_index_data.yaml
+  # 注意：stock_index_data.yaml 已拆分为细粒度工具，已移除
+  # - tools/stock_index_data.yaml (已拆分为get_index_spot_quotes等)
+  # 0.7.0新增的工具
+  # 注意：get_concept_board.yaml 和 get_industry_board.yaml 已拆分为细粒度工具，已移除
+  # - tools/get_concept_board.yaml (已拆分为get_board_ths和get_board_em)
+  # - tools/get_industry_board.yaml (已拆分为get_board_ths和get_board_em)
+  # 0.7.0新增的细粒度工具（从stock_market_summary拆分）
+  # 获取交易所市场总貌
+  - tools/get_exchange_market_overview.yaml
+  # 获取股权质押数据
+  - tools/get_equity_pledge_data.yaml
+  # 获取商誉数据
+  - tools/get_goodwill_data.yaml
+  # 获取股票账户统计
+  - tools/get_stock_account_statistics.yaml
+  # 获取A股市场股东户数数据
+  - tools/get_shareholder_number_data.yaml
+  # 获取股票评论数据
+  - tools/get_stock_comment_data.yaml
+  # 获取IPO申购数据
+  - tools/get_ipo_subscription_data.yaml
+  # 获取交易事件通知
+  - tools/get_trading_event_notifications.yaml
+  # 获取市场机构持股数据
+  - tools/get_institute_holdings_data.yaml  
+  # 获取个股评级记录与估值分析
+  - tools/get_stock_rating_valuation.yaml
+  # 获取公司公告数据
+  - tools/get_company_announcements.yaml
+  # 获取公司信息披露数据
+  - tools/get_company_disclosure.yaml
+  # 获取股票列表数据
+  - tools/get_stock_list.yaml
+  # 获取龙虎榜数据
+  - tools/get_dragon_tiger_list.yaml
+  # 获取大宗交易数据
+  - tools/get_block_trading.yaml
+  # 获取A股市场融资融券数据
+  - tools/get_margin_trading.yaml
+  # 获取同花顺板块数据
+  - tools/get_board_ths.yaml
+  # 获取东方财富板块数据
+  - tools/get_board_em.yaml
+  # 获取A股市场股票热度数据
+  - tools/get_stock_hot.yaml
+  # 获取A股市场涨停板行情数据
+  - tools/get_limit_up_down.yaml
+
+  # 0.7.0新增的细粒度工具（从stock_individual_info_summary拆分）
+  # 获取个股基本信息
+  - tools/get_stock_basic_info.yaml
+  # 获取个股新闻研报
+  - tools/get_stock_news_research.yaml
+  # 获取个股分红派息信息
+  - tools/get_stock_dividend_info.yaml
+  # 获取个股股东持股变动信息
+  - tools/get_shareholder_holding_changes.yaml
+  # 获取A股股东户数数据
+  - tools/get_stock_shareholder_number_detail.yaml
+  # 获取股票发行与上市数据
+  - tools/get_stock_issuance_release.yaml
+
+  # 获取个股实时行情
+  - tools/get_stock_real_time_quote.yaml
+  # 0.7.0新增的细粒度工具（从stock_hist_quotations拆分）
+  # 获取个股历史行情
+  - tools/get_stock_historical_quotes.yaml
+  # 获取个股日内分时行情
+  - tools/get_stock_intraday_quotes.yaml
+  # 获取个股同行业对比
+  - tools/get_stock_peer_comparison.yaml
+  # 0.7.0新增的细粒度工具（从stock_hsgt_holdings拆分）
+  # 获取沪深港通汇率数据
+  - tools/get_hsgt_exchange_rate_data.yaml
+  # 获取沪深港通资金流向数据
+  - tools/get_hsgt_fund_flow_data.yaml
+  # 获取沪深港通排名数据
+  - tools/get_hsgt_ranking_data.yaml
+  # 获取沪深港通个股持仓
+  - tools/get_hsgt_individual_holdings.yaml
+  # 0.7.0新增的细粒度工具（从stock_financial_analysis拆分）
+  # 获取A股业绩快报数据
+  - tools/get_stock_performance_reports.yaml
+  # 获取A股资产负债表
+  - tools/get_stock_balance_sheet.yaml
+  # 获取A股利润表
+  - tools/get_stock_profit_sheet.yaml
+  # 获取A股现金流量表
+  - tools/get_stock_cash_flow_sheet.yaml
+  # 获取A股财务指标
+  - tools/get_stock_financial_indicators.yaml
+  # 获取A股财务分析指标
+  - tools/get_stock_financial_analysis_indicators.yaml
+  # 0.7.0新增的细粒度工具（从stock_fund_flow_analysis拆分）
+  # 获取个股资金流向
+  - tools/get_stock_fund_flow.yaml
+  # 获取个股筹码分布
+  - tools/get_stock_chip_distribution.yaml
+  # 获取市场股票资金流向排名
+  - tools/get_market_stock_fund_flow_rank.yaml
+  # 获取市场资金流向历史
+  - tools/get_market_fund_flow_history.yaml
+  # 获取板块资金流向排名
+  - tools/get_sector_fund_flow_rank.yaml
+  # 获取大单追踪
+  - tools/get_big_deal_tracking.yaml
+  # 0.7.0新增的细粒度工具（从stock_technical_analysis拆分）
+  # 获取技术选股-创新高新低
+  - tools/get_technical_innovation_high_low.yaml
+  # 获取技术选股-连续涨跌
+  - tools/get_technical_continuous_rise_fall.yaml
+  # 获取技术选股-成交量分析
+  - tools/get_technical_volume_analysis.yaml
+  # 获取技术选股-突破分析
+  - tools/get_technical_breakthrough_analysis.yaml
+  # 获取技术选股-价量分析
+  - tools/get_technical_price_volume_analysis.yaml
+  # 获取技术选股-保险披露
+  - tools/get_technical_insurance_disclosure.yaml
+  # 获取ESG评级数据
+  - tools/get_esg_rating_data.yaml
+  # 0.7.0新增的细粒度工具（从stock_spot_quotations拆分）
+  # 获取A股市场股票行情
+  - tools/get_a_share_market_quotes.yaml
+  # 获取A股板块行情
+  - tools/get_a_share_board_quotes.yaml
+  # 获取A股市场股票比价数据
+  - tools/get_stock_comparison_quotes.yaml
+  # 获取A股市场特殊股票行情
+  - tools/get_special_stock_quotes.yaml
+  # 0.7.0新增的细粒度工具（从stock_hk_data拆分）
+  # 获取港股个股基本信息
+  - tools/get_hk_individual_info.yaml
+  # 获取港股个股历史行情
+  - tools/get_hk_historical_quotes.yaml
+  # 获取港股每日分时行情
+  - tools/get_hk_daily_minute_quotes.yaml
+  # 获取港股个股分红派息数据
+  - tools/get_hk_dividend_payout.yaml
+  # 获取港股财务指标
+  - tools/get_hk_financial_indicators.yaml
+  # 获取港股财务报表
+  - tools/get_hk_financial_statements.yaml
+  # 获取港股个股行业对比数据
+  - tools/get_hk_industry_comparison.yaml
+  # 获取港股实时行情
+  - tools/get_hk_spot_quotes.yaml
+  # 0.7.0新增的细粒度工具（从stock_us_data拆分）
+  # 获取美股市场实时行情
+  - tools/get_us_spot_quotes.yaml
+  # 获取美股个股历史行情
+  - tools/get_us_historical_quotes.yaml
+  # 获取美股每日分时行情
+  - tools/get_us_daily_minute_quotes.yaml
+  # 获取美股财务指标
+  - tools/get_us_financial_indicators.yaml
+  # 获取美股财务报表
+  - tools/get_us_financial_statements.yaml
 extra:
   python:
     source: provider/akshare_stockdata.py

@@ -1,0 +1,97 @@
+identity:
+  author: shaoxing-xie
+  name: get_limit_up_down
+  label:
+    zh_Hans: 获取A股市场涨停板行情数据
+    en_US: Get A-share Market Limit Up/Down Data
+description:
+  human:
+    zh_Hans: 获取A股市场涨停板行情数据。包括涨停股池、昨日涨停股池、强势股池、次新股池、炸板股池、跌停股池等。帮助了解涨停板股票的行情、封板情况、连板数和后续表现。适用于涨停板分析、强势股筛选和风险监控。注意：这些接口只能获取近期的数据。
+    en_US: "Get A-share market limit up/down data. Includes limit-up stock pool, previous day limit-up stock pool, strong stock pool, sub-new stock pool, limit-up breaking pool, and limit-down stock pool. Helps understand limit-up stock quotes, board sealing conditions, consecutive board numbers, and subsequent performance. Suitable for limit-up analysis, strong stock screening, and risk monitoring. Note: These interfaces can only retrieve recent data."
+  llm: 获取A股市场涨停板行情数据。包括：东方财富-涨停股池-指定日期（需要日期，格式YYYYMMDD，返回指定日期的涨停股池数据）、东方财富-昨日涨停股池-指定日期（需要日期，格式YYYYMMDD，返回指定日期的昨日涨停股池数据）、东方财富-强势股池-指定日期（需要日期，格式YYYYMMDD，返回指定日期的强势股池数据）、东方财富-次新股池-指定日期（需要日期，格式YYYYMMDD，返回指定日期的次新股池数据）、东方财富-炸板股池-指定日期（需要日期，格式YYYYMMDD，返回指定日期的炸板股池数据）、东方财富-跌停股池-指定日期（需要日期，格式YYYYMMDD，返回指定日期的跌停股池数据）。注意：这些接口只能获取近期的数据。
+parameters:
+  - name: interface
+    type: select
+    required: true
+    form: llm
+    default: stock_zt_pool_em
+    description: 接口名称
+    llm_description: 选择涨停板行情数据接口。包括：东方财富-涨停股池-指定日期（需要日期）、东方财富-昨日涨停股池-指定日期（需要日期）、东方财富-强势股池-指定日期（需要日期）、东方财富-次新股池-指定日期（需要日期）、东方财富-炸板股池-指定日期（需要日期）、东方财富-跌停股池-指定日期（需要日期）。所有接口都需要日期参数，格式为YYYYMMDD。
+    human_description:
+      en_US: "Select limit up/down data interface. Options: East Money - Limit-up Stock Pool - Date (requires date), East Money - Previous Day Limit-up Stock Pool - Date (requires date), East Money - Strong Stock Pool - Date (requires date), East Money - Sub-new Stock Pool - Date (requires date), East Money - Limit-up Breaking Pool - Date (requires date), East Money - Limit-down Stock Pool - Date (requires date). All interfaces require date parameter in YYYYMMDD format."
+      zh_Hans: "选择涨停板行情数据接口。选项包括：东方财富-涨停股池-指定日期（需要日期）、东方财富-昨日涨停股池-指定日期（需要日期）、东方财富-强势股池-指定日期（需要日期）、东方财富-次新股池-指定日期（需要日期）、东方财富-炸板股池-指定日期（需要日期）、东方财富-跌停股池-指定日期（需要日期）。所有接口都需要日期参数，格式为YYYYMMDD。"
+    label:
+      en_US: Interface
+      zh_Hans: 接口名称
+    options:
+      - label:
+          en_US: East Money - Limit-up Stock Pool - Date
+          zh_Hans: 东方财富-涨停股池-指定日期
+        value: stock_zt_pool_em
+      - label:
+          en_US: East Money - Previous Day Limit-up Stock Pool - Date
+          zh_Hans: 东方财富-昨日涨停股池-指定日期
+        value: stock_zt_pool_previous_em
+      - label:
+          en_US: East Money - Strong Stock Pool - Date
+          zh_Hans: 东方财富-强势股池-指定日期
+        value: stock_zt_pool_strong_em
+      - label:
+          en_US: East Money - Sub-new Stock Pool - Date
+          zh_Hans: 东方财富-次新股池-指定日期
+        value: stock_zt_pool_sub_new_em
+      - label:
+          en_US: East Money - Limit-up Breaking Pool - Date
+          zh_Hans: 东方财富-炸板股池-指定日期
+        value: stock_zt_pool_zbgc_em
+      - label:
+          en_US: East Money - Limit-down Stock Pool - Date
+          zh_Hans: 东方财富-跌停股池-指定日期
+        value: stock_zt_pool_dtgc_em
+  - name: date
+    type: string
+    required: false
+    form: llm
+    default: "20241008"
+    description: 交易日期
+    llm_description: 交易日期，格式为YYYYMMDD（如20241008）。所有涨停板行情接口都需要此参数。注意：这些接口只能获取近期的数据。
+    human_description:
+      en_US: "Trading date in YYYYMMDD format (e.g., 20241008). Required for all limit up/down data interfaces. Note: These interfaces can only retrieve recent data."
+      zh_Hans: "交易日期，格式为YYYYMMDD（如20241008）。所有涨停板行情接口都需要此参数。注意：这些接口只能获取近期的数据。"
+    label:
+      en_US: Trading Date
+      zh_Hans: 交易日期
+  - name: retries
+    type: number
+    required: false
+    form: llm
+    default: 5
+    description: 重试次数
+    llm_description: 网络请求重试次数，范围1-10，默认5次。
+    human_description:
+      en_US: "Number of retries for network requests. Range: 1-10. Default: 5."
+      zh_Hans: "网络请求重试次数。范围：1-10。默认：5。"
+    label:
+      en_US: Retries
+      zh_Hans: 重试次数
+    min: 1
+    max: 10
+  - name: timeout
+    type: number
+    required: false
+    form: llm
+    default: 240
+    description: 子进程超时时间
+    llm_description: 子进程执行超时时间（秒），范围5-3600，默认240秒。
+    human_description:
+      en_US: "Subprocess execution timeout in seconds. Range: 5-3600. Default: 240."
+      zh_Hans: "子进程执行超时时间（秒）。范围：5-3600。默认：240。"
+    label:
+      en_US: Subprocess Timeout
+      zh_Hans: 子进程超时时间
+    min: 5
+    max: 3600
+extra:
+  python:
+    source: tools/get_limit_up_down.py
+

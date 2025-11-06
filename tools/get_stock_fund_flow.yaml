@@ -1,0 +1,103 @@
+identity:
+  author: shaoxing-xie
+  name: get_stock_fund_flow
+  label:
+    zh_Hans: 获取个股资金流向数据
+    en_US: Get Individual Stock Fund Flow Data
+description:
+  human:
+    zh_Hans: 获取指定个股的资金流向数据，包括主力资金、散户资金的流入流出情况，用于分析资金面对个股的影响。
+    en_US: Get fund flow data for specified stocks, including main force and retail fund inflows and outflows, used to analyze the impact of capital flows on individual stocks.
+  llm: 获取指定个股的资金流向数据，包括主力资金、散户资金的流入流出情况。包括：东方财富网-个股资金流向（需要股票代码和证交所，返回指定个股近100个交易日的资金流向数据，包括主力净流入、超大单净流入、大单净流入、中单净流入、小单净流入等）。需要提供股票代码和证交所参数。
+parameters:
+  - name: interface
+    type: select
+    required: true
+    form: llm
+    default: stock_individual_fund_flow
+    description: 接口名称
+    llm_description: 选择个股资金流向数据接口。包括：东方财富网-个股资金流向（需要股票代码和证交所，返回指定个股近100个交易日的资金流向数据，包括主力净流入、超大单净流入、大单净流入、中单净流入、小单净流入等）。需要提供股票代码和证交所参数。
+    human_description:
+      en_US: "Select individual stock fund flow data interface. Options: East Money - Individual Stock Fund Flow (requires stock code and stock exchange, returns fund flow data for the specified stock for nearly 100 trading days, including main force net inflow, super large order net inflow, large order net inflow, medium order net inflow, small order net inflow, etc.). Requires stock code and stock exchange parameters."
+      zh_Hans: "选择个股资金流向数据接口。选项包括：东方财富网-个股资金流向（需要股票代码和证交所，返回指定个股近100个交易日的资金流向数据，包括主力净流入、超大单净流入、大单净流入、中单净流入、小单净流入等）。需要提供股票代码和证交所参数。"
+    label:
+      en_US: Interface
+      zh_Hans: 接口名称
+    options:
+      - label:
+          en_US: East Money - Individual Stock Fund Flow - Specified Stock, Stock Exchange
+          zh_Hans: 东方财富网-个股资金流向-指定股票、证交所
+        value: stock_individual_fund_flow
+  - name: stock_code
+    type: string
+    required: true
+    form: llm
+    default: "600519"
+    description: 股票代码
+    llm_description: 股票代码，支持A股格式，如600519（沪市）、000001（深市）、430xxx（北交所）等。
+    human_description:
+      en_US: "Stock code. Supports A-share formats, e.g., 600519 (Shanghai), 000001 (Shenzhen), 430xxx (Beijing Stock Exchange), etc."
+      zh_Hans: "股票代码。支持A股格式，如600519（沪市）、000001（深市）、430xxx（北交所）等。"
+    label:
+      en_US: Stock Code
+      zh_Hans: 股票代码
+  - name: market
+    type: select
+    required: true
+    form: llm
+    default: sh
+    description: 证交所
+    llm_description: 证交所代码，用于指定股票所属证交所。选项：sh（上海证券交易所）、sz（深圳证券交易所）、bj（北京证券交易所）。
+    human_description:
+      en_US: "Stock exchange code. Used to specify the stock exchange to which the stock belongs. Options: sh (Shanghai Stock Exchange), sz (Shenzhen Stock Exchange), bj (Beijing Stock Exchange)."
+      zh_Hans: "证交所代码。用于指定股票所属证交所。选项：sh（上海证券交易所）、sz（深圳证券交易所）、bj（北京证券交易所）。"
+    label:
+      en_US: Stock Exchange
+      zh_Hans: 证交所
+    options:
+      - label:
+          en_US: Shanghai Stock Exchange
+          zh_Hans: 上海证券交易所
+        value: sh
+      - label:
+          en_US: Shenzhen Stock Exchange
+          zh_Hans: 深圳证券交易所
+        value: sz
+      - label:
+          en_US: Beijing Stock Exchange
+          zh_Hans: 北京证券交易所
+        value: bj
+  - name: retries
+    type: number
+    required: false
+    form: llm
+    default: 5
+    description: 重试次数
+    llm_description: 网络请求重试次数，范围1-10，默认5次。
+    human_description:
+      en_US: "Number of retries for network requests. Range: 1-10. Default: 5."
+      zh_Hans: "网络请求重试次数。范围：1-10。默认：5。"
+    label:
+      en_US: Retries
+      zh_Hans: 重试次数
+    min: 1
+    max: 10
+  - name: timeout
+    type: number
+    required: false
+    form: llm
+    default: 600
+    description: 子进程超时时间
+    llm_description: 子进程执行超时时间（秒），范围5-3600，默认600秒（10分钟）。
+    human_description:
+      en_US: "Subprocess execution timeout in seconds. Range: 5-3600. Default: 600 (10 minutes)."
+      zh_Hans: "子进程执行超时时间（秒）。范围：5-3600。默认：600（10分钟）。"
+    label:
+      en_US: Subprocess Timeout
+      zh_Hans: 子进程超时时间
+    min: 5
+    max: 3600
+extra:
+  python:
+    source: tools/get_stock_fund_flow.py
+

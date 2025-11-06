@@ -1,0 +1,156 @@
+identity:
+  author: shaoxing-xie
+  name: get_company_announcements
+  label:
+    zh_Hans: 获取公司公告数据
+    en_US: Get Company Announcements
+description:
+  human:
+    zh_Hans: 获取公司公告数据。包括股东大会、重大合同明细、公告大全等数据。帮助了解公司的重要公告内容、重大合同和公司治理相关信息。适用于公司公告跟踪、公司治理研究和投资决策。
+    en_US: Get company announcements data. Includes shareholders' meetings, major contract details, and announcement summaries. Helps understand important company announcement content, major contracts, and corporate governance related information. Suitable for company announcement tracking, corporate governance research, and investment decisions.
+  llm: 获取公司公告数据。包括：东方财富-股东大会（无需参数，返回所有股票的股东大会信息）、东方财富-重大合同-重大合同明细-指定日期范围（需要开始日期和结束日期，格式YYYYMMDD，返回指定日期范围内的重大合同明细）、东方财富-公告大全-沪深京A股公告-指定公告类型和日期（需要公告类型和日期，格式YYYYMMDD，返回指定类型和日期的公告）。
+parameters:
+  - name: interface
+    type: select
+    required: true
+    form: llm
+    default: stock_gddh_em
+    description: 接口名称
+    llm_description: 选择公司公告接口。包括：东方财富-股东大会（无需参数）、东方财富-重大合同-重大合同明细-指定日期范围（需要日期范围）、东方财富-公告大全-沪深京A股公告-指定公告类型和日期（需要公告类型和日期）。
+    human_description:
+      en_US: "Select company announcements interface. Options: Shareholders' Meeting (no parameters required), Major Contract Details (requires date range), Announcement Summary (requires announcement category and date)."
+      zh_Hans: "选择公司公告接口。选项包括：东方财富-股东大会（无需参数）、东方财富-重大合同-重大合同明细-指定日期范围（需要日期范围）、东方财富-公告大全-沪深京A股公告-指定公告类型和日期（需要公告类型和日期）。"
+    label:
+      en_US: Interface
+      zh_Hans: 接口名称
+    options:
+      - label:
+          en_US: Eastmoney - Shareholders' Meeting
+          zh_Hans: 东方财富-股东大会
+        value: stock_gddh_em
+      - label:
+          en_US: Eastmoney - Major Contract Details - Date Range
+          zh_Hans: 东方财富-重大合同-重大合同明细-指定日期范围
+        value: stock_zdhtmx_em
+      - label:
+          en_US: Eastmoney - Announcement Summary - Category and Date
+          zh_Hans: 东方财富-公告大全-沪深京A股公告-指定公告类型和日期
+        value: stock_notice_report
+  - name: start_date
+    type: string
+    required: false
+    form: llm
+    default: "20220819"
+    description: 开始日期
+    llm_description: 开始日期，格式为YYYYMMDD（如20220819）。仅"重大合同明细"接口需要此参数。
+    human_description:
+      en_US: "Start date in YYYYMMDD format (e.g., 20220819). Required only for 'Major Contract Details' interface."
+      zh_Hans: "开始日期，格式为YYYYMMDD（如20220819）。仅重大合同明细接口需要此参数。"
+    label:
+      en_US: Start Date
+      zh_Hans: 开始日期
+  - name: end_date
+    type: string
+    required: false
+    form: llm
+    default: "20230819"
+    description: 结束日期
+    llm_description: 结束日期，格式为YYYYMMDD（如20230819）。仅"重大合同明细"接口需要此参数。
+    human_description:
+      en_US: "End date in YYYYMMDD format (e.g., 20230819). Required only for 'Major Contract Details' interface."
+      zh_Hans: "结束日期，格式为YYYYMMDD（如20230819）。仅重大合同明细接口需要此参数。"
+    label:
+      en_US: End Date
+      zh_Hans: 结束日期
+  - name: date
+    type: string
+    required: false
+    form: llm
+    default: "20240613"
+    description: 交易日期
+    llm_description: 交易日期，格式为YYYYMMDD（如20240613）。仅"公告大全"接口需要此参数。
+    human_description:
+      en_US: "Trading date in YYYYMMDD format (e.g., 20240613). Required only for 'Announcement Summary' interface."
+      zh_Hans: "交易日期，格式为YYYYMMDD（如20240613）。仅公告大全接口需要此参数。"
+    label:
+      en_US: Trading Date
+      zh_Hans: 交易日期
+  - name: notice_category
+    type: select
+    required: false
+    form: llm
+    default: "财务报告"
+    description: 公告类型
+    llm_description: 公告类型，选择公告类别。仅"公告大全"接口需要此参数。选项包括：全部、重大事项、财务报告、融资公告、风险提示、资产重组、信息变更、持股变动。
+    human_description:
+      en_US: "Announcement category. Required only for 'Announcement Summary' interface. Options: 全部 (All), 重大事项 (Major Events), 财务报告 (Financial Reports), 融资公告 (Financing Announcements), 风险提示 (Risk Warnings), 资产重组 (Asset Restructuring), 信息变更 (Information Changes), 持股变动 (Shareholding Changes)."
+      zh_Hans: "公告类型。仅公告大全接口需要此参数。选项包括：全部、重大事项、财务报告、融资公告、风险提示、资产重组、信息变更、持股变动。"
+    label:
+      en_US: Announcement Category
+      zh_Hans: 公告类型
+    options:
+      - label:
+          en_US: All
+          zh_Hans: 全部
+        value: "全部"
+      - label:
+          en_US: Major Events
+          zh_Hans: 重大事项
+        value: "重大事项"
+      - label:
+          en_US: Financial Reports
+          zh_Hans: 财务报告
+        value: "财务报告"
+      - label:
+          en_US: Financing Announcements
+          zh_Hans: 融资公告
+        value: "融资公告"
+      - label:
+          en_US: Risk Warnings
+          zh_Hans: 风险提示
+        value: "风险提示"
+      - label:
+          en_US: Asset Restructuring
+          zh_Hans: 资产重组
+        value: "资产重组"
+      - label:
+          en_US: Information Changes
+          zh_Hans: 信息变更
+        value: "信息变更"
+      - label:
+          en_US: Shareholding Changes
+          zh_Hans: 持股变动
+        value: "持股变动"
+  - name: retries
+    type: number
+    required: false
+    form: llm
+    default: 5
+    description: 重试次数
+    llm_description: 网络请求重试次数，范围1-10，默认5次。
+    human_description:
+      en_US: "Number of retries for network requests. Range: 1-10. Default: 5."
+      zh_Hans: "网络请求重试次数。范围：1-10。默认：5。"
+    label:
+      en_US: Retries
+      zh_Hans: 重试次数
+    min: 1
+    max: 10
+  - name: timeout
+    type: number
+    required: false
+    form: llm
+    default: 240
+    description: 子进程超时时间
+    llm_description: 子进程执行超时时间（秒），范围5-3600，默认240秒。
+    human_description:
+      en_US: "Subprocess execution timeout in seconds. Range: 5-3600. Default: 240."
+      zh_Hans: "子进程执行超时时间（秒）。范围：5-3600。默认：240。"
+    label:
+      en_US: Subprocess Timeout
+      zh_Hans: 子进程超时时间
+    min: 5
+    max: 3600
+extra:
+  python:
+    source: tools/get_company_announcements.py

@@ -1,0 +1,136 @@
+identity:
+  author: shaoxing-xie
+  name: get_dragon_tiger_list
+  label:
+    zh_Hans: 获取龙虎榜数据
+    en_US: Get Dragon Tiger List Data
+description:
+  human:
+    zh_Hans: 获取龙虎榜数据。包括龙虎榜详情、个股上榜统计、机构买卖每日统计、机构席位追踪、每日活跃营业部等数据。帮助了解股票异常交易情况、机构资金流向和营业部活跃度。适用于龙虎榜分析、机构资金追踪和投资决策。
+    en_US: Get dragon tiger list data. Includes dragon tiger list details, stock listing statistics, institutional trading daily statistics, institutional seat tracking, and daily active securities firms. Helps understand abnormal stock trading situations, institutional fund flows, and securities firm activity. Suitable for dragon tiger list analysis, institutional fund tracking, and investment decisions.
+  llm: 获取龙虎榜数据。包括：东方财富-龙虎榜单-龙虎榜详情-指定日期范围（需要开始日期和结束日期，格式YYYYMMDD，返回指定日期范围内的龙虎榜详情数据）、东方财富-龙虎榜单-个股上榜统计-指定统计周期（需要统计周期，返回指定周期内的个股上榜统计信息）、东方财富-龙虎榜单-机构买卖每日统计-指定日期范围（需要开始日期和结束日期，格式YYYYMMDD，返回指定日期范围内的机构买卖每日统计）、东方财富-龙虎榜单-机构席位追踪-指定统计周期（需要统计周期，返回指定周期内的机构席位追踪数据）、东方财富-龙虎榜单-每日活跃营业部-指定日期范围（需要开始日期和结束日期，格式YYYYMMDD，返回指定日期范围内的每日活跃营业部数据）。
+parameters:
+  - name: interface
+    type: select
+    required: true
+    form: llm
+    default: stock_lhb_detail_em
+    description: 接口名称
+    llm_description: 选择龙虎榜数据接口。包括：东方财富-龙虎榜单-龙虎榜详情-指定日期范围（需要日期范围）、东方财富-龙虎榜单-个股上榜统计-指定统计周期（需要统计周期）、东方财富-龙虎榜单-机构买卖每日统计-指定日期范围（需要日期范围）、东方财富-龙虎榜单-机构席位追踪-指定统计周期（需要统计周期）、东方财富-龙虎榜单-每日活跃营业部-指定日期范围（需要日期范围）。
+    human_description:
+      en_US: "Select dragon tiger list data interface. Options: Dragon Tiger List Details (requires date range), Stock Listing Statistics (requires statistics period), Institutional Trading Daily Statistics (requires date range), Institutional Seat Tracking (requires statistics period), Daily Active Securities Firms (requires date range)."
+      zh_Hans: "选择龙虎榜数据接口。选项包括：东方财富-龙虎榜单-龙虎榜详情-指定日期范围（需要日期范围）、东方财富-龙虎榜单-个股上榜统计-指定统计周期（需要统计周期）、东方财富-龙虎榜单-机构买卖每日统计-指定日期范围（需要日期范围）、东方财富-龙虎榜单-机构席位追踪-指定统计周期（需要统计周期）、东方财富-龙虎榜单-每日活跃营业部-指定日期范围（需要日期范围）。"
+    label:
+      en_US: Interface
+      zh_Hans: 接口名称
+    options:
+      - label:
+          en_US: Eastmoney - Dragon Tiger List Details - Date Range
+          zh_Hans: 东方财富-龙虎榜单-龙虎榜详情-指定日期范围
+        value: stock_lhb_detail_em
+      - label:
+          en_US: Eastmoney - Stock Listing Statistics - Period
+          zh_Hans: 东方财富-龙虎榜单-个股上榜统计-指定统计周期
+        value: stock_lhb_stock_statistic_em
+      - label:
+          en_US: Eastmoney - Institutional Trading Daily Statistics - Date Range
+          zh_Hans: 东方财富-龙虎榜单-机构买卖每日统计-指定日期范围
+        value: stock_lhb_jgmmtj_em
+      - label:
+          en_US: Eastmoney - Institutional Seat Tracking - Period
+          zh_Hans: 东方财富-龙虎榜单-机构席位追踪-指定统计周期
+        value: stock_lhb_jgstatistic_em
+      - label:
+          en_US: Eastmoney - Daily Active Securities Firms - Date Range
+          zh_Hans: 东方财富-龙虎榜单-每日活跃营业部-指定日期范围
+        value: stock_lhb_hyyyb_em
+  - name: start_date
+    type: string
+    required: false
+    form: llm
+    default: "20250701"
+    description: 开始日期
+    llm_description: 开始日期，格式为YYYYMMDD（如20220314）。"龙虎榜详情"、"机构买卖每日统计"和"每日活跃营业部"接口需要此参数。
+    human_description:
+      en_US: "Start date in YYYYMMDD format (e.g., 20220314). Required for 'Dragon Tiger List Details', 'Institutional Trading Daily Statistics', and 'Daily Active Securities Firms' interfaces."
+      zh_Hans: "开始日期，格式为YYYYMMDD（如20220314）。龙虎榜详情、机构买卖每日统计和每日活跃营业部接口需要此参数。"
+    label:
+      en_US: Start Date
+      zh_Hans: 开始日期
+  - name: end_date
+    type: string
+    required: false
+    form: llm
+    default: "20251105"
+    description: 结束日期
+    llm_description: 结束日期，格式为YYYYMMDD（如20220315）。"龙虎榜详情"、"机构买卖每日统计"和"每日活跃营业部"接口需要此参数。
+    human_description:
+      en_US: "End date in YYYYMMDD format (e.g., 20220315). Required for 'Dragon Tiger List Details', 'Institutional Trading Daily Statistics', and 'Daily Active Securities Firms' interfaces."
+      zh_Hans: "结束日期，格式为YYYYMMDD（如20220315）。龙虎榜详情、机构买卖每日统计和每日活跃营业部接口需要此参数。"
+    label:
+      en_US: End Date
+      zh_Hans: 结束日期
+  - name: period
+    type: select
+    required: false
+    form: llm
+    default: "近一月"
+    description: 统计周期
+    llm_description: 统计周期，选择统计时间段。仅"个股上榜统计"和"机构席位追踪"接口需要此参数。选项包括：近一月、近三月、近六月、近一年。
+    human_description:
+      en_US: "Statistics period. Required only for 'Stock Listing Statistics' and 'Institutional Seat Tracking' interfaces. Options: 近一月 (Last Month), 近三月 (Last 3 Months), 近六月 (Last 6 Months), 近一年 (Last Year)."
+      zh_Hans: "统计周期。仅个股上榜统计和机构席位追踪接口需要此参数。选项包括：近一月、近三月、近六月、近一年。"
+    label:
+      en_US: Statistics Period
+      zh_Hans: 统计周期
+    options:
+      - label:
+          en_US: Last Month
+          zh_Hans: 近一月
+        value: "近一月"
+      - label:
+          en_US: Last 3 Months
+          zh_Hans: 近三月
+        value: "近三月"
+      - label:
+          en_US: Last 6 Months
+          zh_Hans: 近六月
+        value: "近六月"
+      - label:
+          en_US: Last Year
+          zh_Hans: 近一年
+        value: "近一年"
+  - name: retries
+    type: number
+    required: false
+    form: llm
+    default: 5
+    description: 重试次数
+    llm_description: 网络请求重试次数，范围1-10，默认5次。
+    human_description:
+      en_US: "Number of retries for network requests. Range: 1-10. Default: 5."
+      zh_Hans: "网络请求重试次数。范围：1-10。默认：5。"
+    label:
+      en_US: Retries
+      zh_Hans: 重试次数
+    min: 1
+    max: 10
+  - name: timeout
+    type: number
+    required: false
+    form: llm
+    default: 240
+    description: 子进程超时时间
+    llm_description: 子进程执行超时时间（秒），范围5-3600，默认240秒。
+    human_description:
+      en_US: "Subprocess execution timeout in seconds. Range: 5-3600. Default: 240."
+      zh_Hans: "子进程执行超时时间（秒）。范围：5-3600。默认：240。"
+    label:
+      en_US: Subprocess Timeout
+      zh_Hans: 子进程超时时间
+    min: 5
+    max: 3600
+extra:
+  python:
+    source: tools/get_dragon_tiger_list.py
+

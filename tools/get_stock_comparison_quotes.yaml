@@ -1,0 +1,68 @@
+identity:
+  author: shaoxing-xie
+  name: get_stock_comparison_quotes
+  label:
+    zh_Hans: 获取A股市场股票比价数据
+    en_US: Get A-Share Market Stock Comparison Quotes
+description:
+  human:
+    zh_Hans: 获取股票比价数据，包括AH股比价和AB股比价。帮助了解同一公司在不同市场的价格对比情况。
+    en_US: Get stock comparison data, including AH share comparison and AB share comparison. Helps understand price comparisons of the same company in different markets.
+  llm: 获取股票比价数据，包括AH股比价和AB股比价。包括：AH股比价（返回同时在A股和港股上市的公司的价格对比数据，包括A股价格、H股价格、价差、溢价率等）、AB股比价（返回同时在A股和B股上市的公司的价格对比数据，包括A股价格、B股价格、价差、溢价率等）。所有接口无需参数，返回所有符合条件的股票比价数据。注意：数据量较大，建议设置较长的超时时间。
+parameters:
+  - name: interface
+    type: select
+    required: true
+    form: llm
+    default: stock_zh_ah_spot_em
+    description: 接口名称
+    llm_description: 选择股票比价数据接口。包括：AH股比价（返回同时在A股和港股上市的公司的价格对比数据）、AB股比价（返回同时在A股和B股上市的公司的价格对比数据）。所有接口无需参数，返回所有符合条件的股票比价数据。
+    human_description:
+      en_US: "Select stock comparison quotes interface. Options: AH Share Comparison (returns price comparison data for companies listed on both A-share and H-share markets), AB Share Comparison (returns price comparison data for companies listed on both A-share and B-share markets). All interfaces require no parameters, return all eligible stock comparison data."
+      zh_Hans: "选择股票比价数据接口。选项包括：AH股比价（返回同时在A股和港股上市的公司的价格对比数据）、AB股比价（返回同时在A股和B股上市的公司的价格对比数据）。所有接口无需参数，返回所有符合条件的股票比价数据。"
+    label:
+      en_US: Interface
+      zh_Hans: 接口名称
+    options:
+      - label:
+          en_US: Eastmoney - HSGT - AH Stock Comparison - Real-time Quotes
+          zh_Hans: 东方财富网-沪深港通-AH股比价-实时行情
+        value: stock_zh_ah_spot_em
+      - label:
+          en_US: Eastmoney - Shanghai-Shenzhen-Beijing A-share - All AB Stock Comparison
+          zh_Hans: 东方财富网-沪深京A股-全量AB股比价
+        value: stock_zh_ab_comparison_em
+  - name: retries
+    type: number
+    required: false
+    form: llm
+    default: 5
+    description: 重试次数
+    llm_description: 网络请求重试次数，范围1-10，默认5次。
+    human_description:
+      en_US: "Number of retries for network requests. Range: 1-10. Default: 5."
+      zh_Hans: "网络请求重试次数。范围：1-10。默认：5。"
+    label:
+      en_US: Retries
+      zh_Hans: 重试次数
+    min: 1
+    max: 10
+  - name: timeout
+    type: number
+    required: false
+    form: llm
+    default: 900
+    description: 子进程超时时间
+    llm_description: 子进程执行超时时间（秒），范围5-3600，默认900秒（15分钟）。实时行情接口数据量大，建议设置较长的超时时间。
+    human_description:
+      en_US: "Subprocess execution timeout in seconds. Range: 5-3600. Default: 900 (15 minutes). Real-time market data interfaces have large data volumes, recommend setting longer timeout."
+      zh_Hans: "子进程执行超时时间（秒）。范围：5-3600。默认：900（15分钟）。实时行情接口数据量大，建议设置较长的超时时间。"
+    label:
+      en_US: Subprocess Timeout
+      zh_Hans: 子进程超时时间
+    min: 5
+    max: 3600
+extra:
+  python:
+    source: tools/get_stock_comparison_quotes.py
+

@@ -1,0 +1,77 @@
+identity:
+  author: shaoxing-xie
+  name: get_us_daily_minute_quotes
+  label:
+    zh_Hans: 获取美股每日分时行情
+    en_US: Get US Stock Individual Daily Minute Quotes
+description:
+  human:
+    zh_Hans: 获取美股个股每日分时行情数据，自动返回最近5天的分时数据，支持指定股票代码。
+    en_US: Get US stock individual daily minute quotes data, automatically returns the latest 5 days of intraday data, supporting specifying stock code.
+  llm: 获取美股个股每日分时行情数据。包括：东方财富网-美股-每日分时行情(自动最近5天)-指定股票代码。该接口会自动返回最近5天的分时行情数据，不需要提供日期范围参数。需要提供美股代码，格式如AAPL、MSFT、GOOGL等。接口会自动将股票代码转换为105.XXX格式。
+parameters:
+  - name: interface
+    type: select
+    required: true
+    form: llm
+    default: stock_us_hist_min_em
+    description: 接口名称
+    llm_description: 选择美股每日分时行情接口
+    human_description:
+      en_US: "Select the US stock daily minute quotes interface."
+      zh_Hans: "选择美股每日分时行情接口。"
+    label:
+      en_US: Interface
+      zh_Hans: 接口名称
+    options:
+      - label:
+          en_US: East Money - US Stock - Daily Minute Data (Auto 5 Days) - Specify Stock Code
+          zh_Hans: 东方财富网-美股-每日分时行情(自动最近5天)-指定股票代码
+        value: stock_us_hist_min_em
+  - name: stock_code
+    type: string
+    required: false
+    form: llm
+    default: "AAPL"
+    description: 美股代码
+    llm_description: 美股个股代码，格式：AAPL、MSFT、GOOGL等。接口会自动将股票代码转换为105.AAPL格式
+    human_description:
+      en_US: "US stock code. Format: AAPL, MSFT, GOOGL, etc. The interface will automatically convert the stock code to 105.AAPL format."
+      zh_Hans: "美股代码。格式：AAPL、MSFT、GOOGL等。接口会自动将股票代码转换为105.AAPL格式。"
+    label:
+      en_US: US Stock Code
+      zh_Hans: 美股代码
+  - name: retries
+    type: number
+    required: false
+    form: llm
+    default: 5
+    description: 重试次数
+    llm_description: 网络请求重试次数，默认5次
+    human_description:
+      en_US: "Number of retries for network requests. Range: 1-10. Default: 5."
+      zh_Hans: "网络请求重试次数。范围：1-10。默认：5。"
+    label:
+      en_US: Retries
+      zh_Hans: 重试次数
+    min: 1
+    max: 10
+  - name: timeout
+    type: number
+    required: false
+    form: llm
+    default: 600
+    description: 子进程超时时间
+    llm_description: 子进程执行超时时间（秒），默认600秒
+    human_description:
+      en_US: "Subprocess execution timeout in seconds. Range: 5-3600. Default: 600."
+      zh_Hans: "子进程执行超时时间（秒）。范围：5-3600。默认：600。"
+    label:
+      en_US: Subprocess Timeout
+      zh_Hans: 子进程超时时间
+    min: 5
+    max: 3600
+extra:
+  python:
+    source: tools/get_us_daily_minute_quotes.py
+

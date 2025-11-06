@@ -1,0 +1,68 @@
+identity:
+  author: shaoxing-xie
+  name: get_special_stock_quotes
+  label:
+    zh_Hans: 获取A股市场特殊股票行情
+    en_US: Get A-Share Market Special Stock Quotes
+description:
+  human:
+    zh_Hans: 获取特殊股票类型的实时行情数据，包括两网及退市股票、IPO受益股等。帮助了解特殊股票的交易情况。
+    en_US: Get real-time quotes for special stock types, including delisted stocks and IPO beneficiary stocks. Helps understand trading situations of special stocks.
+  llm: 获取特殊股票类型的实时行情数据，包括两网及退市股票、IPO受益股等。包括：两网及退市股票（返回两网及退市股票的实时行情数据，包括代码、名称、最新价、涨跌幅等信息）、IPO受益股（返回IPO受益股的实时行情数据，包括代码、名称、最新价、涨跌幅等信息）。所有接口无需参数，返回所有符合条件的特殊股票实时行情数据。注意：数据量较大，建议设置较长的超时时间。
+parameters:
+  - name: interface
+    type: select
+    required: true
+    form: llm
+    default: stock_zh_a_stop_em
+    description: 接口名称
+    llm_description: 选择特殊股票行情接口。包括：两网及退市股票（返回两网及退市股票的实时行情数据）、IPO受益股（返回IPO受益股的实时行情数据）。所有接口无需参数，返回所有符合条件的特殊股票实时行情数据。
+    human_description:
+      en_US: "Select special stock quotes interface. Options: Delisted Stocks (returns real-time quotes for delisted stocks), IPO Beneficiary Stocks (returns real-time quotes for IPO beneficiary stocks). All interfaces require no parameters, return all eligible special stock real-time quotes."
+      zh_Hans: "选择特殊股票行情接口。选项包括：两网及退市股票（返回两网及退市股票的实时行情数据）、IPO受益股（返回IPO受益股的实时行情数据）。所有接口无需参数，返回所有符合条件的特殊股票实时行情数据。"
+    label:
+      en_US: Interface
+      zh_Hans: 接口名称
+    options:
+      - label:
+          en_US: Eastmoney - Shanghai-Shenzhen Individual Stocks - Two Networks & Delisted
+          zh_Hans: 东方财富网-沪深个股-两网及退市
+        value: stock_zh_a_stop_em
+      - label:
+          en_US: THS - IPO Data - IPO Beneficiary Stocks
+          zh_Hans: 同花顺-新股数据-IPO受益股
+        value: stock_ipo_benefit_ths
+  - name: retries
+    type: number
+    required: false
+    form: llm
+    default: 5
+    description: 重试次数
+    llm_description: 网络请求重试次数，范围1-10，默认5次。
+    human_description:
+      en_US: "Number of retries for network requests. Range: 1-10. Default: 5."
+      zh_Hans: "网络请求重试次数。范围：1-10。默认：5。"
+    label:
+      en_US: Retries
+      zh_Hans: 重试次数
+    min: 1
+    max: 10
+  - name: timeout
+    type: number
+    required: false
+    form: llm
+    default: 900
+    description: 子进程超时时间
+    llm_description: 子进程执行超时时间（秒），范围5-3600，默认900秒（15分钟）。实时行情接口数据量大，建议设置较长的超时时间。
+    human_description:
+      en_US: "Subprocess execution timeout in seconds. Range: 5-3600. Default: 900 (15 minutes). Real-time market data interfaces have large data volumes, recommend setting longer timeout."
+      zh_Hans: "子进程执行超时时间（秒）。范围：5-3600。默认：900（15分钟）。实时行情接口数据量大，建议设置较长的超时时间。"
+    label:
+      en_US: Subprocess Timeout
+      zh_Hans: 子进程超时时间
+    min: 5
+    max: 3600
+extra:
+  python:
+    source: tools/get_special_stock_quotes.py
+

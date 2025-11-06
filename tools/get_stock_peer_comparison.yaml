@@ -1,0 +1,89 @@
+identity:
+  author: shaoxing-xie
+  name: get_stock_peer_comparison
+  label:
+    zh_Hans: 获取个股同行比较数据
+    en_US: Get Stock Peer Comparison Data
+description:
+  human:
+    zh_Hans: 获取指定股票与同行业公司的比较数据，包括成长性比较、估值比较、杜邦分析比较、公司规模比较等。帮助了解股票在同行业中的地位和表现。
+    en_US: Get comparison data between specified stock and peer companies in the same industry, including growth comparison, valuation comparison, DuPont analysis comparison, company scale comparison, etc. Helps understand the stock's position and performance in the same industry.
+  llm: 获取指定股票与同行业公司的比较数据，包括成长性比较、估值比较、杜邦分析比较、公司规模比较等。包括：东方财富网-同行比较-成长性比较（需要股票代码）、东方财富网-同行比较-估值比较（需要股票代码）、东方财富网-同行比较-杜邦分析比较（需要股票代码）、东方财富网-同行比较-公司规模（需要股票代码）。所有接口都需要股票代码参数，返回与同行业公司的比较数据。
+parameters:
+  - name: interface
+    type: select
+    required: true
+    form: llm
+    default: stock_zh_growth_comparison_em
+    description: 接口名称
+    llm_description: 选择同行比较数据接口。包括：成长性比较（返回与同行业公司的成长性对比数据，包括营收增长率、利润增长率等）、估值比较（返回与同行业公司的估值对比数据，包括市盈率、市净率等）、杜邦分析比较（返回与同行业公司的杜邦分析对比数据，包括ROE、ROA等）、公司规模（返回与同行业公司的规模对比数据，包括总资产、净资产等）。所有接口都需要股票代码参数。
+    human_description:
+      en_US: "Select peer comparison data interface. Options: Growth Comparison (returns growth comparison data with peer companies, including revenue growth rate, profit growth rate, etc.), Valuation Comparison (returns valuation comparison data with peer companies, including PE ratio, PB ratio, etc.), DuPont Analysis Comparison (returns DuPont analysis comparison data with peer companies, including ROE, ROA, etc.), Company Scale (returns scale comparison data with peer companies, including total assets, net assets, etc.). All interfaces require stock symbol."
+      zh_Hans: "选择同行比较数据接口。选项包括：成长性比较（返回与同行业公司的成长性对比数据，包括营收增长率、利润增长率等）、估值比较（返回与同行业公司的估值对比数据，包括市盈率、市净率等）、杜邦分析比较（返回与同行业公司的杜邦分析对比数据，包括ROE、ROA等）、公司规模（返回与同行业公司的规模对比数据，包括总资产、净资产等）。所有接口都需要股票代码参数。"
+    label:
+      en_US: Interface
+      zh_Hans: 接口名称
+    options:
+      - label:
+          en_US: Eastmoney - Peer Comparison - Growth Comparison - Specified Stock
+          zh_Hans: 东方财富网-同行比较-成长性比较-指定股票
+        value: stock_zh_growth_comparison_em
+      - label:
+          en_US: Eastmoney - Peer Comparison - Valuation Comparison - Specified Stock
+          zh_Hans: 东方财富网-同行比较-估值比较-指定股票
+        value: stock_zh_valuation_comparison_em
+      - label:
+          en_US: Eastmoney - Peer Comparison - DuPont Analysis Comparison - Specified Stock
+          zh_Hans: 东方财富网-同行比较-杜邦分析比较-指定股票
+        value: stock_zh_dupont_comparison_em
+      - label:
+          en_US: Eastmoney - Peer Comparison - Company Scale - Specified Stock
+          zh_Hans: 东方财富网-同行比较-公司规模-指定股票
+        value: stock_zh_scale_comparison_em
+  - name: symbol
+    type: string
+    required: true
+    form: llm
+    default: "000895"
+    description: 股票代码
+    llm_description: 股票代码，支持A股格式，如600519（沪市）、000001（深市）。
+    human_description:
+      en_US: "Stock symbol. Format: A-shares: 600519 (Shanghai), 000001 (Shenzhen)."
+      zh_Hans: "股票代码。格式：A股：600519（沪市）、000001（深市）。"
+    label:
+      en_US: Stock Symbol
+      zh_Hans: 股票代码
+  - name: retries
+    type: number
+    required: false
+    form: llm
+    default: 5
+    description: 重试次数
+    llm_description: 网络请求重试次数，范围1-10，默认5次。
+    human_description:
+      en_US: "Number of retries for network requests. Range: 1-10. Default: 5."
+      zh_Hans: "网络请求重试次数。范围：1-10。默认：5。"
+    label:
+      en_US: Retries
+      zh_Hans: 重试次数
+    min: 1
+    max: 10
+  - name: timeout
+    type: number
+    required: false
+    form: llm
+    default: 600
+    description: 子进程超时时间
+    llm_description: 子进程执行超时时间（秒），范围5-3600，默认600秒（10分钟）。
+    human_description:
+      en_US: "Subprocess execution timeout in seconds. Range: 5-3600. Default: 600 (10 minutes)."
+      zh_Hans: "子进程执行超时时间（秒）。范围：5-3600。默认：600（10分钟）。"
+    label:
+      en_US: Subprocess Timeout
+      zh_Hans: 子进程超时时间
+    min: 5
+    max: 3600
+extra:
+  python:
+    source: tools/get_stock_peer_comparison.py
+

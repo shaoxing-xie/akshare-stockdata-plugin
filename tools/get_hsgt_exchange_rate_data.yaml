@@ -1,0 +1,76 @@
+identity:
+  author: shaoxing-xie
+  name: get_hsgt_exchange_rate_data
+  label:
+    zh_Hans: 获取沪深港通汇率与结算数据
+    en_US: Get HSGT Exchange Rate and Settlement Data
+description:
+  human:
+    zh_Hans: 获取沪深港通相关的汇率与结算数据，包括深港通和沪港通的结算汇率、参考汇率等信息。帮助了解沪深港通的汇率设置情况。
+    en_US: Get HSGT (Hong Kong-Shanghai-Shenzhen Stock Connect) related exchange rate and settlement data, including settlement exchange rates and reference exchange rates for SZSE and SSE. Helps understand HSGT exchange rate settings.
+  llm: 获取沪深港通相关的汇率与结算数据，包括深港通和沪港通的结算汇率、参考汇率等信息。包括：深港通-港股通业务信息-结算汇率（无需参数）、沪港通-港股通信息披露-结算汇兑（无需参数）、深港通-港股通业务信息-参考汇率（无需参数）、沪港通-港股通信息披露-参考汇率（无需参数）。所有接口都无需额外参数，直接调用即可获取数据。
+parameters:
+  - name: interface
+    type: select
+    required: true
+    form: llm
+    default: stock_sgt_settlement_exchange_rate_szse
+    description: 接口名称
+    llm_description: 选择沪深港通汇率与结算数据接口。包括：深港通结算汇率（返回深港通港股通业务信息的结算汇率数据）、沪港通结算汇率（返回沪港通港股通信息披露的结算汇兑数据）、深港通参考汇率（返回深港通港股通业务信息的参考汇率数据）、沪港通参考汇率（返回沪港通港股通信息披露的参考汇率数据）。所有接口都无需额外参数。
+    human_description:
+      en_US: "Select HSGT exchange rate and settlement data interface. Options: SZSE Settlement Exchange Rate (returns settlement exchange rate data for SZSE HK Connect business), SSE Settlement Exchange Rate (returns settlement exchange data for SSE HK Connect information disclosure), SZSE Reference Exchange Rate (returns reference exchange rate data for SZSE HK Connect business), SSE Reference Exchange Rate (returns reference exchange rate data for SSE HK Connect information disclosure). All interfaces require no additional parameters."
+      zh_Hans: "选择沪深港通汇率与结算数据接口。选项包括：深港通结算汇率（返回深港通港股通业务信息的结算汇率数据）、沪港通结算汇率（返回沪港通港股通信息披露的结算汇兑数据）、深港通参考汇率（返回深港通港股通业务信息的参考汇率数据）、沪港通参考汇率（返回沪港通港股通信息披露的参考汇率数据）。所有接口都无需额外参数。"
+    label:
+      en_US: Interface
+      zh_Hans: 接口名称
+    options:
+      - label:
+          en_US: SZSE - HK Connect Settlement Exchange Rate
+          zh_Hans: 深港通-港股通业务信息-结算汇率
+        value: stock_sgt_settlement_exchange_rate_szse
+      - label:
+          en_US: SSE - HK Connect Settlement Exchange Rate
+          zh_Hans: 沪港通-港股通信息披露-结算汇兑
+        value: stock_sgt_settlement_exchange_rate_sse
+      - label:
+          en_US: SZSE - HK Connect Reference Exchange Rate
+          zh_Hans: 深港通-港股通业务信息-参考汇率
+        value: stock_sgt_reference_exchange_rate_szse
+      - label:
+          en_US: SSE - HK Connect Reference Exchange Rate
+          zh_Hans: 沪港通-港股通信息披露-参考汇率
+        value: stock_sgt_reference_exchange_rate_sse
+  - name: retries
+    type: number
+    required: false
+    form: llm
+    default: 5
+    description: 重试次数
+    llm_description: 网络请求重试次数，范围1-10，默认5次。
+    human_description:
+      en_US: "Number of retries for network requests. Range: 1-10. Default: 5."
+      zh_Hans: "网络请求重试次数。范围：1-10。默认：5。"
+    label:
+      en_US: Retries
+      zh_Hans: 重试次数
+    min: 1
+    max: 10
+  - name: timeout
+    type: number
+    required: false
+    form: llm
+    default: 300
+    description: 子进程超时时间
+    llm_description: 子进程执行超时时间（秒），范围5-3600，默认300秒（5分钟）。
+    human_description:
+      en_US: "Subprocess execution timeout in seconds. Range: 5-3600. Default: 300 (5 minutes)."
+      zh_Hans: "子进程执行超时时间（秒）。范围：5-3600。默认：300（5分钟）。"
+    label:
+      en_US: Subprocess Timeout
+      zh_Hans: 子进程超时时间
+    min: 5
+    max: 3600
+extra:
+  python:
+    source: tools/get_hsgt_exchange_rate_data.py
+

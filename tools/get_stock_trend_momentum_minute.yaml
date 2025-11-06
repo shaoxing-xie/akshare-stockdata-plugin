@@ -1,0 +1,145 @@
+identity:
+  author: shaoxing-xie
+  name: get_stock_trend_momentum_minute
+  label:
+    zh_Hans: 获取个股趋势动量震荡指标(分钟)
+    en_US: Get Stock Trend Momentum Oscillator (Minute)
+description:
+  human:
+    zh_Hans: 获取个股趋势动量震荡指标(分钟)。基于分钟级历史行情数据自动计算多种技术分析指标，包括移动平均线（MA5/MA10/MA20/MA30/MA60）、RSI相对强弱指标（RSI6/RSI12/RSI24）、MACD指标、KDJ随机指标、布林带指标、成交量均线（VMA5/VMA10/VMA20）等。支持1分钟、5分钟、15分钟、30分钟、60分钟周期，适用于日内短线交易、分时图技术分析和盘中交易决策。可帮助投资者捕捉短期价格波动、识别日内买卖时机和监控盘中资金流向。
+    en_US: Get stock trend momentum oscillator (minute). Automatically calculates multiple technical analysis indicators based on minute-level historical quotes data, including moving averages (MA5/MA10/MA20/MA30/MA60), RSI relative strength indicators (RSI6/RSI12/RSI24), MACD indicators, KDJ stochastic indicators, Bollinger Bands, and volume moving averages (VMA5/VMA10/VMA20). Supports 1-minute, 5-minute, 15-minute, 30-minute, and 60-minute periods. Suitable for intraday short-term trading, minute-chart technical analysis, and intraday trading decisions. Helps investors capture short-term price fluctuations, identify intraday trading opportunities, and monitor intraday fund flows.
+  llm: 获取个股趋势动量震荡指标(分钟)。基于分钟级历史行情数据计算技术指标，包括移动平均线（MA5、MA10、MA20、MA30、MA60）、RSI相对强弱指标（RSI6、RSI12、RSI24）、MACD指标、KDJ随机指标、布林带指标、成交量均线（VMA5、VMA10、VMA20）等。需要提供股票代码、分钟周期（1、5、15、30、60分钟）、开始日期、结束日期和复权方式。
+parameters:
+  - name: symbol
+    type: string
+    required: true
+    form: llm
+    default: "000001"
+    description: 股票代码
+    llm_description: 股票代码，格式：000001、600519、688356等
+    human_description:
+      en_US: "Stock code. Format: 000001, 600519, 688356, etc."
+      zh_Hans: "股票代码。格式：000001、600519、688356等。"
+    label:
+      en_US: Stock Code
+      zh_Hans: 股票代码
+  - name: period
+    type: select
+    required: false
+    form: llm
+    default: "5"
+    description: 分钟周期
+    llm_description: 分钟级数据周期类型，用于分钟级趋势动量震荡指标
+    human_description:
+      en_US: "Minute period. Options: 1 (1分钟), 5 (5分钟), 15 (15分钟), 30 (30分钟), 60 (60分钟)."
+      zh_Hans: "分钟周期。选项：1(1分钟)、5(5分钟)、15(15分钟)、30(30分钟)、60(60分钟)。"
+    label:
+      en_US: Minute Period
+      zh_Hans: 分钟周期
+    options:
+      - label:
+          en_US: 1 Minute
+          zh_Hans: 1分钟
+        value: "1"
+      - label:
+          en_US: 5 Minutes
+          zh_Hans: 5分钟
+        value: "5"
+      - label:
+          en_US: 15 Minutes
+          zh_Hans: 15分钟
+        value: "15"
+      - label:
+          en_US: 30 Minutes
+          zh_Hans: 30分钟
+        value: "30"
+      - label:
+          en_US: 60 Minutes
+          zh_Hans: 60分钟
+        value: "60"
+  - name: start_date
+    type: string
+    required: false
+    form: llm
+    default: "20250101"
+    description: 开始日期
+    llm_description: 历史数据的开始日期，格式为YYYYMMDD，会自动转换为YYYY-MM-DD 09:30:00
+    human_description:
+      en_US: "Start date. Format: YYYYMMDD (20250101) or YYYY-MM-DD (2025-01-01). Automatically converts to YYYY-MM-DD 09:30:00."
+      zh_Hans: "开始日期。格式：YYYYMMDD(20250101)或YYYY-MM-DD(2025-01-01)。会自动转换为YYYY-MM-DD 09:30:00。"
+    label:
+      en_US: Start Date
+      zh_Hans: 开始日期
+  - name: end_date
+    type: string
+    required: false
+    form: llm
+    default: ""
+    description: 结束日期
+    llm_description: 历史数据的结束日期，格式为YYYYMMDD，会自动转换为YYYY-MM-DD 15:00:00，默认为当前日期
+    human_description:
+      en_US: "End date. Format: YYYYMMDD (20250915) or YYYY-MM-DD (2025-09-15). Automatically converts to YYYY-MM-DD 15:00:00. Default: current date."
+      zh_Hans: "结束日期。格式：YYYYMMDD(20250915)或YYYY-MM-DD(2025-09-15)。会自动转换为YYYY-MM-DD 15:00:00。默认：当前日期。"
+    label:
+      en_US: End Date
+      zh_Hans: 结束日期
+  - name: adjust
+    type: select
+    required: false
+    form: llm
+    default: qfq
+    description: 复权方式
+    llm_description: 价格复权方式，支持前复权、后复权、不复权
+    human_description:
+      en_US: "Adjustment method. Options: qfq (前复权), hfq (后复权), none (不复权)."
+      zh_Hans: "复权方式。选项：qfq(前复权)、hfq(后复权)、none(不复权)。"
+    label:
+      en_US: Adjustment Method
+      zh_Hans: 复权方式
+    options:
+      - label:
+          en_US: Forward Adjustment
+          zh_Hans: 前复权
+        value: qfq
+      - label:
+          en_US: Backward Adjustment
+          zh_Hans: 后复权
+        value: hfq
+      - label:
+          en_US: No Adjustment
+          zh_Hans: 不复权
+        value: "none"
+  - name: retries
+    type: number
+    required: false
+    form: llm
+    default: 5
+    description: 重试次数
+    llm_description: 网络请求重试次数，默认5次
+    human_description:
+      en_US: "Number of retries for network requests. Range: 1-10. Default: 5."
+      zh_Hans: "网络请求重试次数。范围：1-10。默认：5。"
+    label:
+      en_US: Retries
+      zh_Hans: 重试次数
+    min: 1
+    max: 10
+  - name: timeout
+    type: number
+    required: false
+    form: llm
+    default: 600
+    description: 超时时间
+    llm_description: 接口调用的超时时间（秒），默认600秒
+    human_description:
+      en_US: "Timeout for interface calls in seconds. Range: 5-3000. Default: 600."
+      zh_Hans: "接口调用的超时时间（秒）。范围：5-3000。默认：600。"
+    label:
+      en_US: Timeout
+      zh_Hans: 超时时间
+    min: 5
+    max: 3000
+extra:
+  python:
+    source: tools/get_stock_trend_momentum_minute.py
+

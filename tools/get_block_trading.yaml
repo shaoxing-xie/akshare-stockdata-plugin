@@ -1,0 +1,204 @@
+identity:
+  author: shaoxing-xie
+  name: get_block_trading
+  label:
+    zh_Hans: 获取大宗交易数据
+    en_US: Get Block Trading Data
+description:
+  human:
+    zh_Hans: 获取大宗交易数据。包括市场统计、每日明细、每日统计、活跃A股统计、活跃营业部统计、营业部排行等数据。帮助了解大宗交易的成交情况、活跃股票和营业部信息。适用于大宗交易分析、资金流向追踪和投资决策。
+    en_US: Get block trading data. Includes market statistics, daily details, daily statistics, active A-share statistics, active securities firm statistics, and securities firm rankings. Helps understand block trading transaction situations, active stocks, and securities firm information. Suitable for block trading analysis, fund flow tracking, and investment decisions.
+  llm: 获取大宗交易数据。包括：市场统计（无需参数，返回所有历史大宗交易市场统计数据）、每日明细（需要证券类型和日期范围，格式YYYYMMDD，返回指定类型和日期范围内的每日明细数据）、每日统计（需要日期范围，格式YYYYMMDD，返回指定日期范围内的每日统计数据）、活跃A股统计（需要统计周期，返回指定周期内的活跃A股统计数据）、活跃营业部统计（需要统计周期，返回指定周期内的活跃营业部统计数据）、营业部排行（需要统计周期，返回指定周期内的营业部排行数据）。
+parameters:
+  - name: interface
+    type: select
+    required: true
+    form: llm
+    default: stock_dzjy_sctj
+    description: 接口名称
+    llm_description: 选择大宗交易数据接口。包括：市场统计（无需参数）、每日明细（需要证券类型和日期范围）、每日统计（需要日期范围）、活跃A股统计（需要统计周期）、活跃营业部统计（需要统计周期）、营业部排行（需要统计周期）。
+    human_description:
+      en_US: "Select block trading data interface. Options: Market Statistics (no parameters required), Daily Details (requires security type and date range), Daily Statistics (requires date range), Active A-share Statistics (requires statistics period), Active Securities Firm Statistics (requires statistics period), Securities Firm Rankings (requires statistics period)."
+      zh_Hans: "选择大宗交易数据接口。选项包括：市场统计（无需参数）、每日明细（需要证券类型和日期范围）、每日统计（需要日期范围）、活跃A股统计（需要统计周期）、活跃营业部统计（需要统计周期）、营业部排行（需要统计周期）。"
+    label:
+      en_US: Interface
+      zh_Hans: 接口名称
+    options:
+      - label:
+          en_US: Eastmoney - Market Statistics - All
+          zh_Hans: 东方财富网-数据中心-大宗交易-市场统计
+        value: stock_dzjy_sctj
+      - label:
+          en_US: Eastmoney - Daily Details - Security Type and Date Range
+          zh_Hans: 东方财富网-数据中心-大宗交易-每日明细
+        value: stock_dzjy_mrmx
+      - label:
+          en_US: Eastmoney - Daily Statistics - Date Range
+          zh_Hans: 东方财富网-数据中心-大宗交易-每日统计
+        value: stock_dzjy_mrtj
+      - label:
+          en_US: Eastmoney - Active A-share Statistics - Period
+          zh_Hans: 东方财富网-数据中心-大宗交易-活跃 A 股统计
+        value: stock_dzjy_hygtj
+      - label:
+          en_US: Eastmoney - Active Securities Firm Statistics - Period
+          zh_Hans: 东方财富网-数据中心-大宗交易-活跃营业部统计
+        value: stock_dzjy_hyyybtj
+      - label:
+          en_US: Eastmoney - Securities Firm Rankings - Period
+          zh_Hans: 东方财富网-数据中心-大宗交易-营业部排行
+        value: stock_dzjy_yybph
+  - name: start_date
+    type: string
+    required: false
+    form: llm
+    default: "20251103"
+    description: 开始日期
+    llm_description: 开始日期，格式为YYYYMMDD（如20220104）。"每日明细"和"每日统计"接口需要此参数。
+    human_description:
+      en_US: "Start date in YYYYMMDD format (e.g., 20220104). Required for 'Daily Details' and 'Daily Statistics' interfaces."
+      zh_Hans: "开始日期，格式为YYYYMMDD（如20220104）。每日明细和每日统计接口需要此参数。"
+    label:
+      en_US: Start Date
+      zh_Hans: 开始日期
+  - name: end_date
+    type: string
+    required: false
+    form: llm
+    default: "20251104"
+    description: 结束日期
+    llm_description: 结束日期，格式为YYYYMMDD（如20220105）。"每日明细"和"每日统计"接口需要此参数。
+    human_description:
+      en_US: "End date in YYYYMMDD format (e.g., 20220105). Required for 'Daily Details' and 'Daily Statistics' interfaces."
+      zh_Hans: "结束日期，格式为YYYYMMDD（如20220105）。每日明细和每日统计接口需要此参数。"
+    label:
+      en_US: End Date
+      zh_Hans: 结束日期
+  - name: security_type
+    type: select
+    required: false
+    form: llm
+    default: "A股"
+    description: 证券类型
+    llm_description: 证券类型，选择证券类别。仅"每日明细"接口需要此参数。选项包括：A股、B股、基金、债券。
+    human_description:
+      en_US: "Security type. Required only for 'Daily Details' interface. Options: A股 (A-share), B股 (B-share), 基金 (Fund), 债券 (Bond)."
+      zh_Hans: "证券类型。仅每日明细接口需要此参数。选项包括：A股、B股、基金、债券。"
+    label:
+      en_US: Security Type
+      zh_Hans: 证券类型
+    options:
+      - label:
+          en_US: A-share
+          zh_Hans: A股
+        value: "A股"
+      - label:
+          en_US: B-share
+          zh_Hans: B股
+        value: "B股"
+      - label:
+          en_US: Fund
+          zh_Hans: 基金
+        value: "基金"
+      - label:
+          en_US: Bond
+          zh_Hans: 债券
+        value: "债券"
+  - name: period
+    type: select
+    required: false
+    form: llm
+    default: "近一月"
+    description: 统计周期
+    llm_description: 统计周期，选择统计时间段。仅"活跃A股统计"和"营业部排行"接口需要此参数。选项包括：近一月、近三月、近六月、近一年。
+    human_description:
+      en_US: "Statistics period. Required only for 'Active A-share Statistics' and 'Securities Firm Rankings' interfaces. Options: 近一月 (Last Month), 近三月 (Last 3 Months), 近六月 (Last 6 Months), 近一年 (Last Year)."
+      zh_Hans: "统计周期。仅活跃A股统计和营业部排行接口需要此参数。选项包括：近一月、近三月、近六月、近一年。"
+    label:
+      en_US: Statistics Period
+      zh_Hans: 统计周期
+    options:
+      - label:
+          en_US: Last Month
+          zh_Hans: 近一月
+        value: "近一月"
+      - label:
+          en_US: Last 3 Months
+          zh_Hans: 近三月
+        value: "近三月"
+      - label:
+          en_US: Last 6 Months
+          zh_Hans: 近六月
+        value: "近六月"
+      - label:
+          en_US: Last Year
+          zh_Hans: 近一年
+        value: "近一年"
+  - name: period_short
+    type: select
+    required: false
+    form: llm
+    default: "近3日"
+    description: 统计周期（短）
+    llm_description: 统计周期，选择统计时间段。仅"活跃营业部统计"接口需要此参数。选项包括：当前交易日、近3日、近5日、近10日、近30日。
+    human_description:
+      en_US: "Statistics period. Required only for 'Active Securities Firm Statistics' interface. Options: 当前交易日 (Current Trading Day), 近3日 (Last 3 Days), 近5日 (Last 5 Days), 近10日 (Last 10 Days), 近30日 (Last 30 Days)."
+      zh_Hans: "统计周期。仅活跃营业部统计接口需要此参数。选项包括：当前交易日、近3日、近5日、近10日、近30日。"
+    label:
+      en_US: Statistics Period (Short)
+      zh_Hans: 统计周期（短）
+    options:
+      - label:
+          en_US: Current Trading Day
+          zh_Hans: 当前交易日
+        value: "当前交易日"
+      - label:
+          en_US: Last 3 Days
+          zh_Hans: 近3日
+        value: "近3日"
+      - label:
+          en_US: Last 5 Days
+          zh_Hans: 近5日
+        value: "近5日"
+      - label:
+          en_US: Last 10 Days
+          zh_Hans: 近10日
+        value: "近10日"
+      - label:
+          en_US: Last 30 Days
+          zh_Hans: 近30日
+        value: "近30日"
+  - name: retries
+    type: number
+    required: false
+    form: llm
+    default: 5
+    description: 重试次数
+    llm_description: 网络请求重试次数，范围1-10，默认5次。
+    human_description:
+      en_US: "Number of retries for network requests. Range: 1-10. Default: 5."
+      zh_Hans: "网络请求重试次数。范围：1-10。默认：5。"
+    label:
+      en_US: Retries
+      zh_Hans: 重试次数
+    min: 1
+    max: 10
+  - name: timeout
+    type: number
+    required: false
+    form: llm
+    default: 240
+    description: 子进程超时时间
+    llm_description: 子进程执行超时时间（秒），范围5-3600，默认240秒。
+    human_description:
+      en_US: "Subprocess execution timeout in seconds. Range: 5-3600. Default: 240."
+      zh_Hans: "子进程执行超时时间（秒）。范围：5-3600。默认：240。"
+    label:
+      en_US: Subprocess Timeout
+      zh_Hans: 子进程超时时间
+    min: 5
+    max: 3600
+extra:
+  python:
+    source: tools/get_block_trading.py
+

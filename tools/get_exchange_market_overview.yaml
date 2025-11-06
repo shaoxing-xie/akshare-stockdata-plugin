@@ -1,0 +1,85 @@
+identity:
+  author: shaoxing-xie
+  name: get_exchange_market_overview
+  label:
+    zh_Hans: 获取交易所市场概况
+    en_US: Get Exchange Market Overview
+description:
+  human:
+    zh_Hans: 获取上海证券交易所和深圳证券交易所的市场概况数据，包括总市值、流通市值、上市公司数量、平均市盈率等关键指标。支持获取最新交易日数据和指定交易日的历史数据。
+    en_US: Get market overview data from Shanghai Stock Exchange and Shenzhen Stock Exchange, including total market capitalization, circulating market capitalization, number of listed companies, average P/E ratio, and other key indicators. Supports both latest trading day data and historical data for specified trading days.
+  llm: 获取上海证券交易所和深圳证券交易所的市场概况数据，包括总市值、流通市值、上市公司数量、平均市盈率、成交金额、成交量、换手率等关键指标。支持获取最新交易日数据（上交所总貌）和指定交易日的历史数据（深交所总貌、上交所每日概况）。返回数据包括股票板块（主板、科创板、创业板等）的分类统计信息。
+parameters:
+  - name: interface
+    type: select
+    required: true
+    form: llm
+    default: stock_sse_summary
+    description: 接口名称
+    llm_description: 选择交易所市场概况数据接口。包括：上交所股票数据总貌（返回最近交易日数据，无需日期参数）、深交所证券类别统计（需要指定交易日期）、上交所每日概况（需要指定交易日期，仅支持20211227之后的数据）。
+    human_description:
+      en_US: "Select exchange market overview interface. Options: SSE Stock Data Summary (latest trading day, no date required), SZSE Securities Category Statistics (requires trading date), SSE Daily Overview (requires trading date, supports data from 20211227 onwards)."
+      zh_Hans: "选择交易所市场概况接口。选项包括：上交所股票数据总貌（最近交易日，无需日期）、深交所证券类别统计（需指定日期）、上交所每日概况（需指定日期，仅支持20211227之后）。"
+    label:
+      en_US: Interface
+      zh_Hans: 接口名称
+    options:
+      - label:
+          en_US: SSE Stock Data Summary - Latest Trading Day
+          zh_Hans: 上交所股票数据总貌-最近交易日
+        value: stock_sse_summary
+      - label:
+          en_US: SZSE Securities Category Statistics - Specified Trading Day
+          zh_Hans: 深交所证券类别统计-指定交易日
+        value: stock_szse_summary
+      - label:
+          en_US: SSE Daily Stock Overview - Specified Trading Day
+          zh_Hans: 上交所每日股票概况-指定交易日
+        value: stock_sse_deal_daily
+  - name: date
+    type: string
+    required: false
+    form: llm
+    default: "20250630"
+    description: 交易日期
+    llm_description: 交易日期，格式为YYYYMMDD（如20240630）。仅"深交所证券类别统计"和"上交所每日股票概况"接口需要此参数。"上交所股票数据总貌"接口不需要此参数（自动返回最近交易日数据）。注意：上交所每日概况仅支持20211227（包含）之后的数据。
+    human_description:
+      en_US: "Trading date in YYYYMMDD format (e.g., 20240630). Required for 'SZSE Securities Category Statistics' and 'SSE Daily Stock Overview' interfaces. Not required for 'SSE Stock Data Summary' (returns latest trading day automatically). Note: SSE Daily Overview only supports data from 20211227 onwards."
+      zh_Hans: "交易日期，格式为YYYYMMDD（如20240630）。仅深交所证券类别统计和上交所每日股票概况需要此参数。上交所股票数据总貌不需要（自动返回最近交易日）。注意：上交所每日概况仅支持20211227（包含）之后的数据。"
+    label:
+      en_US: Trading Date
+      zh_Hans: 交易日期
+  - name: retries
+    type: number
+    required: false
+    form: llm
+    default: 5
+    description: 重试次数
+    llm_description: 网络请求重试次数，范围1-10，默认5次。网络不稳定时可设置更高值。
+    human_description:
+      en_US: "Number of retries for network requests. Range: 1-10. Default: 5. Set higher value for unstable networks."
+      zh_Hans: "网络请求重试次数。范围：1-10。默认：5。网络不稳定时可设置更高值。"
+    label:
+      en_US: Retries
+      zh_Hans: 重试次数
+    min: 1
+    max: 10
+  - name: timeout
+    type: number
+    required: false
+    form: llm
+    default: 240
+    description: 子进程超时时间
+    llm_description: 子进程执行超时时间（秒），范围5-3600，默认240秒。
+    human_description:
+      en_US: "Subprocess execution timeout in seconds. Range: 5-3600. Default: 240."
+      zh_Hans: "子进程执行超时时间（秒）。范围：5-3600。默认：240。"
+    label:
+      en_US: Subprocess Timeout
+      zh_Hans: 子进程超时时间
+    min: 5
+    max: 3600
+extra:
+  python:
+    source: tools/get_exchange_market_overview.py
+

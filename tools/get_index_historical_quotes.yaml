@@ -1,0 +1,141 @@
+identity:
+  author: shaoxing-xie
+  name: get_index_historical_quotes
+  label:
+    zh_Hans: 获取A股指数历史行情
+    en_US: Get A-Share Index Historical Quotes
+description:
+  human:
+    zh_Hans: 获取A股指数历史行情数据。包括新浪财经、腾讯证券和东方财富网的A股指数历史行情接口，支持不同周期的历史数据查询（日线、周线、月线）。适用于指数历史走势分析、技术分析和回测研究。可帮助投资者了解指数的历史表现，分析指数趋势和波动规律。
+    en_US: Get A-share index historical quotes data. Includes Sina Finance, Tencent Securities, and East Money A-share index historical quotes interfaces, supporting historical data queries for different periods (daily, weekly, monthly). Suitable for index historical trend analysis, technical analysis, and backtesting research. Helps investors understand the historical performance of indices and analyze index trends and volatility patterns.
+  llm: 获取A股指数历史行情数据。包括：新浪财经-A股指数-历史行情数据-指定指数、腾讯-A股指数-历史行情数据-指定指数、东方财富-A股指数-历史行情数据-指定指数、日期范围、东方财富-A股指数-历史行情数据-通用-指定指数、周期、日期范围。不同接口对指数代码格式有不同要求：新浪和腾讯接口需要带市场标识格式（sh000001、sz399552等），东方财富接口需要带市场标识格式（sh000001、sz399552等），通用历史数据接口需要纯数字格式（000001、399006等）。需要提供指数代码、周期（如适用）、日期范围（如适用）。
+parameters:
+  - name: interface
+    type: select
+    required: true
+    form: llm
+    default: stock_zh_index_daily
+    description: 接口名称
+    llm_description: 选择A股指数历史行情接口
+    human_description:
+      en_US: "Select the A-share index historical quotes interface."
+      zh_Hans: "选择A股指数历史行情接口。"
+    label:
+      en_US: Interface
+      zh_Hans: 接口名称
+    options:
+      - label:
+          en_US: Sina Finance - A-Share Index - Historical Data - Specific Index
+          zh_Hans: 新浪财经-A股指数-历史行情数据-指定指数
+        value: stock_zh_index_daily
+      - label:
+          en_US: Tencent - A-Share Index - Historical Data - Specific Index
+          zh_Hans: 腾讯-A股指数-历史行情数据-指定指数
+        value: stock_zh_index_daily_tx
+      - label:
+          en_US: East Money - A-Share Index - Historical Data - Specific Index, Date Range
+          zh_Hans: 东方财富-A股指数-历史行情数据-指定指数、日期范围
+        value: stock_zh_index_daily_em
+      - label:
+          en_US: East Money - A-Share Index - Historical Data - General, Period, Date Range
+          zh_Hans: 东方财富-A股指数-历史行情数据-通用-指定指数、周期、日期范围
+        value: index_zh_a_hist
+  - name: symbol
+    type: string
+    required: false
+    form: llm
+    default: "sh000001"
+    description: 指数代码
+    llm_description: 指数代码。不同接口对代码格式有不同要求：新浪和腾讯历史数据接口需要带市场标识格式(sh000001、sz399552等)，东方财富历史数据接口需要带市场标识格式(sh000001、sz399552等)，通用历史数据接口需要纯数字格式(000001、399006等)
+    human_description:
+      en_US: "Index code. Format: Sina/Tencent/East Money historical data interfaces require prefix format (sh000001, sz399552, etc.); General historical data interface requires pure number format (000001, 399006, etc.)."
+      zh_Hans: "指数代码。格式要求：新浪/腾讯/东方财富历史数据接口需要带市场标识格式(sh000001、sz399552等)；通用历史数据接口需要纯数字格式(000001、399006等)。"
+    label:
+      en_US: Index Code
+      zh_Hans: 指数代码
+  - name: period
+    type: select
+    required: false
+    form: llm
+    default: daily
+    description: 周期
+    llm_description: 数据周期，用于通用历史数据接口
+    human_description:
+      en_US: "Period. Required for: General Historical Data. Options: daily (日线), weekly (周线), monthly (月线)."
+      zh_Hans: "周期。需要此参数的接口：通用历史数据。选项：daily(日线)、weekly(周线)、monthly(月线)。"
+    label:
+      en_US: Period
+      zh_Hans: 周期
+    options:
+      - label:
+          en_US: Daily
+          zh_Hans: 日线
+        value: daily
+      - label:
+          en_US: Weekly
+          zh_Hans: 周线
+        value: weekly
+      - label:
+          en_US: Monthly
+          zh_Hans: 月线
+        value: monthly
+  - name: start_date
+    type: string
+    required: false
+    form: llm
+    default: "20250101"
+    description: 开始日期
+    llm_description: 历史数据的开始日期，格式为YYYYMMDD
+    human_description:
+      en_US: "Start date. Required for: East Money Historical Data, General Historical Data. Format: YYYYMMDD (20250101) or YYYY-MM-DD (2025-01-01)."
+      zh_Hans: "开始日期。需要此参数的接口：东方财富历史数据、通用历史数据。格式：YYYYMMDD(20250101)或YYYY-MM-DD(2025-01-01)。"
+    label:
+      en_US: Start Date
+      zh_Hans: 开始日期
+  - name: end_date
+    type: string
+    required: false
+    form: llm
+    default: "20251231"
+    description: 结束日期
+    llm_description: 历史数据的结束日期，格式为YYYYMMDD
+    human_description:
+      en_US: "End date. Required for: East Money Historical Data, General Historical Data. Format: YYYYMMDD (20251231) or YYYY-MM-DD (2025-12-31)."
+      zh_Hans: "结束日期。需要此参数的接口：东方财富历史数据、通用历史数据。格式：YYYYMMDD(20251231)或YYYY-MM-DD(2025-12-31)。"
+    label:
+      en_US: End Date
+      zh_Hans: 结束日期
+  - name: retries
+    type: number
+    required: false
+    form: llm
+    default: 5
+    description: 重试次数
+    llm_description: 网络请求重试次数，默认5次
+    human_description:
+      en_US: "Number of retries for network requests. Range: 1-10. Default: 5."
+      zh_Hans: "网络请求重试次数。范围：1-10。默认：5。"
+    label:
+      en_US: Retries
+      zh_Hans: 重试次数
+    min: 1
+    max: 10
+  - name: timeout
+    type: number
+    required: false
+    form: llm
+    default: 900
+    description: 超时时间
+    llm_description: 接口调用的超时时间（秒），默认900秒
+    human_description:
+      en_US: "Timeout for interface calls in seconds. Range: 5-3600. Default: 900."
+      zh_Hans: "接口调用的超时时间（秒）。范围：5-3600。默认：900。"
+    label:
+      en_US: Timeout
+      zh_Hans: 超时时间
+    min: 5
+    max: 3600
+extra:
+  python:
+    source: tools/get_index_historical_quotes.py
+

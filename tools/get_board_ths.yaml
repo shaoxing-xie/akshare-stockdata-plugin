@@ -1,0 +1,119 @@
+identity:
+  author: shaoxing-xie
+  name: get_board_ths
+  label:
+    zh_Hans: 获取同花顺板块数据
+    en_US: Get Flush Board Data
+description:
+  human:
+    zh_Hans: 获取同花顺板块数据。包括概念板块名列表、概念板块指数、概念板块简介、行业板块一览表和行业板块指数等。帮助了解同花顺板块的行情走势和基本信息。适用于板块分析、主题投资和行业研究。
+    en_US: Get Flush board data. Includes concept board name lists, concept board indices, concept board profiles, industry board summaries, and industry board indices. Helps understand Flush board quote trends and basic information. Suitable for board analysis, thematic investment, and industry research.
+  llm: 获取同花顺板块数据。包括：同花顺-概念板块名列表（无需参数，返回所有同花顺概念板块名称）、同花顺-概念板块-指数日频率数据-指定概念板块、日期范围（需要概念名称和日期范围，格式YYYYMMDD，返回指定概念板块的日频指数数据）、同花顺-概念板块-板块简介-指定概念板块（需要概念名称，返回指定概念板块的简介信息）、同花顺-同花顺行业一览表（无需参数，返回当前时刻同花顺行业一览表）、同花顺-行业板块-指数日频率数据-指定行业板块、日期范围（需要行业名称和日期范围，格式YYYYMMDD，返回指定行业板块的日频指数数据）。
+parameters:
+  - name: interface
+    type: select
+    required: true
+    form: llm
+    default: stock_board_concept_name_ths
+    description: 接口名称
+    llm_description: 选择同花顺板块数据接口。包括：同花顺-概念板块名列表（无需参数）、同花顺-概念板块-指数日频率数据-指定概念板块、日期范围（需要概念名称和日期范围）、同花顺-概念板块-板块简介-指定概念板块（需要概念名称）、同花顺-同花顺行业一览表（无需参数）、同花顺-行业板块-指数日频率数据-指定行业板块、日期范围（需要行业名称和日期范围）。
+    human_description:
+      en_US: "Select Flush board data interface. Options: Flush - Concept Board Name List (no parameters required), Flush - Concept Board Index (requires concept name and date range), Flush - Concept Board Profile (requires concept name), Flush - Industry Board Summary (no parameters required), Flush - Industry Index (requires industry name and date range)."
+      zh_Hans: "选择同花顺板块数据接口。选项包括：同花顺-概念板块名列表（无需参数）、同花顺-概念板块-指数日频率数据-指定概念板块、日期范围（需要概念名称和日期范围）、同花顺-概念板块-板块简介-指定概念板块（需要概念名称）、同花顺-同花顺行业一览表（无需参数）、同花顺-行业板块-指数日频率数据-指定行业板块、日期范围（需要行业名称和日期范围）。"
+    label:
+      en_US: Interface
+      zh_Hans: 接口名称
+    options:
+      - label:
+          en_US: Flush - Concept Board Name List - All
+          zh_Hans: 同花顺-概念板块名列表
+        value: stock_board_concept_name_ths
+      - label:
+          en_US: Flush - Concept Board Index - Concept Name and Date Range
+          zh_Hans: 同花顺-概念板块-指数日频率数据-指定概念板块、日期范围
+        value: stock_board_concept_index_ths
+      - label:
+          en_US: Flush - Concept Board Profile - Concept Name
+          zh_Hans: 同花顺-概念板块-板块简介-指定概念板块
+        value: stock_board_concept_info_ths
+      - label:
+          en_US: Flush - Industry Board Summary - All
+          zh_Hans: 同花顺-同花顺行业一览表
+        value: stock_board_industry_summary_ths
+      - label:
+          en_US: Flush - Industry Index - Industry Name and Date Range
+          zh_Hans: 同花顺-行业板块-指数日频率数据-指定行业板块、日期范围
+        value: stock_board_industry_index_ths
+  - name: symbol
+    type: string
+    required: false
+    form: llm
+    default: "阿里巴巴概念"
+    description: 板块名称
+    llm_description: 板块名称，指定要查询的概念板块或行业板块名称。概念板块接口需要同花顺概念名称（如"阿里巴巴概念"），行业板块接口需要同花顺行业名称（如"元件"）。"同花顺-概念板块指数"、"同花顺-概念板块简介"、"同花顺-行业板块指数"接口需要此参数。
+    human_description:
+      en_US: "Board name. Required for most interfaces. For concept board interfaces, use Flush concept names (e.g., '阿里巴巴概念'). For industry board interfaces, use Flush industry names (e.g., '元件'). Required for: Flush - Concept Board Index, Flush - Concept Board Profile, Flush - Industry Index."
+      zh_Hans: "板块名称。大部分接口需要此参数。概念板块接口使用同花顺概念名称（如'阿里巴巴概念'），行业板块接口使用同花顺行业名称（如'元件'）。同花顺-概念板块指数、同花顺-概念板块简介、同花顺-行业板块指数接口需要此参数。"
+    label:
+      en_US: Board Name
+      zh_Hans: 板块名称
+  - name: start_date
+    type: string
+    required: false
+    form: llm
+    default: "20200101"
+    description: 开始日期
+    llm_description: 开始日期，格式为YYYYMMDD（如20200101）。"同花顺-概念板块指数"和"同花顺-行业板块指数"接口需要此参数。
+    human_description:
+      en_US: "Start date in YYYYMMDD format (e.g., 20200101). Required for 'Flush - Concept Board Index' and 'Flush - Industry Index' interfaces."
+      zh_Hans: "开始日期，格式为YYYYMMDD（如20200101）。同花顺-概念板块指数和同花顺-行业板块指数接口需要此参数。"
+    label:
+      en_US: Start Date
+      zh_Hans: 开始日期
+  - name: end_date
+    type: string
+    required: false
+    form: llm
+    default: "20250321"
+    description: 结束日期
+    llm_description: 结束日期，格式为YYYYMMDD（如20250321）。"同花顺-概念板块指数"和"同花顺-行业板块指数"接口需要此参数。
+    human_description:
+      en_US: "End date in YYYYMMDD format (e.g., 20250321). Required for 'Flush - Concept Board Index' and 'Flush - Industry Index' interfaces."
+      zh_Hans: "结束日期，格式为YYYYMMDD（如20250321）。同花顺-概念板块指数和同花顺-行业板块指数接口需要此参数。"
+    label:
+      en_US: End Date
+      zh_Hans: 结束日期
+  - name: retries
+    type: number
+    required: false
+    form: llm
+    default: 5
+    description: 重试次数
+    llm_description: 网络请求重试次数，范围1-10，默认5次。
+    human_description:
+      en_US: "Number of retries for network requests. Range: 1-10. Default: 5."
+      zh_Hans: "网络请求重试次数。范围：1-10。默认：5。"
+    label:
+      en_US: Retries
+      zh_Hans: 重试次数
+    min: 1
+    max: 10
+  - name: timeout
+    type: number
+    required: false
+    form: llm
+    default: 240
+    description: 子进程超时时间
+    llm_description: 子进程执行超时时间（秒），范围5-3600，默认240秒。
+    human_description:
+      en_US: "Subprocess execution timeout in seconds. Range: 5-3600. Default: 240."
+      zh_Hans: "子进程执行超时时间（秒）。范围：5-3600。默认：240。"
+    label:
+      en_US: Subprocess Timeout
+      zh_Hans: 子进程超时时间
+    min: 5
+    max: 3600
+extra:
+  python:
+    source: tools/get_board_ths.py
+

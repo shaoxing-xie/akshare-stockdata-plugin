@@ -1,0 +1,103 @@
+identity:
+  author: shaoxing-xie
+  name: get_us_financial_indicators
+  label:
+    zh_Hans: 获取美股财务分析主要指标
+    en_US: Get US Stock Financial Analysis Main Indicators
+description:
+  human:
+    zh_Hans: 获取美股财务分析主要指标数据，支持指定股票代码和指标类型。
+    en_US: Get US stock financial analysis main indicators data, supporting specifying stock code and indicator type.
+  llm: 获取美股财务分析主要指标数据。包括：东方财富网-美股-财务分析-主要指标-指定股票代码、指标类型。需要提供美股代码和指标类型。财务分析接口使用原始股票代码格式（不需要105.前缀）。
+parameters:
+  - name: interface
+    type: select
+    required: true
+    form: llm
+    default: stock_financial_us_analysis_indicator_em
+    description: 接口名称
+    llm_description: 选择美股财务分析主要指标接口
+    human_description:
+      en_US: "Select the US stock financial analysis main indicators interface."
+      zh_Hans: "选择美股财务分析主要指标接口。"
+    label:
+      en_US: Interface
+      zh_Hans: 接口名称
+    options:
+      - label:
+          en_US: East Money - US - Financial Analysis - Main Indicators - Specify Stock Code, Indicator Type
+          zh_Hans: 东方财富网-美股-财务分析-主要指标-指定股票代码、指标类型
+        value: stock_financial_us_analysis_indicator_em
+  - name: stock_code
+    type: string
+    required: false
+    form: llm
+    default: "AAPL"
+    description: 美股代码
+    llm_description: 美股个股代码，格式：AAPL、MSFT、GOOGL等。财务分析接口使用原始格式（不需要105.前缀）
+    human_description:
+      en_US: "US stock code. Format: AAPL, MSFT, GOOGL, etc. Financial analysis interfaces use original format (no 105. prefix required)."
+      zh_Hans: "美股代码。格式：AAPL、MSFT、GOOGL等。财务分析接口使用原始格式（不需要105.前缀）。"
+    label:
+      en_US: US Stock Code
+      zh_Hans: 美股代码
+  - name: indicator_us
+    type: select
+    required: false
+    form: llm
+    default: 年报
+    description: 美股指标类型
+    llm_description: 美股财务指标接口的指标类型参数
+    human_description:
+      en_US: "US indicator type. Required for: US - Financial Analysis - Main Indicators. Options: 年报 (Annual Report), 单季报 (Single Quarter), 累计季报 (Cumulative Quarter)."
+      zh_Hans: "美股指标类型。需要此参数的接口：美股-财务分析-主要指标。选项：年报、单季报、累计季报。"
+    label:
+      en_US: US Indicator Type
+      zh_Hans: 美股指标类型
+    options:
+      - label:
+          en_US: Annual Report
+          zh_Hans: 年报
+        value: "年报"
+      - label:
+          en_US: Single Quarter
+          zh_Hans: 单季报
+        value: "单季报"
+      - label:
+          en_US: Cumulative Quarter
+          zh_Hans: 累计季报
+        value: "累计季报"
+  - name: retries
+    type: number
+    required: false
+    form: llm
+    default: 5
+    description: 重试次数
+    llm_description: 网络请求重试次数，默认5次
+    human_description:
+      en_US: "Number of retries for network requests. Range: 1-10. Default: 5."
+      zh_Hans: "网络请求重试次数。范围：1-10。默认：5。"
+    label:
+      en_US: Retries
+      zh_Hans: 重试次数
+    min: 1
+    max: 10
+  - name: timeout
+    type: number
+    required: false
+    form: llm
+    default: 600
+    description: 子进程超时时间
+    llm_description: 子进程执行超时时间（秒），默认600秒
+    human_description:
+      en_US: "Subprocess execution timeout in seconds. Range: 5-3600. Default: 600."
+      zh_Hans: "子进程执行超时时间（秒）。范围：5-3600。默认：600。"
+    label:
+      en_US: Subprocess Timeout
+      zh_Hans: 子进程超时时间
+    min: 5
+    max: 3600
+extra:
+  python:
+    source: tools/get_us_financial_indicators.py
+

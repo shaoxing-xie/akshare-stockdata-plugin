@@ -1,0 +1,158 @@
+identity:
+  author: shaoxing-xie
+  name: get_sector_fund_flow_rank
+  label:
+    zh_Hans: 获取板块资金流向排名
+    en_US: Get Sector Fund Flow Rankings
+description:
+  human:
+    zh_Hans: 获取板块资金流向排名数据，包括行业、概念、地域等板块的资金流向排名，帮助了解哪些板块资金流入流出最多。
+    en_US: Get sector fund flow ranking data, including industry, concept, regional and other sector fund flow rankings, helping to understand which sectors have the most fund inflows and outflows.
+  llm: 获取板块资金流向排名数据，包括行业、概念、地域等板块的资金流向排名。包括：东方财富网-板块资金流-排名（需要统计周期和板块类型，返回板块资金流排名）、同花顺-概念资金流（需要排行类别，返回概念板块资金流排行）、同花顺-行业资金流（需要排行类别，返回行业板块资金流排行）。根据不同接口提供相应参数。
+parameters:
+  - name: interface
+    type: select
+    required: true
+    form: llm
+    default: stock_fund_flow_concept
+    description: 接口名称
+    llm_description: 选择板块资金流向排名数据接口。包括：东方财富网-板块资金流-排名（需要统计周期和板块类型，返回板块资金流排名，支持行业资金流/概念资金流/地域资金流）、同花顺-概念资金流（需要排行类别，返回概念板块资金流排行）、同花顺-行业资金流（需要排行类别，返回行业板块资金流排行）。根据不同接口提供相应参数。
+    human_description:
+      en_US: "Select sector fund flow ranking data interface. Options: East Money - Sector Fund Flow Rankings (requires statistical period and sector type, returns sector fund flow rankings, supports Industry Fund Flow/Concept Fund Flow/Regional Fund Flow), Flush - Concept Fund Flow (requires ranking category, returns concept sector fund flow rankings), Flush - Industry Fund Flow (requires ranking category, returns industry sector fund flow rankings). Provide corresponding parameters according to different interfaces."
+      zh_Hans: "选择板块资金流向排名数据接口。选项包括：东方财富网-板块资金流-排名（需要统计周期和板块类型，返回板块资金流排名，支持行业资金流/概念资金流/地域资金流）、同花顺-概念资金流（需要排行类别，返回概念板块资金流排行）、同花顺-行业资金流（需要排行类别，返回行业板块资金流排行）。根据不同接口提供相应参数。"
+    label:
+      en_US: Interface
+      zh_Hans: 接口名称
+    options:
+      - label:
+          en_US: Flush - Concept Fund Flow - Specified Ranking Category
+          zh_Hans: 同花顺-概念资金流-指定排行类别
+        value: stock_fund_flow_concept
+      - label:
+          en_US: Flush - Industry Fund Flow - Specified Ranking Category
+          zh_Hans: 同花顺-行业资金流-指定排行类别
+        value: stock_fund_flow_industry
+      - label:
+          en_US: East Money - Sector Fund Flow Rankings - Specified Statistical Period, Sector Type
+          zh_Hans: 东方财富网-板块资金流-排名-指定统计周期、板块类型
+        value: stock_sector_fund_flow_rank
+  - name: indicator
+    type: select
+    required: false
+    form: llm
+    default: 今日
+    description: 统计周期
+    llm_description: 统计周期参数，用于板块资金流排名接口。选项：今日、5日、10日。注意：该接口不支持"3日"选项。
+    human_description:
+      en_US: "Statistical period. Required for sector fund flow rankings interface. Options: Today, 5 Days, 10 Days. Note: This interface does not support '3 Days' option."
+      zh_Hans: "统计周期。用于板块资金流排名接口。选项：今日、5日、10日。注意：该接口不支持'3日'选项。"
+    label:
+      en_US: Statistical Period
+      zh_Hans: 统计周期
+    options:
+      - label:
+          en_US: Today
+          zh_Hans: 今日
+        value: 今日
+      - label:
+          en_US: 5 Days
+          zh_Hans: 5日
+        value: 5日
+      - label:
+          en_US: 10 Days
+          zh_Hans: 10日
+        value: 10日
+  - name: sector_type
+    type: select
+    required: false
+    form: llm
+    default: 行业资金流
+    description: 板块类型
+    llm_description: 板块类型参数，用于板块资金流排名接口。选项：行业资金流、概念资金流、地域资金流。
+    human_description:
+      en_US: "Sector type. Required for sector fund flow rankings interface. Options: Industry Fund Flow, Concept Fund Flow, Regional Fund Flow."
+      zh_Hans: "板块类型。用于板块资金流排名接口。选项：行业资金流、概念资金流、地域资金流。"
+    label:
+      en_US: Sector Type
+      zh_Hans: 板块类型
+    options:
+      - label:
+          en_US: Industry Fund Flow
+          zh_Hans: 行业资金流
+        value: 行业资金流
+      - label:
+          en_US: Concept Fund Flow
+          zh_Hans: 概念资金流
+        value: 概念资金流
+      - label:
+          en_US: Regional Fund Flow
+          zh_Hans: 地域资金流
+        value: 地域资金流
+  - name: symbol
+    type: select
+    required: false
+    form: llm
+    default: 即时
+    description: 排行类别
+    llm_description: 排行类别参数，用于同花顺资金流接口。选项：即时、3日排行、5日排行、10日排行、20日排行。
+    human_description:
+      en_US: "Ranking category. Required for Flush fund flow interfaces. Options: Real-time, 3-day ranking, 5-day ranking, 10-day ranking, 20-day ranking."
+      zh_Hans: "排行类别。用于同花顺资金流接口。选项：即时、3日排行、5日排行、10日排行、20日排行。"
+    label:
+      en_US: Ranking Category
+      zh_Hans: 排行类别
+    options:
+      - label:
+          en_US: Real-time
+          zh_Hans: 即时
+        value: 即时
+      - label:
+          en_US: 3-day Ranking
+          zh_Hans: 3日排行
+        value: 3日排行
+      - label:
+          en_US: 5-day Ranking
+          zh_Hans: 5日排行
+        value: 5日排行
+      - label:
+          en_US: 10-day Ranking
+          zh_Hans: 10日排行
+        value: 10日排行
+      - label:
+          en_US: 20-day Ranking
+          zh_Hans: 20日排行
+        value: 20日排行
+  - name: retries
+    type: number
+    required: false
+    form: llm
+    default: 5
+    description: 重试次数
+    llm_description: 网络请求重试次数，范围1-10，默认5次。
+    human_description:
+      en_US: "Number of retries for network requests. Range: 1-10. Default: 5."
+      zh_Hans: "网络请求重试次数。范围：1-10。默认：5。"
+    label:
+      en_US: Retries
+      zh_Hans: 重试次数
+    min: 1
+    max: 10
+  - name: timeout
+    type: number
+    required: false
+    form: llm
+    default: 600
+    description: 子进程超时时间
+    llm_description: 子进程执行超时时间（秒），范围5-3600，默认600秒（10分钟）。板块排名接口数据量可能较大，建议设置较长的超时时间。
+    human_description:
+      en_US: "Subprocess execution timeout in seconds. Range: 5-3600. Default: 600 (10 minutes). Sector ranking interfaces may have large data volumes, suggest longer timeout."
+      zh_Hans: "子进程执行超时时间（秒）。范围：5-3600。默认：600（10分钟）。板块排名接口数据量可能较大，建议设置较长的超时时间。"
+    label:
+      en_US: Subprocess Timeout
+      zh_Hans: 子进程超时时间
+    min: 5
+    max: 3600
+extra:
+  python:
+    source: tools/get_sector_fund_flow_rank.py
+

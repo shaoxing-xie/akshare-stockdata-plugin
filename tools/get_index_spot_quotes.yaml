@@ -1,0 +1,102 @@
+identity:
+  author: shaoxing-xie
+  name: get_index_spot_quotes
+  label:
+    zh_Hans: 获取A股指数实时行情
+    en_US: Get A-Share Index Spot Quotes
+description:
+  human:
+    zh_Hans: 获取A股指数实时行情数据。包括新浪财经和东方财富网的A股指数实时行情接口，支持按类别查询指数数据。适用于指数监控、市场分析和大盘走势判断。可帮助投资者了解当前市场主要指数的实时表现，辅助判断市场整体趋势。
+    en_US: Get A-share index spot quotes data. Includes Sina Finance and East Money A-share index real-time quotes interfaces, supporting querying index data by category. Suitable for index monitoring, market analysis, and overall market trend judgment. Helps investors understand the real-time performance of major market indices and assists in judging overall market trends.
+  llm: 获取A股指数实时行情数据。包括：新浪财经-A股指数-实时行情（不需要参数）、东方财富-A股指数-实时行情-按类别（需要指数类别参数）。新浪接口返回所有A股指数实时行情，东方财富接口可按类别查询（沪深重要指数、上证系列指数、深证系列指数、指数成份、中证系列指数）。
+parameters:
+  - name: interface
+    type: select
+    required: true
+    form: llm
+    default: stock_zh_index_spot_sina
+    description: 接口名称
+    llm_description: 选择A股指数实时行情接口
+    human_description:
+      en_US: "Select the A-share index spot quotes interface."
+      zh_Hans: "选择A股指数实时行情接口。"
+    label:
+      en_US: Interface
+      zh_Hans: 接口名称
+    options:
+      - label:
+          en_US: Sina Finance - A-Share Index - Real-time Quotes
+          zh_Hans: 新浪财经-A股指数-实时行情
+        value: stock_zh_index_spot_sina
+      - label:
+          en_US: East Money - A-Share Index - Real-time Quotes - By Category
+          zh_Hans: 东方财富-A股指数-实时行情-按类别
+        value: stock_zh_index_spot_em
+  - name: index_category
+    type: select
+    required: false
+    form: llm
+    default: "沪深重要指数"
+    description: 指数类别
+    llm_description: 指数类别，仅用于stock_zh_index_spot_em接口
+    human_description:
+      en_US: "Index category. Only required for stock_zh_index_spot_em interface. Options: 沪深重要指数 (Important Indices), 上证系列指数 (Shanghai Indices), 深证系列指数 (Shenzhen Indices), 指数成份 (Index Components), 中证系列指数 (CSI Indices)."
+      zh_Hans: "指数类别。仅用于stock_zh_index_spot_em接口。选项：沪深重要指数、上证系列指数、深证系列指数、指数成份、中证系列指数。"
+    label:
+      en_US: Index Category
+      zh_Hans: 指数类别
+    options:
+      - label:
+          en_US: Important Indices
+          zh_Hans: 沪深重要指数
+        value: "沪深重要指数"
+      - label:
+          en_US: Shanghai Indices
+          zh_Hans: 上证系列指数
+        value: "上证系列指数"
+      - label:
+          en_US: Shenzhen Indices
+          zh_Hans: 深证系列指数
+        value: "深证系列指数"
+      - label:
+          en_US: Index Components
+          zh_Hans: 指数成份
+        value: "指数成份"
+      - label:
+          en_US: CSI Indices
+          zh_Hans: 中证系列指数
+        value: "中证系列指数"
+  - name: retries
+    type: number
+    required: false
+    form: llm
+    default: 5
+    description: 重试次数
+    llm_description: 网络请求重试次数，默认5次
+    human_description:
+      en_US: "Number of retries for network requests. Range: 1-10. Default: 5."
+      zh_Hans: "网络请求重试次数。范围：1-10。默认：5。"
+    label:
+      en_US: Retries
+      zh_Hans: 重试次数
+    min: 1
+    max: 10
+  - name: timeout
+    type: number
+    required: false
+    form: llm
+    default: 600
+    description: 超时时间
+    llm_description: 接口调用的超时时间（秒），默认600秒
+    human_description:
+      en_US: "Timeout for interface calls in seconds. Range: 5-3600. Default: 600."
+      zh_Hans: "接口调用的超时时间（秒）。范围：5-3600。默认：600。"
+    label:
+      en_US: Timeout
+      zh_Hans: 超时时间
+    min: 5
+    max: 3600
+extra:
+  python:
+    source: tools/get_index_spot_quotes.py
+

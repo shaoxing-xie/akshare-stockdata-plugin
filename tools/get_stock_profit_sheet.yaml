@@ -1,0 +1,115 @@
+identity:
+  author: shaoxing-xie
+  name: get_stock_profit_sheet
+  label:
+    zh_Hans: 获取个股财务报表-利润表
+    en_US: Get Individual Stock Financial Statements - Income Statement
+description:
+  human:
+    zh_Hans: 获取指定股票的利润表数据，包括营业收入、营业成本、净利润等完整的利润表信息，支持东方财富网、同花顺等多个数据源。
+    en_US: Get income statement data for specified stocks, including operating revenue, operating costs, net profit and other complete income statement information, supporting multiple data sources including East Money and Flush.
+  llm: 获取指定股票的利润表数据，包括营业收入、营业成本、净利润等完整的利润表信息。包括：东方财富网-利润表(按报告期)（需要股票代码，返回指定股票所有报告期的利润表数据）、东方财富网-利润表(按年度)（需要股票代码，返回指定股票所有年度的利润表数据）、东方财富网-利润表(按单季度)（需要股票代码，返回指定股票所有季度的利润表数据）、同花顺-个股利润表（需要股票代码和报告类型，返回指定股票指定报告类型的利润表所有历史数据）。根据不同接口提供相应参数。
+parameters:
+  - name: interface
+    type: select
+    required: true
+    form: llm
+    default: stock_profit_sheet_by_report_em
+    description: 接口名称
+    llm_description: 选择利润表数据接口。包括：东方财富网-利润表(按报告期)（需要股票代码，返回指定股票所有报告期的利润表数据）、东方财富网-利润表(按年度)（需要股票代码，返回指定股票所有年度的利润表数据）、东方财富网-利润表(按单季度)（需要股票代码，返回指定股票所有季度的利润表数据）、同花顺-个股利润表（需要股票代码和报告类型，返回指定股票指定报告类型的利润表所有历史数据）。根据不同接口提供相应参数。
+    human_description:
+      en_US: "Select income statement data interface. Options: East Money Income Statement (by Report Period/Year/Quarter), Flush Income Statement."
+      zh_Hans: "选择利润表数据接口。选项包括：东方财富网-利润表(按报告期/年度/单季度)、同花顺-个股利润表。"
+    label:
+      en_US: Interface
+      zh_Hans: 接口名称
+    options:
+      - label:
+          en_US: East Money - Income Statement (by Report Period) - Specified Stock
+          zh_Hans: 东方财富网-利润表(按报告期)-指定股票
+        value: stock_profit_sheet_by_report_em
+      - label:
+          en_US: East Money - Income Statement (by Year) - Specified Stock
+          zh_Hans: 东方财富网-利润表(按年度)-指定股票
+        value: stock_profit_sheet_by_yearly_em
+      - label:
+          en_US: East Money - Income Statement (by Single Quarter) - Specified Stock
+          zh_Hans: 东方财富网-利润表(按单季度)-指定股票
+        value: stock_profit_sheet_by_quarterly_em
+      - label:
+          en_US: Flush - Individual Stock Income Statement - Specified Stock, Report Type
+          zh_Hans: 同花顺-个股利润表-指定股票、报告类型
+        value: stock_financial_benefit_ths
+  - name: stock_code
+    type: string
+    required: true
+    form: llm
+    default: "000001"
+    description: 股票代码
+    llm_description: 股票代码，支持A股格式，如600519（沪市）、000001（深市）、430xxx（北交所）等。
+    human_description:
+      en_US: "Stock code. Supports A-share formats, e.g., 600519 (Shanghai), 000001 (Shenzhen), 430xxx (Beijing Stock Exchange), etc."
+      zh_Hans: "股票代码。支持A股格式，如600519（沪市）、000001（深市）、430xxx（北交所）等。"
+    label:
+      en_US: Stock Code
+      zh_Hans: 股票代码
+  - name: report_type
+    type: select
+    required: false
+    form: llm
+    default: 年报
+    description: 报告类型
+    llm_description: 报告类型参数，用于同花顺利润表接口。选项：年报、季报、中报。
+    human_description:
+      en_US: "Report type. Required for Flush income statement interface. Options: Annual Report (年报), Quarterly Report (季报), Interim Report (中报)."
+      zh_Hans: "报告类型。用于同花顺利润表接口。选项：年报、季报、中报。"
+    label:
+      en_US: Report Type
+      zh_Hans: 报告类型
+    options:
+      - label:
+          en_US: Annual Report
+          zh_Hans: 年报
+        value: 年报
+      - label:
+          en_US: Quarterly Report
+          zh_Hans: 季报
+        value: 季报
+      - label:
+          en_US: Interim Report
+          zh_Hans: 中报
+        value: 中报
+  - name: retries
+    type: number
+    required: false
+    form: llm
+    default: 5
+    description: 重试次数
+    llm_description: 网络请求重试次数，范围1-10，默认5次。
+    human_description:
+      en_US: "Number of retries for network requests. Range: 1-10. Default: 5."
+      zh_Hans: "网络请求重试次数。范围：1-10。默认：5。"
+    label:
+      en_US: Retries
+      zh_Hans: 重试次数
+    min: 1
+    max: 10
+  - name: timeout
+    type: number
+    required: false
+    form: llm
+    default: 600
+    description: 子进程超时时间
+    llm_description: 子进程执行超时时间（秒），范围5-3600，默认600秒（10分钟）。财务报表数据量可能较大，建议设置较长的超时时间。
+    human_description:
+      en_US: "Subprocess execution timeout in seconds. Range: 5-3600. Default: 600 (10 minutes). Financial statement data may be large, suggest longer timeout."
+      zh_Hans: "子进程执行超时时间（秒）。范围：5-3600。默认：600（10分钟）。财务报表数据量可能较大，建议设置较长的超时时间。"
+    label:
+      en_US: Subprocess Timeout
+      zh_Hans: 子进程超时时间
+    min: 5
+    max: 3600
+extra:
+  python:
+    source: tools/get_stock_profit_sheet.py
+

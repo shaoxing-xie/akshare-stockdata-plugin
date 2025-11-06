@@ -1,0 +1,93 @@
+identity:
+  author: shaoxing-xie
+  name: get_trading_event_notifications
+  label:
+    zh_Hans: 获取市场交易事件通知与公司动态
+    en_US: Get Market Trading Event Notifications and Company Dynamics
+description:
+  human:
+    zh_Hans: 获取停复牌、分红派息、历史分红等交易相关事件通知，以及公司重要动态信息。帮助投资者及时了解股票交易中的重要事件和上市公司的重要动态。
+    en_US: Get trading-related event notifications including suspension/resumption, dividend distribution, and historical dividends, as well as important company dynamics. Helps investors stay informed about important events in stock trading and important developments in listed companies.
+  llm: 获取停复牌、分红派息、历史分红等交易相关事件通知，以及公司重要动态信息。包括停复牌通知（需指定日期）、分红派息通知（需指定日期）、分红配送（需指定日期）、历史分红（无需参数）、公司动态（需指定交易日）。不同接口需要不同的参数，主要是日期参数。
+parameters:
+  - name: interface
+    type: select
+    required: true
+    form: llm
+    default: news_trade_notify_suspend_baidu
+    description: 接口名称
+    llm_description: 选择交易事件通知或公司动态接口。包括：停复牌通知（需指定日期）、分红派息通知（需指定日期）、分红配送（需指定日期）、历史分红（无需参数）、公司动态（需指定交易日）。
+    human_description:
+      en_US: "Select trading event notification or company dynamics interface. Options: Suspension/Resumption (requires date), Dividend Distribution (requires date), Dividend Distribution Details (requires date), Historical Dividend (no parameters), Company Dynamics (requires trading date)."
+      zh_Hans: "选择交易事件通知或公司动态接口。选项包括：停复牌通知（需指定日期）、分红派息通知（需指定日期）、分红配送（需指定日期）、历史分红（无需参数）、公司动态（需指定交易日）。"
+    label:
+      en_US: Interface
+      zh_Hans: 接口名称
+    options:
+      - label:
+          en_US: Baidu Stock - Suspension & Resumption - Specified Date
+          zh_Hans: 百度股市通-停复牌-指定日期
+        value: news_trade_notify_suspend_baidu
+      - label:
+          en_US: Baidu Stock - Dividend Distribution - Specified Date
+          zh_Hans: 百度股市通-分红派息-指定日期
+        value: news_trade_notify_dividend_baidu
+      - label:
+          en_US: Eastmoney - Dividend Distribution - Specified Date
+          zh_Hans: 东方财富网-分红配送-指定日期
+        value: stock_fhps_em
+      - label:
+          en_US: Sina Finance - Historical Dividend
+          zh_Hans: 新浪财经-历史分红
+        value: stock_history_dividend
+      - label:
+          en_US: Eastmoney - Company Dynamics - Specified Trading Day
+          zh_Hans: 东方财富网-公司动态-指定交易日
+        value: stock_gsrl_gsdt_em
+  - name: date
+    type: string
+    required: false
+    form: llm
+    default: "20250630"
+    description: 交易日期
+    llm_description: 交易日期，格式为YYYYMMDD（如20240630）。仅"停复牌通知"、"分红派息通知"、"分红配送"、"公司动态"接口需要此参数。"历史分红"接口不需要此参数。
+    human_description:
+      en_US: "Trading date in YYYYMMDD format (e.g., 20240630). Required only for 'Suspension/Resumption', 'Dividend Distribution', 'Dividend Distribution Details', and 'Company Dynamics' interfaces. Not required for 'Historical Dividend' interface."
+      zh_Hans: "交易日期，格式为YYYYMMDD（如20240630）。仅停复牌通知、分红派息通知、分红配送、公司动态接口需要此参数。历史分红接口不需要此参数。"
+    label:
+      en_US: Trading Date
+      zh_Hans: 交易日期
+  - name: retries
+    type: number
+    required: false
+    form: llm
+    default: 5
+    description: 重试次数
+    llm_description: 网络请求重试次数，范围1-10，默认5次。
+    human_description:
+      en_US: "Number of retries for network requests. Range: 1-10. Default: 5."
+      zh_Hans: "网络请求重试次数。范围：1-10。默认：5。"
+    label:
+      en_US: Retries
+      zh_Hans: 重试次数
+    min: 1
+    max: 10
+  - name: timeout
+    type: number
+    required: false
+    form: llm
+    default: 240
+    description: 子进程超时时间
+    llm_description: 子进程执行超时时间（秒），范围5-3600，默认240秒。
+    human_description:
+      en_US: "Subprocess execution timeout in seconds. Range: 5-3600. Default: 240."
+      zh_Hans: "子进程执行超时时间（秒）。范围：5-3600。默认：240。"
+    label:
+      en_US: Subprocess Timeout
+      zh_Hans: 子进程超时时间
+    min: 5
+    max: 3600
+extra:
+  python:
+    source: tools/get_trading_event_notifications.py
+

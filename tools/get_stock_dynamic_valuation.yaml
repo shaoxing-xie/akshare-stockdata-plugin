@@ -1,0 +1,59 @@
+identity:
+  author: shaoxing-xie
+  name: get_stock_dynamic_valuation
+  label:
+    zh_Hans: 获取个股动态估值指标
+    en_US: Get Stock Dynamic Valuation Indicators
+description:
+  human:
+    zh_Hans: 获取个股动态估值指标。基于最新财务数据和当前股价实时计算多种估值指标，包括PE动态、PB动态、PCF动态、PE加权、PE扣非、PB调整后、每股资本公积金比率、每股未分配利润比率、PEG、市净率×ROE等估值指标，以及财务健康度评分、成长性评分、运营效率评分、综合财务评分、评分等级等。适用于股票价值评估、投资决策和基本面分析。可帮助投资者判断股票是否被高估或低估，评估公司的财务健康状况和成长潜力。
+    en_US: Get stock dynamic valuation indicators. Real-time calculation of multiple valuation metrics based on latest financial data and current stock price, including PE dynamic, PB dynamic, PCF dynamic, PE weighted, PE excluding non-recurring items, PB adjusted, capital reserve per share ratio, undistributed profit per share ratio, PEG, PB×ROE, and other valuation indicators, as well as financial health scores, growth scores, operating efficiency scores, comprehensive financial scores, and rating levels. Suitable for stock valuation, investment decisions, and fundamental analysis. Helps investors determine whether stocks are overvalued or undervalued, and assess companies' financial health and growth potential.
+  llm: 获取个股动态估值指标。基于最新财务数据和当前股价计算估值指标，包括PE动态、PB动态、PCF动态、PE加权、PE扣非、PB调整后、每股资本公积金比率、每股未分配利润比率、PEG、市净率×ROE等估值指标，以及财务健康度评分、成长性评分、运营效率评分、综合财务评分、评分等级等。只需要提供股票代码。
+parameters:
+  - name: symbol
+    type: string
+    required: true
+    form: llm
+    default: "000001"
+    description: 股票代码
+    llm_description: 股票代码，格式：000001、600519、688356等
+    human_description:
+      en_US: "Stock code. Format: 000001, 600519, 688356, etc."
+      zh_Hans: "股票代码。格式：000001、600519、688356等。"
+    label:
+      en_US: Stock Code
+      zh_Hans: 股票代码
+  - name: retries
+    type: number
+    required: false
+    form: llm
+    default: 5
+    description: 重试次数
+    llm_description: 网络请求重试次数，默认5次
+    human_description:
+      en_US: "Number of retries for network requests. Range: 1-10. Default: 5."
+      zh_Hans: "网络请求重试次数。范围：1-10。默认：5。"
+    label:
+      en_US: Retries
+      zh_Hans: 重试次数
+    min: 1
+    max: 10
+  - name: timeout
+    type: number
+    required: false
+    form: llm
+    default: 600
+    description: 超时时间
+    llm_description: 接口调用的超时时间（秒），默认600秒
+    human_description:
+      en_US: "Timeout for interface calls in seconds. Range: 5-3000. Default: 600."
+      zh_Hans: "接口调用的超时时间（秒）。范围：5-3000。默认：600。"
+    label:
+      en_US: Timeout
+      zh_Hans: 超时时间
+    min: 5
+    max: 3000
+extra:
+  python:
+    source: tools/get_stock_dynamic_valuation.py
+

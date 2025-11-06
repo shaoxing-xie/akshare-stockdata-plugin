@@ -1,0 +1,85 @@
+identity:
+  author: shaoxing-xie
+  name: get_stock_dividend_info
+  label:
+    zh_Hans: 获取个股分红配股信息
+    en_US: Get Stock Dividend Info
+description:
+  human:
+    zh_Hans: 获取股票的分红送配详情和历史分红数据。帮助了解股票的分红派息情况。
+    en_US: Get stock dividend distribution details and historical dividend data. Helps understand the stock's dividend distribution situation.
+  llm: 获取股票的分红送配详情和历史分红数据。包括：分红送配详情（返回分红日期、分红金额、送股、转增等信息）、分红情况（返回分红年度、分红方案等信息）、历史分红（返回历史分红记录，包括分红日期、除权除息日、股权登记日等）。所有接口都需要提供股票代码参数，格式如"600519"（沪市）或"000001"（深市）。
+parameters:
+  - name: interface
+    type: select
+    required: true
+    form: llm
+    default: stock_fhps_detail_em
+    description: 接口名称
+    llm_description: 选择分红配股信息接口。包括：分红送配详情（返回分红日期、分红金额、送股、转增等信息）、分红情况（返回分红年度、分红方案等信息）、历史分红（返回历史分红记录，包括分红日期、除权除息日、股权登记日等）。
+    human_description:
+      en_US: "Select stock dividend info interface. Options: Dividend Distribution Detail (returns dividend date, amount, stock dividend, capitalization), Dividend Status (returns dividend year, plan), Historical Dividend (returns historical dividend records including dividend date, ex-dividend date, record date)."
+      zh_Hans: "选择分红配股信息接口。选项包括：分红送配详情（返回分红日期、分红金额、送股、转增等信息）、分红情况（返回分红年度、分红方案等信息）、历史分红（返回历史分红记录，包括分红日期、除权除息日、股权登记日等）。"
+    label:
+      en_US: Interface
+      zh_Hans: 接口名称
+    options:
+      - label:
+          en_US: Eastmoney - Dividend Detail - Specific Stock
+          zh_Hans: 东方财富网-数据中心-分红送配-分红送配详情
+        value: stock_fhps_detail_em
+      - label:
+          en_US: THS - Dividend Status - Specific Stock
+          zh_Hans: 同花顺-分红情况
+        value: stock_fhps_detail_ths
+      - label:
+          en_US: CNInfo - Historical Dividend - Specific Stock
+          zh_Hans: 巨潮资讯-历史分红-指定股票
+        value: stock_dividend_cninfo
+  - name: symbol
+    type: string
+    required: true
+    form: llm
+    default: "600519"
+    description: 股票代码
+    llm_description: 股票代码，格式如"600519"（沪市）或"000001"（深市）。支持带市场前缀的格式如"SH600519"或"SZ000001"。
+    human_description:
+      en_US: "Stock code in format like '600519' (Shanghai) or '000001' (Shenzhen). Also supports market prefix format like 'SH600519' or 'SZ000001'."
+      zh_Hans: "股票代码，格式如'600519'（沪市）或'000001'（深市）。支持带市场前缀的格式如'SH600519'或'SZ000001'。"
+    label:
+      en_US: Stock Code
+      zh_Hans: 股票代码
+  - name: retries
+    type: number
+    required: false
+    form: llm
+    default: 5
+    description: 重试次数
+    llm_description: 网络请求重试次数，范围1-10，默认5次。
+    human_description:
+      en_US: "Number of retries for network requests. Range: 1-10. Default: 5."
+      zh_Hans: "网络请求重试次数。范围：1-10。默认：5。"
+    label:
+      en_US: Retries
+      zh_Hans: 重试次数
+    min: 1
+    max: 10
+  - name: timeout
+    type: number
+    required: false
+    form: llm
+    default: 240
+    description: 子进程超时时间
+    llm_description: 子进程执行超时时间（秒），范围5-3600，默认240秒。
+    human_description:
+      en_US: "Subprocess execution timeout in seconds. Range: 5-3600. Default: 240."
+      zh_Hans: "子进程执行超时时间（秒）。范围：5-3600。默认：240。"
+    label:
+      en_US: Subprocess Timeout
+      zh_Hans: 子进程超时时间
+    min: 5
+    max: 3600
+extra:
+  python:
+    source: tools/get_stock_dividend_info.py
+

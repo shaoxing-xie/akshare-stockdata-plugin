@@ -5,6 +5,47 @@ All notable changes to the AKShare Stock Data Plugin will be documented in this 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.7.0] - 2025-01-XX
+
+### Release Summary
+- 🎉 **工具重构优化**: v0.7.0 版本，工具结构优化和接口标准化
+- 🔧 **工具合并**: 合并同花顺和东方财富板块接口为独立工具
+- 📝 **接口标准化**: 统一接口命名规范，提升用户体验
+- 🧹 **代码优化**: 清理旧工具，优化工具结构
+
+### Added
+- **新增工具**: `get_board_ths` - 获取同花顺板块数据
+  - 合并了 `get_concept_board` 和 `get_industry_board` 中的5个同花顺接口
+  - 包括：概念板块名列表、概念板块指数、概念板块简介、行业一览表、行业板块指数
+- **新增工具**: `get_board_em` - 获取东方财富板块数据
+  - 合并了 `get_concept_board` 和 `get_industry_board` 中的10个东方财富接口
+  - 包括：概念板块和行业板块的列表、实时行情、板块成份、历史行情、分时数据
+
+### Changed
+- **工具重构**: 将板块相关工具拆分为更细粒度的工具
+  - `get_concept_board` 和 `get_industry_board` 已移除
+  - 新增 `get_board_ths` 和 `get_board_em` 替代
+- **接口标准化**: 统一接口命名规范
+  - `get_stock_hot` 工具接口命名标准化
+  - `get_limit_up_down` 工具接口命名标准化
+- **版本更新**: 插件版本升级到 v0.7.0
+
+### Removed
+- **移除工具**: `get_concept_board` - 已拆分为 `get_board_ths` 和 `get_board_em`
+- **移除工具**: `get_industry_board` - 已拆分为 `get_board_ths` 和 `get_board_em`
+
+### Technical
+- 基于 AKShare 1.16.92+ 版本
+- Python 3.12+ 支持
+- Dify Plugin SDK 0.2.1+
+- 完整的错误处理和参数验证机制
+
+### Documentation
+- 更新版本号到 v0.7.0
+- 更新工具文档和示例
+
+---
+
 ## [0.6.0] - 2025-10-28
 
 ### Release Summary

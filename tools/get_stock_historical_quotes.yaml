@@ -1,0 +1,163 @@
+identity:
+  author: shaoxing-xie
+  name: get_stock_historical_quotes
+  label:
+    zh_Hans: 获取个股历史行情
+    en_US: Get Stock Historical Quotes
+description:
+  human:
+    zh_Hans: 获取指定股票的历史行情数据，包括日线、周线、月线等不同周期的数据，并可选择前复权、后复权等复权方式。支持A股和科创板历史行情数据。
+    en_US: Get historical stock market data for specified stocks, including different periods (daily, weekly, monthly) with adjustment options (qfq, hfq). Supports A-share and STAR Market historical data.
+  llm: 获取指定股票的历史行情数据，包括日线、周线、月线等不同周期的数据，并可选择前复权、后复权等复权方式。包括：东方财富网-沪深京A股-日频率数据（需要股票代码、周期、日期范围、复权方式）、腾讯证券-沪深京A股-历史行情日频率数据（需要股票代码、日期范围、复权方式）、新浪财经-科创板股票历史行情数据（需要股票代码、复权方式）。支持A股和科创板历史行情数据，返回历史价格、成交量、成交额等信息。
+parameters:
+  - name: interface
+    type: select
+    required: true
+    form: llm
+    default: stock_zh_a_hist
+    description: 接口名称
+    llm_description: 选择历史行情数据接口。包括：东方财富网-沪深京A股-日频率数据（需要周期、日期范围、复权方式）、腾讯证券-沪深京A股-历史行情日频率数据（需要日期范围、复权方式）、新浪财经-科创板股票历史行情数据（需要复权方式）。所有接口都需要股票代码参数。
+    human_description:
+      en_US: "Select historical market data interface. Options: Eastmoney - A-share Daily Data (requires period, date range, adjustment), Tencent - A-share Historical Daily Data (requires date range, adjustment), Sina Finance - STAR Market Historical Data (requires adjustment). All interfaces require stock symbol."
+      zh_Hans: "选择历史行情数据接口。选项包括：东方财富网-沪深京A股-日频率数据（需要周期、日期范围、复权方式）、腾讯证券-沪深京A股-历史行情日频率数据（需要日期范围、复权方式）、新浪财经-科创板股票历史行情数据（需要复权方式）。所有接口都需要股票代码参数。"
+    label:
+      en_US: Interface
+      zh_Hans: 接口名称
+    options:
+      - label:
+          en_US: Eastmoney - A-share - Daily Data - Specified Stock, Period, Adjustment and Date Range
+          zh_Hans: 东方财富网-沪深京A股-日频率数据-指定股票、周期、复权方式和日期区间
+        value: stock_zh_a_hist
+      - label:
+          en_US: Tencent Securities - A-share - Historical Daily Data - Specified Stock, Adjustment and Date Range
+          zh_Hans: 腾讯证券-沪深京A股-历史行情日频率数据-指定股票、复权方式和日期区间
+        value: stock_zh_a_hist_tx
+      - label:
+          en_US: Sina Finance - STAR Market - Historical Data - Specified Stock and Adjustment
+          zh_Hans: 新浪财经-科创板股票历史行情数据-指定股票、复权方式
+        value: stock_zh_kcb_daily
+  - name: symbol
+    type: string
+    required: true
+    form: llm
+    default: "000001"
+    description: 股票代码
+    llm_description: 股票代码，支持A股格式，如600519（沪市）、000001（深市）。科创板股票代码以688开头。
+    human_description:
+      en_US: "Stock symbol. Format: A-shares: 600519 (Shanghai), 000001 (Shenzhen). STAR Market stocks start with 688."
+      zh_Hans: "股票代码。格式：A股：600519（沪市）、000001（深市）。科创板股票代码以688开头。"
+    label:
+      en_US: Stock Symbol
+      zh_Hans: 股票代码
+  - name: period
+    type: select
+    required: false
+    form: llm
+    default: daily
+    description: 周期（历史行情类）
+    llm_description: 历史行情接口的周期参数，仅东方财富网-沪深京A股-日频率数据接口需要此参数。选项：daily(日线)、weekly(周线)、monthly(月线)。
+    human_description:
+      en_US: "Period parameter for historical market data interface. Only required for Eastmoney - A-share - Daily Data interface. Options: daily (daily line), weekly (weekly line), monthly (monthly line)."
+      zh_Hans: "周期（历史行情类）。仅东方财富网-沪深京A股-日频率数据接口需要此参数。选项：daily(日线)、weekly(周线)、monthly(月线)。"
+    label:
+      en_US: Period (Historical Data)
+      zh_Hans: 周期（历史行情类）
+    options:
+      - label:
+          en_US: Daily
+          zh_Hans: 日线
+        value: "daily"
+      - label:
+          en_US: Weekly
+          zh_Hans: 周线
+        value: "weekly"
+      - label:
+          en_US: Monthly
+          zh_Hans: 月线
+        value: "monthly"
+  - name: start_date
+    type: string
+    required: false
+    form: llm
+    default: "20250801"
+    description: 开始日期
+    llm_description: 历史数据的开始日期，格式为YYYYMMDD。仅东方财富网和腾讯证券的历史行情接口需要此参数。
+    human_description:
+      en_US: "Start date for historical data. Format: YYYYMMDD (20240101). Only required for Eastmoney and Tencent historical market data interfaces."
+      zh_Hans: "开始日期。历史数据的开始日期，格式为YYYYMMDD（20240101）。仅东方财富网和腾讯证券的历史行情接口需要此参数。"
+    label:
+      en_US: Start Date
+      zh_Hans: 开始日期
+  - name: end_date
+    type: string
+    required: false
+    form: llm
+    default: "20250915"
+    description: 结束日期
+    llm_description: 历史数据的结束日期，格式为YYYYMMDD。仅东方财富网和腾讯证券的历史行情接口需要此参数。
+    human_description:
+      en_US: "End date for historical data. Format: YYYYMMDD (20241231). Only required for Eastmoney and Tencent historical market data interfaces."
+      zh_Hans: "结束日期。历史数据的结束日期，格式为YYYYMMDD（20241231）。仅东方财富网和腾讯证券的历史行情接口需要此参数。"
+    label:
+      en_US: End Date
+      zh_Hans: 结束日期
+  - name: adjust
+    type: select
+    required: false
+    form: llm
+    default: "qfq"
+    description: 复权方式
+    llm_description: 价格复权方式，支持前复权、后复权、不复权。所有接口都支持此参数。
+    human_description:
+      en_US: "Adjustment method. Options: qfq (forward adjustment), hfq (backward adjustment), none (no adjustment). Supported by all interfaces."
+      zh_Hans: "复权方式。选项：qfq(前复权)、hfq(后复权)、none(不复权)。所有接口都支持此参数。"
+    label:
+      en_US: Adjustment
+      zh_Hans: 复权方式
+    options:
+      - label:
+          en_US: No Adjustment
+          zh_Hans: 不复权
+        value: "none"
+      - label:
+          en_US: Forward Adjustment
+          zh_Hans: 前复权
+        value: "qfq"
+      - label:
+          en_US: Backward Adjustment
+          zh_Hans: 后复权
+        value: "hfq"
+  - name: retries
+    type: number
+    required: false
+    form: llm
+    default: 5
+    description: 重试次数
+    llm_description: 网络请求重试次数，范围1-10，默认5次。
+    human_description:
+      en_US: "Number of retries for network requests. Range: 1-10. Default: 5."
+      zh_Hans: "网络请求重试次数。范围：1-10。默认：5。"
+    label:
+      en_US: Retries
+      zh_Hans: 重试次数
+    min: 1
+    max: 10
+  - name: timeout
+    type: number
+    required: false
+    form: llm
+    default: 900
+    description: 子进程超时时间
+    llm_description: 子进程执行超时时间（秒），范围5-3600，默认900秒（15分钟）。历史数据接口数据量可能很大，建议设置较长的超时时间。
+    human_description:
+      en_US: "Subprocess execution timeout in seconds. Range: 5-3600. Default: 900 (15 minutes). Historical data interfaces may have large data volumes, suggest longer timeout."
+      zh_Hans: "子进程执行超时时间（秒）。范围：5-3600。默认：900（15分钟）。历史数据接口数据量可能很大，建议设置较长的超时时间。"
+    label:
+      en_US: Subprocess Timeout
+      zh_Hans: 子进程超时时间
+    min: 5
+    max: 3600
+extra:
+  python:
+    source: tools/get_stock_historical_quotes.py
+

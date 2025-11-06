@@ -1,0 +1,93 @@
+identity:
+  author: shaoxing-xie
+  name: get_stock_basic_info
+  label:
+    zh_Hans: 获取个股基本信息
+    en_US: Get Stock Basic Info
+description:
+  human:
+    zh_Hans: 获取股票的基本信息，包括股票概况、主营业务介绍、主营构成等数据。帮助了解股票的基本面信息。
+    en_US: Get basic stock information including stock overview, main business introduction, and main business composition. Helps understand fundamental information about stocks.
+  llm: 获取股票的基本信息，包括股票概况、主营业务介绍、主营构成、公司概况、上市信息等数据。包括：股票信息（股票代码、名称、行业、概念等基本信息）、主营介绍（主营业务描述、经营范围等）、主营构成（按产品或地区分类的主营业务构成）、公司概况（公司基本信息、业务范围、财务指标等）、上市相关资讯（上市日期、发行价格、募集资金等）。所有接口都需要提供股票代码参数，格式如"600519"（沪市）或"000001"（深市）。
+parameters:
+  - name: interface
+    type: select
+    required: true
+    form: llm
+    default: stock_individual_info_em
+    description: 接口名称
+    llm_description: 选择股票基本信息接口。包括：股票信息（返回股票代码、名称、行业、概念等基本信息）、主营介绍（返回主营业务描述、经营范围等）、主营构成（返回按产品或地区分类的主营业务构成数据）、公司概况（返回公司基本信息、业务范围、财务指标等）、上市相关资讯（返回上市日期、发行价格、募集资金等）。
+    human_description:
+      en_US: "Select stock basic info interface. Options: Stock Information (returns basic info like code, name, industry, concepts), Main Business Introduction (returns business description and scope), Main Business Composition (returns business composition by product or region), Company Profile (returns company basic info, business scope, financial indicators), IPO Summary (returns listing date, issue price, funds raised)."
+      zh_Hans: "选择股票基本信息接口。选项包括：股票信息（返回股票代码、名称、行业、概念等基本信息）、主营介绍（返回主营业务描述、经营范围等）、主营构成（返回按产品或地区分类的主营业务构成数据）、公司概况（返回公司基本信息、业务范围、财务指标等）、上市相关资讯（返回上市日期、发行价格、募集资金等）。"
+    label:
+      en_US: Interface
+      zh_Hans: 接口名称
+    options:
+      - label:
+          en_US: Eastmoney - Stock Information - Specific Stock
+          zh_Hans: 东方财富网-股票信息-指定股票
+        value: stock_individual_info_em
+      - label:
+          en_US: THS - Main Business Introduction - Specific Stock
+          zh_Hans: 同花顺-主营介绍-指定股票
+        value: stock_zyjs_ths
+      - label:
+          en_US: Eastmoney - Main Business Composition - Specific Stock
+          zh_Hans: 东方财富网-主营构成-指定股票
+        value: stock_zygc_em
+      - label:
+          en_US: CNInfo - Company Profile - Specific Stock
+          zh_Hans: 巨潮资讯-公司概况-指定股票
+        value: stock_profile_cninfo
+      - label:
+          en_US: CNInfo - IPO Summary - Specific Stock
+          zh_Hans: 巨潮资讯-上市相关资讯-指定股票
+        value: stock_ipo_summary_cninfo
+  - name: symbol
+    type: string
+    required: true
+    form: llm
+    default: "600519"
+    description: 股票代码
+    llm_description: 股票代码，格式如"600519"（沪市）或"000001"（深市）。支持带市场前缀的格式如"SH600519"或"SZ000001"。
+    human_description:
+      en_US: "Stock code in format like '600519' (Shanghai) or '000001' (Shenzhen). Also supports market prefix format like 'SH600519' or 'SZ000001'."
+      zh_Hans: "股票代码，格式如'600519'（沪市）或'000001'（深市）。支持带市场前缀的格式如'SH600519'或'SZ000001'。"
+    label:
+      en_US: Stock Code
+      zh_Hans: 股票代码
+  - name: retries
+    type: number
+    required: false
+    form: llm
+    default: 5
+    description: 重试次数
+    llm_description: 网络请求重试次数，范围1-10，默认5次。
+    human_description:
+      en_US: "Number of retries for network requests. Range: 1-10. Default: 5."
+      zh_Hans: "网络请求重试次数。范围：1-10。默认：5。"
+    label:
+      en_US: Retries
+      zh_Hans: 重试次数
+    min: 1
+    max: 10
+  - name: timeout
+    type: number
+    required: false
+    form: llm
+    default: 240
+    description: 子进程超时时间
+    llm_description: 子进程执行超时时间（秒），范围5-3600，默认240秒。
+    human_description:
+      en_US: "Subprocess execution timeout in seconds. Range: 5-3600. Default: 240."
+      zh_Hans: "子进程执行超时时间（秒）。范围：5-3600。默认：240。"
+    label:
+      en_US: Subprocess Timeout
+      zh_Hans: 子进程超时时间
+    min: 5
+    max: 3600
+extra:
+  python:
+    source: tools/get_stock_basic_info.py
+

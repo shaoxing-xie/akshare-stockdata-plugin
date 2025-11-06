@@ -1,0 +1,85 @@
+identity:
+  author: shaoxing-xie
+  name: get_hk_industry_comparison
+  label:
+    zh_Hans: 获取港股个股行业对比数据
+    en_US: Get Hong Kong Stock Individual Industry Comparison Data
+description:
+  human:
+    zh_Hans: 获取港股个股行业对比数据，包括成长性对比、估值对比和规模对比。帮助了解港股个股在同行业中的相对表现。
+    en_US: Get Hong Kong stock individual industry comparison data, including growth comparison, valuation comparison and scale comparison. Helps understand the relative performance of Hong Kong stocks within the same industry.
+  llm: 获取港股个股行业对比数据。包括：东方财富网-港股-行业对比-成长性对比-指定股票代码、东方财富网-港股-行业对比-估值对比-指定股票代码、东方财富网-港股-行业对比-规模对比-指定股票代码。所有接口都需要提供港股代码。返回数据包括该股票在同行业中的排名和对比数据。
+parameters:
+  - name: interface
+    type: select
+    required: true
+    form: llm
+    default: stock_hk_growth_comparison_em
+    description: 接口名称
+    llm_description: 选择港股个股行业对比接口。包括：成长性对比（返回成长性指标及排名）、估值对比（返回估值指标及排名，包括市盈率、市净率、市销率、市现率等）、规模对比（返回规模指标及排名，包括总市值、流通市值、营业总收入、净利润等）。所有接口都需要提供港股代码。
+    human_description:
+      en_US: "Select Hong Kong stock individual industry comparison interface. Options: Growth Comparison (returns growth indicators and rankings), Valuation Comparison (returns valuation indicators and rankings, including P/E, P/B, P/S, P/CF ratios, etc.), Scale Comparison (returns scale indicators and rankings, including total market cap, float market cap, total revenue, net profit, etc.). All interfaces require Hong Kong stock code."
+      zh_Hans: "选择港股个股行业对比接口。选项包括：成长性对比（返回成长性指标及排名）、估值对比（返回估值指标及排名，包括市盈率、市净率、市销率、市现率等）、规模对比（返回规模指标及排名，包括总市值、流通市值、营业总收入、净利润等）。所有接口都需要提供港股代码。"
+    label:
+      en_US: Interface
+      zh_Hans: 接口名称
+    options:
+      - label:
+          en_US: East Money - HK Stock - Industry Comparison - Growth Comparison - Specify Stock Code
+          zh_Hans: 东方财富网-港股-行业对比-成长性对比-指定股票代码
+        value: stock_hk_growth_comparison_em
+      - label:
+          en_US: East Money - HK Stock - Industry Comparison - Valuation Comparison - Specify Stock Code
+          zh_Hans: 东方财富网-港股-行业对比-估值对比-指定股票代码
+        value: stock_hk_valuation_comparison_em
+      - label:
+          en_US: East Money - HK Stock - Industry Comparison - Scale Comparison - Specify Stock Code
+          zh_Hans: 东方财富网-港股-行业对比-规模对比-指定股票代码
+        value: stock_hk_scale_comparison_em
+  - name: stock_code
+    type: string
+    required: false
+    form: llm
+    default: "03900"
+    description: 港股代码
+    llm_description: 港股代码，格式：00700、03900、HK00700；港股：5位数字代码(00700)或市场前缀(HK00700)
+    human_description:
+      en_US: "Hong Kong stock code. Format: 00700, 03900, HK00700."
+      zh_Hans: "港股代码。格式：00700、03900、HK00700；港股：5位数字代码(00700)或市场前缀(HK00700)。"
+    label:
+      en_US: HK Stock Code
+      zh_Hans: 港股代码
+  - name: retries
+    type: number
+    required: false
+    form: llm
+    default: 5
+    description: 重试次数
+    llm_description: 网络请求重试次数，默认5次
+    human_description:
+      en_US: "Number of retries for network requests. Range: 1-10. Default: 5."
+      zh_Hans: "网络请求重试次数。范围：1-10。默认：5。"
+    label:
+      en_US: Retries
+      zh_Hans: 重试次数
+    min: 1
+    max: 10
+  - name: timeout
+    type: number
+    required: false
+    form: llm
+    default: 600
+    description: 子进程超时时间
+    llm_description: 子进程执行超时时间（秒），默认600秒
+    human_description:
+      en_US: "Subprocess execution timeout in seconds. Range: 5-3600. Default: 600."
+      zh_Hans: "子进程执行超时时间（秒）。范围：5-3600。默认：600。"
+    label:
+      en_US: Subprocess Timeout
+      zh_Hans: 子进程超时时间
+    min: 5
+    max: 3600
+extra:
+  python:
+    source: tools/get_hk_industry_comparison.py
+

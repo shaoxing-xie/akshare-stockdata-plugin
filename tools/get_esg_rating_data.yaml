@@ -1,0 +1,76 @@
+identity:
+  author: shaoxing-xie
+  name: get_esg_rating_data
+  label:
+    zh_Hans: 获取ESG评级数据
+    en_US: Get ESG Rating Data
+description:
+  human:
+    zh_Hans: 获取股票的ESG评级数据，包括MSCI、路孚特、秩鼎、华证指数等评级机构的ESG评分、环境总评、社会责任总评、治理总评等信息。
+    en_US: Get ESG rating data for stocks, including ESG scores from MSCI, Refinitiv, Zidings, Huazheng Index and other rating agencies, including environmental score, social responsibility score, governance score, etc.
+  llm: 获取股票的ESG评级数据。包括：新浪财经-ESG评级-MSCI（无需参数，返回所有股票的MSCI ESG评级数据）、新浪财经-ESG评级-路孚特（无需参数，返回所有股票的路孚特ESG评级数据）、新浪财经-ESG评级-秩鼎（无需参数，返回所有股票的秩鼎ESG评级数据）、新浪财经-ESG评级-华证指数（无需参数，返回所有股票的华证指数ESG评级数据）。这些接口均无需参数。
+parameters:
+  - name: interface
+    type: select
+    required: true
+    form: llm
+    default: stock_esg_msci_sina
+    description: 接口名称
+    llm_description: 选择ESG评级数据接口。包括：新浪财经-ESG评级-MSCI、新浪财经-ESG评级-路孚特、新浪财经-ESG评级-秩鼎、新浪财经-ESG评级-华证指数。这些接口均无需参数。
+    human_description:
+      en_US: "Select ESG rating data interface. Options: MSCI, Refinitiv, Zidings, Huazheng Index. All interfaces require no parameters."
+      zh_Hans: "选择ESG评级数据接口。选项包括：新浪财经-ESG评级-MSCI、新浪财经-ESG评级-路孚特、新浪财经-ESG评级-秩鼎、新浪财经-ESG评级-华证指数。这些接口均无需参数。"
+    label:
+      en_US: Interface
+      zh_Hans: 接口名称
+    options:
+      - label:
+          en_US: ESG MSCI
+          zh_Hans: 新浪财经-ESG评级-MSCI
+        value: stock_esg_msci_sina
+      - label:
+          en_US: ESG Refinitiv
+          zh_Hans: 新浪财经-ESG评级-路孚特
+        value: stock_esg_rft_sina
+      - label:
+          en_US: ESG Zidings
+          zh_Hans: 新浪财经-ESG评级-秩鼎
+        value: stock_esg_zd_sina
+      - label:
+          en_US: ESG Huazheng Index
+          zh_Hans: 新浪财经-ESG评级-华证指数
+        value: stock_esg_hz_sina
+  - name: retries
+    type: number
+    required: false
+    form: llm
+    default: 5
+    description: 重试次数
+    llm_description: 接口调用失败时的重试次数，默认为5次
+    human_description:
+      en_US: "Number of retries when interface call fails, default is 5"
+      zh_Hans: "接口调用失败时的重试次数，默认为5次"
+    label:
+      en_US: Retries
+      zh_Hans: 重试次数
+    min: 1
+    max: 10
+  - name: timeout
+    type: number
+    required: false
+    form: llm
+    default: 300
+    description: 超时时间
+    llm_description: 接口调用的超时时间（秒），默认为300秒（5分钟），因为ESG数据接口处理时间较长
+    human_description:
+      en_US: "Timeout for interface calls in seconds, default is 300 (5 minutes), as ESG data interfaces take longer to process"
+      zh_Hans: "接口调用的超时时间（秒），默认为300秒（5分钟），因为ESG数据接口处理时间较长"
+    label:
+      en_US: Timeout
+      zh_Hans: 超时时间
+    min: 5
+    max: 1800
+extra:
+  python:
+    source: tools/get_esg_rating_data.py
+

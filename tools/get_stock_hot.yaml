@@ -1,0 +1,106 @@
+identity:
+  author: shaoxing-xie
+  name: get_stock_hot
+  label:
+    zh_Hans: 获取A股市场股票热度数据
+    en_US: Get A-share Market Stock Hot Data
+description:
+  human:
+    zh_Hans: 获取A股市场股票热度数据。包括雪球和东方财富的股票热度排行榜，如关注排行榜、讨论排行榜、交易排行榜、人气榜、飙升榜等。帮助了解股票的市场关注度、讨论热度和交易活跃度。适用于股票热度分析、市场情绪监测和投资决策。
+    en_US: Get A-share market stock hot data. Includes stock hot rankings from Snowball and East Money, such as follow rankings, discussion rankings, trading rankings, popularity rankings, and rising rankings. Helps understand stock market attention, discussion heat, and trading activity. Suitable for stock hot analysis, market sentiment monitoring, and investment decisions.
+  llm: 获取A股市场股票热度数据。包括：雪球-关注排行榜（需要排行类别，返回指定类别的关注排行榜数据）、雪球-讨论排行榜（需要排行类别，返回指定类别的讨论排行榜数据）、雪球-交易排行榜（需要排行类别，返回指定类别的交易排行榜数据）、东方财富-人气榜-A股（无需参数，返回A股人气榜前100名数据）、东方财富-飙升榜-A股（无需参数，返回A股飙升榜前100名数据）、东方财富-人气榜-港股（无需参数，返回港股人气榜前100名数据）。
+parameters:
+  - name: interface
+    type: select
+    required: true
+    form: llm
+    default: stock_hot_rank_em
+    description: 接口名称
+    llm_description: 选择股票热度数据接口。包括：雪球-关注排行榜（需要排行类别）、雪球-讨论排行榜（需要排行类别）、雪球-交易排行榜（需要排行类别）、东方财富-人气榜-A股（无需参数）、东方财富-飙升榜-A股（无需参数）、东方财富-人气榜-港股（无需参数）。
+    human_description:
+      en_US: "Select stock hot data interface. Options: Snowball - Follow Rankings (requires ranking category), Snowball - Discussion Rankings (requires ranking category), Snowball - Trading Rankings (requires ranking category), East Money - Popularity Rankings A-shares (no parameters required), East Money - Rising Rankings A-shares (no parameters required), East Money - Popularity Rankings H-shares (no parameters required)."
+      zh_Hans: "选择股票热度数据接口。选项包括：雪球-关注排行榜（需要排行类别）、雪球-讨论排行榜（需要排行类别）、雪球-交易排行榜（需要排行类别）、东方财富-人气榜-A股（无需参数）、东方财富-飙升榜-A股（无需参数）、东方财富-人气榜-港股（无需参数）。"
+    label:
+      en_US: Interface
+      zh_Hans: 接口名称
+    options:
+      - label:
+          en_US: Snowball - Follow Rankings - Ranking Category
+          zh_Hans: 雪球-关注排行榜-指定排行类别
+        value: stock_hot_follow_xq
+      - label:
+          en_US: Snowball - Discussion Rankings - Ranking Category
+          zh_Hans: 雪球-讨论排行榜-指定排行类别
+        value: stock_hot_tweet_xq
+      - label:
+          en_US: Snowball - Trading Rankings - Ranking Category
+          zh_Hans: 雪球-交易排行榜-指定排行类别
+        value: stock_hot_deal_xq
+      - label:
+          en_US: East Money - Popularity Rankings A-shares - All
+          zh_Hans: 东方财富-人气榜-A股-全部
+        value: stock_hot_rank_em
+      - label:
+          en_US: East Money - Rising Rankings A-shares - All
+          zh_Hans: 东方财富-飙升榜-A股-全部
+        value: stock_hot_up_em
+      - label:
+          en_US: East Money - Popularity Rankings H-shares - All
+          zh_Hans: 东方财富-人气榜-港股-全部
+        value: stock_hk_hot_rank_em
+  - name: symbol
+    type: select
+    required: false
+    form: llm
+    default: "最热门"
+    description: 排行类别
+    llm_description: 排行类别，选择排行榜类别。仅雪球接口（关注排行榜、讨论排行榜、交易排行榜）需要此参数。选项包括：最热门、本周新增。
+    human_description:
+      en_US: "Ranking category. Required only for Snowball interfaces (Follow Rankings, Discussion Rankings, Trading Rankings). Options: 最热门 (Most Popular), 本周新增 (New This Week)."
+      zh_Hans: "排行类别。仅雪球接口（关注排行榜、讨论排行榜、交易排行榜）需要此参数。选项包括：最热门、本周新增。"
+    label:
+      en_US: Ranking Category
+      zh_Hans: 排行类别
+    options:
+      - label:
+          en_US: Most Popular
+          zh_Hans: 最热门
+        value: "最热门"
+      - label:
+          en_US: New This Week
+          zh_Hans: 本周新增
+        value: "本周新增"
+  - name: retries
+    type: number
+    required: false
+    form: llm
+    default: 5
+    description: 重试次数
+    llm_description: 网络请求重试次数，范围1-10，默认5次。
+    human_description:
+      en_US: "Number of retries for network requests. Range: 1-10. Default: 5."
+      zh_Hans: "网络请求重试次数。范围：1-10。默认：5。"
+    label:
+      en_US: Retries
+      zh_Hans: 重试次数
+    min: 1
+    max: 10
+  - name: timeout
+    type: number
+    required: false
+    form: llm
+    default: 240
+    description: 子进程超时时间
+    llm_description: 子进程执行超时时间（秒），范围5-3600，默认240秒。
+    human_description:
+      en_US: "Subprocess execution timeout in seconds. Range: 5-3600. Default: 240."
+      zh_Hans: "子进程执行超时时间（秒）。范围：5-3600。默认：240。"
+    label:
+      en_US: Subprocess Timeout
+      zh_Hans: 子进程超时时间
+    min: 5
+    max: 3600
+extra:
+  python:
+    source: tools/get_stock_hot.py
+

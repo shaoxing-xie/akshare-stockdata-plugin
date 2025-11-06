@@ -1,0 +1,77 @@
+identity:
+  author: shaoxing-xie
+  name: get_stock_shareholder_number_detail
+  label:
+    zh_Hans: 获取A股股东户数数据
+    en_US: Get A-Share Stock Shareholder Number Data
+description:
+  human:
+    zh_Hans: 获取A股股东户数数据。基于东方财富网的股东户数详情接口，获取指定股票的股东户数历史数据，包括股东户数、户均持股数、持股集中度等指标的变化趋势。适用于股东结构分析、股东集中度研究和投资决策。可帮助投资者了解股票的股东分布变化，判断股东集中度趋势，辅助分析股票的流动性特征。
+    en_US: Get A-share stock shareholder number data. Based on East Money shareholder number detail interface, retrieves historical shareholder number data for specified stocks, including shareholder number, average shares per shareholder, shareholding concentration and other indicators' change trends. Suitable for shareholder structure analysis, shareholding concentration research, and investment decisions. Helps investors understand changes in shareholder distribution, judge shareholding concentration trends, and assist in analyzing stock liquidity characteristics.
+  llm: 获取A股股东户数数据。包括：东方财富网-股东户数详情-指定股票。需要提供股票代码参数，返回指定股票的股东户数历史数据，包括股东户数、户均持股数、持股集中度等指标。股票代码格式如"600519"（沪市）或"000001"（深市），支持带市场前缀的格式如"SH600519"或"SZ000001"。
+parameters:
+  - name: interface
+    type: select
+    required: true
+    form: llm
+    default: stock_zh_a_gdhs_detail_em
+    description: 接口名称
+    llm_description: 选择A股股东户数数据接口
+    human_description:
+      en_US: "Select the A-share stock shareholder number data interface."
+      zh_Hans: "选择A股股东户数数据接口。"
+    label:
+      en_US: Interface
+      zh_Hans: 接口名称
+    options:
+      - label:
+          en_US: Eastmoney - Shareholder Number Detail - Specific Stock
+          zh_Hans: 东方财富网-股东户数详情-指定股票
+        value: stock_zh_a_gdhs_detail_em
+  - name: symbol
+    type: string
+    required: true
+    form: llm
+    default: "600519"
+    description: 股票代码
+    llm_description: 股票代码，格式如"600519"（沪市）或"000001"（深市）。支持带市场前缀的格式如"SH600519"或"SZ000001"。
+    human_description:
+      en_US: "Stock code in format like '600519' (Shanghai) or '000001' (Shenzhen). Also supports market prefix format like 'SH600519' or 'SZ000001'."
+      zh_Hans: "股票代码，格式如'600519'（沪市）或'000001'（深市）。支持带市场前缀的格式如'SH600519'或'SZ000001'。"
+    label:
+      en_US: Stock Code
+      zh_Hans: 股票代码
+  - name: retries
+    type: number
+    required: false
+    form: llm
+    default: 5
+    description: 重试次数
+    llm_description: 网络请求重试次数，默认5次
+    human_description:
+      en_US: "Number of retries for network requests. Range: 1-10. Default: 5."
+      zh_Hans: "网络请求重试次数。范围：1-10。默认：5。"
+    label:
+      en_US: Retries
+      zh_Hans: 重试次数
+    min: 1
+    max: 10
+  - name: timeout
+    type: number
+    required: false
+    form: llm
+    default: 240
+    description: 超时时间
+    llm_description: 接口调用的超时时间（秒），默认240秒
+    human_description:
+      en_US: "Timeout for interface calls in seconds. Range: 5-3600. Default: 240."
+      zh_Hans: "接口调用的超时时间（秒）。范围：5-3600。默认：240。"
+    label:
+      en_US: Timeout
+      zh_Hans: 超时时间
+    min: 5
+    max: 3600
+extra:
+  python:
+    source: tools/get_stock_shareholder_number_detail.py
+
