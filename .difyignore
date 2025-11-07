@@ -324,7 +324,7 @@ temp_extract/
 **/performance/**
 **/perf/**
 
-# 排除文档和配置文件（已在上面单独排除）
+# 排除文档和配置文件
 **/docs/**
 **/doc/**
 **/documentation/**
@@ -337,38 +337,9 @@ temp_extract/
 **/bin/**
 **/obj/**
 
-# 排除IDE和编辑器文件
-**/.vscode/**
-**/.idea/**
-**/.vs/**
-**/.sublime-*/**
-**/*.swp
-**/*.swo
-**/*.tmp
-**/*.temp
+# 排除Python特定文件（已在上面定义，这里避免重复）
 
-# 排除版本控制文件
-**/.git/**
-**/.svn/**
-**/.hg/**
-**/.bzr/**
-
-# 排除操作系统文件
-**/.DS_Store
-**/Thumbs.db
-**/desktop.ini
-**/.directory
-
-# 排除Python特定文件
-**/__pycache__/**
-**/*.pyc
-**/*.pyo
-**/*.pyd
-**/*.so
-**/*.dll
-**/*.dylib
-
-# 排除特定库的测试文件（已知问题库）
+# 排除特定库的测试文件（已知问题库，避免预编译超时）
 **/pandas/tests/**
 **/numpy/tests/**
 **/akshare/tests/**
@@ -386,7 +357,6 @@ temp_extract/
 **/certifi/tests/**
 **/charset_normalizer/tests/**
 **/idna/tests/**
-**/urllib3/tests/**
 **/six/tests/**
 **/python_dateutil/tests/**
 **/pytz/tests/**
@@ -410,7 +380,6 @@ temp_extract/
 **/jaraco.ansiterm/tests/**
 **/jaraco.cmd/tests/**
 **/jaraco.envs/tests/**
-**/jaraco.functools/tests/**
 **/jaraco.logging/tests/**
 **/jaraco.math/tests/**
 **/jaraco.net/tests/**
